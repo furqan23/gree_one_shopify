@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "disabled": true,
+      "settings": {}
+    },
+    "product_detail_custom_HR48kp": {
+      "type": "product_detail_custom",
+      "settings": {}
+    },
+    "product_readmore_one_XGLwWC": {
+      "type": "product_readmore_one",
+      "settings": {
+        "title": "",
+        "description": "",
+        "readmore_one": ""
+      }
+    },
+    "product_readmore_two_MDQ6cg": {
+      "type": "product_readmore_two",
+      "settings": {
+        "title": "",
+        "description": "",
+        "readmore_one": ""
+      }
+    },
+    "content_cta_and_media_grid_QgJ6ER": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_WRhaFq": {
+          "type": "heading",
+          "settings": {
+            "heading": "Heading"
+          }
+        },
+        "image_heading_7Pa8Dt": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_6KFnUb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_wVdLwG": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_WRhaFq",
+        "image_heading_7Pa8Dt",
+        "text_6KFnUb",
+        "button_wVdLwG"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "video_url": "https://player.vimeo.com/progressive_redirect/playback/541707235/rendition/1080p/file.mp4?loc=external&signature=883afde55f83841b85b1b8a518e5072ed72353a1850b2782aab895bdc2458c6d",
+        "embed_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+      }
+    },
+    "product_caution_VVzizn": {
+      "type": "product_caution",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "product_detail_custom_HR48kp",
+    "product_readmore_one_XGLwWC",
+    "product_readmore_two_MDQ6cg",
+    "content_cta_and_media_grid_QgJ6ER",
+    "product_caution_VVzizn"
+  ]
+}

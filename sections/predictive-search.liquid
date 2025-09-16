@@ -1,0 +1,137 @@
+{%- if predictive_search.performed -%}
+    <div id="predictive-search-results" class="predictive-search__results" role="listbox">
+        <div class="predictive-search__results-wrapper">
+            {% comment %}
+                Suggested
+            {% endcomment %}
+            {%- if predictive_search.resources.queries.size > 0 -%}
+                <div class="xLargeMax:pt-[2.375rem] first-of-type:xLargeMax:pt-6 xLarge:basis-[calc(30%_-_0.625rem)]">
+                    <div class="w-full box-border xLargeMax:px-4">
+                        <h2 id="predictive-search-queries" class="body-r font-semibold uppercase pb-2 border-b border-b-uiDarkGrey">
+                            {{ 'templates.search.suggestions' | t }}
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </h2>
+                    </div>
+                    <ul id="predictive-search-results-queries-list" role="group" aria-labelledby="predictive-search-queries">
+                        {%- for query in predictive_search.resources.queries -%}
+                            <li id="predictive-search-option-query-{{ forloop.index }}" class="group mt-2 body-r first-of-type:mt-[0.875rem]" role="option" aria-selected="false">
+                                <a href="{{ query.url }}" class="w-full flex items-center py-2 box-border hover:bg-uiMidGrey group-aria-selected:bg-uiMidGrey [&_mark]:font-bold xLargeMax:px-4" aria-label="{{ query.text }}" tabindex="-1">
+                                    {{ query.styled_text }}
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endif -%}
+
+            {% comment %}
+                Products
+            {% endcomment %}
+            {%- if predictive_search.resources.products.size > 0 -%}
+                <div class="xLargeMax:pt-[2.375rem] first-of-type:xLargeMax:pt-6 xLarge:basis-[calc(70%_-_0.625rem)]">
+                    <div class="w-full box-border xLargeMax:px-4">
+                        <h2 id="predictive-search-products" class="body-r font-semibold uppercase pb-2 border-b border-b-uiDarkGrey">
+                            {{ 'templates.search.products' | t }}
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </h2>
+                    </div>
+                    <ul id="predictive-search-results-list" role="group" aria-labelledby="predictive-search-products">
+                        {%- for product in predictive_search.resources.products -%}
+                            {% assign series = product.metafields.custom.series.value %}
+                            <li id="predictive-search-option-product-{{ forloop.index }}" class="group mt-2 first-of-type:mt-[0.875rem]" role="option" aria-selected="false">
+                                <a href="{{ product.url }}" class="w-full flex items-center gap-[0.625rem] py-1 box-border hover:bg-uiMidGrey group-aria-selected:bg-uiMidGrey xLargeMax:px-4 large:gap-[1.25rem]" tabindex="-1">
+                                    {%- if product.featured_media != blank -%}
+                                        <img class="object-contain"
+                                            src="{{ product.featured_media | image_url: width: 130 }}"
+                                            alt="{{ product.featured_media.alt }}"
+                                            width="65"
+                                            height="65"
+                                            loading="lazy"
+                                        >
+                                    {%- endif -%}
+                                    <div class="flex items-center justify-center">
+                                        {%- if settings.predictive_search_show_vendor -%}
+                                            <span class="hidden">{{ 'accessibility.vendor' | t }}</span><div class="body-s">{{ product.vendor }}</div>
+                                        {%- endif -%}
+                                        <div>
+                                            {% if series.letter and product.metafields.custom.series_number %}
+                                                <span class="body-r ">
+                                                    {{- series.letter -}}-{{ product.metafields.custom.series_number }}
+                                                </span>
+                                            {% endif %}
+                                            <h3 class="body-s font-Gotham uppercase font-bold tracking-[0.045rem]">{{ product.title }}</h3>
+                                            {%- if settings.predictive_search_show_price -%}
+                                                {% render 'price', product: product, use_variant: true, show_badges: false %}
+                                            {%- endif -%}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endif -%}
+
+            {% comment %}
+                Pages
+            {% endcomment %}
+            {%- if predictive_search.resources.articles.size > 0 or predictive_search.resources.pages.size > 0 -%}
+                <div class="xLargeMax:pt-[2.375rem] first-of-type:xLargeMax:pt-6 xLarge:basis-[calc(50%_-_0.625rem)]">
+                    <div class="w-full box-border xLargeMax:px-4">
+                        <h2 id="predictive-search-pages" class="body-r font-semibold uppercase pb-2 border-b border-b-uiDarkGrey">
+                            {{ 'templates.search.pages' | t }}
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </h2>
+                    </div>
+                    <ul id="predictive-search-results-pages-list" role="group" aria-labelledby="predictive-search-pages">
+                        {%- for page in predictive_search.resources.pages -%}
+                            <li id="predictive-search-option-page-{{ forloop.index }}" class="group mt-2 first-of-type:mt-[0.875rem]" role="option" aria-selected="false">
+                                <a href="{{ page.url }}" class="w-full flex items-center body-m py-2 box-border hover:bg-uiMidGrey group-aria-selected:bg-uiMidGrey [&_mark]:font-bold xLargeMax:px-4" tabindex="-1">
+                                    {{ page.title }}
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                        {%- for article in predictive_search.resources.articles -%}
+                            <li id="predictive-search-option-page-{{ forloop.index }}" class="group mt-2 first-of-type:mt-[0.875rem]" role="option" aria-selected="false">
+                                <a href="{{ article.url }}" class="w-full flex items-center body-m py-2 box-border hover:bg-uiMidGrey group-aria-selected:bg-uiMidGrey [&_mark]:font-bold xLargeMax:px-4" tabindex="-1">
+                                    {{ article.title }}
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endif -%}
+        </div>
+
+        <div class="sticky left-0 bottom-0 border-t border-uiDarkGrey bg-uiBlack text-text2 mt-8">
+            <button class="group w-full flex justify-between items-center py-[1.2rem] px-4 body-l leading-none break-all animate-arrow box-border large:px-[1.8rem]" tabindex="-1">
+                {{ 'templates.search.search_for' | t: terms: predictive_search.terms }}
+                <div class="predictive-search__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M5.52599 0.862254C5.78634 0.601905 6.20845 0.601905 6.4688 0.862254L11.1355 5.52892C11.3958 5.78927 11.3958 6.21138 11.1355 6.47173L6.4688 11.1384C6.20845 11.3987 5.78634 11.3987 5.52599 11.1384C5.26564 10.878 5.26564 10.4559 5.52599 10.1956L9.05459 6.66699H1.33073C0.962539 6.66699 0.664062 6.36852 0.664062 6.00033C0.664062 5.63214 0.962539 5.33366 1.33073 5.33366H9.05459L5.52599 1.80506C5.26564 1.54471 5.26564 1.1226 5.52599 0.862254Z" fill="currentColor"/>
+                      </svg>
+                </div>
+            </button>
+        </div>
+
+        <div class="predictive-search__loading-state" aria-hidden="true">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <span class="hidden" data-predictive-search-live-region-count-value>
+        {%- if search.results_count == 0 -%}
+            {{ 'templates.search.no_results' | t: terms: predictive_search.terms }}
+        {%- else -%}
+            {{ 'templates.search.results_with_count' | t: terms: predictive_search.terms, count: predictive_search.resources.products.size }}
+        {%- endif -%}
+    </span>
+{%- endif -%}

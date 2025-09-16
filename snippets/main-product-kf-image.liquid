@@ -1,0 +1,23 @@
+{%- if caption != blank -%}
+    <figure class="flex items-center mediumMax:gap-x-3 medium:flex-col medium:gap-y-1">
+    {%- endif -%}
+        <img
+            class="w-[3.75rem] aspect-[6/5] medium:w-[7.5rem]"
+            srcset="{{ image | image_url: width: 60 }} 60w,
+                    {{ image | image_url: width: 120 }} 120w,
+                    {{ image | image_url: width: 240 }} 240w"
+            sizes="(max-width: 767px) 60px, 120px"
+            src="{{ image | image_url: width: 120 }}"
+            width="60"
+            height="50"
+            alt="{%- unless caption != blank -%}{{- image.alt -}}{%- endunless -%}"
+            loading="lazy"
+        >
+        {%- if caption != blank -%}
+        <figcaption class="text-body-s text-center">
+            {{ caption }}
+        </figcaption>
+        {%- endif -%}
+    {%- if caption != blank -%}
+    </figure>
+{%- endif -%}

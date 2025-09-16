@@ -1,0 +1,241 @@
+{% style %}
+  .flex-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: flex-center;
+    padding: 0px 16px;
+  }
+  .flex-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+  }
+  .item-text-row {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content:center;
+  }
+  .item-text-row svg {
+    margin-left: 8px;
+  }
+  .item-img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 786px) {
+    .flex-container {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    .flex-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
+    .flex-item {
+      min-width: 50vw;
+      width: 50vw;
+      box-sizing: border-box;
+    }
+  }
+{% endstyle %}
+
+<section>
+  <div class="flex-container">
+
+    
+    <div class="flex-item">
+      <a
+        role="link"
+        aria-disabled="true"
+        href="{{ shop.url }}/collections/cleansers"
+        style="
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/cleansers.png?v=1754490707"
+          alt="cleansers"
+          class="item-img"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+        <div class="item-text-row">
+          <span>Cleansers </span>
+          <svg
+            width="13"
+            height="9"
+            viewBox="0 0 13 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5599 4.68005L9.09985 0.819946L8.02991 0.800049L11.1699 4.22998H0.609863V5.08997H11.2198L8.13989 8.54004L9.2099 8.51001L12.5599 4.68994L12.5499 4.68005H12.5599Z"
+              fill="#333333"
+            />
+          </svg>
+        </div>
+      </a>
+    </div>
+
+
+
+      <div class="flex-item">
+      <a
+        role="link"
+        aria-disabled="true"
+        href="{{ shop.url }}/collections/toners"
+        style="
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/toners_0aea0550-7d1f-4e4c-9160-a1f6c846c349.png?v=1754490708"
+          alt="Toners"
+          class="item-img"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+        <div class="item-text-row">
+          <span>Toners</span>
+          <svg
+            width="13"
+            height="9"
+            viewBox="0 0 13 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5599 4.68005L9.09985 0.819946L8.02991 0.800049L11.1699 4.22998H0.609863V5.08997H11.2198L8.13989 8.54004L9.2099 8.51001L12.5599 4.68994L12.5499 4.68005H12.5599Z"
+              fill="#333333"
+            />
+          </svg>
+        </div>
+      </a>
+    </div>
+
+      <div class="flex-item">
+      <a
+        role="link"
+        aria-disabled="true"
+        href="{{ shop.url }}/collections/serums"
+        style="
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/serums.png?v=1754490707"
+          alt="serums"
+          class="item-img"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+        <div class="item-text-row">
+          <span>Serums</span>
+          <svg
+            width="13"
+            height="9"
+            viewBox="0 0 13 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5599 4.68005L9.09985 0.819946L8.02991 0.800049L11.1699 4.22998H0.609863V5.08997H11.2198L8.13989 8.54004L9.2099 8.51001L12.5599 4.68994L12.5499 4.68005H12.5599Z"
+              fill="#333333"
+            />
+          </svg>
+        </div>
+      </a>
+    </div>
+
+
+      <div class="flex-item">
+      <a
+        role="link"
+        aria-disabled="true"
+        href="{{ shop.url }}/collections/moisturizers"
+        style="
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/moisturizers.png?v=1754490707"
+          alt="moisturizers"
+          class="item-img"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+        <div class="item-text-row">
+          <span>Moisturizers</span>
+          <svg
+            width="13"
+            height="9"
+            viewBox="0 0 13 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5599 4.68005L9.09985 0.819946L8.02991 0.800049L11.1699 4.22998H0.609863V5.08997H11.2198L8.13989 8.54004L9.2099 8.51001L12.5599 4.68994L12.5499 4.68005H12.5599Z"
+              fill="#333333"
+            />
+          </svg>
+        </div>
+      </a>
+    </div>
+
+
+      <div class="flex-item">
+      <a
+        role="link"
+        aria-disabled="true"
+        href="{{ shop.url }}/collections/masques"
+        style="
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/masks.png?v=1754490707"
+          alt="masques"
+          class="item-img"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+        <div class="item-text-row">
+          <span>Masques</span>
+          <svg
+            width="13"
+            height="9"
+            viewBox="0 0 13 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5599 4.68005L9.09985 0.819946L8.02991 0.800049L11.1699 4.22998H0.609863V5.08997H11.2198L8.13989 8.54004L9.2099 8.51001L12.5599 4.68994L12.5499 4.68005H12.5599Z"
+              fill="#333333"
+            />
+          </svg>
+        </div>
+      </a>
+    </div>
+    </div>
+</section>

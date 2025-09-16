@@ -1,0 +1,374 @@
+<style>
+.loading-overlay__spinner {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+.product-tags {
+  margin: 15px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-tag {
+  display: inline-block;
+  padding: 11px 10px 11px 5;
+  background: #f3f3f3;
+  color: #333;
+  border-radius: 4px;
+  font-size: 17px;
+  font-family: 'Utopia-Semibold' !important;
+}
+
+/* Specific tag styles */
+.product-tag.sale {
+  background: #ff4136;
+  color: white;
+}
+
+.product-tag.new {
+  background: #2ecc40;
+  color: white;
+}
+
+.product-tag.limited {
+  background: #ffdc00;
+  color: #111;
+}
+
+.p-title {
+  font-size: 1rem;
+  font-family: 'Utopia-Semibold' !important;
+  transition: text-decoration 0.3s;
+  text-transform: capitalize;
+  margin-bottom: 0px;
+  min-height: 2.5rem; /* Reserve space for ~2 lines of text */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recommended-product:hover .p-title {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.recommended-product:hover .product-tag {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.recommended-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 23px 2px;
+  margin-bottom: 5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  align-items: stretch; /* Ensure all grid items stretch to equal height */
+}
+
+.recommended-product {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-height: 350px; /* Original min-height */
+  height: 100%; /* Take full grid cell height */
+  text-align: left;
+  position: relative;
+}
+
+.recommended-product .image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.recommended-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.recommended-product .hover-image {
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.recommended-product:hover .hover-image {
+  opacity: 1;
+  top: 0;
+}
+
+.recommended-product:hover .default-image {
+  opacity: 0;
+}
+
+.variant-options {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.variant-options input {
+  display: none;
+}
+
+.variant-options label {
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.variant-options input:checked + label {
+  background-color: #333;
+  color: white;
+}
+
+.add-to-cart {
+  display: block;
+  width: 95%; /* Original width */
+  padding: 8px;
+  font-size: 14px;
+  background-color: #000;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px; /* Original margin */
+}
+
+.product-price {
+  font-weight: bold;
+  margin-top: 18px; /* Original margin */
+  font-size: 16px;
+}
+
+.product-form {
+  margin-top: 10px; /* Push form to the bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (min-width: 769px) {
+  .recommended-products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .recommended-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .p-title{
+    display:block;
+    min-height:5rem;
+  }
+}
+</style>
+
+{% assign related_tags = product.metafields.custom.related_tags | split: "," %}
+{% assign recommended_products = "" %}
+
+{% for tag in related_tags %}
+    {% for product in collections.all.products %}
+        {% if product.tags contains tag %}
+            {% assign recommended_products = recommended_products | append: product.handle | append: "," %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% assign recommended_products = recommended_products | split: "," | uniq %}
+
+{% if recommended_products.size > 0 %}
+    <h2 style="text-align:center; margin-bottom: 2rem; font-size:30px;">You may also like</h2>
+    <div class="recommended-products">
+        {% for handle in recommended_products limit: 6 %}
+            {% assign product = all_products[handle] %}
+            <div class="recommended-product">
+                <a href="{{ product.url }}">
+                    {% assign first_image = product.images[0] %}
+                    {% assign second_image = product.images[1] %}
+                    <div class="image-wrapper">
+                        <img src="{{ first_image | img_url: 'large' }}" alt="{{ product.title }}" class="default-image">
+                        {% if second_image %}
+                            <img src="{{ second_image | img_url: 'large' }}" alt="{{ product.title }}" class="hover-image">
+                        {% endif %}
+                    </div>
+                </a>
+
+                <div {% if product.metafields.custom.series.value.colour %}style="border-color: {{ product.metafields.custom.series.value.colour }};"{% endif %} class="{% if product.metafields.custom.series.value.colour %} border-b-4{% endif %}"></div>
+
+                {% if product.metafields.custom.series.value.letter and product.metafields.custom.series_number %}
+                    <span style="font-family: 'Canela-bold'; margin-top:6px; margin-bottom:6px;" class="heading-sm font-bold leading-none product-tag">
+                        {{- product.metafields.custom.series.value.letter -}}-{{ product.metafields.custom.series_number }}
+                    </span>
+                {% endif %}
+
+                <a href="{{ product.url }}">
+                    <p class="p-title">{{ product.title | capitalize }}</p>
+                </a>
+  {%- assign product_form_id = 'product-form-' | append: section.id -%}
+                <product-form class="product-form">
+                    {%- form 'product',
+                        product,
+                        id: product_form_id,
+                        class: 'form',
+                        novalidate: 'novalidate',
+                        data-type: 'add-to-cart-form'
+                    -%}
+                        <input type="hidden" name="id" id="variant-id-{{ product.id }}" value="{{ product.variants.first.id }}">
+
+                        <div style="accent-color: #000;">
+                            {% for variant in product.variants %}
+                                <input type="radio"
+                                       id="variant-{{ product.id }}-{{ variant.id }}"
+                                       name="variant-{{ product.id }}"
+                                       value="{{ variant.id }}"
+                                       {% if forloop.first %} checked {% endif %}
+                                       data-price="{{ variant.price }}"
+                                       data-available="{{ variant.available }}"
+                                       onchange="updateVariant({{ product.id }}, this)">
+                                <label for="variant-{{ product.id }}-{{ variant.id }}" style="margin-right:5px">{{ variant.title }}</label>
+                            {% endfor %}
+                        </div>
+
+                        <p id="product-price-{{ product.id }}" class="product-price">
+                            {{ product.variants.first.price | money }}
+                        </p>
+
+                        <button type="submit"
+                                {% unless product.variants.first.available %}disabled style="background-color:grey;"{% endunless %}
+                                class="add-to-cart js-quick-add-context-submit loading-overlay__spinner"
+                                id="add-to-cart-btn-{{ product.id }}">
+                            {% if product.variants.first.available %}
+                                Add to Cart
+                            {% else %}
+                                Out of Stock
+                            {% endif %}
+                        </button>
+                    {%- endform -%}
+
+                    <div
+                        class="product-form__error-message-wrapper medium:absolute medium:right-0 medium:top-[calc(100%_-_0.625rem)] medium:w-max large:top-[calc(100%_-_7.6825rem)]"
+                        role="alert"
+                        hidden
+                    >
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                            <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                            <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                            <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7"/>
+                        </svg>
+                        <span class="product-form__error-message"></span>
+                    </div>
+                </product-form>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>.</p>
+{% endif %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const variantOptions = document.querySelectorAll('input[name^="variant-"]');
+
+    function updateButtonState(productId, selectedVariant) {
+      const isAvailable = selectedVariant.getAttribute("data-available") === "true";
+      const addToCartBtn = document.getElementById("add-to-cart-btn-" + productId);
+      if (!isAvailable) {
+        addToCartBtn.disabled = true;
+        addToCartBtn.textContent = "Out of Stock";
+        addToCartBtn.style.backgroundColor = "grey";
+      } else {
+        addToCartBtn.disabled = false;
+        addToCartBtn.textContent = "Add to Cart";
+        addToCartBtn.style.backgroundColor = "black";
+      }
+    }
+
+    // Initialize each product's default variant
+    document.querySelectorAll('.recommended-product').forEach((productElement) => {
+      const productId = productElement.querySelector('input[name="id"]').id.split('-').pop();
+      const defaultVariant = productElement.querySelector(`input[name="variant-${productId}"]:checked`);
+      const variantIdInput = document.getElementById(`variant-id-${productId}`);
+      const productPrice = document.getElementById(`product-price-${productId}`);
+
+      if (defaultVariant) {
+        variantIdInput.value = defaultVariant.value;
+        productPrice.textContent = new Intl.NumberFormat('en-GB', {
+          style: 'currency',
+          currency: 'GBP'
+        }).format(defaultVariant.getAttribute("data-price") / 100);
+        updateButtonState(productId, defaultVariant);
+      }
+    });
+
+    // Handle variant changes
+    variantOptions.forEach((option) => {
+      option.addEventListener("change", function () {
+        const productId = this.name.split('-').pop();
+        const selectedVariant = this;
+        const selectedPrice = selectedVariant.getAttribute("data-price");
+        const variantIdInput = document.getElementById(`variant-id-${productId}`);
+        const productPrice = document.getElementById(`product-price-${productId}`);
+
+        variantIdInput.value = selectedVariant.value;
+        productPrice.textContent = new Intl.NumberFormat('en-GB', {
+          style: 'currency',
+          currency: 'GBP'
+        }).format(selectedPrice / 100);
+        updateButtonState(productId, selectedVariant);
+        console.log(`Product ID: ${productId}, Variant ID: ${selectedVariant.value}, Price: ${selectedPrice}`);
+      });
+    });
+  });
+
+  function updateVariant(productId, inputElement) {
+    let variantId = inputElement.value;
+    let variantPrice = inputElement.getAttribute("data-price");
+    let available = inputElement.getAttribute("data-available") === "true";
+
+    document.getElementById("variant-id-" + productId).value = variantId;
+
+    document.getElementById("product-price-" + productId).innerText = new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP'
+    }).format(variantPrice / 100);
+
+    let button = document.getElementById("add-to-cart-btn-" + productId);
+    if (available) {
+      button.disabled = false;
+      button.innerText = "Add to Cart";
+      button.style.backgroundColor = "black";
+    } else {
+      button.disabled = true;
+      button.innerText = "Out of Stock";
+      button.style.backgroundColor = "grey";
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "recommended-products",
+  "settings": [],
+  "presets": [
+    {
+      "name": "recommended-products"
+    }
+  ]
+}
+{% endschema %}

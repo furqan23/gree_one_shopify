@@ -1,0 +1,93 @@
+{% comment %}
+    Renders an article card for a given blog with settings to either show the image or not.
+
+    Accepts:
+    - blog: {Object} Blog object
+    - article: {Object} Article object
+    - show_image: {String} The setting to either show the article image or not. Default: true.
+    - show_date: {String} The setting to either show the article date or not. Default: true.
+    - show_tags: {String} The setting to either show the article tags or not. Default: false.
+    - show_excerpt: {String} The setting to either show the article excerpt or not. Default: false.
+    - lazy_load: {Boolean} Image should be lazy loaded. (Optional)
+
+    Usage:
+    {% render 'card-article' blog: blog, article: article, show_image: section.settings.show_image %}
+{% endcomment %}
+
+{%- if article and article != empty -%}
+    <div class="card-wrapper{% if latest_news == true %} bg-uiLightGrey box-border medium:p-12{% endif %}">
+        <div class="card card--article{% if latest_news == true %} medium:gap-x-14 medium:!flex-row{% endif %}">
+            {%- if show_image == true and article.image -%}
+                <a class="peer card__media relative{% if latest_news == true %} medium:w-48{% endif %}" href="{{ article.url }}">
+                    <div class="media media--hover-effect{% if featured_article == true %} aspect-video{% else %} aspect-4/3{% endif %}{% if latest_news == true %} medium:w-full medium:h-full{% endif %}">
+                        <img
+                            {% if featured_article == true %}
+                                class="scale-in js-scale-in"
+                            {% endif %}
+                            srcset="{{ article.image.src | image_url: width: 378 }} 378w,
+                                {{ article.image.src | image_url: width: 444 }} 444w,
+                                {{ article.image.src | image_url: width: 731 }} 731w,
+                                {{ article.image.src | image_url: width: 756 }} 756w,
+                                {{ article.image.src | image_url: width: 888 }} 888w,
+                                {{ article.image.src | image_url: width: 1462 }} 1462w"
+                            src="{{ article.image.src | image_url: width: 888 }}"
+                            sizes="(min-width: 48rem) 33vw, 100vw"
+                            alt="{{ article.image.src.alt | escape }}"
+                            width="{{ article.image.width }}"
+                            height="{{ article.image.height }}"
+                            {% if lazy_load == true %}
+                                loading="lazy"
+                            {% else %}
+                                loading="eager"
+                            {% endif %}
+                        >
+                    </div>
+                    {% if featured_article == true %}
+                        <div class="absolute top-1 left-1 bg-white body-s font-Gotham font-bold leading-4 uppercase p-2.5 pb-2">
+                            {{ 'templates.blog-listing.featured_article' | t }}
+                        </div>
+                    {% endif %}
+                </a>
+            {%- endif -%}
+            <div class="{% if latest_news == true %} flex flex-col mt-0 mediumMax:p-6{% else %} mt-3{% endif %}{% if featured_article == true %} large:mt-5{% endif %}">
+                {% if show_tags and article.tags != blank %}
+                    <div class="flex justify-between">
+                        <div class="flex gap-1">
+                            {% for tag in article.tags %}
+                                <p class="body-xs uppercase">
+                                    {{ tag }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                {%- if show_date -%}
+                    <div class="body-s mb-2{% if latest_news == true %} order-2{% endif %}">
+                        {{- article.published_at | date: '%d.%m.%Y' -}}
+                    </div>
+                {%- endif -%}
+                <h3 class="body-l font-Gotham font-bold{% if latest_news == true %} pb-3{% else %} uppercase{% endif %}">
+                    <a href="{{ article.url }}">
+                        {{- article.title | truncate: 50 | escape -}}
+                    </a>
+                </h3>
+                {%- if show_excerpt -%}
+                    {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+                        <p class="body-r mt-2.5{% if featured_article == true %} large:w-2/3{% endif %}">
+                            {%- if article.excerpt.size > 0 -%}
+                                {{- article.excerpt | strip_html | truncatewords: 30 -}}
+                            {%- else -%}
+                                {{- article.content | strip_html | truncatewords: 30 -}}
+                            {%- endif -%}
+                        </p>
+                    {%- endif -%}
+                {%- endif -%}
+            </div>
+            {% unless latest_news == true %}
+                <a class="body-s font-Gotham font-medium leading-4 uppercase underline-offset-8 tracking-wide pt-5 mb-0 mt-auto largeMax:underline large:link-highlight large:before:opacity-0 large:w-fit" href="{{ article.url }}">
+                    {{ 'templates.blog-listing.read_article' | t }}
+                </a>
+            {% endunless %}
+        </div>
+    </div>
+{%- endif -%}

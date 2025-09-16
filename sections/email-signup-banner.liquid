@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="wrap">
+        <div class="max-w-[26.25rem] mx-auto">
+            {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                {%- when 'heading' -%}
+                    <h2 class="title-small mb-7 text-center large:mb-10" {{ block.shopify_attributes }}>
+                        {{ block.settings.heading | escape }}
+                    </h2>
+                {%- when 'paragraph' -%}
+                    <div class="mb-5" {{ block.shopify_attributes }}>
+                        {{ block.settings.text }}
+                    </div>
+                {%- when 'email_form' -%}
+                <div {{ block.shopify_attributes }}>
+                    {% form 'customer', class: 'newsletter-form' %}
+                        {%- if form.errors -%}
+                            <small class="form__message mb-5" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                        {%- endif -%}
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <div class="field field--label-top">
+                            <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                                {{ 'newsletter.label' | t }}
+                            </label>
+                            <input
+                                id="NewsletterForm--{{ section.id }}"
+                                type="email"
+                                name="contact[email]"
+                                class="field__input"
+                                value="{{ form.email }}"
+                                aria-required="true"
+                                autocorrect="off"
+                                autocapitalize="off"
+                                autocomplete="email"
+                                {% if form.errors %}
+                                    autofocus
+                                    aria-invalid="true"
+                                    aria-describedby="Newsletter-error--{{ section.id }}"
+                                {% elsif form.posted_successfully? %}
+                                    aria-describedby="Newsletter-success--{{ section.id }}"
+                                {% endif %}
+                                placeholder="{{ 'newsletter.label' | t }}"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="button button--secondary" name="commit" id="Subscribe">
+                            <div class="button__label">
+                                <span>
+                                    {{ 'newsletter.button_label' | t }}
+                                </span>
+                                <span class="absolute top-10 left-0">
+                                    {{ 'newsletter.button_label' | t }}
+                                </span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        {%- if form.posted_successfully? -%}
+                            <h3 class="form__message" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>
+                                {% render 'icon-success' %}
+                                {{ 'newsletter.success' | t }}
+                            </h3>
+                        {%- endif -%}
+                    {% endform %}
+                </div>
+                {%- endcase -%}
+            {%- endfor -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.email-signup-banner.name",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+        "templates": [
+            "password"
+        ]
+    },
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "t:sections.email-signup-banner.settings.paragraph.content"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "heading",
+            "name": "t:sections.email-signup-banner.blocks.heading.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Opening soon",
+                    "label": "t:sections.email-signup-banner.blocks.heading.settings.heading.label"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "name": "t:sections.email-signup-banner.blocks.paragraph.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "default": "<p>Be the first to know when we launch.</p>",
+                    "label": "t:sections.email-signup-banner.blocks.paragraph.settings.paragraph.label"
+                }
+            ]
+        },
+        {
+            "type": "email_form",
+            "name": "t:sections.email-signup-banner.blocks.email_form.name",
+            "limit": 1
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.email-signup-banner.presets.name",
+            "blocks": [
+                {
+                    "type": "heading"
+                },
+                {
+                    "type": "paragraph"
+                },
+                {
+                    "type": "email_form"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

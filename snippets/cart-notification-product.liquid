@@ -1,0 +1,134 @@
+
+{%- if cart != empty -%}
+    <div class="cart-notification-product">
+        {%- for item in cart.items -%}
+            {%  assign series = item.product.metafields.custom.series.value %}
+            <div id="cart-notification-product-{{ item.key }}" class="cart-notification-product__item">
+                <div class="cart-notification-product__item-row cart-notification-product__item-row--between">
+                    <div class="flex gap-x-4 items-center">
+                        <div class="cart-notification-product__image">
+                            <picture>
+                                <source srcset="{{ item.image | image_url: width: 75 }} 1x,
+                                                {{ item.image | image_url: width: 150 }} 2x"
+                                        media="(max-width: 767px)"
+                                >
+                                <img src="{{ item.image | image_url: width: 300 }}"
+                                    class="object-cover w-full h-full"
+                                    width="{{ item.image.width }}"
+                                    height="{{ item.image.height }}"
+                                    alt="{{ item.image.alt }}"
+                                    loading="eager"
+                                >
+                            </picture>
+                        </div>
+                        <div class="cart-notification-product__content">
+                            <h3 class="cart-notification-product__name heading-xs">
+                                <a class="hover:underline" href="{{ item.product }}">
+                                    {% if series.letter and item.product.metafields.custom.series_number %}
+                                        {{- series.letter -}}-{{ item.product.metafields.custom.series_number }}
+                                    {% else %}
+                                        {{ item.product.title | escape }}
+                                    {% endif %}    
+                                </a>
+                            </h3>
+                            <dl>
+                                {%- unless item.product.has_only_default_variant -%}
+                                    {%- for option in item.options_with_values -%}
+                                        <div class="product-option">
+                                            <dd>
+                                                {{ option.value }}
+                                                {% if forloop.last != true %}
+                                                    |
+                                                {% endif %}
+                                            </dd>
+                                        </div>
+                                    {%- endfor -%}
+                                {%- endunless -%}
+                            </dl>
+                            {% if item.selling_plan_allocation.selling_plan.name != blank %}
+                                <dl class="pt-1">
+                                    <dt>
+                                        {{ item.selling_plan_allocation.selling_plan.name }}
+                                    </dt>
+                                </dl>
+                            {% endif %}
+                            <div>
+                                {%- if item.original_line_price != item.final_line_price -%}
+                                    <dl class="cart-notification-product__price">
+                                        <dt class="visually-hidden">
+                                            {{- 'sections.cart_notification.regular_pricing' | t -}}
+                                        </dt>
+                                        <dd>
+                                            <s>
+                                                {{ 'products.product.price.was' | t }} {{ item.original_line_price | money }}
+                                            </s>
+                                        </dd>
+                                            <dt class="visually-hidden">
+                                                {{- 'sections.cart_notification.sale_pricing' | t -}}
+                                            </dt>
+                                        <dd>
+                                            {{ 'products.product.price.now' | t }} {{ item.final_line_price | money }}
+                                        </dd>
+                                    </dl>
+                                {%- else -%}
+                                    <span class="body-m">
+                                        {{ item.original_line_price | money }}
+                                    </span>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <div class="quantity">
+                            <button type="button" class="quantity__button quantity__button--left js-mini-cart-quantity-decrease" data-key="{{ item.key }}" data-id="{{ item.id }}" data-quantity="{{ item.quantity }}">
+                                <span class="sr-only">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+                                {% render 'icon-minus' %}
+                            </button>
+                            <span class="quantity__input">
+                                {{ item.quantity }}
+                            </span>
+                            <button type="button" class="quantity__button quantity__button--right js-mini-cart-quantity-increase" data-key="{{ item.key }}" data-id="{{ item.id }}" data-quantity="{{ item.quantity }}">
+                                <span class="sr-only">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+                                {% render 'icon-plus-input' %}
+                            </button>
+                        </div>
+                        <div class="cart-notification-product__remove">
+                            <button type="button" class="w-12 h-12 flex justify-center items-center transition hover:bg-uiLightGrey js-mini-cart-remove" data-key="{{ item.key }}" data-id="{{ item.id }}">
+                                {%- render 'icon-bin' -%}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+{%- else -%}
+    <div class="py-6 h-[calc(100dvh-7rem)] flex flex-col justify-between">
+        <p class="mb-4">
+            {{ 'sections.cart_notification.cart_empty_text' | t }}
+        </p>
+        {% if settings.mini_cart_cta_text and settings.mini_cart_cta_url %}
+            <div class="relative">
+                <a href="{{ settings.mini_cart_cta_url }}" class="button button--full-width">
+                    <div class="button__label">
+                        <span>
+                            {{ settings.mini_cart_cta_text }}
+                        </span>
+                        <span class="absolute top-10 left-0">
+                            {{ settings.mini_cart_cta_text }}
+                        </span>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+        <button class="link-highlight w-max mx-auto mt-3 body-m relative z-1 js-close-mini-cart">
+            <span>
+                {{- 'sections.cart_notification.continue_shopping' | t -}}
+            </span>
+        </button>
+    </div>
+{%- endif -%}
+
+<script class="js-cart-items" type="application/json">
+    {{ cart.items | json }}
+</script>

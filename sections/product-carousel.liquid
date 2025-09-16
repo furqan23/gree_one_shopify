@@ -1,0 +1,204 @@
+{% if section.blocks.size > 1 %}
+    <div class="overflow-hidden{% if section.settings.background_color %} bg-{{ section.settings.background_color }} mt-12 large:mt-16{% endif %}">
+        <div class="container">
+            <div class="pt-10 pb-11 large:pt-[3.563rem] large:pb-16">
+                <div class="wrap">
+                    <div class="mb-[2.125rem] large:mb-14">
+                        <h2 class="heading-r{% if section.settings.center_align_text %} text-center{% endif %} large:text-[2.4375rem]">
+                            {{ section.settings.title | escape }}
+                        </h2>
+                    </div>
+                    <div>
+                        <div class="swiper [&.swiper]:overflow-visible js-product-carousel">
+                            <div class="swiper-wrapper">
+                                {%- for block in section.blocks -%}
+                                    <div class="swiper-slide js-slide" data-type="{{ block.settings.product.type }}">
+                                        {% render 'card-product',
+                                            card_product: block.settings.product,
+                                            enable_reviews: true,
+                                            width_classes: 'w-full',
+                                            lazy_load: true,
+                                            show_vendor: false,
+                                            show_quick_add: false
+                                        %}
+                                    </div>
+                                {%- endfor -%}
+                            </div>
+                            <div class="relative flex justify-between items-center mt-10 large:mt-14">
+                                <div class="swiper-scrollbar relative w-full rounded-[2rem] medium:mr-6">
+                                    <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                                    <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                                </div>
+                                <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }} swiper-button-small-mobile">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                                <button class="swiper-button-next swiper-button-small-mobile ml-3.5 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80 swiper-button-small-mobile">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "t:sections.product-carousel.name",
+        "tag": "section",
+        "class": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.product-carousel.settings.title.label"
+            },
+            {
+                "type": "select",
+                "id": "controls_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "accentR",
+                        "label": "t:sections.all.colors.accent_r.label"
+                    },
+                    {
+                        "value": "accentY",
+                        "label": "t:sections.all.colors.accent_y.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "primary",
+                "label": "t:sections.product-carousel.settings.controls_colour.label"
+            },
+            {
+                "type": "select",
+                "id": "icons_hover_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "accentR",
+                        "label": "t:sections.all.colors.accent_r.label"
+                    },
+                    {
+                        "value": "accentY",
+                        "label": "t:sections.all.colors.accent_y.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "secondary",
+                "label": "t:sections.all.colors.icons_hover_colour_label"
+            },
+            {
+                "type": "select",
+                "id": "background_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "accentR",
+                        "label": "t:sections.all.colors.accent_r.label"
+                    },
+                    {
+                        "value": "accentY",
+                        "label": "t:sections.all.colors.accent_y.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "background1",
+                "label": "t:sections.all.colors.background_colour_label"
+            },
+            {
+                "type": "checkbox",
+                "id": "center_align_text",
+                "label": "t:sections.product-carousel.settings.centre_align_text.label",
+                "default": false
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Slide",
+                "type": "block",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.product-carousel.presets.name"
+            }
+        ]
+    }
+{% endschema %}

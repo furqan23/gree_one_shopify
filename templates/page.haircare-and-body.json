@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "text_over_media_bxhLxb": {
+      "type": "text-over-media",
+      "blocks": {
+        "heading_6w8MUy": {
+          "type": "heading",
+          "settings": {
+            "heading": "COMING SOON"
+          }
+        },
+        "text_iADxae": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template."
+          }
+        },
+        "button_XGGPdE": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_6w8MUy",
+        "text_iADxae",
+        "button_XGGPdE"
+      ],
+      "settings": {
+        "remove_margin": true,
+        "center_align_text": true,
+        "small_height": false,
+        "image": "shopify://shop_images/257-2579582_wallpaper-linear-orange-gradient-blue-dark-orange-medium.jpg",
+        "video": "",
+        "mobile_video": "",
+        "color_scheme": "background1",
+        "text_color": "text1",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "text_over_media_bxhLxb"
+  ]
+}

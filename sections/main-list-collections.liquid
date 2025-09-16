@@ -1,0 +1,146 @@
+<script>
+  // Redirects the /collections/ page to the homepage.
+  // This script runs only when the exact path is '/collections/'.
+  const currentPath = window.location.pathname;
+  if (currentPath === '/collections/' || currentPath === '/collections') {
+    window.location.href = '/'; // Redirects to the root of your domain (homepage).
+  }
+</script>
+<div class="mt-[3.125rem] large:mt-[4.375rem]">
+    <div class="container">
+        <div class="wrap">
+            {%- if section.settings.title -%}
+                <h1 class="heading-r text-{{ section.settings.text_color }} mb-6 large:mb-[1.875rem]">
+                    {{- section.settings.title | escape -}}
+                </h1>
+            {%- endif -%}
+            {%- liquid
+                case section.settings.sort
+                when 'products_high' or 'products_low'
+                    assign collections = collections | sort: 'all_products_count'
+                when 'date' or 'date_reversed'
+                    assign collections = collections | sort: 'published_at'
+                endcase
+
+                if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
+                    assign collections = collections | reverse
+                endif
+            -%}
+            <ul class="grid grid-cols-2 large:grid-cols-4 gap-x-5 gap-y-6 large:gap-y-12" role="list">
+                {%- for collection in collections -%}
+                    <li class="rounded-lg overflow-hidden">
+                        {% render 'card-collection',
+                            card_collection: collection,
+                            image: collection.image,
+                            button_text: section.settings.cards_button_text,
+                            text_colour: section.settings.text_color,
+                            block_length: 4
+                        %}
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.main-list-collections.name",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.main-list-collections.settings.title.label",
+            "default": "Collections"
+        },
+        {
+            "type": "text",
+            "id": "cards_button_text",
+            "label": "t:sections.main-list-collections.settings.cards_button_text.label",
+            "info": "t:sections.main-list-collections.settings.cards_button_text.info",
+            "default": "View more"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-collections.settings.text_color.label"
+        },
+        {
+            "type": "select",
+            "id": "sort",
+            "options": [
+                {
+                    "value": "alphabetical",
+                    "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+                },
+                {
+                    "value": "alphabetical_reversed",
+                    "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+                },
+                {
+                    "value": "date_reversed",
+                    "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+                },
+                {
+                    "value": "date",
+                    "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+                },
+                {
+                    "value": "products_high",
+                    "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+                },
+                {
+                    "value": "products_low",
+                    "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+                }
+            ],
+            "default": "alphabetical",
+            "label": "t:sections.main-list-collections.settings.sort.label"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+{
+  "entrypoints": {
+    "global": {
+      "liquid": [
+        "/assets/global.css.liquid"
+      ],
+      "js": [
+        "/assets/global.js"
+      ]
+    },
+    "localization": {
+      "js": [
+        "/assets/localization.js"
+      ]
+    },
+    "cart": {
+      "liquid": [
+        "/assets/cart.css.liquid"
+      ],
+      "js": [
+        "/assets/cart.js"
+      ]
+    },
+    "pdp": {
+      "liquid": [
+        "/assets/pdp.css.liquid"
+      ],
+      "js": [
+        "/assets/pdp.js"
+      ]
+    },
+    "plp": {
+      "liquid": [
+        "/assets/plp.css.liquid"
+      ],
+      "js": [
+        "/assets/plp.js"
+      ]
+    },
+    "collections-listing": {
+      "liquid": [
+        "/assets/collections-listing.css.liquid"
+      ],
+      "js": [
+        "/assets/collections-listing.js"
+      ]
+    },
+    "search": {
+      "liquid": [
+        "/assets/search.css.liquid"
+      ],
+      "js": [
+        "/assets/search.js"
+      ]
+    },
+    "card": {
+      "liquid": [
+        "/assets/card.css.liquid"
+      ],
+      "js": [
+        "/assets/card.js"
+      ]
+    },
+    "quick-add": {
+      "liquid": [
+        "/assets/quick-add.css.liquid"
+      ],
+      "js": [
+        "/assets/quick-add.js"
+      ]
+    },
+    "store-locator": {
+      "liquid": [
+        "/assets/store-locator.css.liquid"
+      ],
+      "js": [
+        "/assets/store-locator.js"
+      ]
+    },
+    "product-form": {
+      "liquid": [
+        "/assets/product-form.css.liquid"
+      ],
+      "js": [
+        "/assets/product-form.js"
+      ]
+    },
+    "contact": {
+      "js": [
+        "/assets/contact.js"
+      ]
+    },
+    "blog-listing": {
+      "liquid": [
+        "/assets/blog-listing.css.liquid"
+      ],
+      "js": [
+        "/assets/blog-listing.js"
+      ]
+    },
+    "blog-post": {
+      "js": [
+        "/assets/blog-post.js"
+      ]
+    },
+    "account": {
+      "liquid": [
+        "/assets/account.css.liquid"
+      ],
+      "js": [
+        "/assets/account.js"
+      ]
+    }
+  }
+}

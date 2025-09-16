@@ -1,0 +1,212 @@
+{% comment %}
+    Renders facets (filtering and sorting)
+
+    Accepts:
+    - results: {Object} Collection or Search object
+    - enable_filtering: {Boolean} Show filtering when true
+    - enable_sorting: {Boolean} Show sorting when true
+    - filter_type: {String} Orientation of filter UI
+    - enable_product_count: {Boolean} Show product results count
+    - hide_product_count_desktop: {Boolean} Hide product results count on desktop
+    - facet_colours: {String} Configuration for colour filtering
+
+    Usage:
+    {% render 'facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'horizontal', enable_product_count: true, hide_product_count_desktop: false, facet_colors: 'Red:#FF0000,Green:#00FF00,Blue:#0000FF' %}
+{% endcomment %}
+
+{%- liquid
+    assign sort_by = results.sort_by | default: results.default_sort_by
+    if results.url
+        assign results_url = results.url
+    else
+        assign terms = results.terms | escape
+        assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+    endif
+-%}
+
+{% liquid
+    assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+    assign uses_comma_decimals = false
+    if currencies_using_comma_decimals contains cart.currency.iso_code
+        assign uses_comma_decimals = true
+    endif
+%}
+
+<facet-filters class="facet-filters--{{ filter_type }}">
+    <div class="modal-overlay js-modal-overlay"></div>
+    {% comment %}
+    Filter overlay open button
+    {% endcomment %}
+    <div class="flex justify-between w-full items-center">
+        <button data-filters-mobile-toggle type="button" class="flex gap-x-[0.6rem] items-center border border-solid border-uiBlack px-3 py-[0.4rem] transition hover:bg-uiBlack hover:text-text2 [&_svg]:fill-current">
+            {% render 'icon-filter' %}
+            <span class="flex-shrink-0 body-r normal-case font-semibold">
+                {%- if enable_filtering and enable_sorting -%}
+                    {{- 'products.facets.filter_and_sort_short' | t -}}
+                {%- elsif enable_filtering -%}
+                    {{- 'products.facets.filter_button' | t -}}
+                {%- elsif enable_sorting -%}
+                    {{- 'products.facets.sort_button' | t -}}
+                {%- endif -%}
+            </span>
+        </button>
+        {% if enable_product_count and hide_product_count_desktop == false %}
+            <div>
+                <div class="shrink-0 relative ml-6 body-r text-right self-center" role="status">
+                    <h2 id="ProductCount">
+                        {%- if results.results_count -%}
+                            {{- 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count -}}
+                        {%- elsif results.products_count == results.all_products_count -%}
+                            {{- 'products.facets.product_count_simple' | t: count: results.products_count -}}
+                        {%- else -%}
+                            {{- 'products.facets.product_count' | t: product_count: results.products_count, count: results.all_products_count -}}
+                        {%- endif -%}
+                    </h2>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <facet-filters-form>
+        <form id="FacetFiltersFormMobile" class="fixed w-full h-full top-0 left-0 right-0 bottom-0 z-60 pointer-events-none">
+            <div data-filters-popup-mobile class="absolute left-0 w-full h-full max-w-[25.375rem] flex flex-col justify-between overflow-y-auto bg-white pointer-events-auto -translate-x-full transition-transform">
+                <div>
+                    <div class="px-[0.7rem]">
+                        <div class="flex relative justify-between px-4 py-6 border-b border-uiMidGrey">
+                            <h2 class="font-bold body-s font-Gotham uppercase tracking-[0.045rem]">
+                                {%- if enable_filtering and enable_sorting -%}
+                                    {{- 'products.facets.filter_and_sort' | t -}}
+                                {%- elsif enable_filtering -%}
+                                    {{- 'products.facets.filter_button' | t -}}
+                                {%- elsif enable_sorting -%}
+                                    {{- 'products.facets.sort_button' | t -}}
+                                {%- endif -%}
+                            </h2>
+                            <div>
+                                <button data-filters-mobile-toggle type="button" class="relative w-5 h-4 block z-60" aria-label="Close Filters">
+                                    <span class="absolute left-0 w-full h-px bg-primary transform rotate-45 top-1/2"></span>
+                                    <span class="absolute bottom-0 left-0 w-full h-px bg-primary transform -rotate-45 top-1/2"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-7 medium:px-[1.6rem]">
+                        <div class="pb-1">
+                            {% comment %}
+                            Sort
+                            {% endcomment %}
+                            {%- if enable_sorting -%}
+                                {% if enable_filtering %}
+                                <div class="border-b border-uiMidGrey medium:px-[0.4rem]">
+                                {% endif %}
+                                    {% render 'facets-sort',
+                                        idPrefix: 'Details-Mobile-sort-',
+                                        context: 'mobile',
+                                        enable_filtering: enable_filtering,
+                                        sort_options: results.sort_options,
+                                        sort_default: results.default_sort_by,
+                                        sort_by: sort_by
+                                    %}
+                                {% if enable_filtering %}
+                                </div>
+                                {% endif %}
+                            {%- endif -%}
+                            {%- if enable_filtering -%}
+                                {% comment %}
+                                Facets
+                                {% endcomment %}
+                                {%- for filter in results.filters -%}
+                                    {% case filter.type %}
+                                    {% when 'boolean' or 'list' %}
+                                        <div class="border-b border-uiMidGrey last:border-none medium:px-[0.4rem]">
+                                            {% if filter_type == 'vertical' %}
+                                                {% if filter.label == 'Colour' or filter.label == 'Color' %}
+                                                    {% render 'facets-boolean-or-list-colour-checkbutton'
+                                                        idPrefix: 'Details-Mobile-',
+                                                        context: 'mobile',
+                                                        contextForloop: forloop,
+                                                        filter_type: filter_type,
+                                                        filter: filter,
+                                                        facet_colours: facet_colours
+                                                    %}
+                                                {% elsif filter.label == 'Column One' or filter.label == 'Column Two' or filter.label == 'Column Three' %}
+                                                    {% if filter.label == 'Column Two' %}
+                                                        {% assign mobileCheckbuttonColumns = 2 %}
+                                                    {% elsif filter.label == 'Column Three' %}
+                                                        {% assign mobileCheckbuttonColumns = 3 %}
+                                                    {% endif %}
+                                                    {% render 'facets-boolean-or-list-checkbutton'
+                                                        idPrefix: 'Details-Mobile-',
+                                                        context: 'mobile',
+                                                        contextForloop: forloop,
+                                                        filter: filter,
+                                                        columns: mobileCheckbuttonColumns
+                                                    %}
+                                                {% else %}
+                                                    {% render 'facets-boolean-or-list-checkbutton'
+                                                        idPrefix: 'Details-Mobile-',
+                                                        context: 'mobile',
+                                                        contextForloop: forloop,
+                                                        filter: filter
+                                                    %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% if filter.label == 'Colour' or filter.label == 'Color' %}
+                                                    {% render 'facets-boolean-or-list-colour-checkbox'
+                                                        idPrefix: 'Details-Mobile-',
+                                                        context: 'mobile',
+                                                        contextForloop: forloop,
+                                                        filter_type: filter_type,
+                                                        filter: filter,
+                                                        facet_colours: facet_colours
+                                                    %}
+                                                {% else %}
+                                                    {% render 'facets-boolean-or-list-checkbox'
+                                                        idPrefix: 'Details-Mobile-',
+                                                        context: 'mobile',
+                                                        contextForloop: forloop,
+                                                        filter_type: filter_type,
+                                                        filter: filter
+                                                    %}
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% when 'price_range' %}
+                                        <div class="border-b border-uiMidGrey last:border-none medium:px-[0.4rem]">
+                                            {% render 'facets-price-range'
+                                                idPrefix: 'Details-Mobile-',
+                                                context: 'mobile',
+                                                contextForloop: forloop,
+                                                filter: filter,
+                                                uses_comma_decimals: uses_comma_decimals
+                                            %}
+                                        </div>
+                                    {% endcase %}
+                                {%- endfor -%}
+                            {%- endif -%}
+                        </div>
+                        {% if results.current_vendor or results.current_type %}
+                            <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
+                        {% endif %}
+                        {%- if results.terms -%}
+                            <input type="hidden" name="q" value="{{ results.terms | escape }}">
+                            <input name="options[prefix]" type="hidden" value="last">
+                        {%- endif -%}
+                    </div>
+                </div>
+                <div class="flex justify-between pt-5 px-4 pb-8 text-center">
+                    <button type="button" data-filters-mobile-toggle class="button button--primary py-6 min-w-[10.125rem] w-full justify-center box-border">
+                        <div class="button__label">
+                            <span>
+                                {{- 'products.facets.apply' | t -}}
+                            </span>
+                            <span class="absolute top-10 left-0">
+                                {{- 'products.facets.apply' | t -}}
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </facet-filters-form>
+</facet-filters>

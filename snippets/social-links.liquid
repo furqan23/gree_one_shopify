@@ -1,0 +1,115 @@
+{% comment %}
+    Renders the site social links
+
+    Accepts:
+    - listItemClasses: {String} The classes required to style the list item
+
+    Usage:
+    {% render 'social-links',
+        iconAlignment: 'justify-center'
+        listItemClasses: 'inline-block align-middle mr-5 mb-5 last:mr-0'
+    %}
+{% endcomment %}
+
+<ul class="flex flex-wrap gap-y-[0.625rem] gap-x-3 large:gap-y-[0.4375rem] large:gap-x-[0.875rem] {{ iconAlignment }}" role="list">
+    {%- if settings.social_twitter_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_twitter_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.twitter' | t }}"
+            >
+                {%- render 'icon-twitter' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_facebook_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_facebook_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.facebook' | t }}"
+            >
+                {%- render 'icon-facebook' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_pinterest_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.pinterest' | t }}"
+            >
+                {%- render 'icon-pinterest' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_linkedin_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_linkedin_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.linkedin' | t }}"
+            >
+                {%- render 'icon-linkedin' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_instagram_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_instagram_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.instagram' | t }}"
+            >
+                {%- render 'icon-instagram' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_tiktok_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_tiktok_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"\
+               aria-label="{{ 'general.social.links.tiktok' | t }}"
+            >
+                {%- render 'icon-tiktok' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_tumblr_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_tumblr_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.tumblr' | t }}"
+            >
+                {%- render 'icon-tumblr' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_snapchat_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_snapchat_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.snapchat' | t }}"
+            >
+                {%- render 'icon-snapchat' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_youtube_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_youtube_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.youtube' | t }}"
+            >
+                {%- render 'icon-youtube' -%}
+            </a>
+        </li>
+    {%- endif -%}
+    {%- if settings.social_vimeo_link != blank -%}
+        <li class="{{ listItemClasses }}">
+            <a href="{{ settings.social_vimeo_link }}"
+               class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+               aria-label="{{ 'general.social.links.vimeo' | t }}"
+            >
+                {%- render 'icon-vimeo' -%}
+            </a>
+        </li>
+    {%- endif -%}
+</ul>

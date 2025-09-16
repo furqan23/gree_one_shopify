@@ -1,0 +1,75 @@
+<aside id="main-cart-aside" class="{% if cart == empty %} is-empty {% endif %}">
+    <div class="cart__aside">
+        <div class="cart__blocks">
+            <div class="js-contents" {{ block.shopify_attributes }}>
+                <div class="flex items-center justify-between uppercase">
+                    <h3 class="body-m">
+                        {{ 'sections.cart.subtotal' | t }}
+                    </h3>
+                    <p>
+                        <span class="body-m js-cart-subtotal">
+                            {{ cart.items_subtotal_price | money  }}
+                        </span>
+                    </p>
+                </div>
+                <div class="flex items-center justify-between uppercase mt-5">
+                    <h3 class="heading-xs">
+                        {{ 'sections.cart.total' | t }}
+                    </h3>
+                    <p>
+                        <span class="heading-xs js-cart-total">
+                            {{ cart.total_price | money  }}
+                        </span>
+                    </p>
+                </div>
+                <div>
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                        {%- for discount in cart.cart_level_discount_applications -%}
+                            <li class="discounts__discount discounts__discount--position">
+                                {%- render 'icon-discount' -%}
+                                {{ discount.title }}
+                                (-{{ discount.total_allocated_amount | money }})
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+                </div>
+                <small class="tax-note text-right">
+                    {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                        {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- elsif cart.taxes_included -%}
+                        {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                    {%- elsif shop.shipping_policy.body != blank -%}
+                        {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                    {%- else -%}
+                        {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                    {%- endif -%}
+                </small>
+            </div>
+            <div class="cart__ctas" {{ block.shopify_attributes }}>
+                <button type="submit" id="checkout" class="button button--full-width text-body-r" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
+                    {{ 'sections.cart.checkout' | t }}
+                </button>
+            </div>
+            {%- if additional_checkout_buttons -%}
+                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                    {{ content_for_additional_checkout_buttons }}
+                </div>
+            {%- endif -%}
+            <div id="cart-errors"></div>
+            {%- if shop.enabled_payment_types.size > 0 -%}
+                <div class="mt-8">
+                    <span class="hidden">{{ 'sections.footer.payment' | t }}</span>
+                    <ul class="flex flex-wrap medium:justify-end items-center">
+                        {%- for type in shop.enabled_payment_types -%}
+                            <li class="inline-block align-middle mr-1 last:mr-0">
+                                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,178 @@
+{% if section.blocks.size >= 1 %}
+    <div class="overflow-hidden">
+        <div class="container">
+            <div class="pt-12 large:pt-20">
+                <div class="wrap">
+                    <div class="mb-6 medium:flex medium:gap-x-8 medium:justify-between medium:items-center large:mb-10">
+                        <div class="max-w-[57.3rem] flex-1">
+                            <h2 class="heading-r{% if section.settings.center_align_text %} text-center{% endif %}">
+                                {{ section.settings.title | escape }}
+                            </h2>
+                            {%  if section.settings.content != blank %}
+                                <div class="wysiwyg mt-4 body-m">
+                                    {{ section.settings.content }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% if section.settings.button_text and section.settings.button_url %}
+                            <a class="button mediumMax:mt-6" href="{{ section.settings.button_url }}">
+                                <span>
+                                    {{ section.settings.button_text }}
+                                </span>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <div class="swiper [&.swiper]:overflow-visible js-news-carousel">
+                            <div class="swiper-wrapper">
+                                {%- for block in section.blocks -%}
+                                    <div class="swiper-slide js-slide !h-auto" data-type="{{ block.settings.article.type }}">
+                                        {%- render 'card-article',
+                                            article: block.settings.article,
+                                            show_excerpt: false,
+                                            show_image: true,
+                                            show_date: true,
+                                            show_tags: false,
+                                            latest_news: true
+                                        -%}
+                                    </div>
+                                {%- endfor -%}
+                            </div>
+                            <div class="relative flex justify-between items-center mt-5 large:mt-[2.1875rem] {% if section.blocks and section.blocks.size < 4 %}large:hidden{% endif %}">
+                                <div class="swiper-scrollbar relative w-full medium:mr-6">
+                                    <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                                    <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                                </div>
+                                <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }}">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                                <button class="swiper-button-next swiper-button-small-mobile ml-3.5 ml-4 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "t:sections.latest-news.name",
+        "tag": "section",
+        "class": "section",
+        "max_blocks": 2,
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.latest-news.settings.title.label"
+            },
+            {
+                "type": "richtext",
+                "id": "content",
+                "label": "t:sections.latest-news.settings.content.label"
+            },
+            {
+                "type": "select",
+                "id": "controls_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "primary",
+                "label": "t:sections.latest-news.settings.controls_colour.label"
+            },
+            {
+                "type": "select",
+                "id": "icons_hover_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "secondary",
+                "label": "t:sections.all.colors.icons_hover_colour_label"
+            },
+            {
+                "type": "checkbox",
+                "id": "center_align_text",
+                "label": "t:sections.latest-news.settings.centre_align_text.label",
+                "default": false
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "t:sections.latest-news.settings.button_text.label"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "t:sections.latest-news.settings.button_url.label"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "t:sections.latest-news.blocks.name",
+                "type": "block",
+                "settings": [
+                    {
+                        "type": "article",
+                        "id": "article",
+                        "label": "t:sections.latest-news.blocks.settings.article.label"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.latest-news.presets.name"
+            }
+        ]
+    }
+{% endschema %}

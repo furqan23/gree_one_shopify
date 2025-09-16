@@ -1,0 +1,218 @@
+<div class="mt-12 overflow-hidden large:mt-20{% if section.settings.full_width %} bg-{{ section.settings.background_color }}{% endif %}">
+    <div class="container">
+        <div class="{% if section.settings.background_color and section.settings.full_width %}pt-7 large:pt-24 pb-7 large:pb-24{% endif %}">
+            <div class="medium:grid medium:grid-cols-12 medium:items-stretch">
+                <div
+                    class="bg-cover bg-center pt-4 pb-8 mediumMax:flex mediumMax:flex-col{% if section.settings.background_image %} justify-end mediumMax:aspect-3/4 px-[1.375rem] medium:px-10 large:aspect-5/3 xxxLarge:aspect-2/1{% endif %} medium:py-9{% if section.settings.text_color %} text-{{ section.settings.text_color }}{% endif %}{% if section.settings.full_width %} medium:col-span-4{% else %} medium:col-span-6 large:col-span-8{% endif %}"
+                    {% if section.settings.background_image %}
+                        style="background-image: url({{ section.settings.background_image | image_url: width: 800 }})"
+                    {% endif %}
+                >
+                    <div class="flex flex-col h-full justify-end large:w-[62%]">
+                        {% if section.settings.title != blank %}
+                            <h2 class="heading-r text-[2.125rem] large:text-5xl large:leading-[3.6rem]">
+                                {{ section.settings.title }}
+                            </h2>
+                        {% endif %}
+                        {% if section.settings.content != blank %}
+                            <div class="wysiwyg text-body-r max-w-[21.875rem] mt-2">
+                                {{ section.settings.content }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if section.settings.button_text != blank %}
+                        <a
+                            class="button button--small-mobile mediumMax:self-start mt-5{% if section.settings.button_style %} button--{{ section.settings.button_style }}{% endif %}"
+                            {% if section.settings.button_url == blank %}
+                                role="link"
+                                aria-disabled="true"
+                            {% else %}
+                                href="{{ section.settings.button_url }}"
+                            {% endif %}
+                        >
+                            <div class="button__label">
+                                <span>
+                                    {{- section.settings.button_text | escape -}}
+                                </span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </div>
+                {% if section.settings.product %}
+                    <div class="medium:col-span-6 large:col-span-4{% if section.settings.full_width %} medium:col-start-6 {% else %} flex flex-col justify-start items-center pb-9 pt-7 large:py-14 bg-{{ section.settings.background_color }} medium:py-6{% endif %}">
+                        <div class="max-w-80 grid h-full">
+                            <p class="font-Gotham body-s font-bold uppercase tracking-[0.045rem] pb-11">{{- 'sections.featured_product.featured_product' | t -}}</p>
+                            <div class="w-full box-border mediumMax:text-body-sm{% unless section.settings.full_width %} medium:max-w-80{% endunless %}">
+                                {% render 'card-product',
+                                    card_product: section.settings.product,
+                                    lazy_load: true,
+                                    show_vendor: false,
+                                    show_quick_add: true,
+                                    right_align_cta: true,
+                                    enable_reviews: true,
+                                    enable_variant_count: section.settings.enable_variant_count,
+                                    section_id: section.id
+                                %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "t:sections.featured-product.name",
+        "tag": "section",
+        "class": "section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "background_image",
+                "label": "t:sections.featured-product.settings.background_image.label",
+                "info": "t:sections.featured-product.settings.background_image.info"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.featured-product.settings.title.label"
+            },
+            {
+                "type": "checkbox",
+                "id": "full_width",
+                "label": "t:sections.featured-product.settings.full_width.label",
+                "default": false
+            },
+            {
+                "type": "richtext",
+                "id": "content",
+                "label": "t:sections.featured-product.settings.content.label"
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "t:sections.featured-product.settings.button_text.label"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "t:sections.featured-product.settings.button_url.label"
+            },
+            {
+                "type": "product",
+                "id": "product",
+                "label": "t:sections.featured-product.settings.product.label"
+            },
+            {
+                "type": "select",
+                "id": "background_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    },
+                    {
+                        "value": "transparent",
+                        "label": "t:sections.all.colors.transparent.label"
+                    }
+                ],
+                "default": "transparent",
+                "label": "t:sections.all.colors.heading"
+            },
+            {
+                "type": "select",
+                "id": "text_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "text1",
+                        "label": "t:sections.all.colors.text_1.label"
+                    },
+                    {
+                        "value": "text2",
+                        "label": "t:sections.all.colors.text_2.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "text1",
+                "label": "t:sections.all.colors.text_colour_label"
+            },
+            {
+                "type": "select",
+                "id": "button_style",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.button_styles.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.button_styles.secondary.label"
+                    },
+                    {
+                        "value": "tertiary",
+                        "label": "t:sections.all.button_styles.tertiary.label"
+                    },
+                    {
+                        "value": "white",
+                        "label": "t:sections.all.button_styles.white.label"
+                    }
+                ],
+                "default": "primary",
+                "label": "t:sections.all.button_styles.button_style_label"
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.featured-product.presets.name"
+            }
+        ]
+    }
+{% endschema %}

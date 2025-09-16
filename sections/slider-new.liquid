@@ -1,0 +1,112 @@
+
+
+
+
+
+<style>
+.btn-outline-light {
+  padding: 10px;
+  border-radius: 0;
+  border: 1px solid #000;
+  background-color: transparent;
+  font-family: var(--gotham);
+  font-weight: 500;
+  font-size: 0.9rem;
+  min-width: 140px;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+}
+.btn-dark {
+    padding: 10px 15px;
+    border-radius: 0;
+    color: #fff;
+    border: 1px solid #000;
+    background-color: #000;
+    font-family: var(--gotham);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+p.gotham {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    font-family: var(--gotham);
+    margin-bottom: 20px;
+}
+h1 {
+  font-family: var(--skeena);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.skinSection {
+    margin: 80px 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: top;
+}
+
+.skinSection .skinSectionItem {
+    width: 50%;
+    min-height: 700px;
+}
+
+.skinSection .skinSectionItem.textSection {
+    box-sizing: border-box;
+    background-color: var(--grybg);
+    padding: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+
+.bgSection1 {
+    background: url('https://cdn.shopify.com/s/files/1/0676/8872/6667/files/skin.png') no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+</style>            
+<section class="skinSection">
+                <div class="skinSectionItem textSection">
+                    <h1>Skin is complex. <br /> Our products are too.</h1>
+                    <p class="gotham">
+                        Powered by exosomes, peptides, and stem cells—Tursian adapts to what your skin needs now. Deep hydration, targeted repair, long-term regeneration. All in one.</p>
+<p class="gotham">This is next-gen skincare, rooted in biology.</p>
+<button class="btn-outline-light">Shop All</button>
+                </div>
+                <div class="skinSectionItem bgSection1"></div>
+            </section>
+
+{% schema %}
+{
+  "name": "slider-section",
+  "settings": [
+    {
+    "type": "video",
+    "id": "first_slide_video",
+    "label": "First Slide Video"
+  },
+  {
+    "type": "image_picker",
+    "id": "second_slide_image",
+    "label": "Second Slide Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "third_slide_image",
+    "label": "Third Slide Image"
+  }
+  ],
+  "presets": [{
+    "name": "slider-section"
+  }]
+}
+{% endschema %}

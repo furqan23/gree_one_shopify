@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true
+          }
+        },
+        "author_wm64EV": {
+          "type": "author",
+          "settings": {}
+        },
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {}
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        },
+        "wysiwyg": {
+          "type": "wysiwyg",
+          "settings": {
+            "wysiwyg": ""
+          }
+        },
+        "image_with_caption": {
+          "type": "image_with_caption",
+          "settings": {
+            "caption": "This is a caption for this image"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share on social"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "author_wm64EV",
+        "featured_image",
+        "content",
+        "wysiwyg",
+        "image_with_caption",
+        "share"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_liquid_6eyTWh": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n/* ===== HERO SECTION ===== */\n.blog-hero {\n  position: relative;\n  width: 100%;\n  height: 450px;\n  background-size: cover;\n  background-position: center;\n  display: flex;\n  align-items: flex-end;\n  padding: 40px;\n  color: white;\n}\n\n.blog-hero-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0,0,0,0.35); /* dark overlay for readability */\n}\n\n.blog-hero-content {\n  position: relative;\n  max-width: 600px;\n  z-index: 2;\n}\n\n.blog-hero h1 {\n  font-size: 38px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.blog-hero p {\n  font-size: 16px;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* ===== POST CONTENT ===== */\n.blog-content {\n  max-width: 750px;\n  margin: 60px auto;\n  padding: 0 20px;\n  font-size: 17px;\n  line-height: 1.8;\n  color: #222;\n}\n</style>\n\n<!-- HERO SECTION -->\n<div \n  class=\"blog-hero\" \n  style=\"background-image: url({{ article.image | img_url: 'master' }});\">\n  \n  <div class=\"blog-hero-overlay\"></div>\n  \n  <div class=\"blog-hero-content\">\n    <h1>{{ article.title }}</h1>\n    <p>{{ article.excerpt | strip_html | truncatewords: 25 }}</p>\n  </div>\n</div>\n\n<!-- POST CONTENT -->\n<div class=\"blog-content\">\n  {{ article.content }}\n</div>"
+      }
+    },
+    "custom_liquid_wJrE6x": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n/* ===== HERO SECTION ===== */\n.blog-hero {\n  position: relative;\n  width: 100%;\n  height: 450px;\n  background-size: cover;\n  background-position: center;\n  display: flex;\n  align-items: center; /* vertical center */\n  justify-content: flex-start; /* align left */\n  color: white;\n  padding: 40px;\n}\n\n.blog-hero-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0,0,0,0.35); /* dark overlay for readability */\n}\n\n.blog-hero-content {\n  position: relative;\n  max-width: 600px;\n  z-index: 2;\n}\n\n.blog-hero h1 {\n  font-size: 42px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n\n.blog-hero p {\n  font-size: 18px;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* ===== POST CONTENT ===== */\n.blog-content {\n  max-width: 750px;\n  margin: 60px auto;\n  padding: 0 20px;\n  font-size: 17px;\n  line-height: 1.8;\n  color: #222;\n}\n</style>\n\n<!-- HERO SECTION -->\n<div \n  class=\"blog-hero\" \n  style=\"background-image: url({{ article.image | img_url: 'master' }});\">\n  \n  <div class=\"blog-hero-overlay\"></div>\n  \n  <div class=\"blog-hero-content\">\n    <h1>{{ article.title }}</h1>\n    <p>\n      {% if article.excerpt != blank %}\n        {{ article.excerpt | strip_html | truncatewords: 20 }}\n      {% else %}\n        {{ article.content | strip_html | truncatewords: 20 }}\n      {% endif %}\n    </p>\n  </div>\n</div>\n\n<!-- POST CONTENT -->\n<div class=\"blog-content\">\n  {{ article.content }}\n</div>"
+      }
+    },
+    "custom_liquid_CNeFTR": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".pt-12{padding-top: 0rem;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n/* ===== HERO SECTION ===== */\n.blog-hero {\n  position: relative;\n  width: 100%;\n  height: 450px;\n  background-size: cover;\n  background-position: center;\n  display: flex;\n  align-items: center; /* vertical center */\n  justify-content: flex-start; /* align left */\n  color: white;\n  padding: 40px;\n}\n\n.blog-hero-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0,0,0,0.35);\n}\n\n.blog-hero-content {\n  position: relative;\n  max-width: 600px;\n  z-index: 2;\n}\n\n.blog-hero h1 {\n  font-size: 42px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n\n.blog-hero p {\n  font-size: 18px;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* ===== POST CONTENT ===== */\n.blog-content {\n  max-width: 750px;\n  margin: 60px auto;\n  padding: 0 20px;\n  font-size: 17px;\n  line-height: 1.8;\n  color: #222;\n}\n</style>\n\n<!-- HERO SECTION -->\n<div \n  class=\"blog-hero\" \n  style=\"background-image: url({{ article.image | img_url: 'master' }});\">\n  \n  <div class=\"blog-hero-overlay\"></div>\n  \n  <div class=\"blog-hero-content\">\n    <h1>{{ article.title }}</h1>\n    <p>\n      {% assign paragraphs = article.content | split: '</p>' %}\n      {% if paragraphs.size > 1 %}\n        {{ paragraphs[1] | strip_html | truncatewords: 20 }}\n      {% else %}\n        {{ article.content | strip_html | truncatewords: 20 }}\n      {% endif %}\n    </p>\n  </div>\n</div>\n\n<!-- POST CONTENT -->\n<div class=\"blog-content\">\n  {{ article.content }}\n</div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_6eyTWh",
+    "custom_liquid_wJrE6x",
+    "custom_liquid_CNeFTR"
+  ]
+}

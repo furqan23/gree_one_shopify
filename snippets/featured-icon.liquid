@@ -1,0 +1,34 @@
+{% if icon != empty %}
+    <div class="w-full flex text-{{ text_color }} gap-x-5{% if small_icon == true %} flex-col items-center{% else %} medium:flex-col items-start{% endif %} medium:items-center medium:mx-4{% if product_icons %} large:mx-7{% else %} large:mx-[.625rem]{% endif %}{% if small_icon == true %} large:mx-0{% endif %}">
+        <div class="flex items-center justify-center aspect-square {% if product_icons %} h-16{% else %} h-[4.375rem]{% endif %}">
+            <img
+                {% if product_icons == true %}
+                    src="{{ icon.value | image_url }}"
+                {% else %}
+                    src="{{ icon.src | image_url }}"
+                {% endif %}
+                alt="{{ icon.title | escape }}"
+                height="{{ icon.height }}"
+                width="{{ icon.width }}"
+                loading="lazy"
+            >
+        </div>
+        <div class="medium:text-center">
+            {% if title != blank %}
+                <p class="body-l{% unless small_icon == true %} uppercase font-Gotham font-[350]{% else %} mt-1.5{% endunless %} mb-2 text-{{ text_color }} medium:body-l{% if product_icons %} medium:mt-[1.875rem]{% else %} medium:mt-4{% endif %} medium:mb-2.5">
+                    {{- title -}}
+                </p>
+            {% endif %}
+            {% if text != blank %}
+                <p class="body-s leading-5 text-{{ text_color }} mediumMax:text-[0.813rem] medium:body-r">
+                    {{- text -}}
+                </p>
+            {% endif %}
+            {% if cta_text and cta_url %}
+                <a href="{{ cta_url }}" class="block body-s font-semibold mediumMax:text-[0.813rem] largeMax:underline medium:body-r large:link-highlight large:before:opacity-0 large:w-fit large:mx-auto{% if product_icons %} mt-2.5{% else %} mt-1{% endif %}">
+                    {{ cta_text }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

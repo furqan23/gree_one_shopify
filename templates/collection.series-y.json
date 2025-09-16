@@ -1,0 +1,469 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "series-collection-banner",
+      "blocks": {
+        "usp_Dw87nb": {
+          "type": "usp",
+          "settings": {
+            "text": "Example USP Line"
+          }
+        },
+        "usp_aYenPh": {
+          "type": "usp",
+          "settings": {
+            "text": "Example USP Line"
+          }
+        },
+        "usp_Qgfzda": {
+          "type": "usp",
+          "settings": {
+            "text": "Example USP Line"
+          }
+        },
+        "usp_4GN9Wh": {
+          "type": "usp",
+          "settings": {
+            "text": "Example USP Line"
+          }
+        }
+      },
+      "block_order": [
+        "usp_Dw87nb",
+        "usp_aYenPh",
+        "usp_Qgfzda",
+        "usp_4GN9Wh"
+      ],
+      "settings": {
+        "products_per_page": 16,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "enable_reviews": true,
+        "enable_variant_count": false,
+        "enable_quick_add": true
+      }
+    },
+    "text_two_cols_nxF3J4": {
+      "type": "text-two-cols",
+      "blocks": {
+        "text_block_AxYmdr": {
+          "type": "text-block",
+          "settings": {
+            "heading": "NO HARSH INGREDIENTS",
+            "text": "<p>The A-SERIES makes no use of such harsh ingredients as Benzoyl Peroxide, Oxygen Peroxide, or industrial antimicrobial agents, which are associated with abnormal oxidation of the skin Further, this collection does not rely on the traditional model of depleting the oil content of the skin's surface to eliminate blemishes. This approach often causes the skin to overproduce oil in compensation, making the condition appear worse.<br/><br/><br/></p>",
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        },
+        "text_block_eGNUba": {
+          "type": "text-block",
+          "settings": {
+            "heading": "HOW IT WORKS",
+            "text": "<p>The targeted products in the A-SERIES rely on the anti-bacterial super-power of <strong>Multiple Advance Peptides, Sesame, Agaric Mushroom, and Multi marine-based sebum regulating agents</strong>, as well as antibacterial Silver, that have shown to deliver blemish-free skin with unprecedented efficacy. Furthermore, strong Microbiome Ingredient derived from Marine Sargassum muticum extract which supports the skin microbiome system to make the skin healthy. The A-SERIES also contain natural <strong>AHA, BHA, PHA</strong> and Enzymatic peelers to remove the dead skin cells and increase cellular renewal.</p>",
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_AxYmdr",
+        "text_block_eGNUba"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "transparent",
+        "text_colour": "text1",
+        "button_style": "primary"
+      }
+    },
+    "text_and_icon_carousel_VXfDTY": {
+      "type": "text-and-icon-carousel",
+      "blocks": {
+        "item_pCX8AL": {
+          "type": "item",
+          "settings": {
+            "text": "<p>Normalize sebum production</p>",
+            "icon": "shopify://shop_images/Group_20557.svg"
+          }
+        },
+        "item_JcEqER": {
+          "type": "item",
+          "settings": {
+            "text": "<p>Promote skin cell turnover</p>",
+            "icon": "shopify://shop_images/Group_20557.svg"
+          }
+        },
+        "item_cPdpG7": {
+          "type": "item",
+          "settings": {
+            "text": "<p>Reduce appearance of blackheads & whiteheads</p>",
+            "icon": "shopify://shop_images/Group_20557.svg"
+          }
+        },
+        "item_Gm8EMY": {
+          "type": "item",
+          "settings": {
+            "text": "<p>Smooth and improve skin surface</p>",
+            "icon": "shopify://shop_images/Group_20557.svg"
+          }
+        },
+        "item_aXYb7k": {
+          "type": "item",
+          "settings": {
+            "text": "<p>Matte finish</p>",
+            "icon": "shopify://shop_images/Group_20557.svg"
+          }
+        }
+      },
+      "block_order": [
+        "item_pCX8AL",
+        "item_JcEqER",
+        "item_cPdpG7",
+        "item_Gm8EMY",
+        "item_aXYb7k"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Targetted Actions"
+      }
+    },
+    "heading_and_images_grid_WfpdKm": {
+      "type": "heading-and-images-grid",
+      "blocks": {
+        "slide_nzniCw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_20467.jpg",
+            "video_url": "",
+            "embed_url": ""
+          }
+        },
+        "slide_NpqCNC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Image_20.png",
+            "video_url": "",
+            "embed_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_nzniCw",
+        "slide_NpqCNC"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "heading": "WITH OVER 2,000 CLINICALLY PROVEN RESULTS.",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit .</p>",
+        "button_label": "",
+        "secondary_button_label": "",
+        "button_link": "",
+        "controls_color": "primary",
+        "icons_hover_color": "secondary"
+      }
+    },
+    "heading_and_text_grid_8xMCpP": {
+      "type": "heading-and-text-grid",
+      "blocks": {
+        "heading_ik8gpD": {
+          "type": "heading",
+          "settings": {
+            "large_heading": false,
+            "heading": "WE ARE IN THE PERSUIT OF THE MOST ADVANCED AND MODERN SCIENTIFIC SKINCARE"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ik8gpD"
+      ],
+      "disabled": true,
+      "settings": {
+        "center_align_text": false,
+        "two_column": false,
+        "fuller_width": false,
+        "color_scheme": "transparent",
+        "text_colour": "text1",
+        "button_style": "primary"
+      }
+    },
+    "content_cta_and_media_grid_tFdbEg": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_pEKXrU": {
+          "type": "heading",
+          "settings": {
+            "heading": "More Than 322+ Active Ingredients from Around the World"
+          }
+        },
+        "image_heading_QBBmFd": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_zAKGiy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_bz8wEi": {
+          "type": "button",
+          "settings": {
+            "button_label": "EXPLORE INGREDIENTS",
+            "secondary_button_label": "EXPLORE INGREDIENTS",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_pEKXrU",
+        "image_heading_QBBmFd",
+        "text_zAKGiy",
+        "button_bz8wEi"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Screenshot_2024-03-12_at_13.18_1.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_gV9BEb": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_Bpq3HW": {
+          "type": "heading",
+          "settings": {
+            "heading": "CLINICALLY PROVEN"
+          }
+        },
+        "image_heading_mdfWmz": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_Ky3rmm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_9BzE9D": {
+          "type": "button",
+          "settings": {
+            "button_label": "THE SCIENCE",
+            "secondary_button_label": "THE SCIENCE",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_Bpq3HW",
+        "image_heading_mdfWmz",
+        "text_Ky3rmm",
+        "button_9BzE9D"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/Group_20562.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "series_product_carousel_y8CG8J": {
+      "type": "series-product-carousel",
+      "blocks": {
+        "accordion_NQ9Aak": {
+          "type": "accordion",
+          "settings": {
+            "title": "Example Accordion",
+            "content": "<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>"
+          }
+        },
+        "accordion_pLifaK": {
+          "type": "accordion",
+          "settings": {
+            "title": "Example Accordion 2",
+            "content": "<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>"
+          }
+        },
+        "accordion_KdwYYg": {
+          "type": "accordion",
+          "settings": {
+            "title": "Example Accordion 3",
+            "content": "<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>"
+          }
+        },
+        "slide_tCGMVt": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "product": "amazonian-berries-face-exfoliator"
+          }
+        },
+        "slide_exr4Ar": {
+          "type": "slide",
+          "settings": {
+            "product": "blemish-control-mattifying-foam-cleanser"
+          }
+        },
+        "slide_Kt7d3L": {
+          "type": "slide",
+          "settings": {
+            "product": "radiance-booster-gel-cleanser"
+          }
+        },
+        "slide_3CRgbD": {
+          "type": "slide",
+          "settings": {
+            "product": "amazonian-berries-face-exfoliator"
+          }
+        },
+        "slide_dGymV9": {
+          "type": "slide",
+          "settings": {
+            "product": "amazonian-berries-face-exfoliator"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_NQ9Aak",
+        "accordion_pLifaK",
+        "accordion_KdwYYg",
+        "slide_tCGMVt",
+        "slide_exr4Ar",
+        "slide_Kt7d3L",
+        "slide_3CRgbD",
+        "slide_dGymV9"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Example Title",
+        "collection": "protection",
+        "controls_color": "background2",
+        "icons_hover_color": "background1"
+      }
+    },
+    "accordion_9NEqRT": {
+      "type": "accordion",
+      "blocks": {
+        "collapsible_row_daTmiH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How does the Y-Series contribute to smoother skin?",
+            "icon": "none",
+            "row_content": "<p>The Youthful Series is formulated with ingredients like Peptides, Vegan collagen, Ceramides, and powerful extracts to promote hydration, resulting in smoother, more supple skin.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_FYfnke": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can the Y products help improve skin firmness and elasticity?",
+            "icon": "none",
+            "row_content": "<p>Yes, the Youthful Series is specifically designed to enhance skin firmness and elasticity, contributing to a more youthful and resilient appearance</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_Afenqa": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do these products provide collagen support for aging skin?",
+            "icon": "none",
+            "row_content": "<p>Absolutely. The Y line includes ingredients that support collagen production, helping to maintain skin structure and combat the effects of aging.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_cenFDH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are there specific products in the Youthful Series for targeting fine lines and wrinkles?",
+            "icon": "none",
+            "row_content": "<p>Yes, Y-3 in Youthful Series focus on addressing fine lines, wrinkles, Crow’s feet lines and collagen support offering targeted solutions for more youthful-looking skin.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_H6xkPj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long does it take to see results in terms of improved skin elasticity with the Youthful Series?",
+            "icon": "none",
+            "row_content": "<p>Results may vary, but consistent use of the Youthful Series may show improvements in skin elasticity within a few weeks to months.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_73CHx4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are the plumping effects of the Youthful Series noticeable immediately?",
+            "icon": "none",
+            "row_content": "<p>Yes, you may experience immediate hydration and a subtle plumping effect, long-term benefits in terms of firmness and elasticity are typically observed with consistent use over time.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_n7JHVq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I layer other Tursian skincare products with moisturizer?",
+            "icon": "none",
+            "row_content": "<p>Yes, our moisturizer can be layered with our other skincare products, such as serums, Toner to address specific concerns and enhance overall skincare benefits.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_daTmiH",
+        "collapsible_row_FYfnke",
+        "collapsible_row_Afenqa",
+        "collapsible_row_cenFDH",
+        "collapsible_row_H6xkPj",
+        "collapsible_row_73CHx4",
+        "collapsible_row_n7JHVq"
+      ],
+      "custom_css": [
+        ".heading-s {font-size: 1.2rem !important ; font-weight: 500;}",
+        ".accordion__summary {padding-top: 1.5rem !important; padding-bottom: 1.5rem !important;}"
+      ],
+      "settings": {
+        "heading": "Y-SERIES FAQs",
+        "supporting_text": "",
+        "center_align_text": false,
+        "open_first_collapsible_row": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "text_two_cols_nxF3J4",
+    "text_and_icon_carousel_VXfDTY",
+    "heading_and_images_grid_WfpdKm",
+    "heading_and_text_grid_8xMCpP",
+    "content_cta_and_media_grid_tFdbEg",
+    "content_cta_and_media_grid_gV9BEb",
+    "series_product_carousel_y8CG8J",
+    "accordion_9NEqRT"
+  ]
+}

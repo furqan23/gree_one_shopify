@@ -1,0 +1,43 @@
+{% comment %}
+    Renders a list of product's price (regular, sale)
+
+    Accepts:
+    - product: {Object} Product Liquid object (optional)
+    - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+
+    Usage:
+    {% render 'price', product: product %}
+{% endcomment %}
+{%- liquid
+    if use_variant
+        assign target = product.selected_or_first_available_variant
+    else
+        assign target = product
+    endif
+  
+    assign compare_at_price = target.compare_at_price
+    assign price = target.price | default: 1999
+    assign money_price = price | money_without_trailing_zeros 
+  
+    if target == product and product.price_varies
+        assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    endif
+-%}
+  
+<div class="flex flex-wrap items-end{%- if product.selected_or_first_available_variant.compare_at_price %} gap-x-2{% endif %}">
+    {%- if product.selected_or_first_available_variant.compare_at_price %}
+        <span class="sr-only">{{ 'products.product.price.regular_price' | t }}</span>
+        <span class="block">
+            <s class="text-body-r">
+                {{ 'products.product.price.was' | t }} {{ compare_at_price | money_without_trailing_zeros }}
+            </s>
+        </span>
+    {%- endif -%}
+    <div>
+        <span class="sr-only">{{ 'products.product.price.sale_price' | t }}</span>
+        <span class="text-body-m js-dynamic-price" data-original-price="{{ money_price }}">
+            {%- if product.selected_or_first_available_variant.compare_at_price and product.price_varies == false %}{{ 'products.product.price.now' | t }} {% endif %} {{ money_price }}
+        </span>
+    </div>
+</div>
+  

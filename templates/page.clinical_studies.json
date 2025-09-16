@@ -1,0 +1,242 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "custom_liquid_p7RwcA": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<h1 style=\"font-size:30px; text-align:Center;margin-bottom:50px;\">Clinical Studies</h1>"
+      }
+    },
+    "clinical_studies_kV3UXk": {
+      "type": "clinical_studies",
+      "blocks": {
+        "product_zjdfFq": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-0_Clinical_Trials.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Instantly boosts skin hydration by up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">300%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">1 hour**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Hydration remains elevated by up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">304%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">8 hours**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Delivers long-lasting hydration with up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">184%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">24 hours**</b>.",
+            "description": "**Based on a third-party clinical study of 20 participants (aged 18–68) with very dry, dry, and normal skin types, following a single application.",
+            "handle": "extreme-hydration-nutrition-masque-1"
+          }
+        },
+        "product_ebVXPb": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/DC.656_HD_V15.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Delivers long-lasting hydration with up to: <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\"> <br> 73.3% </span>after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\"> 28 days**</b>.",
+            "description": "**Based on a third-party, 28-days clinical study of 20 participants (aged 19–58) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "hydration-activator-energizing-toner"
+          }
+        },
+        "product_L8AKcz": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/DC.655_-_HD_V19F.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Instantly boosts skin hydration by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">248.50%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">15 minutes**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">• </b>Delivers long-lasting hydration with up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">134.15%</span> after <b style=\"font-size:24px;font-family: 'Utopia-Semibold' !important;\">28 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Transepidermal Water Loss (TEWL) was reduced by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">33.10%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">15 minutes**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Maintained high reduction in Transepidermal Water Loss (TEWL) by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">22.7%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin brightness increased by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">34.80%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">15 minutes**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">• </b>Skin brightness improved by up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">18.60%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days**</b>.",
+            "description": "**Based on a third-party, 28-days clinical study of 21 volunteers (aged 19–59) with very dry, dry and normal skin types, following twice-daily application.",
+            "handle": "ultimate-hydration-serum-concentrate-1"
+          }
+        },
+        "product_VY4idX": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-4_Clinical_Trials.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">• </b>Instantly boosts skin hydration by up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">262%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">1 hour**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">• </b>Hydration remains elevated with up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">309.6%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">8 hours**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">• </b>Maintained skin hydration with up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">139.96%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">24 hours**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Delivers long-lasting hydration with up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">200.7%</span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days**</b>.",
+            "description": "**Based on a third-party, 28-days clinical study of 22 participants (aged 19–56) with very dry, dry, and normal skin types, following twice-daily application",
+            "handle": "intense-hydration-reviving-moisturizer-1"
+          }
+        },
+        "product_Kbqz3J": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Y-0_Clinical_Trials.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Instantly boosts skin hydration by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">83.4%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">15 minutes**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">• </b>Improves skin smoothness by up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">18%</span> in just <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">15 minutes**</b>.",
+            "description": "**Based on a third-party clinical study of 26 participants (aged 24–66) with very dry, dry, and normal skin types, following a single 15-minute application, then rinsed off.",
+            "handle": "regenerating-youth-masque-1"
+          }
+        },
+        "product_U87CCC": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Y-2_Clinical_Trials.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin firmness increased by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">54.64% </span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days only**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin elasticity increased up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">34.63%  </span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days only**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin resilience and signs of fatigue improved by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">46%  </span> after <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">28 days only**</b>.\n<br>",
+            "description": "**Based on a third-party, 28-days clinical study of 36 participants (aged 26–70) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "youth-activator-rejuvenating-face-water-1"
+          }
+        },
+        "product_GPRkMP": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Clinical_Stuy_Picture.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Crow's feet wrinkles area reduced by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">64.89%  </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Crow's feet wrinkles volume reduced by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">65.92% </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Forehead wrinkles area reduced by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">90.55%  </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Forehead wrinkles volume reduced by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">91.16%   </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Delivers long-lasting hydration with up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">108.35%   </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin elasticity & firmness increased by up to:<br> <span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">57.07%   </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>",
+            "description": "**Based on a third-party, 56-days clinical study of 37 participants (aged 30–69) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "youth-restore-serum-concentrate-1"
+          }
+        },
+        "product_DdkedX": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/R-4_Clinical_Trials.jpg",
+            "highlights": "<b style=\"font-size:26px; vertical-align:sub;\">•</b> Dark spots and pigmentation reduced up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">64.43% </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.\n<br>\n<b style=\"font-size:26px; vertical-align:sub;\">•</b> Skin glossiness, brightness, and mirror-like effect increased up to: <br><span style=\"font-size:24px; font-weight:600; font-family: 'Utopia-Semibold' !important;\">303.38% </span> in <b style=\"font-size:24px; font-family: 'Utopia-Semibold' !important;\">56 days**</b>.",
+            "description": "**Based on a third-party, 56-days clinical study of 21 participants (aged 20–52) with dark spots & hyperpigmentation, following twice-daily application.",
+            "handle": "spotlight-energizing-radiance-moisturizer"
+          }
+        }
+      },
+      "block_order": [
+        "product_zjdfFq",
+        "product_ebVXPb",
+        "product_L8AKcz",
+        "product_VY4idX",
+        "product_Kbqz3J",
+        "product_U87CCC",
+        "product_GPRkMP",
+        "product_DdkedX"
+      ],
+      "disabled": true,
+      "name": "clinical_studies",
+      "settings": {}
+    },
+    "clinical_studies_neww_BDFDig": {
+      "type": "clinical-studies-neww",
+      "blocks": {
+        "product_ir6dNq": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-0_Clinical_Trials.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party clinical study of 20 participants (aged 18–68) with very dry, dry, and normal skin types, following a single application.",
+            "handle": "extreme-hydration-nutrition-masque-1"
+          }
+        },
+        "product_47RCdy": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-2.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 28-days clinical study of 20 participants (aged 19–58) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "hydration-activator-energizing-toner"
+          }
+        },
+        "product_Pi8Bqz": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-3_3158dc9e-2350-4021-910c-a74b10c33150.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 28-days clinical study of 21 volunteers (aged 19–59) with very dry, dry and normal skin types, following twice-daily application.",
+            "handle": "ultimate-hydration-serum-concentrate-1"
+          }
+        },
+        "product_9CgipW": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-4_Clinical_Trials.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 28-days clinical study of 22 participants (aged 19–56) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "intense-hydration-reviving-moisturizer-1"
+          }
+        },
+        "product_KkpCp6": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Y-0_Clinical_Trials.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party clinical study of 26 participants (aged 24–66) with very dry, dry, and normal skin types, following a single 15-minute application, then rinsed off.",
+            "handle": "regenerating-youth-masque-1"
+          }
+        },
+        "product_aj99Pj": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Y-2_Clinical_Trials.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 28-days clinical study of 36 participants (aged 26–70) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "youth-activator-rejuvenating-face-water-1"
+          }
+        },
+        "product_ajx8Ti": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/Clinical_Stuy_Picture.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 56-days clinical study of 37 participants (aged 30–69) with very dry, dry, and normal skin types, following twice-daily application.",
+            "handle": "youth-restore-serum-concentrate-1"
+          }
+        },
+        "product_g8dFpn": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/R-4_Clinical_Trials.jpg",
+            "highlights": "",
+            "description": "**Based on a third-party, 56-days clinical study of 21 participants (aged 20–52) with dark spots & hyperpigmentation, following twice-daily application.",
+            "handle": "spotlight-energizing-radiance-moisturizer"
+          }
+        }
+      },
+      "block_order": [
+        "product_ir6dNq",
+        "product_47RCdy",
+        "product_Pi8Bqz",
+        "product_9CgipW",
+        "product_KkpCp6",
+        "product_aj99Pj",
+        "product_ajx8Ti",
+        "product_g8dFpn"
+      ],
+      "name": "clinical-studies-neww",
+      "settings": {}
+    },
+    "clinical_studies_neww_PMkb9f": {
+      "type": "clinical-studies-neww",
+      "blocks": {
+        "product_pVRK8N": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/P-3_3158dc9e-2350-4021-910c-a74b10c33150.jpg",
+            "highlights": "",
+            "description": "",
+            "handle": "youth-activator-rejuvenating-face-water-1"
+          }
+        },
+        "product_99E9TA": {
+          "type": "product",
+          "settings": {
+            "highlights": "",
+            "description": "",
+            "handle": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_pVRK8N",
+        "product_99E9TA"
+      ],
+      "disabled": true,
+      "name": "clinical-studies-neww",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_p7RwcA",
+    "clinical_studies_kV3UXk",
+    "clinical_studies_neww_BDFDig",
+    "clinical_studies_neww_PMkb9f"
+  ]
+}

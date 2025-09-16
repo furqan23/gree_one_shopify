@@ -1,0 +1,238 @@
+{% comment %}
+Section: Filter sidebar + AJAX product grid (uses Shopify faceted filters)
+{% endcomment %}
+
+<section id="IngredientsSection-{{ section.id }}" class="ingredients-collection" data-section-id="{{ section.id }}">
+  {% assign coll = collection %}
+  {% if section.settings.collection_handle != blank %}
+    {% assign coll = collections[section.settings.collection_handle] | default: collection %}
+  {% endif %}
+
+  <div class="ingredients-container">
+    <!-- Filters -->
+    <aside class="filters">
+      <form id="FiltersForm-{{ section.id }}" class="filters-form" data-section-id="{{ section.id }}">
+        {% if coll.filters.size > 0 %}
+          {% for filter in coll.filters %}
+            <div class="filter">
+              <button type="button" class="filter-toggle">
+                {{ filter.label }}
+                <span class="arrow">-</span>
+              </button>
+
+              {% comment %} <div class="filter-content hidden"> {% endcomment %}
+               <div class="filter-content "> 
+                {% case filter.type %}
+                  {% when 'list' %}
+                    {% for value in filter.values %}
+                      <label class="custom-checkbox">
+                        <input type="checkbox"
+                               name="{{ value.param_name }}"
+                               value="{{ value.value | escape }}"
+                               {% if value.active %}checked{% endif %}
+                               {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                        <span class="checkmark"></span>
+                        <span class="label-text">{{ value.label }}</span>
+                        <span class="count">({{ value.count }})</span>
+                      </label>
+                    {% endfor %}
+                  {% when 'price_range' %}
+                    <div class="price-range">
+                      <input type="number"
+                             name="{{ filter.min_value.param_name }}"
+                             value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                             placeholder="0">
+                      <input type="number"
+                             name="{{ filter.max_value.param_name }}"
+                             value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                             placeholder="{{ filter.range_max | money_without_currency }}">
+                    </div>
+                {% endcase %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% comment %} <button type="submit" class="visually-hidden">Apply</button> {% endcomment %}
+      </form>
+    </aside>
+
+    <!-- Results -->
+    <div class="results">
+      {% paginate coll.products by 24 %}
+        <div id="ResultsCount-{{ section.id }}" class="results-count mb-4">
+          Results: {{ paginate.items }} Products
+        </div>
+
+        <div id="ProductGrid-{{ section.id }}" class="product-grid">
+          {% for product in coll.products %}
+            {% render 'card-product-ingredients', product: product %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="pagination">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}"{% if request.design_mode %} data-no-ajax{% endif %}>Previous</a>
+            {% endif %}
+            <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}"{% if request.design_mode %} data-no-ajax{% endif %}>Next</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ingredients-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    border-top:1px solid #bbb4b4;
+    margin-top:30px;
+    padding-top:30px;
+    padding-bottom:30px;
+  }
+.filters{
+  padding-top:50px;
+margin-left:40px;
+margin-top:-30px;
+padding-right:20px;
+border-right:1px solid #bbb4b4;
+}
+  /* Accordion filter */
+  .filter { border-bottom: 1px solid #eee; }
+  .filter-toggle {
+    background: none;
+    border: none;
+    width: 100%;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.75rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .filter-content.hidden { display: none; }
+  .arrow { font-weight: 700; }
+
+  /* Custom filled checkbox */
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: .35rem 0;
+    cursor: pointer;
+  }
+  .custom-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  .custom-checkbox .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #333;
+    border-radius: 0px;
+    padding:2px;
+    margin:2px;
+    background: #fff;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+    background: #333; /* filled when checked */
+    padding:2px;
+    margin:2px;
+
+  box-shadow: inset 0 0 0 3px #fff; 
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding:10px;
+  }
+  .card-title { font-size: .95rem; margin: .5rem 0; text-align:center;}
+  .card-title-series { font-size: .95rem; margin-top: .8rem ; text-align:center;}
+  .card-header:hover,.card-title:hover, .card-title-series:hover{  text-decoration: underline;}
+  .variant-radio { display: flex; gap: .5rem; align-items: center; margin: .25rem 0; }
+  .price { margin: .5rem 0; font-weight: 600; }
+  .add-to-cart { border: 1px solid #000; background: #fff; padding: .6rem 1rem; cursor: pointer; }
+ 
+.product-title-detail-addtcart-btn{
+display:flex;
+background:#f9f9fa;
+flex-direction:column;
+justify-content:space-between;
+height:190px;
+
+}
+
+  @media(max-width:768px){
+    .ingredients-container{grid-template-columns:1fr}
+    .filters{order:1}
+    .results{order:2}
+    .product-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:640px){
+    .product-grid{grid-template-columns:1fr}
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".filter-toggle").forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const content = toggle.nextElementSibling;
+        content.classList.toggle("hidden");
+        const arrow = toggle.querySelector(".arrow");
+        arrow.textContent = content.classList.contains("hidden") ? "+" : "−";
+      });
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const params = new URLSearchParams(window.location.search);
+  const filterSet = params.get("filter_set");
+  {% comment %} alert('$view '+filterSet); {% endcomment %}
+
+  if(filterSet) {
+    // Hide all filters first
+   
+     document.querySelectorAll('.filter').forEach(function(filter) {
+    const btn = filter.querySelector('.filter-toggle');
+    if (btn && btn.textContent.trim().toLowerCase() === labelText.trim().toLowerCase()) {
+      filter.style.display = 'none';
+    }
+  });
+  }
+});
+
+
+
+ 
+
+</script>
+
+<script src="{{ 'ingredients-collection.js' | asset_url }}" defer="defer"></script>
+
+
+
+{% schema %}
+{
+  "name": "Ingredients-collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collection_handle",
+      "label": "Collection handle (optional)",
+      "info": "Leave blank to use the current collection.",
+      "default": "my-collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "article_D9WjNX": {
+          "type": "article",
+          "settings": {
+            "popular_articles": "news/how-are-highly-active-ingredients-help-you-1"
+          }
+        },
+        "article_MmnKGr": {
+          "type": "article",
+          "settings": {
+            "popular_articles": "news/our-clinically-proven-results-in-action"
+          }
+        },
+        "article_mTjEXk": {
+          "type": "article",
+          "settings": {
+            "popular_articles": "news/how-are-highly-active-ingredients-help-you"
+          }
+        },
+        "article_6NQyNN": {
+          "type": "article",
+          "settings": {
+            "popular_articles": "news/how-are-highly-active-ingredients-help-you-1"
+          }
+        }
+      },
+      "block_order": [
+        "article_D9WjNX",
+        "article_MmnKGr",
+        "article_mTjEXk",
+        "article_6NQyNN"
+      ],
+      "disabled": true,
+      "settings": {
+        "description": "<p>Sharing our skincare knowledge with you</p>",
+        "featured_article": "news/how-are-highly-active-ingredients-help-you",
+        "show_image": true,
+        "show_date": true,
+        "show_tags": false,
+        "show_excerpt": false
+      }
+    },
+    "custom_liquid_aB9jaN": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 0rem !important;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% assign blog_handle = 'news' %}\n{% assign posts = blogs[blog_handle].articles %}\n\n<style>\n.custom-blog-wrap {\n  max-width: 1480px;\n  margin: 0px 0px;\n  padding: 0 0px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Helvetica Neue\", Arial, sans-serif;\n  color: #222;\n}\n\n/* HERO */\n.custom-hero {\n  position: relative;\n  display: flex;\n  align-items: center;\n  min-height: 400px;\n  border-radius: 6px;\n  overflow: hidden;\n  padding: 52px;\n  background-size: cover;\n  background-position: center;\n}\n.custom-hero::before {\n  content: \"\";\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(to right, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.3) 100%);\n  z-index: 1;\n}\n.custom-hero .hero-text {\n  position: relative;\n  z-index: 2;\n  max-width: 600px;\n}\n.custom-hero .label {\n  font-size: 12px;\n  letter-spacing: 2px;\n  color: #fff;\n  margin-bottom: 12px;\n  text-transform: uppercase;\n}\n.custom-hero .hero-title {\n  margin: 0 0 18px 0;\n  font-size: 36px;\n  line-height: 1.03;\n  font-weight: 700;\n  text-transform: uppercase;\n  color: #fff;\n}\n.custom-hero .hero-excerpt {\n  color: #eee;\n  font-size: 15px;\n  line-height: 1.6;\n  margin-bottom: 18px;\n}\n.custom-hero .hero-cta {\n  display: inline-block;\n  background: #fff;\n  color: #111;\n  padding: 8px 14px;\n  font-size: 13px;\n  text-decoration: none;\n  border-radius: 3px;\n}\n\n/* ARTICLES GRID */\n.articles-grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 34px;\n  margin-top: 34px;\n  margin-right: 70px;\n  margin-left: 70px;\n}\n.article-row {\n  display: grid;\n  grid-template-columns: 360px 1fr;\n  gap: 30px;\n  align-items: center;\n}\n.article-row.reverse { grid-template-columns: 1fr 260px; }\n\n.article-margin-left {\n  margin-left: 160px;\n  margin-right: 140px;\n  margin-bottom: 40px;\n}\n.article-margin-right {\n  margin-right: 140px;\n  margin-left: 140px;\n}\n\n.square-thumb {\n  width: 320px;\n  height: 320px;\n  border-radius: 0px;\n  overflow: hidden;\n  background-size: cover;\n  background-position: center;\n  box-shadow: 0 12px 24px rgba(22,22,22,0.08);\n}\n.article-row .meta {\n  font-size: 12px;\n  color: #999;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  margin-bottom: 12px;\n}\n.article-row .row-title {\n  font-weight: 700;\n  font-size: 18px;\n  margin: 0 0 12px 0;\n}\n.article-row .row-excerpt {\n  color: #555;\n  line-height: 1.6;\n  margin-bottom: 14px;\n}\n.article-row .row-cta {\n  display: inline-block;\n  padding: 8px 12px;\n  background: #111;\n  color: #fff;\n  text-decoration: none;\n  font-size: 13px;\n  border-radius: 0px;\n}\n.shelf {\n  width: 380px;\n  height: 320px;\n  display: flex;\n  align-items: flex-end;\n  justify-content: center;\n}\n.shelf img { max-width: 100%; height: auto; transform: translateY(6px); }\n\n/* Responsive */\n@media (max-width: 900px) {\n  .custom-hero { padding: 36px; min-height: 300px; }\n  .articles-grid { margin: 0; }\n  .article-row, .article-row.reverse { grid-template-columns: 1fr; }\n  .square-thumb { width: 100%; height: 320px; }\n  .shelf { width: 100%; height: 220px; }\n  .article-margin-left,\n  .article-margin-right { margin: 0; }\n}\n</style>\n\n<div class=\"custom-blog-wrap\">\n\n  {% if posts.size > 0 %}\n    {% capture hero_excerpt %}\n      {% if posts[0].excerpt != blank %}\n        {{ posts[0].excerpt | strip_html }}\n      {% else %}\n        {{ posts[0].content | strip_html }}\n      {% endif %}\n    {% endcapture %}\n\n    <!-- HERO -->\n    <div class=\"custom-hero\" style=\"background-image: url('{% if posts[0].image %}{{ posts[0].image | img_url: '1600x' }}{% else %}https://via.placeholder.com/1600x600?text=Image{% endif %}');\">\n      <div class=\"hero-text\">\n        <span class=\"label\">BLOG</span>\n        <h2 class=\"hero-title\">{{ posts[0].title }}</h2>\n        <p class=\"hero-excerpt\">{{ hero_excerpt | strip | truncate: 220 }}</p>\n        <a class=\"hero-cta\" href=\"{{ posts[0].url }}\">Read More</a>\n      </div>\n    </div>\n  {% endif %}\n\n  <!-- LOOP OTHER POSTS -->\n  <div class=\"articles-grid\">\n    {% for article in posts offset:1 %}\n      {% capture art_excerpt %}\n        {% if article.excerpt != blank %}\n          {{ article.excerpt | strip_html }}\n        {% else %}\n          {{ article.content | strip_html }}\n        {% endif %}\n      {% endcapture %}\n\n      {% assign parity = forloop.index0 | modulo: 2 %}\n\n      {% if parity == 0 %}\n        <div class=\"article-row article-margin-left\">\n          <div class=\"square-thumb\" style=\"background-image: url('{% if article.image %}{{ article.image | img_url: '600x600' }}{% else %}https://via.placeholder.com/600x600?text=Photo{% endif %}');\"></div>\n          <div>\n            <div class=\"meta\">{{ article.published_at | date: \"%b %d, %Y\" }}</div>\n            <h3 class=\"row-title\">{{ article.title }}</h3>\n            <p class=\"row-excerpt\">{{ art_excerpt | strip | truncate: 250 }}</p>\n            <a class=\"row-cta\" href=\"{{ article.url }}\">Read More</a>\n          </div>\n        </div>\n      {% else %}\n        <div class=\"article-row reverse article-margin-right\">\n          <div>\n            <div class=\"meta\">{{ article.published_at | date: \"%b %d, %Y\" }}</div>\n            <h3 class=\"row-title\">{{ article.title }}</h3>\n            <p class=\"row-excerpt\">{{ art_excerpt | strip | truncate: 250 }}</p>\n            <a class=\"row-cta\" href=\"{{ article.url }}\">Read More</a>\n          </div>\n          <div class=\"shelf\">\n            {% if article.image %}\n              <img src=\"{{ article.image | img_url: '600x' }}\" alt=\"{{ article.title }}\">\n            {% else %}\n              <img src=\"https://via.placeholder.com/260x160?text=Products\" alt=\"Products\">\n            {% endif %}\n          </div>\n        </div>\n      {% endif %}\n    {% endfor %}\n  </div>\n\n</div>"
+      }
+    },
+    "custom_liquid_pedWEj": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".pt-12 {padding-top: 0rem !important;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% assign blog_handle = 'news' %}\n{% assign posts = blogs[blog_handle].articles %}\n\n<style>\n.custom-blog-wrap {\n  max-width: 1480px;\n  margin: 0px 0px;\n  padding: 0 0px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Helvetica Neue\", Arial, sans-serif;\n  color: #222;\n}\n\n/* HERO */\n.custom-hero {\n  position: relative;\n  display: flex;\n  align-items: center;\n  min-height: 400px;\n  border-radius: 6px;\n  overflow: hidden;\n  padding: 52px;\n  background-size: cover;\n  background-position: center;\n}\n.custom-hero::before {\n  content: \"\";\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(to right, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.3) 100%);\n  z-index: 1;\n}\n.custom-hero .hero-text {\n  position: relative;\n  z-index: 2;\n  max-width: 600px;\n}\n.custom-hero .label {\n  font-size: 12px;\n  letter-spacing: 2px;\n  color: #fff;\n  margin-bottom: 12px;\n  text-transform: uppercase;\n}\n.custom-hero .hero-title {\n  margin: 0 0 18px 0;\n  font-size: 36px;\n  line-height: 1.03;\n  font-weight: 700;\n  text-transform: uppercase;\n  color: #fff;\n}\n.custom-hero .hero-excerpt {\n  color: #eee;\n  font-size: 15px;\n  line-height: 1.6;\n  margin-bottom: 18px;\n}\n.custom-hero .hero-cta {\n  display: inline-block;\n  background: #fff;\n  color: #111;\n  padding: 8px 14px;\n  font-size: 13px;\n  text-decoration: none;\n  border-radius: 3px;\n}\n\n/* ARTICLES GRID */\n.articles-grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 34px;\n  margin-top: 34px;\n  margin-right: 70px;\n  margin-left: 70px;\n}\n.article-row {\n  display: grid;\n  grid-template-columns: 380px 1fr;\n  gap: 30px;\n  align-items: center;\n}\n.article-row.reverse { grid-template-columns: 1fr 380px; }\n\n.article-margin-left {\n  margin-left: 160px;\n  margin-right: 140px;\n  margin-bottom: 40px;\n}\n.article-margin-right {\n  margin-right: 140px;\n  margin-left: 140px;\n}\n\n.square-thumb {\n  width: 380px;\n  height: 320px;\n  border-radius: 0px;\n  overflow: hidden;\n  background: #f7f7f7;\n  box-shadow: 0 12px 24px rgba(22,22,22,0.08);\n}\n.square-thumb img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.article-row .meta {\n  font-size: 12px;\n  color: #999;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  margin-bottom: 12px;\n}\n.article-row .row-title {\n  font-weight: 700;\n  font-size: 18px;\n  margin: 0 0 12px 0;\n}\n.article-row .row-excerpt {\n  color: #555;\n  line-height: 1.6;\n  margin-bottom: 14px;\n}\n.article-row .row-cta {\n  display: inline-block;\n  padding: 8px 12px;\n  background: #111;\n  color: #fff;\n  text-decoration: none;\n  font-size: 13px;\n  border-radius: 0px;\n}\n\n/* Responsive */\n@media (max-width: 900px) {\n  .custom-hero { padding: 36px; min-height: 300px; }\n  .articles-grid { margin: 0; }\n  .article-row, .article-row.reverse { grid-template-columns: 1fr; }\n  .square-thumb { width: 100%; height: 280px; }\n  .article-margin-left,\n  .article-margin-right { margin: 0; }\n}\n</style>\n\n<div class=\"custom-blog-wrap\">\n\n  {% if posts.size > 0 %}\n    {% capture hero_excerpt %}\n      {% if posts[0].excerpt != blank %}\n        {{ posts[0].excerpt | strip_html }}\n      {% else %}\n        {{ posts[0].content | strip_html }}\n      {% endif %}\n    {% endcapture %}\n\n    <!-- HERO -->\n    <div class=\"custom-hero\" style=\"background-image: url('{% if posts[0].image %}{{ posts[0].image | img_url: '1600x' }}{% else %}https://via.placeholder.com/1600x600?text=Image{% endif %}');\">\n      <div class=\"hero-text\">\n        <span class=\"label\">BLOG</span>\n        <h2 class=\"hero-title\">{{ posts[0].title }}</h2>\n        <p class=\"hero-excerpt\">{{ hero_excerpt | strip | truncate: 220 }}</p>\n        <a class=\"hero-cta\" href=\"{{ posts[0].url }}\">Read More</a>\n      </div>\n    </div>\n  {% endif %}\n\n  <!-- LOOP OTHER POSTS -->\n  <div class=\"articles-grid\">\n    {% for article in posts offset:1 %}\n      {% capture art_excerpt %}\n        {% if article.excerpt != blank %}\n          {{ article.excerpt | strip_html }}\n        {% else %}\n          {{ article.content | strip_html }}\n        {% endif %}\n      {% endcapture %}\n\n      {% assign parity = forloop.index0 | modulo: 2 %}\n\n      {% if parity == 0 %}\n        <div class=\"article-row article-margin-left\">\n          <div class=\"square-thumb\">\n            {% if article.image %}\n              <img src=\"{{ article.image | img_url: '600x600' }}\" alt=\"{{ article.title }}\">\n            {% else %}\n              <img src=\"https://via.placeholder.com/600x600?text=Photo\" alt=\"Photo\">\n            {% endif %}\n          </div>\n          <div>\n            <div class=\"meta\">{{ article.published_at | date: \"%b %d, %Y\" }}</div>\n            <h3 class=\"row-title\">{{ article.title }}</h3>\n            <p class=\"row-excerpt\">{{ art_excerpt | strip | truncate: 250 }}</p>\n            <a class=\"row-cta\" href=\"{{ article.url }}\">Read More</a>\n          </div>\n        </div>\n      {% else %}\n        <div class=\"article-row reverse article-margin-right\">\n          <div>\n            <div class=\"meta\">{{ article.published_at | date: \"%b %d, %Y\" }}</div>\n            <h3 class=\"row-title\">{{ article.title }}</h3>\n            <p class=\"row-excerpt\">{{ art_excerpt | strip | truncate: 250 }}</p>\n            <a class=\"row-cta\" href=\"{{ article.url }}\">Read More</a>\n          </div>\n          <div class=\"square-thumb\">\n            {% if article.image %}\n              <img src=\"{{ article.image | img_url: '600x600' }}\" alt=\"{{ article.title }}\">\n            {% else %}\n              <img src=\"https://via.placeholder.com/600x600?text=Photo\" alt=\"Photo\">\n            {% endif %}\n          </div>\n        </div>\n      {% endif %}\n    {% endfor %}\n  </div>\n\n</div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_aB9jaN",
+    "custom_liquid_pedWEj"
+  ]
+}

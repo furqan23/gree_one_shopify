@@ -1,0 +1,103 @@
+<div id="pr-carousel-{{ section.id }}">
+    <div class="pt-12 overflow-hidden large:pt-20">
+        <div class="container">
+            <div class="wrap">
+                <div class="max-w-[57rem] mx-auto">
+                    {%- if section.settings.heading != blank -%}
+                        <h2 class="heading-r text-center mb-10{% if section.settings.center_align_text %} text-center{% endif %}">
+                            {{- section.settings.heading | escape -}}
+                        </h2>
+                    {%- endif -%}
+                    {% if section.blocks != blank %}
+                        <div class="swiper swiper--auto js-pr-carousel">
+                            <div class="swiper-wrapper">
+                                {% for slide in section.blocks %}
+                                    {%- if slide.settings.content != blank -%}
+                                        {% comment %} Percentage values in the `calc` are double the `.wrap` padding x-axis value. {% endcomment %}
+                                        <div class="swiper-slide flex items-center">
+                                            <div class="wysiwyg text-center heading-xs normal-case w-full">
+                                                {{ slide.settings.content }}
+                                            </div>
+                                        </div>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-x-6 mt-12 large:mt-14">
+                            {% for slide in section.blocks %}
+                                <button class="flex-1 relative py-5 border-uiMidGrey box-border group before:block before:absolute before:top-0 before:left-0 before:bg-uiMidGrey before:h-px before:w-full js-pr-carousel-logo" aria-label="{{ 'sections.pr-carousel.nav_aria' | t: logo_alt: slide.settings.logo.alt, slide_number: forloop.index }}" data-slide="{{ forloop.index0 }}">
+                                    <span class="absolute top-0 left-0 bg-uiBlack h-px js-pr-carousel-progress-bar"></span>
+                                    {%- if slide.settings.logo != blank -%}
+                                        {% comment %} Percentage values in the `calc` are double the `.wrap` padding x-axis value. {% endcomment %}
+                                        <picture class="opacity-30 transition py-5 text-center group-[.is-active]:opacity-100">
+                                            <source media="(max-width: 48rem)"
+                                                    srcset="{{ slide.settings.logo | image_url: width: 110 }} 1x, {{ slide.settings.logo | image_url: width: 220 }} 2x">
+                                            <source media="(min-width: 48rem)"
+                                                    srcset="{{ slide.settings.logo | image_url: width: 220 }} 1x, {{ slide.settings.logo | image_url: width: 440 }} 2x">
+                                            <img 
+                                                srcset="{{ slide.settings.logo | image_url: width: 440 }} 2x"
+                                                src="{{ slide.settings.logo | image_url: width: 220 }}"
+                                                class="object-contain w-auto h-full mx-auto max-h-[1.25rem] large:max-h-[1.75rem]"
+                                                width="{{ slide.settings.logo.width }}"
+                                                height="{{ slide.settings.logo.height }}"
+                                                alt="{{ slide.settings.logo.alt }}"
+                                                loading="lazy"
+                                            >
+                                        </picture>
+                                    {%- endif -%}
+                                </button>
+                             
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.pr-carousel.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.pr-carousel.settings.heading.label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "t:sections.pr-carousel.blocks.name",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "logo",
+                    "label": "t:sections.pr-carousel.blocks.settings.logo.label",
+                    "info": "t:sections.pr-carousel.blocks.settings.logo.info"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "t:sections.pr-carousel.blocks.settings.content.label",
+                    "info": "t:sections.pr-carousel.blocks.settings.content.info"
+                }
+            ]
+        }
+    ],
+    "max_blocks": 4,
+    "presets": [
+        {
+            "name": "t:sections.pr-carousel.presets.name",
+            "blocks": [
+                {
+                    "type": "slide"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

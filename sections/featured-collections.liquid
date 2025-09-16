@@ -1,0 +1,229 @@
+{% if section.blocks.size == 1 %}
+    {% assign flexClass = 'flex flex-wrap justify-center gap-8 large:gap-6' %}
+    {% assign flexBasisClass = 'basis-[calc(50%_-_0.625rem)]' %}
+{% elsif section.blocks.size == 2 %}
+    {% assign flexClass = 'flex flex-wrap gap-8 large:gap-20' %}
+    {% assign flexBasisClass = 'basis-[calc(50%_-_2.5rem)]' %}
+{% elsif section.blocks.size == 3 %}
+    {% assign flexClass = 'flex flex-wrap gap-8 large:gap-10' %}
+    {% assign flexBasisClass = 'large:basis-[calc(33.333%_-_1.7rem)]' %}
+{% elsif section.blocks.size == 4 %}
+    {% assign flexClass = 'flex flex-wrap gap-8 large:gap-6' %}
+    {% assign flexBasisClass = 'large:basis-[calc(25%_-_1.2rem)]' %}
+{% elsif section.blocks.size == 5 %}
+    {% assign flexClass = 'flex flex-wrap gap-8 large:gap-6' %}
+    {% assign flexBasisClass = 'large:basis-[calc(20%_-_1.2rem)]' %}
+{% endif %}
+
+<div class="overflow-hidden bg-{{ section.settings.background_color }}{% unless section.settings.background_color == 'transparent' %} mt-12 large:mt-20{% endunless %}">
+    <div class="container">
+        <div class="{% if section.settings.background_color == 'transparent' %}pt-12 large:pt-20{% else %}py-12 large:py-20{% endif %}">
+            <div class="wrap{% if section.settings.center_align_text %} text-center{% endif %}">
+                {%- if section.settings.show_title and section.settings.title != blank -%}
+                    <h2 class="heading-xs largeMax:text-lg text-{{ section.settings.text_color }} mb-8 large:mb-7">{{ section.settings.title | escape }}</h2>
+                {%- endif -%}
+                {%- if section.settings.show_description and section.settings.description != blank -%}
+                    <div class="body-l text-{{ section.settings.text_color }} mb-8">
+                        {{ section.settings.description }}
+                    </div>
+                {%- endif -%}
+            </div>
+            <div class="wrap">
+                <ul id="product-grid" class="{{ flexClass }}">
+                    {%- for block in section.blocks -%}
+                        {%- case block.type -%}
+                        {%- when 'collection' -%}
+                            <li class="max-w-[50%] w-[calc(50%-1rem)] {{ flexBasisClass }}">
+                                {% render 'card-featured-collection',
+                                    card_collection: block.settings.collection,
+                                    image: block.settings.image,
+                                    button_text: block.settings.button_text,
+                                    text_colour: section.settings.text_color,
+                                    block_length: section.blocks.size,
+                                    index: forloop.index0,
+                                    hide_number: section.settings.hide_number
+                                %}
+                            </li>
+                        {%- endcase -%}
+                    {%- endfor -%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.featured-collections.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Featured collection",
+            "label": "t:sections.featured-collections.settings.title.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_title",
+            "label": "t:sections.featured-collections.settings.show_title.label",
+            "default": false
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet.</p>",
+            "label": "t:sections.featured-collections.settings.description.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_description",
+            "label": "t:sections.featured-collections.settings.show_description.label",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "center_align_text",
+            "label": "t:sections.featured-collections.settings.centre_align_text.label",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "hide_number",
+            "label": "t:sections.featured-collections.settings.hide_number.label",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "transparent",
+            "label": "t:sections.featured-collections.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-collections.settings.text_color.label"
+        }
+    ],
+    "max_blocks": 5,
+    "blocks": [
+        {
+            "name": "t:sections.featured-collections.blocks.collection.name",
+            "type": "collection",
+            "settings": [
+                {
+                    "id": "image",
+                    "type": "image_picker",
+                    "label": "t:sections.featured-collections.blocks.image.name",
+                    "info": "t:sections.featured-collections.blocks.image.info"
+                },
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "t:sections.featured-collections.blocks.collection.name"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.featured-collections.presets.name",
+            "blocks": [
+                {
+                    "type": "collection"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

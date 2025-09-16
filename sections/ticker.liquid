@@ -1,0 +1,190 @@
+
+{% liquid
+    if section.settings.is_large
+        assign paddingClass = 'py-[2.125rem]'
+        assign gapClass = 'gap-x-[4.625rem]'
+        assign dotClass = 'w-[0.9375rem] h-[0.9375rem]'
+    else
+        assign paddingClass = 'py-[0.875rem]'
+        assign gapClass = ' gap-x-[5rem]'
+        assign dotClass = 'w-1 h-1'
+    endif
+%}
+
+{% if section.blocks.size > 0 %}
+    <div class="{% if section.settings.color_scheme == 'transparent' %} pt-[1.625rem] large:pt-9{% else %} mt-[1.625rem] py-[1.625rem] large:mt-9 large:py-9{% endif %} overflow-hidden mx-2.5 medium:mx-[2.933%] large:mx-[4.861%]">
+        <div class="ticker-wrap max-h-[4.25] rounded-[0.625rem] bg-{{ section.settings.color_scheme }} {{ paddingClass }}">
+            <div class="ticker {{ gapClass }}" style="animation-duration: {{ section.settings.animation_length }}s">
+                {% comment %}
+                    Rules:
+                    - Width of ticker has to exceed screen width x 2 (Min width of 200% set in CSS).
+                    - If there aren't enough text nodes, there will be big gaps on larger screens.
+                {% endcomment %}
+                {%- for item in section.blocks -%}
+                    <img
+                        class="xLargeMax:max-w-[4.875rem]"
+                        src="{{ item.settings.image | image_url: width: 160 }}"
+                        width="80"
+                        height="80"
+                        alt="{{ item.settings.image.alt }}"
+                        loading="lazy"
+                    >
+                {%- endfor -%}
+                {% comment %}
+                    The below loop is a duplicate of the above to ensure symetrical pattern in the ticker.
+                {% endcomment %}
+                {%- for item in section.blocks -%}
+                    <img
+                        class="xLargeMax:max-w-[4.875rem]"
+                        src="{{ item.settings.image | image_url: width: 160 }}"
+                        width="80"
+                        height="80"
+                        alt="{{ item.settings.image.alt }}"
+                        loading="lazy"
+                    >
+                {%- endfor -%}
+                <span class="block rounded-full bg-{{ section.settings.text_colour }} {{ dotClass }}"></span>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "t:sections.ticker.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "number",
+            "id": "animation_length",
+            "default": 40,
+            "label": "t:sections.ticker.settings.animation_length.label",
+            "info": "t:sections.ticker.settings.animation_length.info"
+        },
+        {
+            "type": "checkbox",
+            "id": "is_large",
+            "default": false,
+            "label": "t:sections.ticker.settings.is_large.label",
+            "info": "t:sections.ticker.settings.is_large.info"
+        },
+        {
+            "type": "select",
+            "id": "color_scheme",
+            "options": [
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "transparent",
+            "label": "t:sections.all.colors.heading"
+        },
+        {
+            "type": "select",
+            "id": "text_colour",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.hero.settings.text_color.label"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "t:sections.ticker.blocks.item.name",
+            "type": "item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.ticker.blocks.item.settings.image.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.ticker.name",
+            "blocks": [
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% comment %} <link rel="stylesheet" href="./assets/css/fonts.css"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  </head>
+  <style>
+           * {
+              box-sizing: border-box;
+              margin:0;
+              padding:0;
+          }
+          .btn-outline-light {
+              padding: 10px;
+              border-radius: 0;
+              border: 1px solid #000;
+              background-color: transparent;
+              font-family: var(--gotham);
+              font-weight: 500;
+              font-size: 0.9rem;
+              min-width: 140px;
+              cursor: pointer;
+              color: #000;
+              text-decoration: none;
+              text-align: center;
+              position: relative;
+              z-index: 1;
+              transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+          }
+
+          .btn-outline-light:before {
+              backface-visibility: hidden;
+              background-color: #000;
+              clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+              content: "";
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 0;
+              transform: translateZ(0);
+              transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+              width: 100%;
+              z-index: -1;
+          }
+
+          .btn-outline-light:hover:before {
+              clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+          }
+
+          .btn-outline-light:hover {
+              color: #fff !important;
+          }
+
+          .banner-section {
+           
+              width: 100%;
+              {% comment %} height:95vh; {% endcomment %}
+          }
+
+          .img-div {
+              width: 100%;
+              position: relative;
+              object-fit:cover;
+          }
+
+          .banner-section-item .desktop-image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }
+
+          .banner-section-item .mobile-image {
+              display: none;
+          }
+
+          .swiper-button-next,
+          .swiper-button-prev {
+              color: #fff !important;
+              border-radius: 50px;
+              height: 30px !important;
+              width: 30px !important;
+              background-color: rgba(0, 0, 0, 0.7);
+          }
+
+          .swiper-button-next:after,
+          .swiper-button-prev:after {
+              font-size: 1rem !important;
+          }
+
+          .swiper-pagination-bullet {
+              background-color: #fff !important;
+              border: 1px solid rgba(0, 0, 0, 0.5) !important;
+              z-index:999 !important;
+          }
+
+          .swiper-pagination-bullet-active {
+              background-color: #5D5D5D !important;
+               z-index:999 ;
+               !important;
+          }
+
+          .banner-section-item .banner-section-item-content {
+              padding: 40px 60px;
+              max-width: 40%;
+              position: absolute;
+              top: 40%;
+              left: 6%;
+              transform: translateY(-50%);
+          }
+
+          .section-label {
+              font-family: 'Gotham', sans-serif;
+              display: block;
+              font-size: 1rem;
+              font-weight: 500;
+              margin-bottom: 5px;
+          }
+
+          .banner-section-item .banner-section-item-content h5 {
+              font-family: 'SkeenaIndigenous', sans-serif;
+              font-weight: 600;
+              font-size: 1rem;
+              margin: 0;
+          }
+
+          .banner-section-item .banner-section-item-content h1 {
+              font-family: 'SkeenaIndigenous', sans-serif;
+              font-weight: 600;
+              font-size: 3rem;
+              line-height: 0.9;
+              margin-bottom: 20px;
+              margin-top: 16px;
+          }
+
+          .banner-section-item .banner-section-item-content p {
+              font-size: 1.1rem;
+              line-height: 1.6;
+              font-family: 'SkeenaIndigenous', sans-serif;
+              font-weight: 400;
+              margin-bottom: 20px;
+          }
+
+
+
+
+
+    .swiper-section .swiper-pagination {
+      display: flex !important;
+       justify-content: center !important;
+  align-items: center !important;
+      width:75px !important;
+      
+      justify-content: center !important;
+      align-items: center !important;
+      
+       position: absolute !important; 
+       
+      margin: 0rem auto 19px auto;;
+      z-index:999 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+    } 
+
+
+    {% comment %} .swiper-section .swiper-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+   width:80px !important;
+  position: relative !important;
+  margin: 22px auto 0 auto;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: auto !important;
+} {% endcomment %}
+
+
+
+
+          @media (max-width:767px) {
+              .banner-section-item .desktop-image {
+                  display: none;
+              }
+
+              .banner-section {
+                  margin-top: 20px;
+                  padding-bottom: 30px;
+              }
+
+              .banner-section-item .mobile-image {
+                  display: block;
+                  width: 100% !important;
+                  height: 100% !important;
+                  object-fit: cover;
+              }
+
+              .banner-section-item-content {
+                  position: static !important;
+                  top: auto !important;
+                  left: auto !important;
+                  transform: none !important;
+              }
+
+              .banner-section-item .banner-section-item-content {
+                  max-width: 100% !important;
+                  padding: 20px 20px 50px 20px;
+                  padding-top: 100px;
+
+              }
+
+              .banner-section-item .banner-section-item-content h1 {
+                  font-size: 2rem;
+                  margin-top:16px;
+              }
+
+              .banner-section-item .banner-section-item-content p {
+                  font-size: 0.9rem;
+              }
+
+              .swiper-button-next,
+              .swiper-button-prev {
+                  background-color: transparent !important;
+                  top: 97% !important;
+              }
+
+              .swiper-button-next {
+                  right: 30% !important;
+              }
+
+              .swiper-button-prev {
+                  left: 30% !important;
+              }
+
+
+              .banner-section .swiper-button-next:after,
+              .banner-section .swiper-button-prev:after {
+                  color: #000 !important;
+              }
+
+
+.swiper-section .swiper-pagination {
+     
+        top: 92.4% !important;
+      margin: 0rem auto 1px auto;;
+     
+    } 
+
+          }
+
+          {% comment %} @media (max-width:992px) {
+              .banner-section {
+                  margin-top: 20px;
+              }
+
+              .powerImpact .powerImpactItemText {
+                  width: 100%;
+              }
+
+              .banner-section-item .banner-section-item-content {
+                  max-width: 70%;
+                  padding: 20px;
+                  margin-top: 30px;
+              }
+
+              .banner-section-item .banner-section-item-content h1 {
+                  font-size: 2rem;
+              }
+          } {% endcomment %}
+  </style>
+
+  <body>
+    <section class="swiper-section">
+       {% comment %} <a href="{{ routes.cart_url }}" class="group header__icon relative flex items-center justify-center {% if template != 'cart' %}js-open-mini-cart{% endif %}" id="cart-icon-bubble">
+                    <span class="inline-flex items-center justify-center text-primary w-[2.375rem] h-[2.375rem] transition-colors pointer-events-none group-hover:bg-uiMidGrey group-focus:bg-uiMidGrey large:w-[2.75rem] large:h-[2.75rem]">
+                        {% render 'icon-cart' %}
+                    </span>
+                    <span class="hidden">{{ 'templates.cart.cart' | t }}</span>
+                    {%- if cart != empty -%}
+                        <div class="absolute w-[0.6875rem] h-[0.6875rem] right-2 bottom-2 flex items-center justify-center rounded-full text-[0.5rem] text-text2 bg-primary pointer-events-none">
+                            {%- if cart.item_count < 100 -%}
+                                <span class="-mt-1px" aria-hidden="true">{{ cart.item_count }}</span>
+                            {%- endif -%}
+                            <span class="hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                        </div>
+                    {%- endif -%}
+                </a> {% endcomment %}
+      <div class="swiper banner-section">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="banner-section-item">
+              <div class="img-div">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/banner-1.png?v=1754300672"
+                  alt=""
+                  class="desktop-image"
+                   width="auto"
+                  height="auto"
+                >
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/skin-1.png?v=1754051878"
+                  alt=""
+                  class="mobile-image"
+                  width="auto"
+                  height="auto"
+                >
+              </div>
+              <div class="banner-section-item-content">
+                <span class="section-label">Introducing</span>
+                <h5>P-3 <br>Ultimate Hydration Serum Concentrate</h5>
+                <h1>THE POWER OF 3</h1>
+                <p class="mb-0">Peptides | Stem Cells | Exosomes</p>
+                <p class="mb-0">Hydrate. Repair. Regenerate.</p>
+                <p>
+                  Three advanced technologies. One intelligent formula +248.5% increase in hydration in just 15
+                  minutes** Results you can measure. Hydration you can feel.
+                </p>
+
+                <button class="btn-outline-light"><a href="{{shop.url}}/collections/protection/products/ultimate-hydration-serum-concentrate-1">Shop Now</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="banner-section-item">
+              <div class="img-div">
+                <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/R-31-banner.png?v=1754920986" alt="" class="desktop-image"  width="auto"
+                  height="auto">
+                <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/skin-1.png?v=1754051878" alt="" class="mobile-image"  width="auto"
+                  height="auto">
+              </div>
+              <div class="banner-section-item-content">
+                <span class="section-label">Introducing</span>
+                <h5>R-31 <br> Eye Contour Brightening Gel</h5>
+                <h1>THE POWER OF 3</h1>
+                <p class="mb-0">Peptides | Stem Cells | Exosomes</p>
+                <p class="mb-0">Dark Circles. Puffiness. Fatigue.</p>
+                <p>
+                  Formulated with advanced science — clinically powered with a 
+potent blend of next-generation ingredients to visibly reduce<br>
+under-eye shadows, puffiness, and fine lines.<br>
+This is more than skincare. This is skin evolution.<br>
+                </p>
+
+                <button class="btn-outline-light"><a href="{{shop.url}}/collections/radiance/products/eye-contour-brightening-gel">Shop Now</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="banner-section-item">
+              <div class="img-div">
+                <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Y-4-banner.png?v=1754920986" alt="" class="desktop-image" width="auto" height="auto">
+                <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/skin-1.png?v=1754051878" alt="" class="mobile-image" width="auto" height="auto">
+              </div>
+              <div class="banner-section-item-content">
+                <span class="section-label">Introducing</span>
+                <h5>Y-3 <br> Ultimate Hydration Serum Concentrate</h5>
+                <h1>THE POWER OF 3</h1>
+                <p class="mb-0">Peptides | Stem Cells | Exosomes</p>
+                <p class="mb-0">Next-level regeneration. One luxurious formula.</p>
+                <p>
+                Boosts collagen, reinforces the barrier, supports the
+microbiome and improves elasticity for firmer, resilient
+skin. Science that speaks your skin's language.
+                </p>
+
+                <button class="btn-outline-light"><a href="{{shop.url}}/collections/youthfulness/products/youth-restore-serum-concentrate-1">Shop Now</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination "></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" ></script>
+    <script>
+      const swiper = new Swiper('.swiper', {
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+         
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+
+      {% comment %} const swiper2 = new Swiper('.swipe2', {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 5500,
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        },
+      }); {% endcomment %}
+    </script>
+  </body>
+</html>
+
+{% schema %}
+{
+  "name": "slider_home-neww",
+  "settings": [
+    {
+      "type": "video",
+      "id": "first_slide_video",
+      "label": "First Slide Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_slide_image",
+      "label": "Second Slide Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "third_slide_image",
+      "label": "Third Slide Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider_home-neww"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,401 @@
+<sticky-header class="relative z-30 block">
+    <header class="wrap flex justify-between items-center min-h-[3.875rem] bg-background1 box-border xLarge:relative xLarge:z-1 xLarge:min-h-[6.3rem]">
+        <div class="xLargeMax:flex xLargeMax:items-center xLargeMax:gap-x-4">
+            {%- if section.settings.menu != blank -%}
+                <button data-toggle-mobile-menu type="button" class="relative w-6 h-[.6rem] block xLarge:hidden" aria-label="{{ 'sections.header.menu' | t }}">
+                    <span class="absolute top-0 left-0 w-full h-[0.125rem] bg-black transform transition-all duration-200 js-mobile-menu-top"></span>
+                    <span class="absolute bottom-0 left-0 w-full h-[0.125rem] bg-black transform transition-all duration-200 js-mobile-menu-btm"></span>
+                </button>
+            {%- endif -%}
+            <div class="flex items-center text-center">
+                <a href="{{ routes.root_url }}" class="leading-none block">
+                    {%- if section.settings.logo != blank -%}
+                        {%- assign image_size_2x = section.settings.logo_width | times: 2 | at_most: 5760 -%}
+                        <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }} 1x, {{ section.settings.logo | image_url: width: image_size_2x }} 2x"
+                            src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                            loading="eager"
+                            class="block h-auto m-auto xLargeMax:max-w-[7.5rem]"
+                            width="{{ section.settings.logo_width | default: section.settings.logo.width }}"
+                            height="{{ section.settings.logo.height }}"
+                            alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+                        >
+                    {%- else -%}
+                        <span>
+                            {{- shop.name -}}
+                        </span>
+                    {%- endif -%}
+                </a>
+                <div data-mobile-menu class="xLargeMax:fixed xLargeMax:top-0 xLargeMax:left-0 xLargeMax:mt-[var(--announcement-bar-offset-mobile,_0rem)] xLargeMax:w-full xLargeMax:h-[calc(100dvh_-_var(--announcement-bar-offset-mobile,_0rem))]  xLargeMax:text-left xLargeMax:overflow-x-hidden xLargeMax:box-border xLargeMax:transform xLargeMax:-translate-x-full xLargeMax:bg-background1 xLargeMax:transition-transform xLargeMax:duration-300 xLargeMax:-z-1 xLargeMax:hide-scrollbars" tabindex="-1">
+                    <div class="xLargeMax:relative xLargeMax:flex xLargeMax:h-full xLargeMax:justify-between xLargeMax:flex-col xLargeMax:gap-y-10 xLargeMax:pt-[3.875rem] xLargeMax:pb-[3.375rem] xLargeMax:overflow-y-auto">
+                        {% render 'navigation' %}
+                        {%- if shop.customer_accounts_enabled or section.settings.find_store_page_link != blank or section.settings.help_page_link != blank or localization.available_languages.size > 1 -%}
+                            <div class="xLarge:hidden">
+                                {%- if shop.customer_accounts_enabled -%}
+                                    <div class="mb-7 last-child:mb-0">
+                                        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                                            class="inline-flex items-center gap-3 body-r"
+                                        >
+                                            <span class="text-primary">
+                                                {% render 'icon-account' %}
+                                            </span>
+                                            <p>
+                                                {%- liquid
+                                                    if customer
+                                                    echo 'customer.account_fallback' | t
+                                                    else
+                                                    echo 'customer.log_in' | t
+                                                    endif
+                                                -%}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {%- endif -%}
+                                {%- if section.settings.find_store_page_link != blank -%}
+                                    <div class="mb-7 last-child:mb-0">
+                                        <a href="/pages/{{ section.settings.find_store_page_link }}" class="inline-flex items-center gap-3 body-r">
+                                            <span class="text-primary">
+                                                {% render 'icon-store' %}
+                                            </span>
+                                            <p>
+                                                {{- 'general.navigation.find_a_store' | t -}}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {%- endif -%}
+                                {%- if section.settings.help_page_link != blank -%}
+                                    <div class="mb-7 last-child:mb-0">
+                                        <a href="/pages/{{ section.settings.help_page_link }}" class="inline-flex items-center gap-3 body-r">
+                                            <span class="text-primary">
+                                                {% render 'icon-help' %}
+                                            </span>
+                                            <p>
+                                                {{- 'general.navigation.help' | t -}}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {%- endif -%}
+                                {%- if localization.available_languages.size > 1 -%}
+                                    <modal-opener class="block my-7 last-child:mb-0" data-modal="#LanguageSelector">
+                                        <button class="inline-flex items-center gap-3 body-r" type="button">
+                                            <span class="text-primary min-w-[1.375rem]">
+                                                <svg width="22" height="22" class="max-w-[1.2rem]" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#lang-select-svg-clip)">
+                                                        <path d="M10 20.9C10 20.9 7 17 7 11C7 5.00001 10 1.10001 10 1.10001" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M12 20.9C12 20.9 15 17 15 11C15 5.00001 12 1.10001 12 1.10001" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.8 14.4H20.3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.8 7.39999H20.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M11 21C16.5 21 21 16.5 21 11C21 5.5 16.5 1 11 1C5.5 1 1 5.5 1 11C1 16.5 5.5 21 11 21Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="lang-select-svg-clip">
+                                                            <rect width="22" height="22" fill="white"/>
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </span>
+                                            <span>
+                                                <span>
+                                                    {{ 'sections.localization.language_selector.cta_label' | t }}:
+                                                </span>
+                                                <p class="inline">{{ localization.language.iso_code | upcase }}</p>
+                                            </span>
+                                        </button>
+                                    </modal-opener>
+                                {% endif %}
+                            </div>
+                        {%- endif -%}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            {%- if section.settings.find_store_page_link != blank or section.settings.help_page_link != blank or localization.available_languages.size > 1 -%}
+                <div class="flex justify-center items-center gap-[0.625rem] body-xs mb-2 xLargeMax:hidden">
+                    {%- if section.settings.find_store_page_link != blank -%}
+                        <a href="/pages/{{ section.settings.find_store_page_link }}" class="link xLargeMax:hidden">
+                            {{- 'general.navigation.find_a_store' | t -}}
+                        </a>
+                    {% endif %}
+                    {%- if section.settings.find_store_page_link != blank and section.settings.help_page_link != blank -%}
+                        <span class="xLargeMax:hidden">|</span>
+                    {% endif %}
+                    {%- if section.settings.help_page_link != blank -%}
+                        <a href="/pages/{{ section.settings.help_page_link }}" class="link xLargeMax:hidden">
+                            {{- 'general.navigation.help' | t -}}
+                        </a>
+                    {% endif %}
+                    {%- if localization.available_languages.size > 1 -%}
+                        <modal-opener class="xLargeMax:hidden" data-modal="#LanguageSelector">
+                            <button class="link flex gap-x-2 items-center" type="button">
+                                <svg width="22" height="22" class="max-w-[1.2rem]" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#lang-select-svg-clip)">
+                                        <path d="M10 20.9C10 20.9 7 17 7 11C7 5.00001 10 1.10001 10 1.10001" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 20.9C12 20.9 15 17 15 11C15 5.00001 12 1.10001 12 1.10001" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.8 14.4H20.3" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.8 7.39999H20.2" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M11 21C16.5 21 21 16.5 21 11C21 5.5 16.5 1 11 1C5.5 1 1 5.5 1 11C1 16.5 5.5 21 11 21Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="lang-select-svg-clip">
+                                            <rect width="22" height="22" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>
+                                    <span class="xLargeMax:hidden">
+                                        {{ 'sections.localization.language_selector.cta_label' | t }}:
+                                    </span>
+                                    {{ localization.language.iso_code | upcase }}
+                                </span>
+                            </button>
+                        </modal-opener>
+                    {% endif %}
+                </div>
+            {%- endif -%}
+            <div class="flex large:gap-[0.375rem] large:justify-center">
+                <modal-opener data-modal="#PredictiveSearch" data-button="toggle">
+                    <button type="button" class="group flex items-center justify-center" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+                        <div class="inline-flex items-center justify-center text-primary w-[2.375rem] h-[2.375rem] large:w-[2.75rem] large:h-[2.75rem] transition-colors group-hover:bg-uiMidGrey group-focus:bg-uiMidGrey">
+                            <span>
+                                {% render 'icon-search' %}
+                            </span>
+                        </div>
+                    </button>
+                </modal-opener>
+                {%- if shop.customer_accounts_enabled -%}
+                    <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="group items-center justify-center hidden xLarge:flex">
+                        <span class="inline-flex items-center justify-center text-primary w-[2.375rem] h-[2.375rem] transition-colors group-hover:bg-uiMidGrey group-focus:bg-uiMidGrey large:w-[2.75rem] large:h-[2.75rem]">
+                            {% render 'icon-account' %}
+                        </span>
+                        <span class="hidden">
+                            {%- liquid
+                                if customer
+                                    echo 'customer.account_fallback' | t
+                                else
+                                    echo 'customer.log_in' | t
+                                endif
+                            -%}
+                        </span>
+                    </a>
+                {%- endif -%}
+                <a href="{{ routes.cart_url }}" class="group header__icon relative flex items-center justify-center {% if template != 'cart' %}js-open-mini-cart{% endif %}" id="cart-icon-bubble">
+                    <span class="inline-flex items-center justify-center text-primary w-[2.375rem] h-[2.375rem] transition-colors pointer-events-none group-hover:bg-uiMidGrey group-focus:bg-uiMidGrey large:w-[2.75rem] large:h-[2.75rem]">
+                        {% render 'icon-cart' %}
+                    </span>
+                    <span class="hidden">{{ 'templates.cart.cart' | t }}</span>
+                    {%- if cart != empty -%}
+                        <div class="absolute w-[0.6875rem] h-[0.6875rem] right-2 bottom-2 flex items-center justify-center rounded-full text-[0.5rem] text-text2 bg-primary pointer-events-none">
+                            {%- if cart.item_count < 100 -%}
+                                <span class="-mt-1px" aria-hidden="true">{{ cart.item_count }}</span>
+                            {%- endif -%}
+                            <span class="hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                        </div>
+                    {%- endif -%}
+                </a>
+            </div>
+        </div>
+    </header>
+    <modal-dialog id="PredictiveSearch" class="fixed z-70 -left-full w-full h-full max-h-[3.875rem] large:max-h-[6.25rem] opacity-0 invisible open:left-0 open:opacity-100 open:visible xLargeMax:top-0 xLarge:top-0">
+        <div class="modal-overlay js-modal-overlay"></div>
+        <div
+            class="
+                absolute z-40 h-full flex items-center right-0 bottom-0 w-full box-border bg-uiBlack overflow-visible -translate-y-full transition-transform duration-300
+                [.is-active_&]:translate-y-0
+                js-predictive-search-modal-dialog
+                {% if settings.predictive_search_enabled %} h-full{% else %} h-auto xLarge:h-full{% endif %}
+            "
+            role="dialog"
+            aria-modal="true"
+            tabindex="-1"
+        >
+            <div class="w-full flex justify-between items-center largeMax:px-4 large:wrap large:grid large:grid-cols-12 large:gap-x-8">
+                <div class="large:col-span-2">
+                    <a href="{{ routes.root_url }}" class="leading-none block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-full largeMax:max-w-[7.5rem]" width="175" height="29" viewBox="0 0 175 29" fill="none">
+                            <path d="M13.817 28.3191H9.04097V2.47976H0.195312V0.661621H22.6328V2.48965H13.827V28.3191H13.817Z" fill="white"/>
+                            <path d="M31.0767 27.5978C29.425 26.8073 28.1613 25.671 27.2957 24.1888C26.42 22.7066 25.9922 20.928 25.9922 18.8628V0.661621H30.7682V19.0407C30.7682 20.6711 31.0568 22.0545 31.6439 23.2106C32.221 24.3667 33.0667 25.2362 34.1612 25.839C35.2557 26.4318 36.5592 26.7283 38.0716 26.7283C39.5641 26.7283 40.8875 26.4022 42.0417 25.75C43.186 25.0979 44.0815 24.1592 44.7183 22.9339C45.3551 21.7086 45.6735 20.266 45.6735 18.596V0.661621H47.5143V18.3292C47.5143 20.4932 47.1163 22.3608 46.3302 23.922C45.5442 25.4832 44.3601 26.6887 42.788 27.5286C41.2159 28.3686 39.2756 28.7836 36.9572 28.7836C34.6985 28.7737 32.7284 28.3883 31.0767 27.5978Z" fill="white"/>
+                            <path d="M74.7739 28.3191H69.1024L62.0577 16.2443H59.7692L59.6498 14.7819H61.8587C63.2616 14.7819 64.4557 14.5151 65.4308 13.9914C66.4059 13.4677 67.1322 12.7463 67.6297 11.8175C68.1173 10.8986 68.3661 9.83139 68.3661 8.62588C68.3661 7.41049 68.1173 6.33344 67.6297 5.4046C67.1422 4.47577 66.3959 3.74456 65.4009 3.22086C64.4059 2.69715 63.192 2.43036 61.7592 2.43036H58.4657V28.2994H53.6797V0.661621H62.8139C65.0427 0.661621 66.9531 0.997582 68.5452 1.65962C70.1372 2.32167 71.3411 3.2505 72.167 4.44613C72.9929 5.64175 73.4008 7.00536 73.4008 8.55671C73.4008 9.78198 73.1222 10.9084 72.565 11.9163C72.0078 12.9242 71.2018 13.7839 70.1471 14.4756C69.0924 15.1672 67.8288 15.6613 66.3561 15.9577L74.7739 28.3191Z" fill="white"/>
+                            <path d="M81.3761 27.9241C79.7344 27.351 78.1623 26.5902 76.6797 25.6317L77.5652 24.0705C78.819 24.8906 80.212 25.5724 81.7542 26.1257C83.2965 26.6791 84.8189 26.9558 86.3313 26.9558C87.5154 26.9558 88.5601 26.7581 89.4457 26.3728C90.3312 25.9775 91.0278 25.4242 91.5054 24.7127C91.9929 23.9914 92.2317 23.1515 92.2317 22.193C92.2317 21.3432 91.973 20.5725 91.4656 19.8709C90.9581 19.1694 90.2317 18.5073 89.2865 17.8947C88.3412 17.2821 87.1273 16.62 85.6447 15.9184C83.9632 15.128 82.5702 14.3572 81.4458 13.626C80.3214 12.8849 79.3961 12.0154 78.6697 10.9976C77.9434 9.97984 77.5752 8.79409 77.5752 7.43048C77.5752 5.97794 77.9832 4.71315 78.7891 3.6361C79.5951 2.54916 80.7194 1.71914 82.1523 1.13615C83.595 0.553157 85.2368 0.266602 87.0975 0.266602C88.59 0.266602 90.0626 0.503751 91.5054 0.968168C92.9481 1.43258 94.2317 2.07486 95.366 2.88512L94.4605 4.44636C93.3859 3.69538 92.2218 3.11239 90.9482 2.70726C89.6745 2.30213 88.3412 2.10451 86.9283 2.10451C85.9333 2.10451 85.0477 2.27249 84.2716 2.61833C83.4955 2.95429 82.8886 3.43847 82.4508 4.06099C82.0229 4.68351 81.804 5.39495 81.804 6.20521C81.804 7.02535 82.0925 7.77633 82.6896 8.45813C83.2766 9.13993 84.0328 9.75257 84.9582 10.296C85.8835 10.8395 87.0577 11.4521 88.4905 12.1339C90.2616 12.9541 91.7143 13.7643 92.8586 14.5746C94.0028 15.3849 94.8884 16.3137 95.5252 17.3611C96.162 18.4085 96.4804 19.6338 96.4804 21.0369C96.4804 22.6278 96.0426 24.0112 95.167 25.187C94.2914 26.3629 93.0775 27.272 91.5352 27.8945C89.9929 28.5269 88.2318 28.8332 86.2616 28.8332C84.6497 28.7739 83.0179 28.4972 81.3761 27.9241Z" fill="white"/>
+                            <path d="M105.679 28.3191H100.883V0.661621H105.679V28.3191Z" fill="white"/>
+                            <path d="M134.091 28.3191H128.997L125.982 20.1671H114.499L111.445 28.3191H109.375L119.962 0.661621H123.405L134.091 28.3191ZM120.27 4.79197L115.106 18.5763H125.385L120.27 4.79197Z" fill="white"/>
+                            <path d="M159.16 28.3191L156.085 28.3982L139.518 5.39472L139.638 8.52707V28.329H137.797V0.661621H141.707L157.428 22.5386L157.329 19.8509V0.661621H159.17V28.3191H159.16Z" fill="white"/>
+                            <path d="M166.261 1.81831V6.49213H164.957V1.81831H163.156V0.632568H168.052V1.81831H166.261Z" fill="white"/>
+                            <path d="M173.677 6.50201V2.6681L172.016 5.17793H171.986L170.344 2.69774V6.50201H169.07V0.632568H170.473L172.026 3.11275L173.578 0.632568H174.981V6.50201H173.677Z" fill="white"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="w-full {% if settings.predictive_search_enabled == false %} pb-8{% endif %} large:flex large:flex-1 large:items-center large:justify-center largeMax:absolute largeMax:left-0 largeMax:right-0 largeMax:top-[3.9rem] large:col-span-8" tabindex="-1">
+                    {%- if settings.predictive_search_enabled -%}
+                        <predictive-search class="w-full relative max-w-[43.75rem]" data-loading-text="{{ 'accessibility.loading' | t }}">
+                    {%- endif -%}
+                        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+                            <div class="field m-0">
+                                <label class="sr-only" for="Search-In-Modal">
+                                    {{- 'general.search.search' | t -}}
+                                </label>
+                                <input
+                                    id="Search-In-Modal"
+                                    class="field__input m-0 pr-12 body-l border-0 peer h-14 focus:border-0 placeholder:text-uiDarkGrey largeMax:rounded-none large:h-12 large:pr-[4.75rem]"
+                                    type="search"
+                                    name="q"
+                                    value=""
+                                    placeholder="{{ 'general.search.search' | t }}"
+                                    {%- if settings.predictive_search_enabled -%}
+                                        role="combobox"
+                                        aria-expanded="false"
+                                        aria-owns="predictive-search-results-list"
+                                        aria-controls="predictive-search-results-list"
+                                        aria-haspopup="listbox"
+                                        aria-autocomplete="list"
+                                        autocorrect="off"
+                                        autocomplete="off"
+                                        autocapitalize="off"
+                                        spellcheck="false"
+                                    {%- endif -%}
+                                >
+                                <input type="hidden" name="options[prefix]" value="last">
+                                <button type="submit" class="absolute top-1 right-0 h-12 px-[0.875rem] text-[#DDDDDE] peer-focus:text-text1 large:top-0 large:px-5 largeMax:right-2" aria-label="{{ 'general.search.search' | t }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M15.535 15.535L19 19M17.9999 9.52863C17.9999 14.239 14.194 18.0573 9.5005 18.0573C4.80588 18.0573 1 14.239 1 9.52975C1 4.81712 4.80587 1 9.49937 1C14.194 1 17.9999 4.81825 17.9999 9.52863Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                </button>
+                            </div>
+                            {%- if settings.predictive_search_enabled -%}
+                                <div data-predictive-search class="predictive-search" tabindex="-1">
+                                    <div class="predictive-search__loading-state">
+                                        <svg class="spinner" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span class="predictive-search-status hidden" role="status" aria-hidden="true"></span>
+                            {%- endif -%}
+                        </form>
+                    {%- if settings.predictive_search_enabled -%}
+                        </predictive-search>
+                    {%- endif -%}
+                </div>
+                <div class="large:col-span-2 large:text-center">
+                    <button id="ModalClose-PredictiveSearch" class="group w-[1.125rem] h-[1.125rem] text-text2" type="button" aria-label="{{ 'accessibility.close' | t }}">
+                        {% render 'icon-close' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </modal-dialog>
+</sticky-header>
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": {{ shop.name | json }},
+        {% if section.settings.logo %}
+            "logo": {{ section.settings.logo | image_url: width: section.settings.logo.width | prepend: "https:" | json }},
+        {% endif %}
+        "sameAs": [
+            {{ settings.social_twitter_link | json }},
+            {{ settings.social_facebook_link | json }},
+            {{ settings.social_pinterest_link | json }},
+            {{ settings.social_instagram_link | json }},
+            {{ settings.social_tiktok_link | json }},
+            {{ settings.social_tumblr_link | json }},
+            {{ settings.social_snapchat_link | json }},
+            {{ settings.social_youtube_link | json }},
+            {{ settings.social_vimeo_link | json }}
+        ],
+        "url": {{ request.origin | append: page.url | json }}
+    }
+</script>
+
+{%- if request.page_type == 'index' -%}
+    {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": {{ shop.name | json }},
+            "potentialAction": {
+            "@type": "SearchAction",
+            "target": {{ potential_action_target | json }},
+            "query-input": "required name=search_term_string"
+            },
+            "url": {{ request.origin | append: page.url | json }}
+        }
+    </script>
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "t:sections.header.name",
+    "class": "section-header",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "t:sections.header.settings.logo.label"
+        },
+        {
+            "type": "range",
+            "id": "logo_width",
+            "min": 50,
+            "max": 250,
+            "step": 10,
+            "default": 100,
+            "unit": "t:sections.header.settings.logo_width.unit",
+            "label": "t:sections.header.settings.logo_width.label"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "default": "main-menu",
+            "label": "t:sections.header.settings.menu.label"
+        },
+        {
+            "type": "page",
+            "id": "find_store_page_link",
+            "label": "t:sections.header.settings.find_store_page_link.label"
+        },
+        {
+            "type": "page",
+            "id": "help_page_link",
+            "label": "t:sections.header.settings.help_page_link.label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "mega_menu",
+            "name": "t:sections.header.blocks.mega_menu.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "mega_menu_title",
+                    "label": "t:sections.header.blocks.mega_menu.settings.mega_menu_title.label"
+                },
+                {
+                    "type": "link_list",
+                    "id": "mega_menu",
+                    "label": "t:sections.header.blocks.mega_menu.settings.mega_menu_menu.label"
+                },
+                {
+                    "type": "link_list",
+                    "id": "mega_menu_2",
+                    "label": "t:sections.header.blocks.mega_menu.settings.mega_menu_menu_2.label"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mega_menu_promo_image",
+                    "label": "t:sections.header.blocks.mega_menu.settings.mega_menu_promo_image.label",
+                    "info": "t:sections.header.blocks.mega_menu.settings.mega_menu_promo_image.info"
+                },
+                {
+                    "type": "page",
+                    "id": "mega_menu_promo_image_link",
+                    "label": "t:sections.header.blocks.mega_menu.settings.mega_menu_promo_image_link.label",
+                    "info": "t:sections.header.blocks.mega_menu.settings.mega_menu_promo_image_link.info"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

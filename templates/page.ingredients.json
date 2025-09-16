@@ -1,0 +1,1965 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "ingredient_grid_3BYf8Q": {
+      "type": "ingredient_grid",
+      "blocks": {
+        "ingredient_zmGrk3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/1._sh-Oligopeptide-1.jpg",
+            "title": "sh-Oligopeptide-1",
+            "description": "Also known as Epidermal Growth Factor (EGF), supports skin regeneration, improving elasticity and firmness while reducing the appearance of fine lines."
+          }
+        },
+        "ingredient_rxByD6": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/2._Vegan_Encapsulated_Collagen.png",
+            "title": "Vegan Encapsulated Collagen",
+            "description": "Vegan Encapsulated Collagen is a plant-based alternative designed to deliver hydration, support the skin's natural collagen production, and improve overall skin texture and elasticity."
+          }
+        },
+        "ingredient_9kf3ww": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/3._Skin-mimetic_Phospholipids.jpg",
+            "title": "Skin-mimetic Phospholipids",
+            "description": "Bio-identical lipids mimic the skin’s natural phospholipids, strengthening the lipid barrier, enhancing hydration retention and delivering both short- and long-term hydration."
+          }
+        },
+        "ingredient_NhNE4C": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/4._Tridecapeptide-1.jpg",
+            "title": "Tridecapeptide-1: USA",
+            "description": "A unique polypeptide helps reduce the appearance of fine lines, promoting a more even skin tone and texture."
+          }
+        },
+        "ingredient_xEFXa4": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/5._S-mu-conotoxin_cniiic.jpg",
+            "title": "S-mu-conotoxin cniiic: Switzerland",
+            "description": "Helps to provide facial muscle relaxation, helping reduce the appearance of fine lines, and improve facial appearance."
+          }
+        },
+        "ingredient_JyTxWR": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/6._Ceramide_Complex.jpg",
+            "title": "Ceramide Complex: Germany",
+            "description": "Provides hydration and comfort, while moisturizing and softening the skin."
+          }
+        },
+        "ingredient_JmKeQ7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/7._Acetyl_Tetrapeptide-2.png",
+            "title": "Acetyl Tetrapeptide-2: Spain",
+            "description": "A peptide known for its ability to improve skin elasticity and firmness. It works by supporting the production of collagen and elastin to promote a smoother, more toned complexion."
+          }
+        },
+        "ingredient_DgthYG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/8._Marine_Moisturizing_Factor_MMF.png",
+            "title": "Marine Moisturizing Factor (MMF): France",
+            "description": "A seaweed-derived ingredient rich in amino acids, minerals and polysaccharides, it improves skin hydration by enhancing moisture retention, leaving the skin soft, smooth and supple."
+          }
+        },
+        "ingredient_aUd8Dw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/9._Acetyl_Hexapeptide-8.webp",
+            "title": "Acetyl Hexapeptide-8: Spain",
+            "description": "Helping relax tension in facial muscles, which helps reduce the appearance of fine lines, leading to a more youthful, refreshed appearance."
+          }
+        },
+        "ingredient_DCJHRD": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/10._Kakadu_Plum.png",
+            "title": "Kakadu Plum: Australia",
+            "description": "This nutrient-rich fruit, known as the world's highest source of Vitamin C, that helps brighten the skin and improve overall skin tone evenness."
+          }
+        },
+        "ingredient_aXKUMY": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/11._Hydrolyzed_Rhodophyceae_Extract.png",
+            "title": "Hydrolyzed Rhodophyceae Extract: France",
+            "description": "A red macroalgae that visibly regulates oily skin exposed to pollution."
+          }
+        },
+        "ingredient_dzmpen": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/12._Palmitoyl_Tripeptide-5.jpg",
+            "title": "Palmitoyl Tripeptide-5: Switzerland",
+            "description": "It rejuvenates and smoothens the skin's appearance while improving firmness, elasticity, and overall texture for a more youthful look."
+          }
+        },
+        "ingredient_dCiFzm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/13._Caviar_Lime.png",
+            "title": "Caviar Lime: Australia",
+            "description": "Offering skin exfoliation benefits, leaving the skin smoother, brighter, and more even toned."
+          }
+        },
+        "ingredient_cWemMb": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/14._Trifluoroacetyl_Tripeptide-2.jpg",
+            "title": "Trifluoroacetyl Tripeptide-2: France",
+            "description": "The biomimetic peptide supports collagen production, helping to maintain skin firmness and elasticity."
+          }
+        },
+        "ingredient_BfaTgr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/15._Acetyl_Heptapeptide-4.jpg",
+            "title": "Acetyl Heptapeptide-4: Spain",
+            "description": "Supports moisture retention by strengthening the skin’s barrier function and boosting its natural defense system by supporting a healthy skin microbiota, leaving the skin soft and smooth."
+          }
+        },
+        "ingredient_HL9MJ4": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/16._Glycosphingolipids_Glycolipids.jpg",
+            "title": "Glycosphingolipids & Glycolipids: France",
+            "description": "This unique patented complex, naturally biomimetic and rich in linolenic acid, linoleic acid and oleic acid, deeply moisturizes and protects the skin. It refines skin texture, creating a smoother surface and a more uniform tone."
+          }
+        },
+        "ingredient_YHbkpp": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/17._Agaric_Acid.png",
+            "title": "Agaric Acid: Europe",
+            "description": "Acts as an astringent to tighten the skin, refine the appearance of pores, control excess sebum, and deliver a mattifying effect."
+          }
+        },
+        "ingredient_3LTHgC": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/18._Palmitoyl_Tripeptide-8.jpg",
+            "title": "Palmitoyl Tripeptide-8: France",
+            "description": "This soothing biomimetic lipopeptide, composed of three amino acids, helps calm redness, reduce irritation caused by UV and mechanical stress and strengthen the skin’s barrier."
+          }
+        },
+        "ingredient_cpbwMW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/19._Ectoin.jpg",
+            "title": "Ectoin: Germany",
+            "description": "An amino acid derivative that improves and energizes skin functions, supports the skin’s microbiome, and results in long-lasting and visible rejuvenation of youthful, healthy skin."
+          }
+        },
+        "ingredient_WJTtWL": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/20._Zinc_Hexapeptide_Complex.jpg",
+            "title": "Zinc Hexapeptide Complex: Czech Republic",
+            "description": "A powerful retinol-like complex specifically designed to target excess sebum production, helping to balance oil levels in the skin."
+          }
+        },
+        "ingredient_rjVrTg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/21._Lingonberry_Stem_Cells_Extract.jpg",
+            "title": "Lingonberry Stem Cells Extract: Native America",
+            "description": "Lingonberry stem cells, rich in bioactive molecules, stimulate the skin’s natural repair processes while improving hydration and preventing moisture loss."
+          }
+        },
+        "ingredient_qTaLxw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/22._Tripeptide-29.jpg",
+            "title": "Tripeptide-29: USA",
+            "description": "Support collagen production, helping to plump the skin and enhance firmness for a smoother, more youthful appearance."
+          }
+        },
+        "ingredient_WhxKUg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/23._Beta-Glucan.jpg",
+            "title": "Beta-Glucan: USA",
+            "description": "Rich in natural polysaccharides derived from mushrooms, it provides moisturization by attracting and locking in moisture to hydrate the skin."
+          }
+        },
+        "ingredient_ei9MHW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/24._Acetyl_Tetrapeptide-5.jpg",
+            "title": "Acetyl Tetrapeptide-5: Spain",
+            "description": "A tetrapeptide that reduces puffy eyebags and dark circles, improves skin elasticity for a brighter eye contour."
+          }
+        },
+        "ingredient_Cj46Qk": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/25._Polylysine.jpg",
+            "title": "Polylysine: France",
+            "description": "A naturally derived lysine amino acid that balances the microbiome, reduces the appearance of blemishes and decreases sebum production to maintain a shine-free skin."
+          }
+        },
+        "ingredient_ttfLhm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/26._Vegan_Biomimetic_Marine_Collagen.jpg",
+            "title": "Vegan Biomimetic Marine Collagen: USA",
+            "description": "Vegan biomimetic marine collagen supports skin firmness and elasticity while improving hydration for a smoother complexion."
+          }
+        },
+        "ingredient_yNArwy": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/27._Nonapeptide-1.jpg",
+            "title": "Nonapeptide-1: France",
+            "description": "A biomimetic peptide that brightens the skin by regulating hyperpigmentation, providing better control over skin tone."
+          }
+        },
+        "ingredient_NUJE3k": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/28._Hydroxypropyltrimonium_Hyaluronate.jpg",
+            "title": "Hydroxypropyltrimonium Hyaluronate: Switzerland",
+            "description": "Hydroxypropyltrimonium Hyaluronate carries a positive charge, and its modified structure helps create a barrier that locks in moisture, preventing water loss and ensuring long-lasting hydration."
+          }
+        },
+        "ingredient_eMqVxJ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/29._Carrot_Root_Stem_Cells.png",
+            "title": "Carrot Root Stem Cells: Spain",
+            "description": "It provides skin hydration, a soothing effect and calms and protects the skin."
+          }
+        },
+        "ingredient_rGXwcx": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/30._Pentapeptide-34.jpg",
+            "title": "Pentapeptide-34: USA",
+            "description": "A bioengineered peptide that improves the skin’s natural antioxidant defense and energize the skin."
+          }
+        },
+        "ingredient_CBkWit": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/31._Ergothioneine.jpg",
+            "title": "Ergothioneine: Asia",
+            "description": "Ergothioneine is a sulfur-containing derivative of the amino acid histidine, is a uniquely stable antioxidant and cytoprotective agent that protects the skin from photoaging while improving roughness for a smoother skin texture."
+          }
+        },
+        "ingredient_UJmehm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/32._Vegan_Proteoglycan.jpg",
+            "title": "Vegan Proteoglycan: Japan",
+            "description": "Proteoglycan supports collagen density and enhances skin texture, promoting a smoother and more youthful appearance."
+          }
+        },
+        "ingredient_kfMJnM": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/33._Prebiotics.png",
+            "title": "Prebiotics: Spain",
+            "description": "Improves skin condition and combats photo-aging by regulating the interaction between skin microbiota and solar radiation, while boosting skin firmness."
+          }
+        },
+        "ingredient_KnWiXX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/34._-Aminobutyric_Acid.jpg",
+            "title": "γ-Aminobutyric Acid: Asia",
+            "description": "GABA helps smooth the appearance of fine lines and expression lines while supporting skin hydration and elasticity for a smoother, youthful-looking complexion."
+          }
+        },
+        "ingredient_YtNbYC": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/35._Acetyl_Hexapeptide-1.jpg",
+            "title": "Acetyl Hexapeptide-1: Spain",
+            "description": "A peptide known for its ability to reduce the appearance of fine lines by relaxing facial muscles, helping to smooth the skin."
+          }
+        },
+        "ingredient_PLMT8p": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/36._Succinic_Acid.png",
+            "title": "Succinic Acid: Switzerland",
+            "description": "Energizes tired skin, rejuvenating its appearance, helping increase radiance, and reducing signs of fatigue for a refreshed look."
+          }
+        },
+        "ingredient_NHwnyz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/37._Charcoal_Beads.png",
+            "title": "Charcoal Beads: Germany",
+            "description": "Provide mild exfoliation, helping to slough off dead skin cells and unclog pores."
+          }
+        },
+        "ingredient_4qnWXM": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/38._-Linolenic_Acid.jpg",
+            "title": "α-Linolenic Acid: Czech Republic",
+            "description": "A highly effective ingredient that enhances skin tone uniformity by regulating hyperpigmentation and promoting a more balanced, radiant complexion."
+          }
+        },
+        "ingredient_YYMG77": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/39._Pomegranate_Stem_Cells.jpg",
+            "title": "Pomegranate Stem Cells: Spain",
+            "description": "Improving skin brightness, evening skin tone and protecting against oxidative stress caused by sun exposure."
+          }
+        },
+        "ingredient_hmPARX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/40._Heptapeptide-6.jpg",
+            "title": "Heptapeptide-6: Spain",
+            "description": "Improving moisture retention and strengthening the skin barrier, increasing antioxidant capacity and protection."
+          }
+        },
+        "ingredient_K9CakV": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/41._Amino_Acids_Blend.jpg",
+            "title": "Amino Acids Blend (Alanine, Proline and Serine): Spain",
+            "description": "These amino acids help attract and retain moisture in the skin, keeping it hydrated and supple."
+          }
+        },
+        "ingredient_mQ3rbF": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/42._NMF_mimicking_blend.jpg",
+            "title": "NMF mimicking blend: Germany",
+            "description": "This blend of ingredients helps hydrate, smooth and support moisture retention, improving the overall texture of the skin."
+          }
+        },
+        "ingredient_x96QyL": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/43._Albatrellus_Confluens.jpg",
+            "title": "Albatrellus Confluens: Finland",
+            "description": "A unique mushroom it soothes and protects the skin while targeting factors that cause discomfort and irritation."
+          }
+        },
+        "ingredient_qYnFyR": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/44._Oligopeptide-4.jpg",
+            "title": "Oligopeptide-4: Spain",
+            "description": "Evens skin tone and brings brightness to dull skin by helping reduce superficial melanin, enhancing and illuminating the complexion."
+          }
+        },
+        "ingredient_cQbafz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/45._Pomegranate_and_Pumpkin_Enzyme.jpg",
+            "title": "Pomegranate and Pumpkin Enzyme: United States",
+            "description": "Exfoliation is a key step in any skincare regimen, using Pomegranate Enzyme's proteolytic properties to gently remove the dead skin cells that trap bacteria and sebum."
+          }
+        },
+        "ingredient_hAzPMg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/46._Seaweeds.jpg",
+            "title": "Seaweeds: Brazil",
+            "description": "A unique source of highly bioactive molecules that promote skin tone uniformity while improving texture and firmness."
+          }
+        },
+        "ingredient_xQygbA": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/47._Oligopeptide-2.jpg",
+            "title": "Oligopeptide-2: Spain",
+            "description": "Helps restore skin vitality, detoxifies the eye contour area, smooths and reduces the appearance of dark circles for a refreshed and rejuvenated look."
+          }
+        },
+        "ingredient_RWWaW7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/48._Microalga_Dunaliella_Salina.jpg",
+            "title": "Microalga Dunaliella Salina: Switzerland",
+            "description": "Microalgae, a blend of active substances like amino acids and carbohydrates, helps brighten the skin by reducing dullness and promoting a luminous glow."
+          }
+        },
+        "ingredient_6Qabwr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/49._Red_Marine_Algae.jpg",
+            "title": "Red Marine Algae: Hawaiian Islands",
+            "description": "Delivers short and long-term moisturization, promoting skin firmness, and soothes irritation for a healthier, more balanced complexion."
+          }
+        },
+        "ingredient_7FEtXm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/50._Cydonia_Oblonga_Leaf_Extract.png",
+            "title": "Cydonia Oblonga Leaf Extract: Europe",
+            "description": "Cydonia Oblonga Leaf Extract helping to reduce shine and delivering a long-lasting mattifying effect."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_zmGrk3",
+        "ingredient_rxByD6",
+        "ingredient_9kf3ww",
+        "ingredient_NhNE4C",
+        "ingredient_xEFXa4",
+        "ingredient_JyTxWR",
+        "ingredient_JmKeQ7",
+        "ingredient_DgthYG",
+        "ingredient_aUd8Dw",
+        "ingredient_DCJHRD",
+        "ingredient_aXKUMY",
+        "ingredient_dzmpen",
+        "ingredient_dCiFzm",
+        "ingredient_cWemMb",
+        "ingredient_BfaTgr",
+        "ingredient_HL9MJ4",
+        "ingredient_YHbkpp",
+        "ingredient_3LTHgC",
+        "ingredient_cpbwMW",
+        "ingredient_WJTtWL",
+        "ingredient_rjVrTg",
+        "ingredient_qTaLxw",
+        "ingredient_WhxKUg",
+        "ingredient_ei9MHW",
+        "ingredient_Cj46Qk",
+        "ingredient_ttfLhm",
+        "ingredient_yNArwy",
+        "ingredient_NUJE3k",
+        "ingredient_eMqVxJ",
+        "ingredient_rGXwcx",
+        "ingredient_CBkWit",
+        "ingredient_UJmehm",
+        "ingredient_kfMJnM",
+        "ingredient_KnWiXX",
+        "ingredient_YtNbYC",
+        "ingredient_PLMT8p",
+        "ingredient_NHwnyz",
+        "ingredient_4qnWXM",
+        "ingredient_YYMG77",
+        "ingredient_hmPARX",
+        "ingredient_K9CakV",
+        "ingredient_mQ3rbF",
+        "ingredient_x96QyL",
+        "ingredient_qYnFyR",
+        "ingredient_cQbafz",
+        "ingredient_hAzPMg",
+        "ingredient_xQygbA",
+        "ingredient_RWWaW7",
+        "ingredient_6Qabwr",
+        "ingredient_7FEtXm"
+      ],
+      "disabled": true,
+      "name": "ingredient_grid-country-names1",
+      "settings": {}
+    },
+    "custom_liquid_3qKGnL": {
+      "type": "custom-liquid",
+      "name": "Directory Heading",
+      "settings": {
+        "custom_liquid": "<h1 style=\"text-align:center;font-size:22px; \">Ingredient Directory</h1>"
+      }
+    },
+    "ingredient_grid_h7pwbc": {
+      "type": "ingredient_grid",
+      "blocks": {
+        "ingredient_zUcD6g": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/1._sh-Oligopeptide-1.jpg",
+            "title": "sh-Oligopeptide-1",
+            "description": "Also known as Epidermal Growth Factor (EGF), supports skin regeneration, improving elasticity and firmness while reducing the appearance of fine lines."
+          }
+        },
+        "ingredient_L9JqyR": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/2._Vegan_Encapsulated_Collagen.png",
+            "title": "Vegan Encapsulated Collagen",
+            "description": "Vegan Encapsulated Collagen is a plant-based alternative designed to deliver hydration, support the skin's natural collagen production, and improve overall skin texture and elasticity."
+          }
+        },
+        "ingredient_txaY6C": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/3._Skin-mimetic_Phospholipids.jpg",
+            "title": "Skin-mimetic Phospholipids",
+            "description": "Bio-identical lipids mimic the skin’s natural phospholipids, strengthening the lipid barrier, enhancing hydration retention and delivering both short- and long-term hydration."
+          }
+        },
+        "ingredient_fr3QQ7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/4._Tridecapeptide-1.jpg",
+            "title": "Tridecapeptide-1",
+            "description": "A unique polypeptide helps reduce the appearance of fine lines, promoting a more even skin tone and texture."
+          }
+        },
+        "ingredient_JHgmYa": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/5._S-mu-conotoxin_cniiic.jpg",
+            "title": "S-mu-conotoxin cniiic",
+            "description": "Helps to provide facial muscle relaxation, helping reduce the appearance of fine lines, and improve facial appearance."
+          }
+        },
+        "ingredient_YwYYK7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/6._Ceramide_Complex.jpg",
+            "title": "Ceramide Complex",
+            "description": "Provides hydration and comfort, while moisturizing and softening the skin."
+          }
+        },
+        "ingredient_nPXNj3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/7._Acetyl_Tetrapeptide-2.png",
+            "title": "Acetyl Tetrapeptide-2",
+            "description": "A peptide known for its ability to improve skin elasticity and firmness. It works by supporting the production of collagen and elastin to promote a smoother, more toned complexion."
+          }
+        },
+        "ingredient_RVtaHQ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/8._Marine_Moisturizing_Factor_MMF.png",
+            "title": "Marine Moisturizing Factor (MMF)",
+            "description": "A seaweed-derived ingredient rich in amino acids, minerals and polysaccharides, it improves skin hydration by enhancing moisture retention, leaving the skin soft, smooth and supple."
+          }
+        },
+        "ingredient_kyFKxe": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/9._Acetyl_Hexapeptide-8.webp",
+            "title": "Acetyl Hexapeptide-8",
+            "description": "Helping relax tension in facial muscles, which helps reduce the appearance of fine lines, leading to a more youthful, refreshed appearance."
+          }
+        },
+        "ingredient_xtQ9YX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/10._Kakadu_Plum.png",
+            "title": "Kakadu Plum",
+            "description": "This nutrient-rich fruit, known as the world's highest source of Vitamin C, that helps brighten the skin and improve overall skin tone evenness."
+          }
+        },
+        "ingredient_KM86EN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/11._Hydrolyzed_Rhodophyceae_Extract.png",
+            "title": "Hydrolyzed Rhodophyceae Extract",
+            "description": "A red macroalgae that visibly regulates oily skin exposed to pollution."
+          }
+        },
+        "ingredient_3NYPTb": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/12._Palmitoyl_Tripeptide-5.jpg",
+            "title": "Palmitoyl Tripeptide-5",
+            "description": "It rejuvenates and smoothens the skin's appearance while improving firmness, elasticity, and overall texture for a more youthful look."
+          }
+        },
+        "ingredient_GHd7Q8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/13._Caviar_Lime.png",
+            "title": "Caviar Lime",
+            "description": "Offering skin exfoliation benefits, leaving the skin smoother, brighter, and more even toned."
+          }
+        },
+        "ingredient_wVWRAw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/14._Trifluoroacetyl_Tripeptide-2.jpg",
+            "title": "Trifluoroacetyl Tripeptide-2",
+            "description": "The biomimetic peptide supports collagen production, helping to maintain skin firmness and elasticity."
+          }
+        },
+        "ingredient_cBA4Xk": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/15._Acetyl_Heptapeptide-4.jpg",
+            "title": "Acetyl Heptapeptide-4",
+            "description": "Supports moisture retention by strengthening the skin’s barrier function and boosting its natural defense system by supporting a healthy skin microbiota, leaving the skin soft and smooth."
+          }
+        },
+        "ingredient_dFLEkg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/16._Glycosphingolipids_Glycolipids.jpg",
+            "title": "Glycosphingolipids & Glycolipids",
+            "description": "This unique patented complex, naturally biomimetic and rich in linolenic acid, linoleic acid and oleic acid, deeply moisturizes and protects the skin. It refines skin texture, creating a smoother surface and a more uniform tone."
+          }
+        },
+        "ingredient_t9tVNC": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/17._Agaric_Acid.png",
+            "title": "Agaric Acid",
+            "description": "Acts as an astringent to tighten the skin, refine the appearance of pores, control excess sebum, and deliver a mattifying effect."
+          }
+        },
+        "ingredient_xq7LRD": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/18._Palmitoyl_Tripeptide-8.jpg",
+            "title": "Palmitoyl Tripeptide-8",
+            "description": "This soothing biomimetic lipopeptide, composed of three amino acids, helps calm redness, reduce irritation caused by UV and mechanical stress and strengthen the skin’s barrier."
+          }
+        },
+        "ingredient_XVUA7i": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/19._Ectoin.jpg",
+            "title": "Ectoin",
+            "description": "An amino acid derivative that improves and energizes skin functions, supports the skin’s microbiome, and results in long-lasting and visible rejuvenation of youthful, healthy skin."
+          }
+        },
+        "ingredient_GA3WCA": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/20._Zinc_Hexapeptide_Complex.jpg",
+            "title": "Zinc Hexapeptide Complex",
+            "description": "A powerful retinol-like complex specifically designed to target excess sebum production, helping to balance oil levels in the skin."
+          }
+        },
+        "ingredient_iAfc6N": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/21._Lingonberry_Stem_Cells_Extract.jpg",
+            "title": "Lingonberry Stem Cells Extract",
+            "description": "Lingonberry stem cells, rich in bioactive molecules, stimulate the skin’s natural repair processes while improving hydration and preventing moisture loss."
+          }
+        },
+        "ingredient_PTpWUq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/22._Tripeptide-29.jpg",
+            "title": "Tripeptide-29",
+            "description": "Support collagen production, helping to plump the skin and enhance firmness for a smoother, more youthful appearance."
+          }
+        },
+        "ingredient_TtdDfE": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/23._Beta-Glucan.jpg",
+            "title": "Beta-Glucan",
+            "description": "Rich in natural polysaccharides derived from mushrooms, it provides moisturization by attracting and locking in moisture to hydrate the skin."
+          }
+        },
+        "ingredient_6rirz9": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/24._Acetyl_Tetrapeptide-5.jpg",
+            "title": "Acetyl Tetrapeptide-5",
+            "description": "A tetrapeptide that reduces puffy eyebags and dark circles, improves skin elasticity for a brighter eye contour."
+          }
+        },
+        "ingredient_QkVHwj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/25._Polylysine.jpg",
+            "title": "Polylysine",
+            "description": "A naturally derived lysine amino acid that balances the microbiome, reduces the appearance of blemishes and decreases sebum production to maintain a shine-free skin."
+          }
+        },
+        "ingredient_GNfHVF": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/26._Vegan_Biomimetic_Marine_Collagen.jpg",
+            "title": "Vegan Biomimetic Marine Collagen",
+            "description": "Vegan biomimetic marine collagen supports skin firmness and elasticity while improving hydration for a smoother complexion."
+          }
+        },
+        "ingredient_fhFwid": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/27._Nonapeptide-1.jpg",
+            "title": "Nonapeptide-1",
+            "description": "A biomimetic peptide that brightens the skin by regulating hyperpigmentation, providing better control over skin tone."
+          }
+        },
+        "ingredient_VanxwG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/28._Hydroxypropyltrimonium_Hyaluronate.jpg",
+            "title": "Hydroxypropyltrimonium Hyaluronate",
+            "description": "Hydroxypropyltrimonium Hyaluronate carries a positive charge, and its modified structure helps create a barrier that locks in moisture, preventing water loss and ensuring long-lasting hydration."
+          }
+        },
+        "ingredient_xkRPWf": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/29._Carrot_Root_Stem_Cells.png",
+            "title": "Carrot Root Stem Cells",
+            "description": "It provides skin hydration, a soothing effect and calms and protects the skin."
+          }
+        },
+        "ingredient_QCaqYe": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/30._Pentapeptide-34.jpg",
+            "title": "Pentapeptide-34",
+            "description": "A bioengineered peptide that improves the skin’s natural antioxidant defense and energize the skin."
+          }
+        },
+        "ingredient_yDqkq3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/31._Ergothioneine.jpg",
+            "title": "Ergothioneine",
+            "description": "Ergothioneine is a sulfur-containing derivative of the amino acid histidine, is a uniquely stable antioxidant and cytoprotective agent that protects the skin from photoaging while improving roughness for a smoother skin texture."
+          }
+        },
+        "ingredient_gAFUBx": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/32._Vegan_Proteoglycan.jpg",
+            "title": "Vegan Proteoglycan",
+            "description": "Proteoglycan supports collagen density and enhances skin texture, promoting a smoother and more youthful appearance."
+          }
+        },
+        "ingredient_9mqXHd": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/33._Prebiotics.png",
+            "title": "Prebiotics",
+            "description": "Improves skin condition and combats photo-aging by regulating the interaction between skin microbiota and solar radiation, while boosting skin firmness."
+          }
+        },
+        "ingredient_MWiqDX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/34._-Aminobutyric_Acid.jpg",
+            "title": "γ-Aminobutyric Acid",
+            "description": "GABA helps smooth the appearance of fine lines and expression lines while supporting skin hydration and elasticity for a smoother, youthful-looking complexion."
+          }
+        },
+        "ingredient_ct8g4N": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/35._Acetyl_Hexapeptide-1.jpg",
+            "title": "Acetyl Hexapeptide-1",
+            "description": "A peptide known for its ability to reduce the appearance of fine lines by relaxing facial muscles, helping to smooth the skin."
+          }
+        },
+        "ingredient_THrJVW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/36._Succinic_Acid.png",
+            "title": "Succinic Acid",
+            "description": "Energizes tired skin, rejuvenating its appearance, helping increase radiance, and reducing signs of fatigue for a refreshed look."
+          }
+        },
+        "ingredient_eEdKzQ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/37._Charcoal_Beads.png",
+            "title": "Charcoal Beads",
+            "description": "Provide mild exfoliation, helping to slough off dead skin cells and unclog pores."
+          }
+        },
+        "ingredient_gnKqrd": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/38._-Linolenic_Acid.jpg",
+            "title": "α-Linolenic Acid",
+            "description": "A highly effective ingredient that enhances skin tone uniformity by regulating hyperpigmentation and promoting a more balanced, radiant complexion."
+          }
+        },
+        "ingredient_H9NhN7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/39._Pomegranate_Stem_Cells.jpg",
+            "title": "Pomegranate Stem Cells",
+            "description": "Improving skin brightness, evening skin tone and protecting against oxidative stress caused by sun exposure."
+          }
+        },
+        "ingredient_nARx99": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/40._Heptapeptide-6.jpg",
+            "title": "Heptapeptide-6",
+            "description": "Improving moisture retention and strengthening the skin barrier, increasing antioxidant capacity and protection."
+          }
+        },
+        "ingredient_yzEUPX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/41._Amino_Acids_Blend.jpg",
+            "title": "Amino Acids Blend (Alanine, Proline and Serine)",
+            "description": "These amino acids help attract and retain moisture in the skin, keeping it hydrated and supple."
+          }
+        },
+        "ingredient_mhXj63": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/42._NMF_mimicking_blend.jpg",
+            "title": "NMF mimicking blend",
+            "description": "This blend of ingredients helps hydrate, smooth and support moisture retention, improving the overall texture of the skin."
+          }
+        },
+        "ingredient_inyYPm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/43._Albatrellus_Confluens.jpg",
+            "title": "Albatrellus Confluens",
+            "description": "A unique mushroom it soothes and protects the skin while targeting factors that cause discomfort and irritation."
+          }
+        },
+        "ingredient_Ww6wz8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/44._Oligopeptide-4.jpg",
+            "title": "Oligopeptide-4",
+            "description": "Evens skin tone and brings brightness to dull skin by helping reduce superficial melanin, enhancing and illuminating the complexion."
+          }
+        },
+        "ingredient_agdkQk": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/45._Pomegranate_and_Pumpkin_Enzyme.jpg",
+            "title": "Pomegranate and Pumpkin Enzyme",
+            "description": "Exfoliation is a key step in any skincare regimen, using Pomegranate Enzyme's proteolytic properties to gently remove the dead skin cells that trap bacteria and sebum."
+          }
+        },
+        "ingredient_CPYdLR": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/46._Seaweeds.jpg",
+            "title": "Seaweeds",
+            "description": "A unique source of highly bioactive molecules that promote skin tone uniformity while improving texture and firmness."
+          }
+        },
+        "ingredient_MMHWFm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/47._Oligopeptide-2.jpg",
+            "title": "Oligopeptide-2",
+            "description": "Helps restore skin vitality, detoxifies the eye contour area, smooths and reduces the appearance of dark circles for a refreshed and rejuvenated look."
+          }
+        },
+        "ingredient_ixxjtE": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/48._Microalga_Dunaliella_Salina.jpg",
+            "title": "Microalga Dunaliella Salina",
+            "description": "Microalgae, a blend of active substances like amino acids and carbohydrates, helps brighten the skin by reducing dullness and promoting a luminous glow."
+          }
+        },
+        "ingredient_HedKQx": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/49._Red_Marine_Algae.jpg",
+            "title": "Red Marine Algae",
+            "description": "Delivers short and long-term moisturization, promoting skin firmness, and soothes irritation for a healthier, more balanced complexion."
+          }
+        },
+        "ingredient_wqcRqQ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/50._Cydonia_Oblonga_Leaf_Extract.png",
+            "title": "Cydonia Oblonga Leaf Extract",
+            "description": "Cydonia Oblonga Leaf Extract helping to reduce shine and delivering a long-lasting mattifying effect."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_zUcD6g",
+        "ingredient_L9JqyR",
+        "ingredient_txaY6C",
+        "ingredient_fr3QQ7",
+        "ingredient_JHgmYa",
+        "ingredient_YwYYK7",
+        "ingredient_nPXNj3",
+        "ingredient_RVtaHQ",
+        "ingredient_kyFKxe",
+        "ingredient_xtQ9YX",
+        "ingredient_KM86EN",
+        "ingredient_3NYPTb",
+        "ingredient_GHd7Q8",
+        "ingredient_wVWRAw",
+        "ingredient_cBA4Xk",
+        "ingredient_dFLEkg",
+        "ingredient_t9tVNC",
+        "ingredient_xq7LRD",
+        "ingredient_XVUA7i",
+        "ingredient_GA3WCA",
+        "ingredient_iAfc6N",
+        "ingredient_PTpWUq",
+        "ingredient_TtdDfE",
+        "ingredient_6rirz9",
+        "ingredient_QkVHwj",
+        "ingredient_GNfHVF",
+        "ingredient_fhFwid",
+        "ingredient_VanxwG",
+        "ingredient_xkRPWf",
+        "ingredient_QCaqYe",
+        "ingredient_yDqkq3",
+        "ingredient_gAFUBx",
+        "ingredient_9mqXHd",
+        "ingredient_MWiqDX",
+        "ingredient_ct8g4N",
+        "ingredient_THrJVW",
+        "ingredient_eEdKzQ",
+        "ingredient_gnKqrd",
+        "ingredient_H9NhN7",
+        "ingredient_nARx99",
+        "ingredient_yzEUPX",
+        "ingredient_mhXj63",
+        "ingredient_inyYPm",
+        "ingredient_Ww6wz8",
+        "ingredient_agdkQk",
+        "ingredient_CPYdLR",
+        "ingredient_MMHWFm",
+        "ingredient_ixxjtE",
+        "ingredient_HedKQx",
+        "ingredient_wqcRqQ"
+      ],
+      "name": "ingredient_grid-remove-country-names1",
+      "settings": {}
+    },
+    "ingredient_grid_mQy6Jf": {
+      "type": "ingredient_grid",
+      "blocks": {
+        "ingredient_eiRFYi": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/51._Plankton_Extract.png",
+            "title": "Plankton Extract: Sahel Desert",
+            "description": "It helps protect against oxidative stress and provides long-lasting hydration while improving the appearance of fine lines."
+          }
+        },
+        "ingredient_7KNENX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/52._Porphyridium_Cruentum.jpg",
+            "title": "Porphyridium Cruentum and Pullulan: Germany",
+            "description": "A red microalgae known for its rich content of polysaccharides helps maintain hydration levels. Pullulan forms a thin film on the skin, providing a tightening effect, improving skin smoothness."
+          }
+        },
+        "ingredient_fEnftN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/53.Arginine-lysine_Polypeptides.jpg",
+            "title": "Arginine/lysine Polypeptides: Spain",
+            "description": "It helps support elasticity, reduce skin roughness, and improve firmness for a smoother, more resilient appearance."
+          }
+        },
+        "ingredient_EajeAT": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/54._Peat_Water_Extract.jpg",
+            "title": "Peat Water Extract: Finland",
+            "description": "Peat water contains a unique blend of bioactive compounds like fulvic and humic acids, which help to detoxify, hydrate and rejuvenate the skin naturally."
+          }
+        },
+        "ingredient_rkfhpH": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/55._Bacillus_Ferment.jpg",
+            "title": "Bacillus Ferment: Spain",
+            "description": "Provides effective protection against IR and UV rays, improving the skin barrier and helps maintain optimal hydration levels."
+          }
+        },
+        "ingredient_WAbHKA": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/56._Fermented_Golden_Millet.jpg",
+            "title": "Fermented Golden Millet: Austria",
+            "description": "Supports the skin's natural microbiota, boosts hydration and nourishes dry skin, promoting a healthy skin appearance."
+          }
+        },
+        "ingredient_pwtxMf": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/57._Saccharomyces_Cerevisiae.jpg",
+            "title": "Saccharomyces Cerevisiae: France",
+            "description": "Rich in Oligo-β-glucans, it helps improve skin firmness, elasticity, and tonicity, promoting a more youthful and resilient appearance."
+          }
+        },
+        "ingredient_U7DHcj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/58._Unique_Canadian_Plant.jpg",
+            "title": "Unique Canadian Plant: Native American",
+            "description": "It contains compounds such as flavonoids and tannins, which help calm irritation and reduce redness."
+          }
+        },
+        "ingredient_mJ7ynW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/59._Yeast_Extract.jpg",
+            "title": "Yeast Extract: France",
+            "description": "Rich in sulfur-containing peptides, it enhances complexion uniformity and amplifies depigmenting action for a brighter, even skin tone."
+          }
+        },
+        "ingredient_k6Gh4k": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/60._Acmella_Oleracea_Plant.jpg",
+            "title": "Acmella Oleracea Plant: Peru",
+            "description": "Rich in spilanthol, a bioactive compound with muscle-relaxing properties, it helps minimizing the appearance of fine lines and promoting a smoother, more youthful appearance."
+          }
+        },
+        "ingredient_fgUDwq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/61._Baby_Jackharides_Extract.jpg",
+            "title": "Baby Jackharides Extract: Southeast Asia",
+            "description": "Gac fruit is packed with antioxidants, vitamins, and fatty acids which help to hydrate and lock in moisture, keeping the skin nourished and hydrated."
+          }
+        },
+        "ingredient_GmTxBY": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/62._Dianthus_Caryophyllus_Flower_Extract.jpg",
+            "title": "Dianthus Caryophyllus Flower Extract: Japan",
+            "description": "Carnation flower extract helps support collagen production, improving skin's softness and promoting recovery and resilience for a smooth texture."
+          }
+        },
+        "ingredient_Uf8rDr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/63._Trametes_Versicolor.png",
+            "title": "Trametes Versicolor: USA",
+            "description": "Native to the Himalayas, mushroom extract soothes and calms skin discomfort, helping to prevent irritation caused by factors like UV radiation."
+          }
+        },
+        "ingredient_iV3AGE": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/64._Algae_Water.jpg",
+            "title": "Algae Water: France",
+            "description": "Algal biological water hydrates, refreshes, and soothes the skin, promoting a smooth and revitalized look."
+          }
+        },
+        "ingredient_qYEyAR": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/65._Cotton_Seed_Extract.jpg",
+            "title": "Cotton Seed Extract: Saharan Africa",
+            "description": "Derived from plant stem cells, it supports the skin's natural defense mechanism to combat photodamage and prevent photo-aging."
+          }
+        },
+        "ingredient_hqrwRh": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/66._Tetrapeptide-1.jpg",
+            "title": "Tetrapeptide-1: Spain",
+            "description": "It helps support collagen production and improves skin elasticity. This peptide is also helping in reducing the appearance of fine lines and improving skin smoothness."
+          }
+        },
+        "ingredient_YeGWxQ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/67._Echinacea_Purpurea.jpg",
+            "title": "Echinacea Purpurea: North America",
+            "description": "Highly enriched in fatty acids, it offers a plumping and volumizing effect to the facial contour, supporting firmness and elasticity."
+          }
+        },
+        "ingredient_PhqkqN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/68._Lens_Esculenta.jpg",
+            "title": "Lens Esculenta: France",
+            "description": "Rich in oligosaccharides, lentil seed improves skin texture by reducing pore size and minimizing roughness, leaving the skin refined and smooth."
+          }
+        },
+        "ingredient_jVVrrT": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/69._Spirodela_Polyrhiza_Extract.jpg",
+            "title": "Spirodela Polyrhiza Extract: Asia",
+            "description": "Spirodela Polyrhiza is a tiny aquatic plant renowned for its high nutritional and bioactive compound content, which hydrates the skin, helps maintain moisture levels, and leaves it soft and plump."
+          }
+        },
+        "ingredient_HzfkVj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/70._Sphingomonas_Ferment_Extract.jpg",
+            "title": "Sphingomonas Ferment Extract: France",
+            "description": "A fermented microorganism derived from the rhizosphere of ginseng that improves skin hydration, enhances complexion radiance and improving overall skin quality."
+          }
+        },
+        "ingredient_dzw8db": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/71._Tara_Tannins.png",
+            "title": "Sunflower Sprout and Tara Tannins: Switzerland and Peru",
+            "description": "Provides powerful protection against infrared and blue light while preventing the loss of skin density caused by sun exposure."
+          }
+        },
+        "ingredient_njnGcW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/72._Bioactive_Complex_of_3_Tropical_Fruits.png",
+            "title": "Bioactive Complex of 3 Tropical Fruits: Australia",
+            "description": "Rich in vitamins, minerals, and enzymes, it helps nourish, moisturize and rejuvenate the skin."
+          }
+        },
+        "ingredient_NafiD8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/73._Kale_Leaf_Extract.jpg",
+            "title": "Kale Leaf Extract: France",
+            "description": "Kale, a sulfur-rich plant, gently exfoliates the skin, restores radiance, refines and softens skin texture resulting in a fine, smooth feel and a fresh, radiant complexion."
+          }
+        },
+        "ingredient_89ThKw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/74._Cactus_Extract.png",
+            "title": "Cactus Extract:  Mexico",
+            "description": "A natural form of Polyhydroxy acid that enhances the skin's natural exfoliation process and enhances radiance for a healthy, glowing complexion."
+          }
+        },
+        "ingredient_HiTi74": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/75._7_Swiss_Mountain_Plant_Blend.jpg",
+            "title": "7 Swiss Mountain Plant Blend: Switzerland",
+            "description": "A unique, naturally potent fusion of seven plants that improve skin brightness, improve skin tone, and keep it radiantly luminous."
+          }
+        },
+        "ingredient_d7WCYj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/76._Sea_Vegetal_Extract.jpg",
+            "title": "Sea Vegetal Extract: Atlantic Ocean",
+            "description": "Rejuvenates the eye contour, enhances skin firmness and reduces the appearance of dark circles for a more refreshed look."
+          }
+        },
+        "ingredient_tQzAHJ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/77._Pepper_Berry_Extract.png",
+            "title": "Pepper Berry Extract: Australia",
+            "description": "Minimizes the appearance of skin redness while soothing and relieving discomfort and itching"
+          }
+        },
+        "ingredient_mRLpbf": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/78._Artichoke_Leaf_Extract.jpg",
+            "title": "Artichoke Leaf Extract: Japan",
+            "description": "Enhances skin elasticity while regulating hyperpigmentation and improving the appearance of noticeable pores"
+          }
+        },
+        "ingredient_nBDKJ3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/79._Haberlea_Rhodopensis.jpg",
+            "title": "Haberlea Rhodopensis: Greece",
+            "description": "Offers biomimetic control for skin rejuvenation, enhancing firmness and tone while delivering luminosity, and radiance."
+          }
+        },
+        "ingredient_GQarMy": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/80._Fagus_Sylvatica_Bud.png",
+            "title": "Fagus Sylvatica Bud: France",
+            "description": "Enhances skin hydration, smoothness and provides an energizing effect, leaving the skin visibly younger, smoother and hydrated."
+          }
+        },
+        "ingredient_LLG9fW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/81._Blend_of_10_Chinese_Herbs.jpg",
+            "title": "Blend of 10 Chinese Herbs: China",
+            "description": "A 10 renowned Chinese brightening herbs, it helps balance hyperpigmentation, provides hydration and improving the look of skin elasticity."
+          }
+        },
+        "ingredient_YynedG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/82._Alfalfa_Extract.png",
+            "title": "Alfalfa Extract + Lupine Protein: France",
+            "description": "Packed with oligopeptides and oligosaccharides, it visibly diminishes eye bag volume while enhancing skin tone and restoring firmness for a refreshed, youthful look."
+          }
+        },
+        "ingredient_ERy937": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/83._Elderberry_Flower.jpg",
+            "title": "Elderberry Flower: France",
+            "description": "Packed with flavonoids and polyphenols, this potent antioxidant helps diminish dark circles around the eyes, promoting a brighter, revitalized look."
+          }
+        },
+        "ingredient_VwPqez": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/84._Quinoa_Seed_Extract.png",
+            "title": "Quinoa Seed Extract: South America",
+            "description": "Fades dark circles and reduces puffiness, revealing a radiant, refreshed and rejuvenated appearance."
+          }
+        },
+        "ingredient_iDhQkp": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/85._Licorice_Root_Extract.png",
+            "title": "Licorice Root Extract: USA",
+            "description": "Packed with glabridin, a powerful compound known for its ability to brighten and even out skin tone."
+          }
+        },
+        "ingredient_kwzmLc": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/86._Shiitake_Mushroom_Ferment.png",
+            "title": "Shiitake Mushroom Ferment: USA",
+            "description": "Rich in natural compounds that minimize the appearance of dark spots and hyperpigmentation while brightening the overall skin tone."
+          }
+        },
+        "ingredient_xxYTtE": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/87._Cherry_Blossom.png",
+            "title": "Cherry Blossom: Japan",
+            "description": "Inspired by Japanese beauty, it balances skin pigmentation and soothes irritation."
+          }
+        },
+        "ingredient_k9kwLz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/88._Centella_Asiatica.png",
+            "title": "Centella Asiatica: Madagascar",
+            "description": "Enhances skin radiance and tone, promoting a more uniform complexion for healthier, glowing skin."
+          }
+        },
+        "ingredient_ww7AP8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/89._Myrothamnus_Flabellifolia.jpg",
+            "title": "Myrothamnus Flabellifolia: South Africa ",
+            "description": "Rehydrates the skin, improves texture, protects against blue light stress, and reduces redness for a smoother, more balanced complexion."
+          }
+        },
+        "ingredient_KHMC4C": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/90._Birch_Sap_Water.png",
+            "title": "Birch Sap Water: Finland",
+            "description": "Its rich blend of amino acids, minerals, proteins, antioxidants and vitamins helps calm irritation, reduce redness and deliver hydration."
+          }
+        },
+        "ingredient_axYxUd": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/91._Myrrh_Extract.png",
+            "title": "Myrrh Extract: Somalia",
+            "description": "Myrrh’s astringent properties help regulate sebum production while calming irritation and reducing redness."
+          }
+        },
+        "ingredient_whM9QG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/92._White_Willow_Bark_Extract.png",
+            "title": "White Willow Bark Extract: North America",
+            "description": "White willow bark extract helps reduce redness, alleviate irritation and gently exfoliate the skin for a smoother, calmer complexion."
+          }
+        },
+        "ingredient_hfx9YL": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/93._Cornus_Officinalis.png",
+            "title": "Cornus Officinalis: South Jeolla ",
+            "description": "Packed with fibers, vitamins, and organic acids, it works to calm irritated skin and visibly reduce redness."
+          }
+        },
+        "ingredient_GjmEeq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/94._Maclura_Leaf_Extract.png",
+            "title": "Maclura Leaf Extract: Northern Australia and Asia",
+            "description": "Packed with bioflavonoids, it controls sebum levels, refines pore size and helps regulate the skin microbiome for a smoother, clearer complexion."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_eiRFYi",
+        "ingredient_7KNENX",
+        "ingredient_fEnftN",
+        "ingredient_EajeAT",
+        "ingredient_rkfhpH",
+        "ingredient_WAbHKA",
+        "ingredient_pwtxMf",
+        "ingredient_U7DHcj",
+        "ingredient_mJ7ynW",
+        "ingredient_k6Gh4k",
+        "ingredient_fgUDwq",
+        "ingredient_GmTxBY",
+        "ingredient_Uf8rDr",
+        "ingredient_iV3AGE",
+        "ingredient_qYEyAR",
+        "ingredient_hqrwRh",
+        "ingredient_YeGWxQ",
+        "ingredient_PhqkqN",
+        "ingredient_jVVrrT",
+        "ingredient_HzfkVj",
+        "ingredient_dzw8db",
+        "ingredient_njnGcW",
+        "ingredient_NafiD8",
+        "ingredient_89ThKw",
+        "ingredient_HiTi74",
+        "ingredient_d7WCYj",
+        "ingredient_tQzAHJ",
+        "ingredient_mRLpbf",
+        "ingredient_nBDKJ3",
+        "ingredient_GQarMy",
+        "ingredient_LLG9fW",
+        "ingredient_YynedG",
+        "ingredient_ERy937",
+        "ingredient_VwPqez",
+        "ingredient_iDhQkp",
+        "ingredient_kwzmLc",
+        "ingredient_xxYTtE",
+        "ingredient_k9kwLz",
+        "ingredient_ww7AP8",
+        "ingredient_KHMC4C",
+        "ingredient_axYxUd",
+        "ingredient_whM9QG",
+        "ingredient_hfx9YL",
+        "ingredient_GjmEeq"
+      ],
+      "disabled": true,
+      "name": "ingredient_grid-country-names2",
+      "settings": {}
+    },
+    "ingredient_grid_JFY7JG": {
+      "type": "ingredient_grid",
+      "blocks": {
+        "ingredient_a4UXC6": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/51._Plankton_Extract.png",
+            "title": "Plankton Extract:",
+            "description": "It helps protect against oxidative stress and provides long-lasting hydration while improving the appearance of fine lines."
+          }
+        },
+        "ingredient_NpB3WV": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/52._Porphyridium_Cruentum.jpg",
+            "title": "Porphyridium Cruentum and Pullulan",
+            "description": "A red microalgae known for its rich content of polysaccharides helps maintain hydration levels. Pullulan forms a thin film on the skin, providing a tightening effect, improving skin smoothness."
+          }
+        },
+        "ingredient_dMLT6j": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/53.Arginine-lysine_Polypeptides.jpg",
+            "title": "Arginine/lysine Polypeptides",
+            "description": "It helps support elasticity, reduce skin roughness, and improve firmness for a smoother, more resilient appearance."
+          }
+        },
+        "ingredient_VwtrG4": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/54._Peat_Water_Extract.jpg",
+            "title": "Peat Water Extract",
+            "description": "Peat water contains a unique blend of bioactive compounds like fulvic and humic acids, which help to detoxify, hydrate and rejuvenate the skin naturally."
+          }
+        },
+        "ingredient_LJXRij": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/55._Bacillus_Ferment.jpg",
+            "title": "Bacillus Ferment",
+            "description": "Provides effective protection against IR and UV rays, improving the skin barrier and helps maintain optimal hydration levels."
+          }
+        },
+        "ingredient_tfQczH": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/56._Fermented_Golden_Millet.jpg",
+            "title": "Fermented Golden Millet",
+            "description": "Supports the skin's natural microbiota, boosts hydration and nourishes dry skin, promoting a healthy skin appearance."
+          }
+        },
+        "ingredient_7Uw8YL": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/57._Saccharomyces_Cerevisiae.jpg",
+            "title": "Saccharomyces Cerevisiae",
+            "description": "Rich in Oligo-β-glucans, it helps improve skin firmness, elasticity, and tonicity, promoting a more youthful and resilient appearance."
+          }
+        },
+        "ingredient_QVLtPj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/58._Unique_Canadian_Plant.jpg",
+            "title": "Unique Canadian Plant",
+            "description": "It contains compounds such as flavonoids and tannins, which help calm irritation and reduce redness."
+          }
+        },
+        "ingredient_LLHhFg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/59._Yeast_Extract.jpg",
+            "title": "Yeast Extract",
+            "description": "Rich in sulfur-containing peptides, it enhances complexion uniformity and amplifies depigmenting action for a brighter, even skin tone."
+          }
+        },
+        "ingredient_G4NFRz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/60._Acmella_Oleracea_Plant.jpg",
+            "title": "Acmella Oleracea Plant",
+            "description": "Rich in spilanthol, a bioactive compound with muscle-relaxing properties, it helps minimizing the appearance of fine lines and promoting a smoother, more youthful appearance."
+          }
+        },
+        "ingredient_mxjcGc": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/61._Baby_Jackharides_Extract.jpg",
+            "title": "Baby Jackharides Extract",
+            "description": "Gac fruit is packed with antioxidants, vitamins, and fatty acids which help to hydrate and lock in moisture, keeping the skin nourished and hydrated."
+          }
+        },
+        "ingredient_bqMYB7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/62._Dianthus_Caryophyllus_Flower_Extract.jpg",
+            "title": "Dianthus Caryophyllus Flower Extract",
+            "description": "Carnation flower extract helps support collagen production, improving skin's softness and promoting recovery and resilience for a smooth texture."
+          }
+        },
+        "ingredient_W97mBy": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/63._Trametes_Versicolor.png",
+            "title": "Trametes Versicolor",
+            "description": "Native to the Himalayas, mushroom extract soothes and calms skin discomfort, helping to prevent irritation caused by factors like UV radiation."
+          }
+        },
+        "ingredient_HLURmG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/64._Algae_Water.jpg",
+            "title": "Algae Water",
+            "description": "Algal biological water hydrates, refreshes, and soothes the skin, promoting a smooth and revitalized look."
+          }
+        },
+        "ingredient_GAdVkP": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/65._Cotton_Seed_Extract.jpg",
+            "title": "Cotton Seed Extract",
+            "description": "Derived from plant stem cells, it supports the skin's natural defense mechanism to combat photodamage and prevent photo-aging."
+          }
+        },
+        "ingredient_BbiRFw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/66._Tetrapeptide-1.jpg",
+            "title": "Tetrapeptide-1",
+            "description": "It helps support collagen production and improves skin elasticity. This peptide is also helping in reducing the appearance of fine lines and improving skin smoothness."
+          }
+        },
+        "ingredient_NtzYdf": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/67._Echinacea_Purpurea.jpg",
+            "title": "Echinacea Purpurea",
+            "description": "Highly enriched in fatty acids, it offers a plumping and volumizing effect to the facial contour, supporting firmness and elasticity."
+          }
+        },
+        "ingredient_33gmw8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/68._Lens_Esculenta.jpg",
+            "title": "Lens Esculenta",
+            "description": "Rich in oligosaccharides, lentil seed improves skin texture by reducing pore size and minimizing roughness, leaving the skin refined and smooth."
+          }
+        },
+        "ingredient_LaFQ8d": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/69._Spirodela_Polyrhiza_Extract.jpg",
+            "title": "Spirodela Polyrhiza Extract",
+            "description": "Spirodela Polyrhiza is a tiny aquatic plant renowned for its high nutritional and bioactive compound content, which hydrates the skin, helps maintain moisture levels, and leaves it soft and plump."
+          }
+        },
+        "ingredient_AUtJqM": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/70._Sphingomonas_Ferment_Extract.jpg",
+            "title": "Sphingomonas Ferment Extract",
+            "description": "A fermented microorganism derived from the rhizosphere of ginseng that improves skin hydration, enhances complexion radiance and improving overall skin quality."
+          }
+        },
+        "ingredient_bkecNf": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/71._Tara_Tannins.png",
+            "title": "Sunflower Sprout and Tara Tannins",
+            "description": "Provides powerful protection against infrared and blue light while preventing the loss of skin density caused by sun exposure."
+          }
+        },
+        "ingredient_xcNt9R": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/72._Bioactive_Complex_of_3_Tropical_Fruits.png",
+            "title": "Bioactive Complex of 3 Tropical Fruits",
+            "description": "Rich in vitamins, minerals, and enzymes, it helps nourish, moisturize and rejuvenate the skin."
+          }
+        },
+        "ingredient_JBwKg9": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/73._Kale_Leaf_Extract.jpg",
+            "title": "Kale Leaf Extract",
+            "description": "Kale, a sulfur-rich plant, gently exfoliates the skin, restores radiance, refines and softens skin texture resulting in a fine, smooth feel and a fresh, radiant complexion."
+          }
+        },
+        "ingredient_LaV9b8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/74._Cactus_Extract.png",
+            "title": "Cactus Extract",
+            "description": "A natural form of Polyhydroxy acid that enhances the skin's natural exfoliation process and enhances radiance for a healthy, glowing complexion."
+          }
+        },
+        "ingredient_cLdKbV": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/75._7_Swiss_Mountain_Plant_Blend.jpg",
+            "title": "7 Swiss Mountain Plant Blend",
+            "description": "A unique, naturally potent fusion of seven plants that improve skin brightness, improve skin tone, and keep it radiantly luminous."
+          }
+        },
+        "ingredient_XtcrYM": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/76._Sea_Vegetal_Extract.jpg",
+            "title": "Sea Vegetal Extract",
+            "description": "Rejuvenates the eye contour, enhances skin firmness and reduces the appearance of dark circles for a more refreshed look."
+          }
+        },
+        "ingredient_34RPhJ": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/77._Pepper_Berry_Extract.png",
+            "title": "Pepper Berry Extract",
+            "description": "Minimizes the appearance of skin redness while soothing and relieving discomfort and itching"
+          }
+        },
+        "ingredient_kaqBgj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/78._Artichoke_Leaf_Extract.jpg",
+            "title": "Artichoke Leaf Extract",
+            "description": "Enhances skin elasticity while regulating hyperpigmentation and improving the appearance of noticeable pores"
+          }
+        },
+        "ingredient_yQW4Nq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/79._Haberlea_Rhodopensis.jpg",
+            "title": "Haberlea Rhodopensis",
+            "description": "Offers biomimetic control for skin rejuvenation, enhancing firmness and tone while delivering luminosity, and radiance."
+          }
+        },
+        "ingredient_KCiKwy": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/80._Fagus_Sylvatica_Bud.png",
+            "title": "Fagus Sylvatica Bud",
+            "description": "Enhances skin hydration, smoothness and provides an energizing effect, leaving the skin visibly younger, smoother and hydrated."
+          }
+        },
+        "ingredient_pFPdqg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/81._Blend_of_10_Chinese_Herbs.jpg",
+            "title": "Blend of 10 Chinese Herbs",
+            "description": "A 10 renowned Chinese brightening herbs, it helps balance hyperpigmentation, provides hydration and improving the look of skin elasticity."
+          }
+        },
+        "ingredient_JihqPX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/82._Alfalfa_Extract.png",
+            "title": "Alfalfa Extract + Lupine Protein",
+            "description": "Packed with oligopeptides and oligosaccharides, it visibly diminishes eye bag volume while enhancing skin tone and restoring firmness for a refreshed, youthful look."
+          }
+        },
+        "ingredient_zQXqkp": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/83._Elderberry_Flower.jpg",
+            "title": "Elderberry Flower",
+            "description": "Packed with flavonoids and polyphenols, this potent antioxidant helps diminish dark circles around the eyes, promoting a brighter, revitalized look."
+          }
+        },
+        "ingredient_dNchGG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/84._Quinoa_Seed_Extract.png",
+            "title": "Quinoa Seed Extract",
+            "description": "Fades dark circles and reduces puffiness, revealing a radiant, refreshed and rejuvenated appearance."
+          }
+        },
+        "ingredient_Jne3wr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/85._Licorice_Root_Extract.png",
+            "title": "Licorice Root Extract",
+            "description": "Packed with glabridin, a powerful compound known for its ability to brighten and even out skin tone."
+          }
+        },
+        "ingredient_XxWHxW": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/86._Shiitake_Mushroom_Ferment.png",
+            "title": "Shiitake Mushroom Ferment",
+            "description": "Rich in natural compounds that minimize the appearance of dark spots and hyperpigmentation while brightening the overall skin tone."
+          }
+        },
+        "ingredient_cxfbAq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/87._Cherry_Blossom.png",
+            "title": "Cherry Blossom",
+            "description": "Inspired by Japanese beauty, it balances skin pigmentation and soothes irritation."
+          }
+        },
+        "ingredient_zBeA9U": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/88._Centella_Asiatica.png",
+            "title": "Centella Asiatica",
+            "description": "Enhances skin radiance and tone, promoting a more uniform complexion for healthier, glowing skin."
+          }
+        },
+        "ingredient_PfNGeD": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/89._Myrothamnus_Flabellifolia.jpg",
+            "title": "Myrothamnus Flabellifolia",
+            "description": "Rehydrates the skin, improves texture, protects against blue light stress, and reduces redness for a smoother, more balanced complexion."
+          }
+        },
+        "ingredient_YFMDB4": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/90._Birch_Sap_Water.png",
+            "title": "Birch Sap Water",
+            "description": "Its rich blend of amino acids, minerals, proteins, antioxidants and vitamins helps calm irritation, reduce redness and deliver hydration."
+          }
+        },
+        "ingredient_jTdWf9": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/91._Myrrh_Extract.png",
+            "title": "Myrrh Extract",
+            "description": "Myrrh’s astringent properties help regulate sebum production while calming irritation and reducing redness."
+          }
+        },
+        "ingredient_UkjBry": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/92._White_Willow_Bark_Extract.png",
+            "title": "White Willow Bark Extract",
+            "description": "White willow bark extract helps reduce redness, alleviate irritation and gently exfoliate the skin for a smoother, calmer complexion."
+          }
+        },
+        "ingredient_4HNf7A": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/93._Cornus_Officinalis.png",
+            "title": "Cornus Officinalis ",
+            "description": "Packed with fibers, vitamins, and organic acids, it works to calm irritated skin and visibly reduce redness."
+          }
+        },
+        "ingredient_ifNe6j": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/94._Maclura_Leaf_Extract.png",
+            "title": "Maclura Leaf Extract",
+            "description": "Packed with bioflavonoids, it controls sebum levels, refines pore size and helps regulate the skin microbiome for a smoother, clearer complexion."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_a4UXC6",
+        "ingredient_NpB3WV",
+        "ingredient_dMLT6j",
+        "ingredient_VwtrG4",
+        "ingredient_LJXRij",
+        "ingredient_tfQczH",
+        "ingredient_7Uw8YL",
+        "ingredient_QVLtPj",
+        "ingredient_LLHhFg",
+        "ingredient_G4NFRz",
+        "ingredient_mxjcGc",
+        "ingredient_bqMYB7",
+        "ingredient_W97mBy",
+        "ingredient_HLURmG",
+        "ingredient_GAdVkP",
+        "ingredient_BbiRFw",
+        "ingredient_NtzYdf",
+        "ingredient_33gmw8",
+        "ingredient_LaFQ8d",
+        "ingredient_AUtJqM",
+        "ingredient_bkecNf",
+        "ingredient_xcNt9R",
+        "ingredient_JBwKg9",
+        "ingredient_LaV9b8",
+        "ingredient_cLdKbV",
+        "ingredient_XtcrYM",
+        "ingredient_34RPhJ",
+        "ingredient_kaqBgj",
+        "ingredient_yQW4Nq",
+        "ingredient_KCiKwy",
+        "ingredient_pFPdqg",
+        "ingredient_JihqPX",
+        "ingredient_zQXqkp",
+        "ingredient_dNchGG",
+        "ingredient_Jne3wr",
+        "ingredient_XxWHxW",
+        "ingredient_cxfbAq",
+        "ingredient_zBeA9U",
+        "ingredient_PfNGeD",
+        "ingredient_YFMDB4",
+        "ingredient_jTdWf9",
+        "ingredient_UkjBry",
+        "ingredient_4HNf7A",
+        "ingredient_ifNe6j"
+      ],
+      "name": "ingredient_grid-remove-country-names2",
+      "settings": {}
+    },
+    "text_over_media_9aGiPi": {
+      "type": "text-over-media",
+      "blocks": {
+        "heading_x8EFPM": {
+          "type": "heading",
+          "settings": {
+            "heading": "WE BELIEVE MORE IS BETTER"
+          }
+        },
+        "text_QJPTth": {
+          "type": "text",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula."
+          }
+        },
+        "button_pL6U7P": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "secondary_button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_x8EFPM",
+        "text_QJPTth",
+        "button_pL6U7P"
+      ],
+      "disabled": true,
+      "settings": {
+        "remove_margin": true,
+        "center_align_text": false,
+        "small_height": false,
+        "image": "shopify://shop_images/16_9_DESKTOP.png",
+        "mobile_image": "shopify://shop_images/1_1_MOBILE_2.png",
+        "video": "",
+        "mobile_video": "",
+        "color_scheme": "background1",
+        "text_color": "text1",
+        "button_style": "primary"
+      }
+    },
+    "heading_and_text_grid_FBMY99": {
+      "type": "heading-and-text-grid",
+      "blocks": {
+        "heading_hpRdqe": {
+          "type": "heading",
+          "settings": {
+            "large_heading": false,
+            "heading": "INGREDIENT DIRECTORY"
+          }
+        },
+        "text_4E3cky": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hpRdqe",
+        "text_4E3cky"
+      ],
+      "disabled": true,
+      "settings": {
+        "center_align_text": false,
+        "two_column": false,
+        "fuller_width": true,
+        "color_scheme": "transparent",
+        "text_colour": "text1",
+        "button_style": "primary"
+      }
+    },
+    "accordion_PcdkCC": {
+      "type": "accordion",
+      "blocks": {
+        "collapsible_row_eXBt6T": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Asia",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "ingredients_list": [
+              "myrrh-extract",
+              "white-willow-bark-extract",
+              "gac-fruit"
+            ]
+          }
+        },
+        "collapsible_row_AJCyCX": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Africa",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_A3iXc3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "North America",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_GAMRqK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "South America",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_McNcmq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Europe",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_zmyrWT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Austraila",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum.</p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_eXBt6T",
+        "collapsible_row_AJCyCX",
+        "collapsible_row_A3iXc3",
+        "collapsible_row_GAMRqK",
+        "collapsible_row_McNcmq",
+        "collapsible_row_zmyrWT"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "supporting_text": "",
+        "center_align_text": false,
+        "open_first_collapsible_row": true
+      }
+    },
+    "content_cta_and_media_grid_bg_6xXcUL": {
+      "type": "content-cta-and-media-grid-bg",
+      "blocks": {
+        "heading_fp7cjV": {
+          "type": "heading",
+          "settings": {
+            "heading": "WITH OVER 2,000 CLINICALLY PROVEN RESULTS."
+          }
+        },
+        "image_heading_rQr8NR": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_EhBQ8j": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit .</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fp7cjV",
+        "image_heading_rQr8NR",
+        "text_EhBQ8j"
+      ],
+      "disabled": true,
+      "settings": {
+        "background_color": "secondary",
+        "text_color": "text1",
+        "button_style": "primary",
+        "flip_layout": true,
+        "image": "shopify://shop_images/Group_20464.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ingredient_grid_3BYf8Q",
+    "custom_liquid_3qKGnL",
+    "ingredient_grid_h7pwbc",
+    "ingredient_grid_mQy6Jf",
+    "ingredient_grid_JFY7JG",
+    "text_over_media_9aGiPi",
+    "heading_and_text_grid_FBMY99",
+    "accordion_PcdkCC",
+    "content_cta_and_media_grid_bg_6xXcUL"
+  ]
+}

@@ -1,0 +1,187 @@
+<div class="container">
+    <div class="wrap">
+        <div class="mt-12 large:mt-20">
+            <div class="accordion__header">
+                {%- if section.settings.heading != blank -%}
+                    <h2 class="heading-r text-text1 mb-10{% if section.settings.center_align_text %} text-center{% endif %}">
+                        {{- section.settings.heading | escape -}}
+                    </h2>
+                {%- else -%}
+                    <h2 class="hidden">
+                        {{- 'accessibility.accordion_title' | t -}}
+                    </h2>
+                {%- endif -%}
+            </div>
+            {%- assign firstAssigned = false -%}
+            <div>
+                {%- for faq_item in product.metafields.product_faqs.heading -%}
+                    {%-  assign loopIndex = forloop.index | minus: 1 -%}
+                    <div class="accordion--comp">
+                        <details class="w-full border-b border-solid border-uiDarkGrey"{% if section.settings.open_first_collapsible_row and forloop.first %}{% assign firstAssigned = true %} open{% endif %}>
+                            <summary id="Summary-{{ forloop.index }}-product-faq" class="accordion__summary flex justify-between py-5 cursor-pointer large:py-[1.625rem]">
+                                <div class="flex gap-4">
+                                    {%- unless product.metafields.product_faqs.icon[loopIndex] == 'none' -%}
+                                        {%- render 'icon-accordion', icon: product.metafields.product_faqs.icon[loopIndex] -%}
+                                    {%- endunless -%}
+                                    <h3 class="font-bold text-text1">
+                                        {{- product.metafields.product_faqs.heading[loopIndex] -}}
+                                    </h3>
+                                </div>
+                                <div class="accordion__plus relative w-5 h-5 flex flex-col justify-center items-center transition-transform duration-200 transform rotate-45">
+                                    <div class="relative flex w-4 h-[0.0625rem] bg-primary transform -rotate-45 -translate-y-1/2 top-[0.0625rem]"></div>
+                                    <div class="relative flex w-4 h-[0.0625rem] bg-primary transform rotate-45 -translate-y-1/2"></div>
+                                </div>
+                            </summary>
+                            <div class="wysiwyg pb-8" role="region" aria-labelledby="Summary-{{ forloop.index | plus: 1 }}-product-faq">
+                                {{- product.metafields.product_faqs.content[loopIndex] -}}
+                            </div>
+                        </details>
+                    </div>
+                {%-  endfor -%}
+                {%- for block in section.blocks -%}
+                    <div class="accordion--comp" {{ block.shopify_attributes }}>
+                        <details class="w-full border-b border-solid border-uiDarkGrey"{% if section.settings.open_first_collapsible_row and forloop.first and firstAssigned == false %} open{% endif %}>
+                            <summary id="Summary-{{ block.id }}-{{ section.id }}" class="accordion__summary flex justify-between py-5 cursor-pointer large:py-[1.625rem]">
+                                <div class="flex gap-4">
+                                    {%- unless block.settings.icon == 'none' -%}
+                                        {%- render 'icon-accordion', icon: block.settings.icon -%}
+                                    {%- endunless -%}
+                                    <h3 class="text-text1 font-bold">
+                                        {{- block.settings.heading | default: block.settings.page.title -}}
+                                    </h3>
+                                </div>
+                                <div class="accordion__plus relative w-5 h-5 flex flex-col justify-center items-center transition-transform duration-200 transform rotate-45">
+                                    <div class="relative flex w-4 h-[0.0625rem] bg-primary transform -rotate-45 -translate-y-1/2 top-[0.0625rem]"></div>
+                                    <div class="relative flex w-4 h-[0.0625rem] bg-primary transform rotate-45 -translate-y-1/2"></div>
+                                </div>
+                            </summary>
+                            <div class="wysiwyg pb-8" role="region" aria-labelledby="Summary-{{ block.id }}-{{ section.id }}">
+                                {{- block.settings.row_content -}}
+                                {{- block.settings.page.content -}}
+                            </div>
+                        </details>
+                    </div>
+                {%- endfor -%}
+            </div>
+            {%- if section.settings.supporting_text != blank -%}
+                <div class="wysiwyg mt-16 text-center">
+                    {{- section.settings.supporting_text -}}
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.product_faqs.name",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+        "templates": [
+            "product"
+        ]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.accordion.settings.heading.label"
+        },
+        {
+            "type": "richtext",
+            "id": "supporting_text",
+            "label": "t:sections.accordion.settings.supporting_text.label",
+            "info": "t:sections.accordion.settings.supporting_text.info"
+        },
+        {
+            "type": "checkbox",
+            "id": "center_align_text",
+            "label": "t:sections.accordion.settings.centre_align_text.label",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "open_first_collapsible_row",
+            "default": false,
+            "label": "t:sections.accordion.settings.open_first_collapsible_row.label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collapsible_row",
+            "name": "t:sections.accordion.blocks.collapsible_row.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Collapsible row",
+                    "label": "t:sections.accordion.blocks.collapsible_row.settings.heading.label",
+                    "info": "t:sections.accordion.blocks.collapsible_row.settings.heading.info"
+                },
+                {
+                    "type": "select",
+                    "id": "icon",
+                    "options": [
+                        {
+                            "value": "none",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__1.label"
+                        },
+                        {
+                            "value": "materials",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__2.label"
+                        },
+                        {
+                            "value": "shipping_and_returns",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__3.label"
+                        },
+                        {
+                            "value": "dimensions",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__4.label"
+                        },
+                        {
+                            "value": "care_instructions",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__5.label"
+                        },
+                        {
+                            "value": "faqs",
+                            "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.options__6.label"
+                        }
+                    ],
+                    "default": "none",
+                    "label": "t:sections.accordion.blocks.collapsible_row.settings.icon.label"
+                },
+                {
+                    "type": "richtext",
+                    "id": "row_content",
+                    "label": "t:sections.accordion.blocks.collapsible_row.settings.row_content.label"
+                },
+                {
+                    "type": "page",
+                    "id": "page",
+                    "label": "t:sections.accordion.blocks.collapsible_row.settings.page.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.product_faqs.presets.name",
+            "blocks": [
+                {
+                    "type": "collapsible_row"
+                },
+                {
+                    "type": "collapsible_row"
+                },
+                {
+                    "type": "collapsible_row"
+                },
+                {
+                    "type": "collapsible_row"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+<div class="swiper swiper--auto !overflow-visible js-ingredients-carousel">
+    <div class="swiper-wrapper">
+        {% if ingredients %}
+            {%- for ingredient in ingredients -%}
+                <div class="swiper-slide js-slide !h-auto box-border bg-uiLightGrey p-6 pb-9 large:pb-[2.625rem]">
+                    <img
+                        class="rounded-full mb-6 mediumMax:w-[6.188rem]"
+                        src="{{ ingredient.ingredient_image.value | image_url }}"
+                        alt="{{ ingredient.heading | escape }}"
+                        height="122"
+                        width="122"
+                        loading="lazy"
+                    >
+                    <h2 class="mb-2.5 large:body-l large:mb-3.5">{{ ingredient.heading }}</h2>
+                    <div class="flex items-center mb-5">
+                        <img
+                            src="{{ ingredient.country_image.value | image_url }}"
+                            alt="{{ ingredient.country | escape }}"
+                            height="16"
+                            width="24"
+                            loading="lazy"
+                        >
+                        <p class="font-Gotham body-xs uppercase pl-2.5">{{ ingredient.country }}</p>
+                    </div>
+                    <div class="[&_p]:body-r [&_p]:mb-3">
+                        {{ ingredient.ingredient_description | metafield_tag  }}
+                    </div>
+                </div>
+            {%- endfor -%}
+        {% endif %}
+    </div>
+    <div class="py-5 large:py-[1.875rem]">
+        <div class="relative flex justify-between items-center">
+            <div class="swiper-scrollbar relative w-full large:mr-6">
+                <div class="swiper-scrollbar-drag bg-black h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+            </div>
+            <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-black text-black cursor-pointer transition transform rotate-180 hover:bg-black hover:text-white">
+                {% render 'icon-slider-arrow' %}
+            </button>
+            <button class="swiper-button-next swiper-button-small-mobile ml-3.5 bg-black text-white border border-solid border-black transition cursor-pointer hover:opacity-80">
+                {% render 'icon-slider-arrow' %}
+            </button>
+        </div>
+    </div>
+</div>

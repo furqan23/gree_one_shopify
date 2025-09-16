@@ -1,0 +1,417 @@
+{% assign wrapperClass = 'flex flex-col gap-y-[3.75rem] gap-x-5 medium:flex-row medium:flex-wrap' %}
+
+{% if section.blocks.size == 1 or section.blocks.size == 2 %}
+    {% assign mediaWidth = 640 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 480 %}
+    {% assign flexBasisClass = 'medium:basis-[calc(50%_-_0.625rem)]' %}
+    {% assign textPaddingClass = 'large:pr-28' %}
+{% elsif section.blocks.size == 3 %}
+    {% assign mediaWidth = 420 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 315 %}
+    {% assign flexBasisClass = 'medium:basis-[calc(33.333%_-_0.875rem)]' %}
+    {% assign textPaddingClass = 'medium:pr-11' %}
+{% elsif section.blocks.size == 4 %}
+    {% assign mediaWidth = 310 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 233 %}
+    {% assign flexBasisClass = 'medium:basis-[calc(50%_-_0.625rem)] large:basis-[calc(25%_-_0.9375rem)]' %}
+    {% assign textPaddingClass = null %}
+{% endif %}
+
+<div class="text-{{ section.settings.text_color }} bg-{{ section.settings.background_color }}">
+    <div class="container">
+        <div class="{% if section.settings.background_color == 'transparent' %}pt-12 large:pt-20{% else %}mt-12 large:mt-20{% endif %}">
+            <div class="wrap">
+                {% if section.settings.title and section.settings.show_title %}
+                    <h2 class="heading-r w-11/12 text-[2.125rem] mb-10 large:text-5xl">
+                        {{ section.settings.title }}
+                    </h2>
+                {% endif %}
+                {% if section.settings.description and section.settings.show_description %}
+                    <div class="wysiwyg body-l mb-7">
+                        {{ section.settings.description }}
+                    </div>
+                {% endif %}
+                {% if section.blocks.size > 0 %}
+                    <div>
+                        <div class="{{ wrapperClass }}">
+                            {% for item in section.blocks %}
+                                <div class="{{ flexBasisClass }}">
+                                    {% if item.settings.embed_url != blank %}
+                                        <deferred-media class="deferred-media relative aspect-4/3" data-media-id="{{ item.settings.embed_url.id }}">
+                                            <button
+                                                id="Deferred-Poster-Modal-{{ item.settings.embed_url.id }}"
+                                                class="deferred-media__poster media"
+                                                type="button"
+                                            >
+                                                {%- if item.settings.video_poster != blank -%}
+                                                    <img srcset="{{ item.settings.video_poster | image_url: width: mediaWidth }} 1x, {{ item.settings.video_poster | image_url: width: mediaWidthRetina }} 2x"
+                                                        src="{{ item.settings.video_poster | image_url: width: mediaWidth }}"
+                                                        class="w-full max-w-full max-h-full object-cover"
+                                                        width="{{ mediaWidth }}"
+                                                        height="{{ mediaHeight }}"
+                                                        alt="{{ 'sections.video.load_video' | t: description: item.settings.description | escape }}"
+                                                        loading="lazy"
+                                                    >
+                                                {%- else -%}
+                                                    {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                                                {%- endif -%}
+                                                <span class="deferred-media__poster-button">
+                                                    {%- render 'icon-play' -%}
+                                                </span>
+                                            </button>
+                                            <template>
+                                                {%- if item.settings.embed_url.type == 'youtube' -%}
+                                                    <iframe src="https://www.youtube.com/embed/{{ item.settings.embed_url.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ item.settings.description | escape }}"></iframe>
+                                                {%- else -%}
+                                                    <iframe src="https://player.vimeo.com/video/{{ item.settings.embed_url.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ item.settings.description | escape }}"></iframe>
+                                                {%- endif -%}
+                                            </template>
+                                        </deferred-media>
+                                    {%- elsif item.settings.video_url != blank -%}
+                                        <div class="overflow-hidden">
+                                            <video class="aspect-4/3 w-full max-w-full max-h-full object-cover scale-in js-scale-in js-lazy-video"
+                                                width="{{ mediaWidth }}"
+                                                height="{{ mediaHeight }}"
+                                                autoplay
+                                                muted
+                                                loop
+                                                {% unless item.settings.video_poster == blank %}
+                                                    poster="{{ item.settings.video_poster | image_url: width: mediaWidthRetina }}"
+                                                {% endunless %}
+                                                {% unless item.settings.video_url == blank %}
+                                                    data-video-url="{{ item.settings.video_url }}"
+                                                {% endunless %}
+                                            ></video>
+                                        </div>
+                                    {%- elsif item.settings.image != blank -%}
+                                        <div class="overflow-hidden">
+                                            <img srcset="{{ item.settings.image.src | image_url: width: mediaWidth }} 1x, {{ item.settings.image.src | image_url: width: mediaWidthRetina }} 2x"
+                                                src="{{ item.settings.image.src | image_url: width: mediaWidthRetina }}"
+                                                class="aspect-4/3 w-full max-w-full max-h-full object-cover scale-in js-scale-in"
+                                                width="{{ mediaWidth }}"
+                                                height="{{ mediaHeight }}"
+                                                alt="{{ item.settings.title | escape }}"
+                                                loading="lazy"
+                                            >
+                                        </div>
+                                    {%- endif -%}
+                                    {% if item.settings.heading != blank or item.settings.content != blank or item.settings.button_link != blank %}
+                                       <div class="mt-[1.875rem] large:mt-[2.125rem]">
+                                            {% if item.settings.heading != blank %}
+                                                <h3 class="heading-xs text-[1.125rem] large:text-[1.375rem]">
+                                                    {{ item.settings.heading }}
+                                                </h3>
+                                            {% endif %}
+                                            {% if item.settings.content != blank %}
+                                                <div class="wysiwyg body-m mt-5 text-[0.938rem] large:text-base {{ textPaddingClass }}">
+                                                    {{ item.settings.content }}
+                                                </div>
+                                            {% endif %}
+                                            {% if item.settings.button_label != blank and item.settings.button_link != blank %}
+                                                <div class="mt-5">
+                                                    <a class="button button--{{ section.settings.button_style }}" href="{{ item.settings.button_link }}">
+                                                        <div class="button__label">
+                                                            <span>
+                                                                {{- item.settings.button_label | escape -}}
+                                                            </span>
+                                                            <span class="absolute top-10 left-0">
+                                                                {% if item.settings.secondary_button_label %}
+                                                                    {{- item.settings.secondary_button_label| escape -}}
+                                                                {% else %}
+                                                                    {{- item.settings.button_label | escape -}}
+                                                                {% endif %}
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.media-grid.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Media grid",
+            "label": "t:sections.media-grid.settings.title.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_title",
+            "label": "t:sections.media-grid.settings.show_title.label",
+            "default": false
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet.</p>",
+            "label": "t:sections.media-grid.settings.description.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_description",
+            "label": "t:sections.media-grid.settings.show_description.label",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "text_colour",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.all.colors.text_colour_label"
+        },
+        {
+            "type": "select",
+            "id": "button_style",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.button_styles.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.button_styles.secondary.label"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "t:sections.all.button_styles.tertiary.label"
+                },
+                {
+                    "value": "white",
+                    "label": "t:sections.all.button_styles.white.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.all.button_styles.button_style_label"
+        },
+        {
+            "type": "select",
+            "id": "controls_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.all.colors.controls_colour_label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "secondary",
+            "label": "t:sections.all.colors.background_colour_label"
+        }
+    ],
+    "max_blocks": 3,
+    "blocks": [
+        {
+            "name": "t:sections.media-grid.blocks.item.name",
+            "type": "item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.media-grid.blocks.item.settings.image.label",
+                    "info": "t:sections.media-grid.blocks.item.settings.image.info"
+                },
+                {
+                    "type": "text",
+                    "id": "video_url",
+                    "default": "https://player.vimeo.com/progressive_redirect/playback/541707235/rendition/1080p/file.mp4?loc=external&signature=883afde55f83841b85b1b8a518e5072ed72353a1850b2782aab895bdc2458c6d",
+                    "label": "t:sections.media-grid.blocks.item.settings.video_url.label",
+                    "info": "t:sections.media-grid.blocks.item.settings.video_url.info"
+                },
+                {
+					"type": "video_url",
+					"id": "embed_url",
+					"accept": [
+						"youtube",
+						"vimeo"
+					],
+					"default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+					"label": "t:sections.media-grid.blocks.item.settings.embed_url.label",
+                    "info": "t:sections.media-grid.blocks.item.settings.embed_url.info"
+				},
+				{
+					"type": "image_picker",
+					"id": "video_poster",
+					"label": "t:sections.media-grid.blocks.item.settings.video_poster.label",
+                    "info": "t:sections.media-grid.blocks.item.settings.video_poster.info"
+				},
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Title",
+                    "label": "t:sections.media-grid.blocks.item.settings.heading.label"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "default": "<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>",
+                    "label": "t:sections.media-grid.blocks.item.settings.content.label"
+                },
+                {
+					"type": "text",
+					"id": "button_label",
+					"default": "Button label",
+					"label": "t:sections.media-grid.blocks.item.settings.button_label.label"
+				},
+                {
+					"type": "text",
+					"id": "secondary_button_label",
+					"default": "Secondary Button label",
+					"label": "t:sections.media-grid.blocks.item.settings.secondary_button_label.label"
+				},
+				{
+					"type": "url",
+					"id": "button_link",
+					"label": "t:sections.media-grid.blocks.item.settings.button_link.label"
+				}
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.media-grid.presets.name",
+            "blocks": [
+                {
+                    "type": "item"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

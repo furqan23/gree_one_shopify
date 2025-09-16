@@ -1,0 +1,263 @@
+<div id="media-carousel-{{ section.id }}">
+    <div class="pt-12 overflow-hidden large:pt-20">
+        <div class="container">
+            <div class="wrap">
+                {%- if section.settings.heading != blank -%}
+                    <h2 class="heading-r mb-10{% if section.settings.center_align_text %} text-center{% endif %}">
+                        {{- section.settings.heading | escape -}}
+                    </h2>
+                {%- endif -%}
+                {% if section.blocks != blank %}
+                    <div class="swiper swiper--auto medium:!overflow-visible js-media-carousel">
+                        <div class="swiper-wrapper">
+                            {% for slide in section.blocks %}
+                                {%- if slide.settings.embed_url != blank
+                                    or slide.settings.video_url != blank
+                                    or slide.settings.image != blank
+                                -%}
+                                    {% comment %} Percentage values in the `calc` are double the `.wrap` padding x-axis value. {% endcomment %}
+                                    <div class="swiper-slide aspect-video [&.swiper-slide]:w-[calc(100%_-_17.066%)] [&.swiper-slide]:medium:w-[calc(100%_-_5.866%)] [&.swiper-slide]:large:w-[calc(100%_-_9.722%)]">
+                                        {% if slide.settings.embed_url != blank %}
+                                            <div class="h-full flex justify-center items-center">
+                                                <deferred-media class="deferred-media relative w-full h-auto aspect-video" data-media-id="{{ slide.settings.embed_url.id }}">
+                                                    <button
+                                                        id="Deferred-Poster-Modal-{{ slide.settings.embed_url.id }}"
+                                                        class="deferred-media__poster media"
+                                                        type="button"
+                                                    >
+                                                        {%- if slide.settings.video_poster != blank -%}
+                                                            <picture>
+                                                                <source media="(max-width: 48rem)"
+                                                                        srcset="{{ slide.settings.video_poster | image_url: width: 722 }} 1x, {{ slide.settings.video_poster | image_url: width: 1444 }} 2x">
+                                                                <source media="(min-width: 48rem)"
+                                                                        srcset="{{ slide.settings.video_poster | image_url: width: 858 }} 1x, {{ slide.settings.video_poster | image_url: width: 1715 }} 2x">
+                                                                <img srcset="{{ slide.settings.video_poster | image_url: width: 1715 }} 2x"
+                                                                    src="{{ slide.settings.video_poster | image_url: width: 858 }}"
+                                                                    class="object-cover w-full h-full"
+                                                                    width="{{ slide.settings.video_poster.width }}"
+                                                                    height="{{ slide.settings.video_poster.height }}"
+                                                                    alt="{{ 'sections.video.load_video' | t: description: slide.settings.description | escape }}"
+                                                                    loading="lazy"
+                                                                >
+                                                            </picture>
+                                                        {%- else -%}
+                                                            {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                                                        {%- endif -%}
+                                                        <span class="deferred-media__poster-button">
+                                                            {%- render 'icon-play' -%}
+                                                        </span>
+                                                    </button>
+                                                    <template>
+                                                        {%- if slide.settings.embed_url.type == 'youtube' -%}
+                                                            <iframe src="https://www.youtube.com/embed/{{ slide.settings.embed_url.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ slide.settings.description | escape }}"></iframe>
+                                                        {%- else -%}
+                                                            <iframe src="https://player.vimeo.com/video/{{ slide.settings.embed_url.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ slide.settings.description | escape }}"></iframe>
+                                                        {%- endif -%}
+                                                    </template>
+                                                </deferred-media>
+                                            </div>
+                                        {%- elsif slide.settings.video_url != blank -%}
+                                            <video class="object-cover w-full h-full js-lazy-video"
+                                                width="858"
+                                                height="858"
+                                                autoplay
+                                                muted
+                                                loop
+                                                {% unless slide.settings.video_poster == blank %}
+                                                    poster="{{ slide.settings.video_poster | image_url: width: 1715 }}"
+                                                {% endunless %}
+                                                {% unless slide.settings.video_url == blank %}
+                                                    data-video-url="{{ slide.settings.video_url }}"
+                                                {% endunless %}
+                                            />
+                                        {%- elsif slide.settings.image != blank -%}
+                                            <picture>
+                                                <source media="(max-width: 48rem)"
+                                                        srcset="{{ slide.settings.image | image_url: width: 722 }} 1x, {{ slide.settings.image | image_url: width: 1444 }} 2x">
+                                                <source media="(min-width: 48rem)"
+                                                        srcset="{{ slide.settings.image | image_url: width: 858 }} 1x, {{ slide.settings.image | image_url: width: 1715 }} 2x">
+                                                <img srcset="{{ slide.settings.image | image_url: width: 1715 }} 2x"
+                                                    src="{{ slide.settings.image | image_url: width: 858 }}"
+                                                    class="object-cover w-full h-full"
+                                                    width="{{ slide.settings.image.width }}"
+                                                    height="{{ slide.settings.image.height }}"
+                                                    alt=""
+                                                    loading="lazy"
+                                                >
+                                            </picture>
+                                        {%- endif -%}
+                                    </div>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </div>
+                        {% if section.blocks and section.blocks.size > 1 %}
+                            <div class="pt-5 large:pt-7">
+                                <div class="relative flex justify-between items-center">
+                                    <div class="swiper-scrollbar relative w-full large:mr-6">
+                                        <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                                        <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                                    </div>
+                                    <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }} swiper-button-small-mobile">
+                                        {% render 'icon-slider-arrow' %}
+                                    </button>
+                                    <button class="swiper-button-next swiper-button-small-mobile ml-3.5 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80 swiper-button-small-mobile">
+                                        {% render 'icon-slider-arrow' %}
+                                    </button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.media-carousel.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.media-carousel.settings.heading.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "center_align_text",
+            "label": "t:sections.media-carousel.settings.centre_align_text.label",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "controls_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.media-carousel.settings.controls_colour.label"
+        },
+        {
+            "type": "select",
+            "id": "icons_hover_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "secondary",
+            "label": "t:sections.all.colors.icons_hover_colour_label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "t:sections.media-carousel.blocks.name",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.media-carousel.blocks.settings.image.label",
+                    "info": "t:sections.media-carousel.blocks.settings.image.info"
+                },
+                {
+                    "type": "text",
+                    "id": "video_url",
+                    "default": "https://player.vimeo.com/progressive_redirect/playback/541707235/rendition/1080p/file.mp4?loc=external&signature=883afde55f83841b85b1b8a518e5072ed72353a1850b2782aab895bdc2458c6d",
+                    "label": "t:sections.media-carousel.blocks.settings.video_url.label",
+                    "info": "t:sections.media-carousel.blocks.settings.video_url.info"
+                },
+                {
+                    "type": "video_url",
+                    "id": "embed_url",
+                    "accept": [
+                        "youtube",
+                        "vimeo"
+                    ],
+                    "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+                    "label": "t:sections.media-carousel.blocks.settings.embed_url.label",
+                    "info": "t:sections.media-carousel.blocks.settings.embed_url.info"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "video_poster",
+                    "label": "t:sections.media-carousel.blocks.settings.video_poster.label",
+                    "info": "t:sections.media-carousel.blocks.settings.video_poster.info"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.media-carousel.presets.name",
+            "blocks": [
+                {
+                    "type": "slide"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

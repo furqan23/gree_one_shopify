@@ -1,0 +1,30 @@
+{% unless settings.free_shipping_threshold == blank %}
+    {% assign shippingThreshold = settings.free_shipping_threshold | times: 100 %}
+    {% assign cartTotal = cart.total_price %}
+    {% if cart.item_count >= 1 %}
+        <div class="cart-notification__delivery">
+            <span class="cart-notification__delivery-text">
+                {% if cartTotal >= shippingThreshold %}
+                    {{ 'general.cart.free_delivery_qualified' | t }}
+                {% else %}
+                    {%- liquid
+                        assign shippingCalc = shippingThreshold | minus: cartTotal
+
+                        assign free_shipping_text_before = null
+                        if settings.free_shipping_text_before
+                            assign free_shipping_text_before = settings.free_shipping_text_before
+                        endif
+
+                        if settings.free_shipping_text_after
+                            assign free_shipping_text_after = settings.free_shipping_text_after
+                        else
+                            assign free_shipping_text_after = 'general.cart.free_delivery_not_qualified' | t
+                        endif
+                    -%}
+
+                    {{ free_shipping_text_before }} {{ shippingCalc | money }} {{ free_shipping_text_after }}
+                {% endif %}
+            </span>
+        </div>
+    {% endif%}
+{% endunless %}

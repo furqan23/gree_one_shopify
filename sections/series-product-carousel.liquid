@@ -1,0 +1,256 @@
+{% assign series = section.settings.collection.metafields.custom.series.value %}
+{% assign hasAccordion = false %}
+{% assign hasProducts = false %}
+{% assign hasProductBlocks = false %}
+
+{%- for block in section.blocks -%}
+    {% if block.type =='accordion' %}
+        {% assign hasAccordion = true %}
+    {% endif %}
+{% endfor %}
+
+{%- for block in section.blocks -%}
+    {% if block.type == 'slide' %}
+        {% assign hasProducts = true %}
+        {% assign hasProductBlocks = true %}
+    {% endif %}
+{% endfor %}
+
+{% if section.settings.collection.all_products_count > 0 %}
+    {% assign hasProducts = true %}
+{% endif %}
+
+<div class="overflow-hidden">
+    <div{% if series %} style="background-color: {{ series.colour }};"{% endif %} class="bg-uiLightGrey">
+        <div class="container">
+            <div class="pt-[2.625rem] pb-[8.125rem] mt-[2.625rem] medium:mt-20 medium:pt-20 medium:pb-[12.5rem]">
+                <div class="wrap">
+                    <div class="grid medium:grid-cols-12">
+                        {% if series.icon %}
+                            <div class="mediumMax:text-right medium:col-span-3">
+                                <img
+                                    class="inline w-full mediumMax:max-w-[9.375rem] medium:max-h-[18.75rem]"
+                                    src="{{ series.icon | image_url: width: 300 }}"
+                                    width="300"
+                                    height="300"
+                                    alt="{{ series.icon.alt }}"
+                                    loading="lazy"
+                                >
+                            </div>
+                        {% endif %}
+                        <div class="mediumMax:mt-[3.625rem] medium:col-span-6 {% if series.icon %}medium:col-start-5{% endif %}">
+                            <h2 class="heading-s">
+                                {{ section.settings.title | escape }}
+                            </h2>
+                            {% if series.description %}
+                                <div class="wysiwyg mt-5 body-l font-Gotham font-light normal-case">
+                                    {{ series.description }}
+                                </div>
+                            {% endif %}
+                            {% if hasAccordion %}
+                                <div class="mt-7 max-w-[25rem]">
+                                    {%- for block in section.blocks -%}
+                                        {% if block.type =='accordion' %}
+                                            <div class="accordion--comp border-b border-uiBlack last:border-b-0" {{ block.shopify_attributes }}>
+                                                <details class="w-full border-uiMidGrey group">
+                                                    <summary id="Summary-{{ block.id }}-{{ section.id }}" class="accordion__summary flex justify-between items-center py-4 cursor-pointer medium:py-[1.625rem]">
+                                                        <div class="flex gap-4">
+                                                            <h3 class="body-l uppercase font-semibold">
+                                                                {{- block.settings.title  -}}
+                                                            </h3>
+                                                        </div>
+                                                        <div class="shrink-0">
+                                                            <span class="relative right-[0.5625rem]" aria-hidden>
+                                                                <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black"></span>
+                                                                <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black rotate-90 transition duration-300 group-open:rotate-0"></span>
+                                                            </span>
+                                                        </div>
+                                                    </summary>
+                                                    <div class="wysiwyg pb-8 mt-4" role="region" aria-labelledby="Summary-{{ block.id }}-{{ section.id }}">
+                                                        {{- block.settings.content -}}
+                                                    </div>
+                                                </details>
+                                            </div>
+                                        {% endif %}
+                                    {%- endfor -%}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if hasProducts %}
+        <div class="-mt-[6.25rem] medium:-mt-[7.1875rem]">
+            <div class="container">
+                <div class="wrap">
+                    <div class="swiper [&.swiper]:overflow-visible js-product-carousel">
+                        <div class="swiper-wrapper">
+                            {% if hasProductBlocks %}
+                                {%- for block in section.blocks -%}
+                                    {% if block.type == 'slide' %}
+                                        <div class="swiper-slide js-slide" data-type="{{ block.settings.product.type }}">
+                                            {% render 'card-product',
+                                                card_product: block.settings.product,
+                                                enable_reviews: true,
+                                                width_classes: 'w-full',
+                                                lazy_load: true,
+                                                show_vendor: false,
+                                                show_quick_add: true,
+                                                show_bg: true
+                                            %}
+                                        </div>
+                                    {% endif %}
+                                {%- endfor -%}
+                            {% else %}
+                                {%- for product in section.settings.collection.products -%}
+                                    <div class="swiper-slide js-slide" data-type="{{ product.type }}">
+                                        {% render 'card-product',
+                                            card_product: product,
+                                            enable_reviews: true,
+                                            width_classes: 'w-full',
+                                            lazy_load: true,
+                                            show_vendor: false,
+                                            show_quick_add: true
+                                        %}
+                                    </div>
+                                {%- endfor -%}
+                            {% endif %}
+                        </div>
+                        <div class="relative flex justify-between items-center mt-5 large:mt-[2.1875rem]">
+                            <div class="swiper-scrollbar relative w-full rounded-[2rem] medium:mr-6">
+                                <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-[0.1875rem] rounded-sm cursor-pointer z-20"></div>
+                                <div class="absolute w-full h-px top-1/2 bg-uiMidGrey z-10"></div>
+                            </div>
+                            <button class="swiper-button-prev swiper-button-desktop border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }}">
+                                {% render 'icon-slider-arrow' %}
+                            </button>
+                            <button class="swiper-button-next swiper-button-desktop ml-4 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80">
+                                {% render 'icon-slider-arrow' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% schema %}
+    {
+        "name": "t:sections.series-product-carousel.name",
+        "tag": "section",
+        "class": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.series-product-carousel.settings.title.label"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "t:sections.series-product-carousel.settings.collection.label"
+            },
+            {
+                "type": "select",
+                "id": "controls_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "background2",
+                "label": "t:sections.series-product-carousel.settings.controls_colour.label"
+            },
+            {
+                "type": "select",
+                "id": "icons_hover_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "background1",
+                "label": "t:sections.all.colors.icons_hover_colour_label"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Slide",
+                "type": "slide",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product"
+                    }
+                ]
+            },
+            {
+                "name": "Accordion",
+                "type": "accordion",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "content",
+                        "label": "content"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.series-product-carousel.presets.name"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,345 @@
+<div id="Banner-{{ section.id }}"
+    class="bg-{{ section.settings.color_scheme }} relative z-0 flex justify-center mediumMax:flex-col-reverse
+    {% if section.settings.center_align_text %}
+         text-center{% endif %}
+    {% unless section.settings.remove_margin %}
+        mt-12 large:mt-16
+    {% endunless %}
+    {% if section.settings.image != blank or section.settings.video %}
+        w-full
+        {% if section.settings.small_height == false %}
+            items-center aspect-1/1 medium:aspect-video large:max-h-[56.25rem]
+        {% else %}
+            items-end aspect-[9/16] max-h-[40rem] before:from-[#122231]/85 before:to-[#122231]/0 before:bg-gradient-to-t before:content-[''] before:block before:absolute before:w-full before:left-0 before:h-1/2 medium:aspect-[3/1] medium:items-center medium:before:h-full medium:max-h-[30rem] medium:before:w-1/2 medium:before:bg-gradient-to-r
+        {% endif %}
+    {% else %}
+        py-20
+    {% endif %}"
+>
+    {%- if section.blocks != blank -%}
+        <div class="container medium:relative">
+            <div class="wrap pt-6 pb-10{% if section.settings.small_height == false %} medium:max-w-[27rem]{% else %} max-w-[33.125rem] pb-12 medium:pb-0{% endif %}{% if section.settings.center_align_text %} mx-auto{% endif %}">
+                {%- for block in section.blocks -%}
+                    {%- case block.type -%}
+                    {%- when 'heading' -%}
+                        {% if section.settings.remove_margin %}
+                            <h1
+                        {% else %}
+                            <h2
+                        {% endif %}
+                                class="mb-4 text-{{ section.settings.text_color }}{% if section.settings.small_height == false %} heading-xl text-[2.125rem] medium:text-5xl{% else %} heading-m{% endif %} large:mb-6" {{ block.shopify_attributes }}>
+                            {{- block.settings.heading | escape -}}
+                        {% if section.settings.remove_margin %}
+                            </h1>
+                        {% else %}
+                            </h2>
+                        {% endif %}
+                    {%- when 'text' -%}
+                        <div class="wysiwyg body-m font-semibold text-{{ section.settings.text_color }} mediumMax:w-11/12 medium:body-l medium:w-[70%]" {{ block.shopify_attributes }}>
+                            {{- block.settings.text | escape -}}
+                        </div>
+                    {%- when 'button' -%}
+                        {%- if block.settings.button_label != blank -%}
+                            <div class="mt-[1.125rem] large:mt-6" {{ block.shopify_attributes }}>
+                                <a
+                                    class="button button--{{ section.settings.button_style }} button--icon min-w-[8.875rem] justify-center"
+                                    {% if block.settings.button_link == blank %}
+                                        role="link"
+                                        aria-disabled="true"
+                                    {% else %}
+                                        href="{{ block.settings.button_link }}"
+                                    {% endif %}
+                                >
+                                    <div class="button__label">
+                                        <span>
+                                            {{- block.settings.button_label | escape -}}
+                                        </span>
+                                        <span class="absolute top-10 left-0">
+                                            {% if block.settings.secondary_button_label %}
+                                                {{- block.settings.secondary_button_label | escape -}}
+                                            {% else %}
+                                                {{- block.settings.button_label | escape -}}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        {%- endif -%}
+                    {%- endcase -%}
+                {%- endfor -%}
+            </div>
+        </div>
+    {%- endif -%}
+    {%- if section.settings.video != blank
+        or section.settings.mobile_video != blank
+        or section.settings.image != blank
+        or section.settings.mobile_image != blank
+    -%}
+        <div class="w-full h-full overflow-hidden medium:absolute medium:-z-1">
+            {%- if section.settings.video != blank
+                or section.settings.mobile_video != blank
+            -%}
+                <video class="object-cover w-full h-full scale-in js-scale-in js-responsive-video"
+                    width="1920"
+                    height="1080"
+                    autoplay
+                    muted
+                    loop
+                    {% if section.settings.video_poster_image %}
+                        poster="{{ section.settings.video_poster_image | image_url: '1920x1080' }}"
+                    {% endif %}
+                    {% unless section.settings.video == blank %}
+                        data-desktop-video="{{ section.settings.video }}"
+                    {% endunless %}
+                    {% unless section.settings.mobile_video == blank %}
+                        data-mobile-video="{{ section.settings.mobile_video }}"
+                    {% endunless %}
+                    >
+                </video>
+            {%- elsif section.settings.image != blank
+                and section.settings.mobile_image != blank
+            -%}
+                <picture>
+                    <source media="(max-width: 48rem)"
+                            srcset="{{ section.settings.mobile_image | image_url: width: '767x1023' }} 1x, {{ section.settings.mobile_image | image_url: width: '1534x2046' }} 2x">
+                    <source media="(min-width: 48rem)"
+                            srcset="{{ section.settings.image | image_url: width: '1920x1080' }} 1x, {{ section.settings.image | image_url: width: '3840x2160' }} 2x">
+                    <img class="object-cover w-full h-full scale-in js-scale-in"
+                        src="{{ section.settings.mobile_image | image_url: width: '500x500' }}"
+                        srcset="{{ section.settings.image | image_url: width: '3840x2160' }} 2x"
+                        height="1920"
+                        width="1080"
+                        alt="{{ section.settings.image.alt }}"
+                        loading="lazy"/>
+                </picture>
+            {%- endif -%}
+        </div>
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.text-over-media.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "remove_margin",
+            "label": "t:sections.text-over-media.settings.remove_margin.label",
+            "info": "t:sections.text-over-media.settings.remove_margin.info",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "center_align_text",
+            "label": "t:sections.text-over-media.settings.center_align_text.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "small_height",
+            "label": "t:sections.text-over-media.settings.small_height.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.text-over-media.settings.image.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "t:sections.text-over-media.settings.mobile_image.label"
+        },
+        {
+            "type": "text",
+            "id": "video",
+            "label": "t:sections.text-over-media.settings.video.label"
+        },
+        {
+            "type": "text",
+            "id": "mobile_video",
+            "label": "t:sections.text-over-media.settings.mobile_video.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "video_poster_image",
+            "label": "t:sections.text-over-media.settings.video_poster_image.label"
+        },
+        {
+            "type": "select",
+            "id": "color_scheme",
+            "options": [
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "background1",
+            "label": "t:sections.all.colors.heading",
+            "info": "t:sections.text-over-media.settings.color_scheme.info"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.text-over-media.settings.text_color.label"
+        },
+        {
+            "type": "select",
+            "id": "button_style",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.button_styles.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.button_styles.secondary.label"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "t:sections.all.button_styles.tertiary.label"
+                },
+                {
+                    "value": "white",
+                    "label": "t:sections.all.button_styles.white.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.all.button_styles.button_style_label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "heading",
+            "name": "t:sections.text-over-media.blocks.heading.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Image banner",
+                    "label": "t:sections.text-over-media.blocks.heading.settings.heading.label"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "t:sections.text-over-media.blocks.text.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "text",
+                    "default": "Give customers details about the banner image(s) or content on the template.",
+                    "label": "t:sections.text-over-media.blocks.text.settings.text.label"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "name": "t:sections.text-over-media.blocks.button.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "default": "Button label",
+                    "label": "t:sections.text-over-media.blocks.button.settings.button_label.label",
+                    "info": "t:sections.text-over-media.blocks.button.settings.button_label.info"
+                },
+                {
+                    "type": "text",
+                    "id": "secondary_button_label",
+                    "default": "Secondary Button label",
+                    "label": "t:sections.text-over-media.blocks.button.settings.secondary_button_label.label",
+                    "info": "t:sections.text-over-media.blocks.button.settings.secondary_button_label.info"
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "t:sections.text-over-media.blocks.button.settings.button_link.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.text-over-media.presets.name",
+            "blocks": [
+                {
+                    "type": "heading"
+                },
+                {
+                    "type": "text"
+                },
+                {
+                    "type": "button"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

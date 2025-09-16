@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta name="google-site-verification" content="00EijwlLQft5W9goJAEpNUiUdVzSHuzrrUcRlwVJ9X4" />
+    <!-- Meta/Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
+  n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  
+  fbq('init', '580553744599991');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=580553744599991&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Pixel Code -->
+<link rel="alternate" href="https://tursian.com{{ request.path }}" hreflang="en-us" />
+<link rel="alternate" href="https://tursian.co.uk{{ request.path }}" hreflang="en-gb" />
+<link rel="alternate" href="https://tursian.com{{ request.path }}" hreflang="x-default" />
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://use.typekit.net/" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/sne2ygq.css">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <style>
+            .floating-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .floating-button.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .floating-button svg {
+        width: 20px;
+        height: 20px;
+        fill: #333;
+      }
+    </style>
+
+<link rel="preload" as="font" href="{{ 'Gotham-Bold.woff2' | asset_url }}" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="{{ 'Gotham-Book.woff2' | asset_url }}" type="font/woff2" crossorigin>
+    
+<link rel="preload" as="font" href="{{ 'Gotham-Light.woff2' | asset_url }}" type="font/woff2" crossorigin>
+  
+    <link
+      rel="preload"
+      as="font"
+      href="{{ 'Gotham-Medium.woff2' | asset_url }}"
+      type="font/woff2"
+      crossorigin
+    >
+    <link
+      rel="preload"
+      as="font"
+      href="{{ 'Blacker-Sans-Text-Bold.woff2' | asset_url }}"
+      type="font/woff2"
+      crossorigin
+    >
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {%- if settings.gtm_id != blank -%}
+      <!-- Google Tag Manager -->
+      <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{- settings.gtm_id -}}');
+      </script>
+      <!-- End Google Tag Manager -->
+    {%- endif -%}
+
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'redirect-dialog.js' | asset_url }}" defer="defer"></script>
+   
+   
+    {% if settings.language_selector_enabled or settings.region_selector_enabled %}
+      <script src="{{ 'localization.js' | asset_url }}" defer="defer"></script>
+      {% if settings.region_selector_enabled %}
+        <script src="//geoip-js.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript" async></script>
+      {% endif %}
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {{ 'global.css' | asset_url | stylesheet_tag }}
+
+    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+    {{ 'product-form.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+    {% style %}
+      :root {
+          --color-primary: {{ settings.colors_primary }};
+          --color-secondary: {{ settings.colors_secondary }};
+          --color-accent-a: {{ settings.colors_accent_a }};
+          --color-accent-p: {{ settings.colors_accent_p }};
+          --color-accent-r: {{ settings.colors_accent_r }};
+          --color-accent-y: {{ settings.colors_accent_y }};
+          --color-text-1: {{ settings.colors_text_1 }};
+          --color-text-2: {{ settings.colors_text_2 }};
+          --color-background-1: {{ settings.colors_background_1 }};
+          --color-background-2: {{ settings.colors_background_2 }};
+          --color-uiWhite: #FFFFFF;
+          --color-uiLightGrey: #F7F7F7;
+          --color-uiMidGrey: #EEEEEF;
+          --color-uiOtherGrey:rgb(237, 237, 238);
+          --color-uiDarkGrey: #545860;
+          --color-uiBlack: #000000;
+          --color-validationError: #EE0C0C;
+          --color-validationWarning: #F9A526;
+          --color-validationOk: #7ACA3B;
+      }
+
+      *,
+      *::before,
+      *::after {
+          box-sizing: inherit;
+      }
+    {% endstyle %}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+          document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+    
+    {%- unless settings.google_search_console_verification_id == blank -%}
+      <!-- Google Search Console verification -->
+      <meta name="google-site-verification" content="{{- settings.google_search_console_verification_id -}}">
+      <!-- End Google Search Console verification -->
+    {%- endunless -%}
+
+{% comment %}
+    The following code before the head close is for the Quantity increament error . solution gives by chat gpt
+{% endcomment %}
+<script>
+  window.routes = {
+    cart_change_url: '{{ routes.cart_change_url }}'
+  };
+</script>
+  </head>
+
+  <body
+    id="site-body"
+    class="page-transition transition-opacity duration-300 ease-in-out before:block before:bg-uiBlack before:fixed before:z-70 before:top-0 before:left-0 before:w-full before:h-full before:transition-opacity before:pointer-events-none [&.menu-active]:before:z-[4] [&.menu-active]:before:opacity-80 [&.menu-active]:overflow-hidden [&.modal-active]:before:z-30 [&.modal-active]:before:opacity-80 [&.modal-active]:overflow-hidden"
+  >
+    {%- if settings.gtm_id != blank -%}
+      <!-- Google Tag Manager (noscript) -->
+      <noscript
+        ><iframe
+          src="https://www.googletagmanager.com/ns.html?id={{- settings.gtm_id -}}"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        ></iframe
+      ></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    {%- endif -%}
+
+    <a class="sr-only focus:not-sr-only" href="#MainContent">
+      <div class="button absolute top-0 left-0 z-[70]">{{ 'accessibility.skip_to_text' | t }}</div>
+    </a>
+
+    {% if settings.language_selector_enabled or settings.region_selector_enabled %}
+      {% section 'localization' %}
+    {% endif %}
+
+    {%- if settings.announcement_bar_enabled -%}
+      {% section 'announcement-bar' %}
+    {%- endif -%}
+
+    {% section 'header' %}
+
+    {%- render 'cart-notification' -%}
+
+    {%- render 'quick-add' -%}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+    </ul>
+
+    <script>
+            window.shopUrl = '{{ request.origin }}';
+            window.routes = {
+                cart_add_url: '{{ routes.cart_add_url }}',
+                cart_change_url: '{{ routes.cart_change_url }}',
+                cart_update_url: '{{ routes.cart_update_url }}',
+                predictive_search_url: '{{ routes.predictive_search_url }}'
+            };
+
+            window.cartStrings = {
+                error: `{{ 'sections.cart.cart_error' | t }}`,
+                quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+            }
+
+            window.variantStrings = {
+                addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+                soldOut: `{{ 'products.product.sold_out' | t }}`,
+                unavailable: `{{ 'products.product.unavailable' | t }}`,
+            }
+
+            window.accessibilityStrings = {
+                imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
+                shareSuccess: `{{ 'general.share.success_message' | t }}`,
+                pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
+                playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+            }
+
+            {% unless settings.free_shipping_threshold == blank %}
+                window.freeShippingThreshold = {{ settings.free_shipping_threshold }};
+            {% endunless %}
+         
+      // floating button ***************************
+          document.addEventListener('DOMContentLoaded', function() {
+  const floatingButton = document.querySelector('.floating-button');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 700) { // adjust the scroll position value as needed
+      floatingButton.classList.add('show');
+    } else {
+      floatingButton.classList.remove('show');
+    }
+  });
+
+  floatingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+   
+        
+        setTimeout(() => {
+    fetch("https://ipinfo.io/json")
+      .then((response) => response.json())
+      .then((data) => {
+
+        console.log(data.city, data.country);//"gb"
+        if (data.country.toLowerCase() === "ae") {
+          console.log("here ae");
+          
+       // showRedirectDialog1();
+
+           setTimeout(() => {
+    // window.location.href =
+      // "https://7m9r2lsgzsouzkoh-73459531995.shopifypreview.com"; // Replace with your UK store URL
+  }, 3000);
+        }
+        
+      })
+      .catch((error) => console.error("Error:", error));
+  }, 1000); 
+
+function showRedirectDialog1() {
+  const dialog = document.createElement("div");
+  dialog.style.position = "fixed";
+  dialog.style.top = "50%";
+  dialog.style.left = "50%";
+  dialog.style.transform = "translate(-50%, -50%)";
+  dialog.style.background = "#fff";
+  dialog.style.padding = "20px";
+  dialog.style.border = "1px solid #ddd";
+  dialog.style.borderRadius = "10px";
+  dialog.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+  dialog.style.zIndex = "1000";
+  dialog.style.textAlign = "center";
+  dialog.style.width = "300px";
+  dialog.style.fontSize = "30px";
+
+  const message = document.createElement("p");
+  message.textContent = "Redirecting to UK store...";
+  dialog.appendChild(message);
+
+  const progressBar = document.createElement("div");
+  progressBar.style.width = "50px";
+  progressBar.style.height = "50px";
+  progressBar.style.borderRadius = "50%";
+  progressBar.style.border = "5px solid #ccc";
+  progressBar.style.borderTop = "5px solid #3498db";
+
+  progressBar.style.borderTop = "5px solid #3498db";
+  progressBar.style.animation = "spin 1s linear infinite";
+  dialog.appendChild(progressBar);
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  document.body.appendChild(dialog);
+
+  setTimeout(() => {
+    // window.location.href =
+    //  "https://7m9r2lsgzsouzkoh-73459531995.shopifypreview.com"; // Replace with your UK store URL
+  }, 3000);
+
+  // Optional: Remove the dialog after a few seconds
+  setTimeout(() => {
+    dialog.remove();
+  }, 5000);
+}
+        
+    </script>
+
+    <!-- **************   floating button -->
+    <a href="#" class="floating-button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        shape-rendering="geometricPrecision"
+        text-rendering="geometricPrecision"
+        image-rendering="optimizeQuality"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        viewBox="0 0 512 312.36"
+      >
+        <path fill-rule="nonzero" d="M0 276.77 253.12 0 512 282.48l-32.65 29.88-226.2-246.83L32.66 306.64z"/>
+      </svg>
+    </a>
+<script>
+  // Force full reload on browser back/forward navigation to avoid blank page
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      window.location.reload();
+    }
+  });
+</script>
+
+           <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=XjyhBU"></script>
+
+
+          <!-- ******** klaviyo ******* -->
+          <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.my-button-klaviyo-abc').addEventListener('click', function() {
+      console.log("kaviyo triggered");
+      window._klOnsite = window._klOnsite || [];
+      window._klOnsite.push(['openForm', 'XMt34U']);
+    });
+  });
+</script>
+
+<!-- Custom AJAX Drawer for EComposer -->
+
+
+  </body>
+</html>

@@ -1,0 +1,503 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "content_cta_and_media_grid_AAy9DY": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_Qdz6gX": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE PEPTIDES TECHNOLOGY:"
+          }
+        },
+        "image_heading_qiqWaB": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_VeqedJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Peptides are short chains of amino acids that act as building blocks for skin protein like collagen and elastin, which are essential for maintaining youthful skin. When the peptides come in touch with the skin, they stimulate skin cells to produce its own collagen and elastin, helping to improve skin elasticity, enhance the skin barrier, improve hydration levels and even out skin tone for a more radiant complexion.</p>"
+          }
+        },
+        "button_HqjPdr": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_Qdz6gX",
+        "image_heading_qiqWaB",
+        "text_VeqedJ",
+        "button_HqjPdr"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/THE_PEPTIDES_TECHNOLOGY_png.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_ECHweK": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_zRf9MN": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE STEM CELLS TECHNOLOGY"
+          }
+        },
+        "image_heading_yHY38J": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_9aRkUm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Plant stem cells are a sustainable innovation in skincare that utilizes <strong>undifferentiated cells</strong> sourced from buds and root tips of plants. When stem cells touch the skin, the stem cells absorb into the skin's outer layer. As they penetrate, they release growth factors. These growth factors attach to receptors on the skin cells, the cells start repairing themselves. Which results in rejuvenating, promoting a youthful appearance, improving elasticity and enhancing overall skin health.</p><p><strong>Undifferentiated Cells </strong> <br/><br/>These skin stem cells remain in a sort of \"standby\" mode until they are needed when the body signals them to divide and transform. This makes undifferentiated cells a crucial component in skin renewal, repairing, boosting collagen production, evening skin tone and more youthful looking skin.</p><p></p><p></p><p><br/></p>"
+          }
+        },
+        "button_mG9wwe": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_zRf9MN",
+        "image_heading_yHY38J",
+        "text_9aRkUm",
+        "button_mG9wwe"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/THE_STEM_CELLS_TECHNOLOGY_3.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_eUfbqk": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_RiNKeD": {
+          "type": "heading",
+          "settings": {
+            "heading": "Undifferentiated Cells"
+          }
+        },
+        "image_heading_EEqVEL": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_qyYbTL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>These skin stem cells remain in a sort of \"standby\" mode until they are needed when the body signals them to divide and transform. This makes undifferentiated cells a crucial component in skin renewal, repairing, boosting collagen production, evening skin tone and more youthful looking skin.</p>"
+          }
+        },
+        "button_tUXXfF": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_RiNKeD",
+        "image_heading_EEqVEL",
+        "text_qyYbTL",
+        "button_tUXXfF"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/THE_ALGAE_TECHNOLOGY2.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_4PUWnr": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_RxNKa9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Types of Peptides:"
+          }
+        },
+        "image_heading_Xazt4L": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_enFV3W": {
+          "type": "text",
+          "settings": {
+            "text": "<p><span style=\"text-decoration:underline\"><strong>Signal Peptides:</strong></span></p><p>Peptides that “signal” skin cells to produce more collagen, elastin and other extracellular matrix proteins. This signaling mechanism helps repair and regenerate skin, making it firmer and    more youthful-looking.</p><p><span style=\"text-decoration:underline\"><strong>Carrier Peptides:</strong></span></p><p>Carrier Peptides are peptides that enhance the delivery of essential minerals into skin cells to support collagen production, healing and skin strength.</p><p><span style=\"text-decoration:underline\"><strong>Muscle-Relaxing Peptides (Neurotransmitting-Inhibitor):</strong></span></p><p>Peptides that reduce facial muscle contractions to help minimize the appearance of fine lines, expression lines and crow’s feet caused by repetitive facial expressions.</p><p><span style=\"text-decoration:underline\"><strong>Enzyme-Inhibiting Peptides:</strong></span></p><p>Enzyme inhibitor peptides enhance skin radiance by targeting the enzymes that contribute to pigmentation and cellular renewal. These peptides work to brighten the complexion, prevent the formation of dark spots and encourage the removal of dead skin cells, revealing smoother, more luminous skin.</p><p><span style=\"text-decoration:underline\"><strong>Antimicrobial Peptides:</strong></span></p><p>Antimicrobial Peptides (AMPs) are targeting the bacteria and inflammation that contribute to breakouts and skin imperfections. These peptides play a vital role in balancing the skin's microbiome, reducing inflammation, and preventing infections that lead to acne, pimples, and other blemishes.</p>"
+          }
+        },
+        "button_GVRbfi": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_RxNKa9",
+        "image_heading_Xazt4L",
+        "text_enFV3W",
+        "button_GVRbfi"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".wysiwyg p {margin-top: 0.5rem !important; font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Group_20562.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_mFVUeR": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_z7GCAA": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE ALGAE TECHNOLOGY:"
+          }
+        },
+        "image_heading_tYUq8n": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_bRwLgK": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Blue-green algae, Red Algae, Pearl seaweed, Brown Seaweed and Velvet Seaweed.</strong><br/><br/>Sea is a source of beauty. Algae offer numerous benefits due to their rich nutrient profile, including vitamins, minerals, antioxidants and essential fatty acids. When algae come into contact with the skin, their active components penetrate the surface to deliver a range of benefits. In the epidermis (Top layer), algae attract retain moisture through polysaccharides, which are natural molecules in algae that act as humectants, binding to water molecules and holding them on the skin's surface, keeping it hydrated and soft. In the dermis (Middle layer), some algae types, particularly those rich in peptides and amino acids, can penetrate deeper to stimulate collagen production and improve skin elasticity, addressing fine lines and firmness at a structural level. In the basal layer (Deepest layer)<strong> </strong>of the epidermis, certain bioactive compounds in algae support skin renewal by reaching the basal layer, where new skin cells are formed, promoting a more radiant and smoother complexion.</p>"
+          }
+        },
+        "button_qeMipq": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_z7GCAA",
+        "image_heading_tYUq8n",
+        "text_bRwLgK",
+        "button_qeMipq"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/THE_ALGAE_TECHNOLOGY2.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_UDywqL": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_wbALwG": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE BIO FERMENTS TECHNOLOGY:"
+          }
+        },
+        "image_heading_96BD4w": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_7dXa7d": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Bio ferments in skincare are natural ingredients derived from the fermentation of plants, algae, or fungi, broken down by microorganisms into smaller, more absorbable compounds. This process enhances the potency of active ingredients, improving hydration, supporting collagen production, and promoting skin regeneration. Their popularity has grown due to their ability to deliver visible results while being gentle on the skin. Bio ferments work across all skin layers from hydrating and soothing the <strong>epidermis</strong> to stimulating collagen in the <strong>dermis </strong>and promoting skin renewal in the <strong>basal layer</strong>. Known for their natural origin and scientifically backed benefits, bio ferments are a luxurious and effective choice for achieving long-lasting skin health.</p>"
+          }
+        },
+        "button_XEFGPy": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_wbALwG",
+        "image_heading_96BD4w",
+        "text_7dXa7d",
+        "button_XEFGPy"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Telocytes-image-1.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_AYNWFU": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_9HbD4j": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE MUSHROOMS EXTRACTS TECHNOLOGY"
+          }
+        },
+        "image_heading_J3mUVD": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_t7iFrJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When people think of mushrooms, they usually think of food, earthy flavours, or traditional medicine. But mushrooms are more than that they’re becoming a key ingredient in skincare. They help keep the skin hydrated, calm irritation, brighten the complexion, and even improve skin firmness. Harnessing the power of nature, mushrooms are an effective way to enhance your skincare routine.</p>"
+          }
+        },
+        "button_Cc3R9N": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_9HbD4j",
+        "image_heading_J3mUVD",
+        "text_t7iFrJ",
+        "button_Cc3R9N"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Mashroom_technology.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_eLkV9U": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_j9CGBV": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE Ceramides Technology"
+          }
+        },
+        "image_heading_LUmRp9": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_KnULax": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ceramides are a type of lipid molecule found naturally in the skin. When ceramides come into contact with the skin, they soak in and blend into the outer layer, helping to refill the skin’s natural ceramide levels. This process helps restore the skin's barrier function, locks in moisture, and makes the skin more hydrated, plumper, Firmer and smoother.</p>"
+          }
+        },
+        "button_bPMhmA": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_j9CGBV",
+        "image_heading_LUmRp9",
+        "text_KnULax",
+        "button_bPMhmA"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/ceramides_Technology.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_jeCatY": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_qxtWUc": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE ENCAPSULATION COLLAGEN TECHNOLOGY"
+          }
+        },
+        "image_heading_jrkgby": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_RqH8mM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Encapsulated ingredients are active substances that are enclosed in a protective coating or capsule. When touching the skin, the outer capsule breaks down, allowing the active ingredients to be gradually released. This process ensures that the ingredients are absorbed more effectively and deeper into the skin, providing long-lasting hydration, plumping, repair and nourishment to the skin</p>"
+          }
+        },
+        "button_n6TCA9": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_qxtWUc",
+        "image_heading_jrkgby",
+        "text_RqH8mM",
+        "button_n6TCA9"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Microcapsules.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_wDqfRH": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_Mhen4h": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE RARE BOTANICAL EXTRACT TECHNOLOGY"
+          }
+        },
+        "image_heading_E4aqxi": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_GACGcC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When people think of natural extracts in skincare, they often imagine simple, natural ingredients that are gently mixed into products for a touch of nature. However, botanical extracts are far more complex they’re highly concentrated forms of a plant’s most potent compounds, carefully extracted to harness their specific benefits. In reality, they work to control sebum, minimize pores, hydrate and moisturize, calm irritation, and soothe the skin. They enhance radiance, promote a glowing complexion, reduce dark circles and puffiness, even out skin tone, and improve smoothness, addressing a wide range of skincare needs with precision. </p>"
+          }
+        },
+        "button_npYctQ": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_Mhen4h",
+        "image_heading_E4aqxi",
+        "text_GACGcC",
+        "button_npYctQ"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/THE_ALGAE_TECHNOLOGY.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "custom_liquid_YTHViH": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_cta_and_media_grid_AAy9DY",
+    "content_cta_and_media_grid_ECHweK",
+    "content_cta_and_media_grid_eUfbqk",
+    "content_cta_and_media_grid_4PUWnr",
+    "content_cta_and_media_grid_mFVUeR",
+    "content_cta_and_media_grid_UDywqL",
+    "content_cta_and_media_grid_AYNWFU",
+    "content_cta_and_media_grid_eLkV9U",
+    "content_cta_and_media_grid_jeCatY",
+    "content_cta_and_media_grid_wDqfRH",
+    "custom_liquid_YTHViH"
+  ]
+}

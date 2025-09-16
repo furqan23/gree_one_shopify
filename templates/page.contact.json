@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-contact-hero",
+      "custom_css": [],
+      "settings": {
+        "title": "Contact us",
+        "cta_text": "",
+        "cta_text_secondary": "Send a message",
+        "contact_email": "support@tursian.com",
+        "contact_telephone": "+18668877426",
+        "contact_telephone_friendly": "+1-(866)- TURSIAN",
+        "show_social": true,
+        "social_heading": "Follow us on social",
+        "image": "shopify://shop_images/b911c73ff076eb0c70afe39a09aab7a61b9866c5.jpg"
+      }
+    },
+    "location": {
+      "type": "main-contact-location",
+      "disabled": true,
+      "settings": {
+        "map_api_key": "#",
+        "map_latitude": "-34.397",
+        "map_longitude": "150.644",
+        "address_title": "Where to find us",
+        "address": "<p>Address line 1<br/>Address line 2<br/>City<br/>Postcode</p>",
+        "directions": "https://www.google.com/maps/@-34.397,150.644,14z?hl=en-GB"
+      }
+    },
+    "divider_GkGqhR": {
+      "type": "divider",
+      "disabled": true,
+      "settings": {
+        "disable_margins": true,
+        "cross_divider": true
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "disabled": true,
+      "settings": {
+        "heading": "Send us an enquiry",
+        "description": "",
+        "remove_margin": false
+      }
+    },
+    "17472230236b62d8b0": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_liquid_eJLm8x": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".hiding-logo {background-color: #f5f5f5; opacity: 1; padding-top: 40px; padding-bottom: 40px; margin-top: -120px; position: relative; z-index: 999;}",
+        "@media (max-width: 778px) {.hiding-logo {margin-top: -80px; }}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"hiding-logo\"></div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "location",
+    "divider_GkGqhR",
+    "form",
+    "17472230236b62d8b0",
+    "custom_liquid_eJLm8x"
+  ]
+}

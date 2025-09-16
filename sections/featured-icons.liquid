@@ -1,0 +1,235 @@
+{%  liquid
+  assign background_color = section.settings.background_color
+  assign title = section.settings.title
+  assign text = section.settings.text
+  assign text_color = section.settings.text_color
+%}
+
+<div class="bg-{{ background_color }} overflow-hidden{% unless background_color == 'transparent' %} mt-12 py-4 medium:mt-16{% else %} mt-7 medium:mt-8{% endunless %}">
+    <div class="container">
+        <div class="wrap">
+            <div class="medium:grid medium:grid-cols-12">
+                <div class="medium:col-span-8 medium:col-start-3">
+                    {% if title or text %}
+                        <div class="text-center mb-11">
+                            {% if title != blank %}
+                                <h2 class="text-{{ text_color }}{% if text != blank %} mb-6{% endif %}{% if section.settings.title_font %} heading-xs font-Gotham font-bold{% else %} heading-r largeMax:text-[1.375rem]{% endif %}">
+                                    {{ title }}
+                                </h2>
+                            {% endif %}
+                            {% if text != blank %}
+                                <div class="wysiwyg max-w-[47.5rem] mx-auto body-r text-{{ text_color }}">
+                                    {{ text }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="medium:mt-4 large:grid large:grid-cols-12 ">
+                <div class="flex gap-y-10 mediumMax:flex-col large:col-span-12 xLarge:gap-10 xxxLarge:col-span-10 xxxLarge:col-start-2">
+                    {% assign featured_icons = product.metafields.custom.featured_icons.value %}
+                    {% if template contains 'product' and featured_icons %}
+                        {%- for featured_icon in featured_icons -%}
+                            {%  render 'featured-icon',
+                                icon: featured_icon.icon,
+                                title: featured_icon.title,
+                                text: featured_icon.text,
+                                cta_text: featured_icon.cta_text,
+                                cta_url: featured_icon.ctaurl,
+                                product_icons: true
+                            %}
+                        {%- endfor -%}
+                    {% else %}
+                        {%- for block in section.blocks -%}
+                            {%  render 'featured-icon',
+                                icon: block.settings.icon,
+                                title: block.settings.title,
+                                text: block.settings.text,
+                                cta_text: block.settings.cta_text,
+                                cta_url: block.settings.cta_url
+                            %}
+                        {%- endfor -%}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.featured-icons.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Reasons to love us",
+            "label": "t:sections.featured-icons.settings.title.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "title_font",
+            "default": false,
+            "label": "t:sections.featured-icons.settings.title_font.label"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>We have been developing science-backed formulas using premium ingredients sourced from across the globe for over 50 years.</p>",
+            "label": "t:sections.featured-icons.settings.text.label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "secondary",
+            "label": "t:sections.featured-icons.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-icons.settings.text_color.label"
+        }
+    ],
+    "max_blocks": 3,
+    "blocks": [
+        {
+            "name": "t:sections.featured-icons.blocks.name",
+            "type": "image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "t:sections.featured-icons.blocks.icon.label"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "default": "Free shipping",
+                    "label": "t:sections.featured-icons.blocks.title.label"
+                },
+                {
+                    "type": "text",
+                    "id": "text",
+                    "default": "On all orders over £100",
+                    "label": "t:sections.featured-icons.blocks.text.label"
+                },
+                {
+                    "type": "text",
+                    "id": "cta_text",
+                    "default": "Learn more",
+                    "label": "t:sections.featured-icons.blocks.cta_text.label"
+                },
+                {
+                    "type": "url",
+                    "id": "cta_url",
+                    "label": "t:sections.featured-icons.blocks.cta_url.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.featured-icons.presets.name",
+            "blocks": [
+                {
+                    "type": "image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

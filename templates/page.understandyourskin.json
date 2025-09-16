@@ -1,0 +1,249 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "content_cta_and_media_grid_tTjCQU": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_tcDPzH": {
+          "type": "heading",
+          "settings": {
+            "heading": "Skin Structure"
+          }
+        },
+        "image_heading_i9ydUr": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_HM9rqX": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>The skin divided to three main layers: </strong></p><p><strong>The epidermis:</strong> This is the outermost layer of the skin, and it serves as a barrier to protect the body from the external environment. The top layer of the epidermis, known as the stratum corneum.       </p><p>Basal layer is the innermost layer of the epidermis where moisture balance is maintained and where cell turnover occurs. </p><p>Cell turnover means that new cells are produced every day, it takes 30 days for dead cells to be removed to the top of your skin where they are gradually shed naturally.</p><p><strong>The dermis: </strong>Is the middle part of skin that is thick layer of collagen, with a small but important component of elastin that gives the skin its flexibility and strength. </p><p>Sebum and sweat glands are located here. </p><p>Wrinkles and lines first developed in this layer as a result of the collagen network being compromised due to internal and external elements.</p><p><strong>The subcutaneous layer:</strong> This is the innermost layer of the skin, and it is made up of fat and connective tissue. The subcutaneous layer serves as a cushion for the body and helps to regulate body temperature.</p>"
+          }
+        },
+        "button_ApDVC4": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_tcDPzH",
+        "image_heading_i9ydUr",
+        "text_HM9rqX",
+        "button_ApDVC4"
+      ],
+      "custom_css": [
+        ".wysiwyg {font-size: medium !important;}"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_9LLtqJ": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_eydgnm": {
+          "type": "heading",
+          "settings": {
+            "heading": "R Series Terms"
+          }
+        },
+        "text_DekKXT": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Adaptive Pigmentation:</strong> This refers to the skin's ability to darken or tan in response to sun exposure. It is a protective mechanism against UV exposure and skin damages.</p><p><strong>Constitutive Pigmentation:</strong> This refers to the natural, inherent coloration of the skin. It is determined by the amount and type of melanin present in the skin.</p><p><strong>Hyperpigmentation:</strong> This refers to an increase in skin pigmentation, is a common skin condition resulting in darker patches or spots on the skin. It is usually the result of the overproduction of melanin.</p><p><strong>Hypopigmentation:</strong> This refers to a decrease in skin pigmentation, resulting in lighter patches or spots on the skin. Skin looks lighter in color than normal, paler than normal pigmentation.</p><p><strong>Melanin:</strong> Is a skin pigment produced by cells called melanocytes which provide protection against sun damage. Melanocytes increase their production of melanin in response to sun exposure or skin damage.</p><p><strong>Tyrosinase:</strong> This is an enzyme that plays a key role in the production of melanin. It is part of a conversion process that creates the melanin to be transported to the top layer of your skin.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_eydgnm",
+        "text_DekKXT"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/R_SERIES_TERMS_1.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_YCiyek": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_4J9Nk7": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "R Series Terms:"
+          }
+        },
+        "text_ayEzKH": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Sunspots:</strong> Also known as age spots, these are areas of hyperpigmentation caused by sun damage and skin aging.</p><p><strong>Post-Inflammatory Hyperpigmentation (PIH):</strong> This is a type of hyperpigmentation that occurs after an injury or inflammation to the skin, such as acne or a cut. Part of the skin’s natural response to injury is to deposit melanin into the skin which gives it that color.</p><p><strong>Melasma:</strong> This is a type of hyperpigmentation that occurs on the face, typically in women, and is often triggered by hormonal changes.</p><p><strong>Erythema:</strong> This refers to redness of the skin, caused by increased blood flow to the area. Often presented as a rash, erythema can be caused by environmental factors or overexposure to the sun.</p><p><strong>Prebiotics:</strong> Is a natural source for the skin’s ‘good’ bacteria, it’s important to ensure that skin has a good barrier function, helps to balance the skin’s delicate microbiome for optimum barrier function, resulting in healthy-looking skin.</p><p><strong>Free Radicals:</strong> These are unstable molecules that can damage cells and contribute to aging and DNA damage.</p><p><strong>Exfoliation:</strong> The process of removing dead skin cells from the surface of the skin, usually through the use of scrubs or chemicals such as alpha and beta hydroxy acids, to gently dissolve dead skin cells.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4J9Nk7",
+        "text_ayEzKH"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/R_SERIES_TERMS_2.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_jDcpRf": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_tcy6kR": {
+          "type": "heading",
+          "settings": {
+            "heading": "P Series Terms"
+          }
+        },
+        "text_y9WUxA": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Protection Actives:</strong> These are ingredients in cosmetics that provide protection to the skin from environmental factors such as UV rays, pollution, free radicals, and harsh weather conditions. They can include antioxidants, sunscreen ingredients, and other substances that help to strengthen the skin's barrier function.</p><p><strong>Skin Hydration:</strong> This refers to the amount of water present in the skin. Proper hydration is important for maintaining healthy skin, as it helps to keep the skin plump and elastic.</p><p><strong>Transepidermal water loss (TEWL):</strong> This is the process of water evaporating from the skin, which can lead to dryness and dehydration. TEWL can be affected by many factors such as temperature, humidity, and the skin's barrier function.</p><p><strong>Ultraviolet Rays (UV Rays):</strong> These are types of radiation emitted by the sun that can cause damage to the skin. UVB rays are primarily responsible for sunburn, while UVA rays penetrate deeper into the skin and can cause long-term damage such as photoaging.</p><p><strong>Photoprotection:</strong> This refers to the protection of the skin from the damaging effects of UV rays. This can include the use of sunscreen and other products that help to shield the skin from UV rays.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tcy6kR",
+        "text_y9WUxA"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/P_SERIES_TERMS_1.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_MbJLHM": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_BYLW4w": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Y Series Terms:"
+          }
+        },
+        "text_GaKrRx": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Photoaging:</strong> This refers to premature ageing of the skin as a result of excessive exposure to ultraviolet radiation. Effects of photoaging on the skin include dryness, loss of elasticity, wrinkles, discoloration, and changes in skin texture.</p><p><strong>Mitochondria:</strong> These are structures within cells that are responsible for producing energy. They are important for maintaining healthy skin, as they help to provide the energy needed for cell repair and regeneration.</p><p><strong>Sun Protection Factor (SPF):</strong> A measure of how well a sunscreen will protect the skin from UVA and UVB rays. The higher the SPF, the greater the protection.</p><p><strong>Antioxidants: </strong>A substance that inhibits oxidation or reactions promoted by oxygen, peroxides, or free radicals, well known antioxidants include vitamin C, vitamin E and beta-carotene.</p><p><strong>Fatty Acids:</strong> These are a type of lipid that are an essential component of the skin's barrier function. They help to maintain the skin's moisture and protect it from environmental stressors.</p><p><strong>Free Radicals:</strong> Is an atom or molecule that is highly reactive, are produced in many different ways such as normal metabolic processes, ultraviolet radiation from the sun and nuclear radiation. Can build up in cells and cause damage to other molecules, such as DNA, lipids, and proteins.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BYLW4w",
+        "text_GaKrRx"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/P_SERIES_TERMS_2.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_rrBHCh": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_E8qNz3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Y Series Terms"
+          }
+        },
+        "text_dMf9xR": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Extrinsic Aging:</strong> Is the aging that occurs as a result of external factors such as sun exposure, pollution, and smoking. It is also called environmental aging.</p><p><strong>Intrinsic Aging:</strong> Is the aging that occurs as a result of internal factors such as genetics and hormonal changes. It is also called chronological aging.</p><p><strong>Wrinkles:</strong> Are a natural part of the aging process. They are lines and folds in the skin caused by the loss of collagen, elastin, and hyaluronic acid in the skin, as well as by repetitive facial movements and sun exposure.</p><p><strong>Crow's Feet:</strong> Are wrinkles that appear around the eyes. They are caused by the same factors that cause wrinkles in general, as well as by squinting. They are more prominent as we age.</p><p><strong>Inflammaging:</strong> Is a process in which chronic low-grade inflammation can speed up the aging process. It is thought to be a major contributor to the development of pre-mature aging.</p><p><strong>Extracellular Matrix:</strong> The extracellular matrix <strong>(ECM)</strong> is the large network of tissues that provides structural support to cells and helps to support the skin. It is composed of various molecules such as collagen, elastin, and hyaluronic acid.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_E8qNz3",
+        "text_dMf9xR"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/Y_SERIES_TERMS_1.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_G4iafD": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_WCx94U": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "P Series Terms:"
+          }
+        },
+        "text_jtggVp": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Collagen:</strong> Is a protein that fills the skin, it is found in the middle layer of the skin (in the Dermis), as people age the distribution of the collagen within the skin becomes unevenly distributed, maintaining collagen levels is therefore important for a healthy look. </p><p><strong>Elastin:</strong> A protein found in the middle layer of the skin (in the Dermis), that allows skin to snap back into the right place to maintain skin resilience and elasticity.</p><p><strong>Glycoprotein:</strong> Is a type of protein that has a carbohydrate component attached to it. They are responsible for various functions such as providing support to collagen & elastin of the skin and regulating cellular growth.</p><p><strong>Liposomes:</strong> Are tiny vesicles, similar in construction to the cell membrane that can be used to deliver active ingredients to the skin. They are a popular ingredient in skin care products because they can help to improve the penetration and effectiveness of the active ingredients.</p><p><strong>Ceramides:</strong> These are a type of lipid that makes up 50% of the skin barrier, they are important for maintaining the skin's hydration and barrier function.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WCx94U",
+        "text_jtggVp"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/Y_SERIES_TERMS_2.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "divider_eqVRWk": {
+      "type": "divider",
+      "settings": {
+        "disable_margins": false,
+        "cross_divider": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_cta_and_media_grid_tTjCQU",
+    "content_cta_and_media_grid_9LLtqJ",
+    "content_cta_and_media_grid_YCiyek",
+    "content_cta_and_media_grid_jDcpRf",
+    "content_cta_and_media_grid_MbJLHM",
+    "content_cta_and_media_grid_rrBHCh",
+    "content_cta_and_media_grid_G4iafD",
+    "divider_eqVRWk"
+  ]
+}

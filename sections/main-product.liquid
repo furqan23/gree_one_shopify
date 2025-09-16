@@ -1,0 +1,837 @@
+{{ 'pdp.css' | asset_url | stylesheet_tag }}
+{{ 'product-form.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+    assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
+    assign media_count = product.media.size
+    assign media_width = 1
+-%}
+
+{%- liquid
+    assign free_shipping_text_before = null
+    if settings.free_shipping_text_before
+        assign free_shipping_text_before = settings.free_shipping_text_before
+    endif
+
+    if settings.free_shipping_text_after
+        assign free_shipping_text_after = settings.free_shipping_text_after
+    else
+        assign free_shipping_text_after = 'general.cart.free_delivery_not_qualified' | t
+    endif
+-%}
+
+{% assign series = product.metafields.custom.series.value %}
+
+<div id="MainProduct-{{ section.id }}" class="product" data-section="{{ section.id }}">
+    {% comment %} `pdp.js` is loaded here so it is passed into 'quick add' via `DOMParser` {% endcomment %}
+    <script src="{{ 'pdp.js' | asset_url }}" defer="defer"></script>
+
+    <div {% if series.colour %} style="border-color: {{ series.colour }};"{% endif %} class="bg-uiMidGrey{% if series.colour %} border-t-4{% endif %} medium:pb-14 medium:wrap js-quick-add-context-wrap">
+        <div class="container js-quick-add-context-container">
+            <div class="mediumMax:hidden js-quick-add-context-breadcrumb">
+                {%- render 'breadcrumb' -%}
+            </div>
+            <div class="grid grid-cols-4 medium:grid-cols-12 medium:gap-x-5 medium:items-start js-quick-add-context-grid">
+                <div class="col-span-4 medium:sticky medium:top-5 medium:col-span-6">
+                    {% comment %} Product Hero - Media Gallery {% endcomment %}
+                    <div class="product__media js-product-media">
+                        <div role="region" aria-label="{{ 'products.product.media.gallery_viewer' | t }}">
+                            <div class="sr-only" role="status">
+                                &nbsp;
+                            </div>
+                            <div class="relative">
+                                <a class="skip-to-content-link button sr-only" href="#ProductInfo-{{ section.id }}">
+                                    {{ "accessibility.skip_to_product_info" | t }}
+                                </a>
+                                {%- assign mediaGalleryDesktopCarousel = true -%}
+                                {%- if mediaGalleryDesktopCarousel and product.media.size > 1 -%}
+                                    <div class="xLarge:grid xLarge:grid-cols-6 xLarge:gap-x-5 js-pdp-media-gallery-context">
+                                        {% comment %} Product Hero - Media Gallery - Vertical thumbnails {% endcomment %}
+                                        <div class="xLargeMax:hidden xLarge:col-span-1">
+                                            <div class="swiper js-pdp-media-gallery-thumbnails">
+                                                <ul id="MediaGalleryThumbnails-{{ section.id }}" class="swiper-wrapper justify-center">
+                                                    {%- for media in product.media -%}
+                                                        <li
+                                                            id="SlideThumbnail-{{ section.id }}-{{ media.id }}"
+                                                            class="swiper-slide !h-auto{% if variant_images contains media.src %} js-pdp-media-gallery-thumbnail-variant{% endif %}"
+                                                            data-media-id="{{ section.id }}-{{ media.id }}"
+                                                        >
+                                                            <button{% if series.colour %} style="color: {{ series.colour }}"{% endif %} class="aspect-square w-full relative max-w-12 outline-1 outline outline-transparent -outline-offset-1 transition-[outline] after:block after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[0.125rem] after:w-full hover:outline-2 hover:outline-uiBlack hover:-outline-offset-2 [&.is-active]:after:bg-current [&.is-active]:outline-uiWhite js-pdp-media-gallery-thumbnail {% if product.variants.size < 2 and forloop.index == 1 %} is-active{% endif %}">
+                                                                {%- if media.media_type == 'video' -%}
+                                                                    {%- echo media | media_tag: image_size: "248x", autoplay: true, playsinline: true, muted: true, loop: true, controls: false, class: 'w-full h-full object-cover', preload: "none" -%}
+                                                                {%- else -%}
+                                                                    <img
+                                                                        class="w-full h-full object-cover"
+                                                                        srcset="{{ media | image_url: width: 76, format: 'webp' }} 76w,
+                                                                                {{ media | image_url: width: 152, format: 'webp' }} 152w,
+                                                                                {{ media | image_url: width: 88, format: 'webp' }} 88w,
+                                                                                {{ media | image_url: width: 176, format: 'webp' }} 176w,
+                                                                                {{ media | image_url: width: 124, format: 'webp' }} 124w,
+                                                                                {{ media | image_url: width: 248, format: 'webp' }} 248w"
+                                                                        sizes="(max-width: 1439px) 76px,
+                                                                               (max-width: 1919px) 88px,
+                                                                               124px"
+                                                                        src="{{ media | image_url: width: 100, format: 'webp' }}"
+                                                                        width="50"
+                                                                        height="50"
+                                                                        alt="{{ media.alt }}"
+                                                                        loading="eager"
+                                                                    >
+                                                                {%- endif -%}
+                                                            </button>
+                                                        </li>
+                                                    {%- endfor -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+    
+                                        {% comment %} Product Hero - Media Gallery - Carousel {% endcomment %}
+                                        <div class="relative xLarge:col-start-2 xLarge:col-span-5">
+                                            {%- render 'badge-pdp-hero' -%}
+                                            <div class="swiper xxLarge:relative js-pdp-media-gallery js-pdp-media-gallery-desktop">
+                                                <ul id="MediaGallery-{{ section.id }}" class="swiper-wrapper js-swiper-wrapper" aria-controls="MediaGalleryNavigation-{{ section.id }} MediaGalleryPagination-{{ section.id }} MediaGalleryThumbnails-{{ section.id }}">
+                                                    {%- for media in product.media -%}
+                                                        <li
+                                                            id="Slide-{{ section.id }}-{{ media.id }}"
+                                                            class="product__media-item swiper-slide js-swiper-slide
+                                                                {% if product.selected_or_first_available_variant.featured_media == null and forloop.index == 1 %} is-active{% endif %}
+                                                                {% if media.media_type == 'external_video' %} product__media-item--full {% endif %}
+                                                                {% if variant_images contains media.src %} product__media-item--variant js-pdp-media-gallery-variant{% endif %}"
+                                                                data-media-id="{{ section.id }}-{{ media.id }}"
+                                                            >
+                                                            {%- liquid
+                                                                assign media_position = media_position | default: 0 | plus: 1
+                                                                assign lazy_load = false
+                                                                if media_position > 1
+                                                                    assign lazy_load = true
+                                                                endif
+                                                                render 'product-thumbnail', desktop_thumbnails: true, media: media, position: media_position, loop: true, modal_id: section.id, xr_button: true, media_width: media_width, lazy_load: lazy_load
+                                                            -%}
+                                                        </li>
+                                                    {%- endfor -%}
+                                                </ul>
+    
+                                                <div id="MediaGalleryNavigation-{{ section.id }}" class="xxLargeMax:hidden opacity-0 js-pdp-media-gallery-desktop-navigation">
+                                                    <button
+                                                        class="xxLarge:absolute xxLarge:top-1/2 xxLarge:left-[0.625rem] xxLarge:z-10 disabled:opacity-50 disabled:cursor-not-allowed js-pdp-media-gallery-desktop-navigation-prev"
+                                                        type="button"
+                                                        disabled
+                                                        aria-label="{{ 'products.product.media.go_to_prev_media' | t }}"
+                                                    >
+                                                        <div class="flex justify-center items-center w-11 h-11 bg-uiBlack">
+                                                            <div class="w-[0.625rem] text-text2 -scale-x-100 [&_svg]:w-full [&_svg]:h-auto">
+                                                                {%- render 'icon-slider-arrow' -%}
+                                                            </div>
+                                                        </div>
+                                                    </button>
+    
+                                                    <button
+                                                        class="xxLarge:absolute xxLarge:top-1/2 xxLarge:right-[.625rem] xxLarge:z-10 disabled:opacity-50 disabled:cursor-not-allowed js-pdp-media-gallery-desktop-navigation-next"
+                                                        type="button"
+                                                        aria-label="{{ 'products.product.media.go_to_next_media' | t }}"
+                                                    >
+                                                        <div class="flex justify-center items-center w-11 h-11 bg-uiBlack">
+                                                            <div class="w-[0.625rem] text-text2 [&_svg]:w-full [&_svg]:h-auto">
+                                                                {%- render 'icon-slider-arrow' -%}
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                <div id="MediaGalleryPagination-{{ section.id }}" class="mt-4 mediumMax:wrap xxLarge:hidden">
+                                                    <div class="swiper-pagination relative">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%- elsif product.media.size > 1 -%}
+                                    {%- render 'badge-pdp-hero' -%}
+                                    <div class="swiper mediumMax:[&.swiper]:wrap xxLarge:relative js-pdp-media-gallery">
+                                        <ul id="MediaGallery-{{ section.id }}" class="product__media-list swiper-wrapper js-swiper-wrapper" aria-controls="MediaGalleryPagination-{{ section.id }}">
+                                        {%- liquid
+                                            assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
+                                            assign media_count = product.media.size
+                                            assign media_width = 1
+                                        -%}
+                                        {%- for media in product.media -%}
+                                            {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                                                <li id="Slide-{{ section.id }}-{{ media.id }}" class="product__media-item swiper-slide js-swiper-slide{% if product.selected_or_first_available_variant.featured_media == null and forloop.index == 1 %} is-active{% endif %}{% if media.media_type == 'external_video' %} product__media-item--full {% endif %}{% if variant_images contains media.src %} product__media-item--variant js-pdp-media-gallery-variant{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+                                                    {%- liquid
+                                                        assign media_position = media_position | default: 0 | plus: 1
+                                                        assign lazy_load = false
+                                                        if media_position > 1
+                                                            assign lazy_load = true
+                                                        endif
+                                                        render 'product-thumbnail', desktop_thumbnails: false, media: media, position: media_position, loop: true, modal_id: section.id, xr_button: true, media_width: media_width, lazy_load: lazy_load
+                                                    -%}
+                                                </li>
+                                            {%- endunless -%}
+                                        {%- endfor -%}
+                                        </ul>
+                                        {%- if media_count > 1 -%}
+                                            <div id="MediaGalleryPagination-{{ section.id }}" class="mt-4 medium:hidden">
+                                                <div class="swiper-pagination relative">
+                                                    <div class="swiper-pagination-drag bg-primary h-2 rounded-full cursor-pointer z-20"></div>
+                                                    <div class="absolute w-full h-px top-1/2 bg-uiDarkGrey z-10"></div>
+                                                </div>
+                                            </div>
+                                        {%- endif -%}
+                                    </div>
+                                {%- else -%}
+                                    {%- for media in product.media -%}
+                                        {%- render 'badge-pdp-hero' -%}
+                                        <div class="mediumMax:wrap">
+                                            <div class="product__media-item{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if variant_images contains media.src %} product__media-item--variant{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+                                                {%- assign media_position = 1 -%}
+                                                {% render 'product-thumbnail',
+                                                    desktop_thumbnails: false,
+                                                    media: media,
+                                                    modal_id: section.id,
+                                                    xr_button: true,
+                                                    media_width: media_width,
+                                                    lazy_load: true
+                                                %}
+                                            </div>
+                                        </div>
+                                    {%- endfor -%}
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% comment %} Product Hero {% endcomment %}
+                <div class="col-span-4 mediumMax:bg-uiWhite mediumMax:wrap mediumMax:mt-3 medium:col-span-6 xLarge:medium:col-start-8 xLarge:medium-col-span-5 js-quick-add-context-product-info-container">
+                    <div class="py-7 medium:py-9 medium:px-11 bg-uiWhite">
+                        <div id="ProductInfo-{{ section.id }}">
+                            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+    
+                            {% if series %}
+                                <span class="heading-xs font-light">
+                                    {{- series.letter -}}-{{ product.metafields.custom.series_number }}
+                                </span>
+                            {% endif %}
+                            {% comment %} Product Hero - Title {% endcomment %}
+                            <h1 class="heading-xs text-primary js-quick-add-context-heading">{{ product.title | escape }}</h1>
+    
+                            {% if product.metafields.custom.heading %}
+                                <p class="body-s mt-[1.15rem]">
+                                    {{- product.metafields.custom.heading -}}
+                                </p>
+                            {% endif %}
+    
+                            {% comment %} Product Hero - Form {% endcomment %}
+                            <div>
+                                {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                                {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                                    {{ form | payment_terms }}
+                                {%- endform -%}
+                            </div>
+    
+                            {% comment %} Product Hero - Description {% endcomment %}
+                            {%- if product.metafields.custom.product_short_description != blank -%}
+                                <p class="wysiwyg mt-2 text-body-m xLarge:mt-5 xLarge:text-body-l js-quick-add-context-wysiwyg">
+                                    {{- product.metafields.custom.product_short_description -}}
+                                </p>
+                            {%- endif -%}
+                            <div class="flex flex-wrap w-full justify-between mt-5">
+                                <div class="flex items-end gap-x-2">
+                                    {% comment %} Product Hero - Price {% endcomment %}
+                                    <div id="price-{{ section.id }}" class="group js-quick-add-context-price" role="status">
+                                        {%- render 'price-pdp', product: product, use_variant: true -%}
+                                    </div>
+                                    {% if product.metafields.custom.measurement %}
+                                        <span class="body-r text-text1">
+                                            {{- product.metafields.custom.measurement -}}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                {% comment %}
+                                 TODO: 3rd Party reviews to be integrated
+                                {% endcomment %}
+                                <div class="flex gap-x-2 items-center">
+                                    {% render 'reviews-rating' %}
+                                    <span class="body-r">102 reviews</span>
+                                </div>
+                                
+                            </div>
+    
+                            {% comment %} Product Hero - Variants {% endcomment %}
+                            {%- unless product.has_only_default_variant -%}
+                                <variant-radios class="no-js-hidden block mt-5 medium:relative xLarge:mt-8 js-quick-add-context-variants" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                                    {% comment %}
+                                    This `#options` div is used as the anchor for the Sticky ATC CTA 'Choose options' hyperlink.
+                                    The `top` value is equal to the height of the sticky header, plus 20px.
+                                    {% endcomment %}
+                                    <div id="options" class="mediumMax:hidden medium:absolute medium:top-[-7.25rem] medium:left-0"></div>
+                                    {%- for option in product.options_with_values -%}
+                                        <fieldset class="js product-form__input">
+                                            <div class="flex flex-wrap gap-2">
+                                                {%- for value in option.values -%}
+                                                    <div>
+                                                        <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                                                name="{{ option.name }}"    
+                                                                value="{{ value | escape }}"
+                                                                form="{{ product_form_id }}"
+                                                                {% if option.selected_value == value %}checked{% endif %}
+                                                        >
+                                                        <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                                                            {{ value }} / {{ value.variant.price | money }}
+                                                        </label>
+                                                    </div>
+                                                {%- endfor -%}
+                                            </div>
+                                        </fieldset>
+                                    {%- endfor -%}
+                                    <script type="application/json">
+                                        {{ product.variants | json }}
+                                    </script>
+                                </variant-radios>
+                            {%- endunless -%}
+    
+                            {% comment %} Product Hero - Apps embed. Primarily for Subscriptions {% endcomment %}
+                            {%- for block in section.blocks -%}
+                                {%- case block.type -%}
+                                  {%- when '@app' -%}
+                                    {% render block %}
+                                {%- endcase -%}
+                            {%- endfor -%}
+    
+                            <div class="flex items-center gap-2 mt-5 xLarge:gap-5 js-quick-add-context-quantity-atc">
+                                {% comment %} Product Hero - Quantity {% endcomment %}
+                                {%- unless product.available == false -%}
+                                    <div class="js-quick-add-context-quantity-input">
+                                        <label class="sr-only" for="Quantity-{{ section.id }}">
+                                            {{ 'products.product.quantity.label' | t }}
+                                        </label>
+                                        <quantity-input class="quantity quantity--pdp">
+                                            <button class="quantity__button" name="minus" type="button">
+                                                <span class="sr-only">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+                                                {% render 'icon-minus' %}
+                                                </button>
+                                                <input class="quantity__input"
+                                                    type="number"
+                                                    name="quantity"
+                                                    id="Quantity-{{ section.id }}"
+                                                    min="1"
+                                                    value="1"
+                                                    form="{{ product_form_id }}"
+                                                >
+                                            <button class="quantity__button" name="plus" type="button">
+                                                <span class="sr-only">
+                                                    {{ 'products.product.quantity.increase' | t: product: product.title | escape }}
+                                                </span>
+                                                {% render 'icon-plus' %}
+                                            </button>
+                                        </quantity-input>
+                                    </div>
+                                {%- endunless -%}
+                                {% comment %} Product Hero - Form Submit & Errors {% endcomment %}
+                                <product-form class="w-full js-pdp-cta-sticky-context-top js-quick-add-context-product-form">
+                                    {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                                        <button
+                                            type="submit"
+                                            name="add"
+                                            class="button w-full max-w-[10.375rem] justify-center js-quick-add-context-submit"
+                                            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                                        >
+                                            <div class="button__label">
+                                                <span>
+                                                    {%- if product.selected_or_first_available_variant.available -%}
+                                                        {{ 'products.product.add_to_cart' | t }}
+                                                    {%- else -%}
+                                                        {{ 'products.product.sold_out' | t }}
+                                                    {%- endif -%}
+                                                </span>
+                                                <span class="absolute top-10 left-0">
+                                                    {%- if product.selected_or_first_available_variant.available -%}
+                                                        {{ 'products.product.add_to_cart' | t }}
+                                                    {%- else -%}
+                                                        {{ 'products.product.sold_out' | t }}
+                                                    {%- endif -%}
+                                                </span>
+                                            </div>
+                                            <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    {%- endform -%}
+                                    <div class="product-form__error-message-wrapper" role="alert" hidden>
+                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                            <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                            <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                            <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                        </svg>
+                                        <span class="product-form__error-message"></span>
+                                    </div>
+                                </product-form>
+    
+                                {% comment %} Sticky ATC CTA {% endcomment %}
+                                {%- if product.selected_or_first_available_variant.available -%}
+                                    <div{% if series.colour %} style="border-color: {{ series.colour }};"{% endif %} class="fixed bottom-0 left-0 z-10 medium:border-t-[0.1875rem] mediumMax:border-b-[0.5625rem] border-t-uiMidGrey w-full medium:bg-uiWhite translate-y-full transition-transform duration-300 ease-in-out [&.is-active]:translate-y-0 js-pdp-cta-sticky" inert aria-hidden="true">
+                                        <div class="container">
+                                            <div class="wrap">
+                                                <div class="py-[0.3rem] medium:flex medium:justify-between large:py-3">
+                                                    <div class="medium:flex medium:items-center medium:justify-between medium:w-full">
+                                                        {% comment %}
+                                                        @todo Hook up to reviews integration where necessary.
+                                                        'reviews' ID will need to be added to appropriate DOM node above.
+                                                        {% endcomment %}
+                                                        <div class="flex items-center gap-x-4 mediumMax:hidden">
+                                                            <div class="bg-uiMidGrey flex items-center">
+                                                                <img
+                                                                    src="{{ product.featured_image | image_url: width: 50, height: 50 }}"
+                                                                    alt="{{ product.featured_image.alt | escape }}"
+                                                                    width="50"
+                                                                    height="50"
+                                                                    loading="lazy"
+                                                                >
+                                                            </div>
+                                                            <div>
+                                                               <div>
+                                                                    <span class="font-semibold">
+                                                                        {% if series.letter and product.metafields.custom.series_number %}
+                                                                            {{- series.letter -}}-{{ product.metafields.custom.series_number }}
+                                                                        {% endif %}    
+                                                                    </span>
+                                                                    <span class="font-semibold">
+                                                                        {{ product.title | escape }}
+                                                                    </span>
+                                                               </div>
+                                                               <div>
+                                                                    {% render 'price-pdp-sticky' %}
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex gap-x-6 items-center">
+                                                            <product-form class="block mediumMax:w-full medium:relative">
+                                                                {% assign stickyATCCTAFormID = product_form_id | append: '-sticky-atc-cta' %}
+                                                                {%- form 'product', product, id: stickyATCCTAFormID, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                                                                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                                                                    <div class="flex gap-x-2 items-center">
+                                                                        <quantity-input class="quantity quantity--sticky mediumMax:hidden">
+                                                                            <button class="quantity__button" name="minus" type="button">
+                                                                                <span class="sr-only">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+                                                                                {% render 'icon-minus' %}
+                                                                                </button>
+                                                                                <input class="quantity__input"
+                                                                                    type="number"
+                                                                                    name="quantity"
+                                                                                    id="Quantity-{{ section.id }}"
+                                                                                    min="1"
+                                                                                    value="1"
+                                                                                    form="{{ stickyATCCTAFormID }}"
+                                                                                >
+                                                                            <button class="quantity__button" name="plus" type="button">
+                                                                                <span class="sr-only">
+                                                                                    {{ 'products.product.quantity.increase' | t: product: product.title | escape }}
+                                                                                </span>
+                                                                                {% render 'icon-plus' %}
+                                                                            </button>
+                                                                        </quantity-input>
+                                                                        <button
+                                                                            type="submit"
+                                                                            name="add"
+                                                                            class="button w-full justify-center medium:w-[6.875rem] medium:py-[.75rem] medium:button--small js-quick-add-context-submit"
+                                                                        >
+                                                                            <div class="button__label">
+                                                                                <span>
+                                                                                    {{ 'products.product.add_to_cart' | t }}
+                                                                                </span>
+                                                                                <span class="absolute top-10 left-0">
+                                                                                    {{ 'products.product.add_to_cart' | t }}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                                                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </button>
+                                                                    </div>
+                                                                {%- endform -%}
+                                                                <div class="product-form__error-message-wrapper medium:absolute medium:right-0 medium:top-[calc(100%_-_0.625rem)] medium:w-max large:top-[calc(100%_-_7.6825rem)]" role="alert" hidden>
+                                                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                                                        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                                                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                                                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                                                        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                                                    </svg>
+                                                                    <span class="product-form__error-message"></span>
+                                                                </div>
+                                                            </product-form>
+                                                            <free-delivery-banner class="block body-r mediumMax:hidden" data-cart-subtotal="{{ cart.total_price }}">
+                                                                <div class="flex items-center gap-x-[0.625rem] large:gap-x-3">
+                                                                    <p class="js-product-free-delivery-info-loading">{{ 'accessibility.loading' | t }}&hellip;</p>
+                                                                    <p class="hidden body-s js-product-free-delivery-not-qualified">
+                                                                        {{ free_shipping_text_before }} <span>{{ cart.currency.symbol }}</span><span class="js-product-free-delivery-remaining-amount">0.00</span> {{ free_shipping_text_after }}
+                                                                    </p>
+                                                                    <p class="hidden body-s js-product-free-delivery-qualified">
+                                                                        {{- 'general.cart.free_delivery_qualified' | t -}}
+                                                                    </p>
+                                                                </div>
+                                                            </free-delivery-banner>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%- endif -%}
+                            </div>
+    
+                            {% comment %} Free delivery banner {% endcomment %}
+                            {% unless settings.free_shipping_threshold == blank %}
+                                <free-delivery-banner class="block body-r border border-uiMidGrey rounded-[0.0625rem] mt-[1.875rem] py-2 max-w-max px-4 medium:px-7 xLarge:mt-5 js-quick-add-context-free-delivery-banner" data-cart-subtotal="{{ cart.total_price }}">
+                                    <div class="flex items-center gap-x-[0.625rem] large:gap-x-3">
+                                        <p class="js-product-free-delivery-info-loading">{{ 'accessibility.loading' | t }}&hellip;</p>
+                                        <p class="hidden body-r js-product-free-delivery-not-qualified">
+                                            {{ free_shipping_text_before }} <span class="font-bold">{{ cart.currency.symbol }}</span><span class="font-bold js-product-free-delivery-remaining-amount">0.00</span> {{ free_shipping_text_after }}
+                                        </p>
+                                        <p class="hidden body-r js-product-free-delivery-qualified">
+                                            {{- 'general.cart.free_delivery_qualified' | t -}}
+                                        </p>
+                                    </div>
+                                </free-delivery-banner>
+                            {% endunless %}
+    
+                            {% if product.metafields.custom.actions_left or product.metafields.custom.actions_right %}
+                                <div class="mt-9"> 
+                                    <h3 class="body-s uppercase font-Gotham font-normal">
+                                        {{ 'products.product.targetted_actions' | t }}
+                                    </h3>
+                                    <div class="mt-2 medium:flex medium:flex-wrap medium:gap-x-2">
+                                        {% if product.metafields.custom.actions_left %}
+                                            <ul class="body-s medium:basis-[calc(50%-.5rem)]">
+                                                {% if section.blocks.size > 0 %}
+                                                    {%- for block in section.blocks -%}
+                                                        {%- if block.type == 'action' and block.settings.alignment == 'left' -%}
+                                                            <li class="flex">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="5" height="7" viewBox="0 0 5 7" fill="none">
+                                                                    <path d="M1.1875 1.19238L3.625 3.50008L1.1875 5.80777" stroke="currentColor"/>
+                                                                </svg>
+                                                                <span class="relative ml-1 flex-1 -top-1">
+                                                                    {{ block.settings.content }}
+                                                                </span>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% for item in product.metafields.custom.actions_left.value %}
+                                                    <li class="flex">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="7" viewBox="0 0 5 7" fill="none">
+                                                            <path d="M1.1875 1.19238L3.625 3.50008L1.1875 5.80777" stroke="currentColor"/>
+                                                        </svg>
+                                                        <span class="relative ml-1 flex-1 -top-1">
+                                                            {{ item }}
+                                                        </span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                        {% if product.metafields.custom.actions_right %}
+                                            <ul class="body-s medium:basis-[calc(50%-.5rem)]">
+                                                {% if section.blocks.size > 0 %}
+                                                    {%- for block in section.blocks -%}
+                                                        {%- if block.type == 'action' and block.settings.alignment == 'right' -%}
+                                                            <li class="flex">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="5" height="7" viewBox="0 0 5 7" fill="none">
+                                                                    <path d="M1.1875 1.19238L3.625 3.50008L1.1875 5.80777" stroke="currentColor"/>
+                                                                </svg>
+                                                                <span class="relative ml-1 flex-1 -top-1">
+                                                                    {{ block.settings.content }}
+                                                                </span>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% for item in product.metafields.custom.actions_right.value %}
+                                                    <li class="flex">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="7" viewBox="0 0 5 7" fill="none">
+                                                            <path d="M1.1875 1.19238L3.625 3.50008L1.1875 5.80777" stroke="currentColor"/>
+                                                        </svg>
+                                                        <span class="relative ml-1 flex-1 -top-1">
+                                                            {{ item }}
+                                                        </span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% comment %} Product Hero - Key Features: Image {% endcomment %}
+                            {%- if product.metafields.custom.product_key_feature_image.value != blank -%}
+                                <div class="mt-8 xLarge:mt-10 js-product-kf-images">
+                                    <div class="flex gap-y-2 mediumMax:flex-col mediumMax:flex-wrap gap-4">
+                                        {%- for key_feature_image in product.metafields.custom.product_key_feature_image.value -%}
+                                            {%- render 'main-product-kf-image'
+                                                image: key_feature_image.image,
+                                                caption: key_feature_image.caption
+                                            -%}
+                                        {%- endfor -%}
+                                    </div>
+                                </div>
+                            {%- endif -%}
+    
+                            {% comment %} Product Hero - Key Features: Icon {% endcomment %}
+                            {%- if product.metafields.custom.product_key_feature_icon.value != blank -%}
+                                <ul class="mt-8 xLarge:mt-10 flex flex-col gap-y-3 xLarge:gap-y-2 js-product-kf-icons">
+                                    {%- for key_feature_icon in product.metafields.custom.product_key_feature_icon.value -%}
+                                        {%- render 'main-product-kf-icon'
+                                            text: key_feature_icon.text,
+                                            iconCustom: key_feature_icon.image
+                                        -%}
+                                    {%- endfor -%}
+                                </ul>
+                            {%- endif -%}
+    
+                            {% comment %} Product Hero - Accordion Tabs {% endcomment %}
+                            {%- liquid
+                                assign hasAccordion = false
+                                if section.blocks.size > 0
+                                    for block in section.blocks
+                                        if block.type == 'collapsible_tab'
+                                            assign hasAccordion = true
+                                        endif
+                                    endfor
+                                endif
+    
+                                if product.description != blank
+                                    assign hasAccordion = true
+                                endif
+                            -%}
+                            {%- if hasAccordion -%}
+                                {% assign accordionProductDescriptionHeading =  'products.product.accordions.product_description' | t %}
+                                <div class="pt-4 border-t border-uiBlack mt-7 js-product-accordion">
+                                    {%- if product.description != blank -%}
+                                        {%- render 'main-product-accordion'
+                                            id: 'description',
+                                            heading: accordionProductDescriptionHeading,
+                                            content: product.description
+                                        -%}
+                                    {%- endif -%}
+                                    {% if section.blocks.size > 0 %}
+                                        {%- for block in section.blocks -%}
+                                            {%- case block.type -%}
+                                            {%- when 'collapsible_tab' -%}
+                                                {%- render 'main-product-accordion'
+                                                    id: block.id,
+                                                    icon: block.settings.icon,
+                                                    heading: block.settings.heading,
+                                                    content: block.settings.content
+                                                -%}
+                                            {%- endcase -%}
+                                        {% endfor %}
+                                    {% endif %}
+                                    {%- if product.metafields.product_accordions.heading != blank and product.metafields.product_accordions.content != blank or product.metafields.product_accordions.image != blank -%}
+                                        {%- for item in product.metafields.product_accordions.heading -%}
+                                            {%- render 'main-product-accordion'
+                                                id: 'metafields-' | append: forloop.index0,
+                                                icon: product.metafields.product_accordions.icon[forloop.index0],
+                                                heading: item,
+                                                content: product.metafields.product_accordions.content[forloop.index0],
+                                                image: product.metafields.product_accordions.image[forloop.index0]
+                                            -%}
+                                        {%- endfor -%}
+                                    {% endif %}
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                    {% if product.metafields.custom.usp_items %}
+                        <div class="flex flex-col gap-y-4 py-4 medium:py-6">
+                            {% for item in product.metafields.custom.usp_items.value %}
+                                <div class="flex gap-x-4 items-center js-info-footer">
+                                    <svg{% if series.colour %} style="color:{{ series.colour }};"{% endif %} class="stroke-uiBlack text-uiWhite mediumMax:max-w-7" xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                                        <circle cx="19.5" cy="19.5" r="18.7778" fill="currentColor" stroke="currentColor" stroke-width="1.44444"/>
+                                        <path d="M19.5007 4.33325L22.9058 14.8132H33.925L25.0103 21.2901L28.4154 31.77L19.5007 25.2931L10.5859 31.77L13.991 21.2901L5.07629 14.8132H16.0955L19.5007 4.33325Z" stroke="black" stroke-width="1.44444"/>
+                                    </svg>
+                                    <span class="body-l font-semibold">
+                                        {{ item }}
+                                    </span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% comment %} Product Hero - Media Modals {% endcomment %}
+            <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+                <div class="product-media-modal__dialog" role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true" tabindex="-1">
+                    <button id="ModalClose-{{ section.id }}" type="button" class="product-media-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+                        {% render 'icon-close' %}
+                    </button>
+                    <div class="product-media-modal__content gradient" role="document" aria-label="{{ 'products.modal.label' | t }}" tabindex="0">
+                        {%- liquid
+                            if product.selected_or_first_available_variant.featured_media != null
+                                assign media = product.selected_or_first_available_variant.featured_media
+                                render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: false
+                            endif
+                        -%}
+                        {%- for media in product.media -%}
+                            {%- liquid
+                                assign variant_image = true
+
+                                unless media.id == product.selected_or_first_available_variant.featured_media.id
+                                    render 'product-media', media: media, loop: true, variant_image: variant_image
+                                endunless
+                            -%}
+                        {%- endfor -%}
+                    </div>
+                </div>
+            </product-modal>
+
+            {%- liquid
+                if product.selected_or_first_available_variant.featured_media
+                    assign seo_media = product.selected_or_first_available_variant.featured_media
+                else
+                    assign seo_media = product.featured_media
+                endif
+            -%}
+
+            <script type="application/ld+json">
+                {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": {{ product.title | json }},
+                "url": {{ request.origin | append: product.url | json }},
+                {% if seo_media -%}
+                    "image": [
+                    {{ seo_media | image_url: width: seo_media.preview_image.width | prepend: "https:" | json }}
+                    ],
+                {%- endif %}
+                "description": {{ product.description | strip_html | json }},
+                {% if product.selected_or_first_available_variant.sku != blank -%}
+                    "sku": {{ product.selected_or_first_available_variant.sku | json }},
+                {%- endif %}
+                "brand": {
+                    "@type": "Brand",
+                    "name": {{ product.vendor | json }}
+                },
+                "offers": [
+                    {%- for variant in product.variants -%}
+                    {
+                        "@type" : "Offer",
+                        {%- if variant.sku != blank -%}
+                        "sku": {{ variant.sku | json }},
+                        {%- endif -%}
+                        {%- if variant.barcode.size == 12 -%}
+                        "gtin12": {{ variant.barcode }},
+                        {%- endif -%}
+                        {%- if variant.barcode.size == 13 -%}
+                        "gtin13": {{ variant.barcode }},
+                        {%- endif -%}
+                        {%- if variant.barcode.size == 14 -%}
+                        "gtin14": {{ variant.barcode }},
+                        {%- endif -%}
+                        "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+                        "price" : {{ variant.price | divided_by: 100.00 | json }},
+                        "priceCurrency" : {{ cart.currency.iso_code | json }},
+                        "url" : {{ request.origin | append: variant.url | json }}
+                    }{% unless forloop.last %},{% endunless %}
+                    {%- endfor -%}
+                ]
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.main-product.name",
+    "tag": "div",
+    "class": "section",
+    "blocks": [
+        {
+            "type": "@app"
+        },
+        {
+            "type": "collapsible_tab",
+            "name": "t:sections.main-product.blocks.collapsible_tab.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Collapsible row",
+                    "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+                    "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+                },
+                {
+                    "type": "select",
+                    "id": "icon",
+                    "options": [
+                        {
+                            "value": "none",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
+                        },
+                        {
+                            "value": "materials",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
+                        },
+                        {
+                            "value": "shipping_and_returns",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
+                        },
+                        {
+                            "value": "dimensions",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
+                        },
+                        {
+                            "value": "care_instructions",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
+                        },
+                        {
+                            "value": "faqs",
+                            "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
+                        }
+                    ],
+                    "default": "none",
+                    "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
+                }
+            ]
+        },
+        {
+            "type": "action",
+            "name": "t:sections.main-product.blocks.action.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "content",
+                    "default": "Content",
+                    "info": "t:sections.main-product.blocks.action.settings.content.info",
+                    "label": "t:sections.main-product.blocks.action.settings.content.label"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "t:sections.main-product.blocks.action.settings.alignment.options__1.label"
+                        },
+                        {
+                            "value": "right",
+                            "label": "t:sections.main-product.blocks.action.settings.alignment.options__2.label"
+                        }
+                    ],
+                    "default": "left",
+                    "label": "t:sections.main-product.blocks.action.settings.alignment.label"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

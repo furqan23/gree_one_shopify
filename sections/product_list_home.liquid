@@ -1,0 +1,495 @@
+<section class="custom-product-list">
+  <div class="container1">
+    <button class="scroll-button left">
+      <svg width="35" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.88675 5.68247C7.49623 5.29195 6.86307 5.29195 6.47254 5.68247L1.58509 10.5747C0.804698 11.3559 0.805008
+          12.6217 1.58579 13.4024L6.47615 18.2928C6.86667 18.6833 7.49984 18.6833 7.89036 18.2928C8.28089 17.9023 8.28089
+          17.2691 7.89036 16.8786L3.70471 12.6929C3.31419 12.3024 3.31419 11.6692 3.70472 11.2787L7.88675 7.09669C8.27728 6.70616
+          8.27728 6.073 7.88675 5.68247Z" fill="#0F0F0F"/>
+      </svg>
+    </button>
+    <div class="product-list-wrapper">
+      <div class="product-list">
+        {% for block in section.blocks %}
+          {% assign series = product.metafields.custom.series.value %}
+          <a href="/products/{{ block.settings.handle }}" class="product-item">
+            <div class="image-class-div">
+              <img
+                src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                alt="{{ block.settings.title }}"
+                class="product-image"
+              >
+              <img
+                src="{{all_products[block.settings.handle].images[1] | image_url: width: 400, height: 400 }}"
+                alt="{{ block.settings.title }}"
+                class="product-image-hover"
+              >
+            </div>
+            <div
+              style="border-color:   {{ all_products[block.settings.handle].metafields.custom.series.value.colour }};  width:100%; height:0px;"
+              class="card__media-container border-b-4 "
+            ></div>
+            <!--
+              <div style="border-color: #44e4e4;" class="card__media-container{% if series.colour %} border-b-4{% endif %} border-b-4"></div>
+            -->
+            <h1 class="heading-lg leading-tight product-title">{{ block.settings.title }}</h1>
+            <!-- <div class="light-grey-bar"></div> -->
+            <h2 class="product-description">{{ block.settings.description }}</h2>
+            <!-- <p class="product-price">{{ all_products[block.settings.handle].price | money }}</p> -->
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="scroll-button right">
+      <svg width="35" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.1359 18.2928C16.5264 18.6833 17.1596 18.6833 17.5501 18.2928L22.4375 13.4006C23.2179 12.6194 23.2176 11.3536 22.4369 10.5728L17.5465
+          5.68247C17.156 5.29195 16.5228 5.29195 16.1323 5.68247C15.7418 6.073 15.7418 6.70616 16.1323 7.09669L20.3179 11.2823C20.7085 11.6729 20.7085 12.306
+          20.3179 12.6965L16.1359 16.8786C15.7454 17.2691 15.7454 17.9023 16.1359 18.2928Z" fill="#0F0F0F"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<style>
+      .custom-product-list {
+        padding: 50px 20px;
+        /* background-color: #f5f5f5; */
+        width: calc(95vw - 20px);
+        max-width: calc(95vw - 20px);
+        min-width: calc(95vw - 20px);
+          display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+      }
+
+      .light-grey-bar {
+        background-color: #cccccccd; /* light grey */
+        height: 1px;
+      }
+      .container1 {
+        max-width: calc(77vw - 20px);
+        /* margin: 0 45px; */
+        width: calc(77vw - 20px);
+        display: flex;
+        padding: 0px 52px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+      }
+
+      .product-list-wrapper {
+        overflow: hidden;
+        /* flex: 1; */
+      }
+
+      .product-list {
+        display: flex;
+        gap: 20px;
+        white-space: nowrap;
+         transition: transform 0.3s ease;
+      }
+
+      .product-item {
+        min-width: 200px;
+        text-align: center;
+        flex-shrink: 0;
+        text-decoration: none;
+        color: inherit;
+
+        display: flex;
+        flex-direction: column;
+         justify-content: start;
+        align-items: center;
+      }
+
+      .image-class-div:hover > .product-image {
+        /* transform: scale(1.03); */
+        gap: 20px;
+        /* transition: transform 0.4s linear; */
+        max-width: 100%;
+        max-height: 100%;
+        transform-origin: top;
+      }
+
+      .image-class-div {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+         position: relative;
+      }
+
+      .product-item:hover .image-class-div .product-image {
+        /* transform: scale(1.03); */
+        /* gap: 20px; */
+        /* transition: transform 0.2s linear; */
+        max-width: 100%;
+        max-height: 100%;
+        transform-origin: top;
+         opacity: 0;
+      }
+     .product-item:hover .image-class-div .product-image-hover {
+
+      opacity: 1;
+          top: 0;
+      }
+
+
+      .product-item:hover > .product-title,
+      .product-item:hover > .product-description {
+        text-decoration: underline;
+      }
+
+      .product-price {
+        font-size: 16px;
+        color: #000;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      .product-image {
+        max-width: 100%;
+        height: 300px;
+
+        max-height: 300px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+     .product-image-hover {
+        max-width: 100%;
+        height: 300px;
+
+        max-height: 300px;
+        /* margin-bottom: 5px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+          opacity: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      }
+      .product-title {
+         font-size: 17px;
+        margin: 8px 0;
+        /* font-family: Gotham-book; */
+         font-style: bold;
+        /* font-weight:700; */
+      }
+
+      .product-description {
+        font-size: 20px;
+        color: #000000;
+        margin-top: 5px;
+        /* font-family: 'Canela-Regular' !important; */
+         font-family: "Utopia-Semibold";
+
+
+
+      }
+
+
+
+      .scroll-button {
+        background-color: #ffffff06;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        position: absolute;
+        height: 110px;
+        top: 35%;
+        transform: translateY(-50%);
+        z-index: 10;
+        border-radius: 2px;
+      }
+
+      .scroll-button.left {
+        left: 0;
+      }
+
+      .scroll-button.right {
+        right: 0;
+      }
+
+      .scroll-button:hover {
+        background-color: #cccccc27;
+      }
+
+
+    /* --------------------------------------- mobile view ------------------*/
+      @media (max-width: 768px) {
+         .custom-product-list {
+        padding: 50px 2px;
+        /* background-color: #f5f5f5; */
+        width: calc(97vw - 5px);
+        min-width: calc(97vw  - 5px);
+          display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+      }
+        .container1 {
+        max-width: calc(97vw - 15px);
+        /* margin: 0 45px; */
+        width: calc(97vw - 15px);
+        display: flex;
+        padding: 0px 2px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+      }
+        .product-item {
+          min-width: 177px;
+          max-width:177px;
+          height:auto;
+        }
+
+         .product-list-wrapper {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+   /* Hide scrollbar */
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE and Edge */
+  }
+
+  .product-list-wrapper::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari, Opera */
+  }
+
+  .product-list {
+    display: flex;
+    gap: 20px;
+  }
+
+
+         .product-image {
+        max-width: 100%;
+        height: auto;
+
+        max-height: 177px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+
+
+
+
+      .image-class-div:hover > .product-image {
+        transform-origin: initial;
+      }
+
+
+
+      .product-item:hover .image-class-div .product-image {
+        /* transform: scale(1.03); */
+        /* gap: 20px; */
+        /* transition: transform 0.2s linear; */
+        max-width: 100%;
+        max-height: 100%;
+
+         opacity: 1;
+      }
+     .product-item:hover .image-class-div .product-image-hover {
+
+      opacity: 0;
+
+      }
+.product-item .product-description {
+        overflow-wrap: break-word;
+        
+      }
+      .product-item:hover > .product-title,
+      .product-item:hover > .product-description {
+        text-decoration: initial;
+        
+      }
+
+
+
+
+
+
+  .scroll-button {
+      display:none;
+      }
+
+
+
+
+
+    /* .scroll-button {
+        background-color: #ffffff06;
+        color: #fff;
+        border: none;
+        position: absolute;
+        height: 50px;
+        top: 35%;
+        transform: translateY(-50%);
+        z-index: 10;
+        border-radius: 1px;
+      } */
+
+      }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      let scrollPosition = 0;
+      const productList = document.querySelector(".product-list");
+      const scrollButtons = document.querySelectorAll(".scroll-button");
+ var scrollAmount = 600;
+      const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+if (mediaQuery.matches) {
+  console.log("The screen width is 768px or less.");
+  scrollAmount = 100;
+} else {
+   scrollAmount = 600;
+  console.log("The screen width is more than 768px.");
+}
+      
+
+      if (!productList) {
+        console.error("Product list not found!");
+        return;
+      }
+
+      function updateMaxScroll() {
+        return productList.scrollWidth - productList.clientWidth;
+      }
+
+      function scrollProducts(direction) {
+        let maxScroll = updateMaxScroll();
+
+          const scrollAmount = window.matchMedia("(max-width: 768px)").matches ? 100 : 800;
+  if (direction === "left") {
+    productList.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  } else {
+    productList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  }
+
+        if (direction === "left") {
+          scrollPosition = Math.max(scrollPosition - scrollAmount, 0);
+        } else {
+          scrollPosition = Math.min(scrollPosition + scrollAmount, maxScroll);
+        }
+
+        productList.style.transform = `translateX(-${scrollPosition}px)`;
+      }
+
+      scrollButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const direction = this.classList.contains("left") ? "left" : "right";
+          scrollProducts(direction);
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        scrollPosition = 0;
+        productList.style.transform = `translateX(0px)`;
+      });
+
+ // 👇 SMOOTH DRAG/SCROLL TOUCH SUPPORT
+      // let isDragging = false;
+      // let startX = 0;
+      // let scrollStart = 0;
+
+      // productList.addEventListener("touchstart", function (e) {
+      //   isDragging = true;
+      //   startX = e.touches[0].pageX;
+      //   scrollStart = scrollPosition;
+      // });
+
+      // productList.addEventListener("touchmove", function (e) {
+      //   if (!isDragging) return;
+      //   const currentX = e.touches[0].pageX;
+      //   const diff = startX - currentX;
+      //   let maxScroll = updateMaxScroll();
+
+      //   scrollPosition = scrollStart + diff;
+
+      //   // Clamp values between 0 and maxScroll
+      //   if (scrollPosition < 0) scrollPosition = 0;
+      //   if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+
+      //   productList.style.transform = `translateX(-${scrollPosition}px)`;
+      // });
+
+      // productList.addEventListener("touchend", function () {
+      //   isDragging = false;
+      // });
+
+      // productList.addEventListener("touchcancel", function () {
+      //   isDragging = false;
+      // });
+      // 👆 SMOOTH TOUCH DRAG END
+      
+    }, 500); // Delay to allow Shopify to load
+  });
+</script>
+
+{% schema %}
+{
+  "name": "product_list_home",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "product",
+          "id": "handle",
+          "label": "Product Handle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "product_list_home",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

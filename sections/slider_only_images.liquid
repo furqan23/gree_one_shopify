@@ -1,0 +1,622 @@
+
+    <style>
+      /* Base Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .slider-section {
+        width: calc(100vw - 20px);
+        height: 94vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .slider-container {
+        position: relative; /* CRITICAL: This is the positioning context for absolute children */
+        width: 100%;
+        overflow: hidden;
+      }
+      .slider {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 100%;
+      }
+      .slide {
+        min-width: 100%;
+        height: 94vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left;
+      }
+      .img-desktop {
+        display: block; /* Default to block for desktop */
+      }
+      .img-mobile {
+        display: none; /* Default to none for desktop */
+      }
+      .slider_writing1 {
+        position: absolute;
+        top: 50%;
+        right: 3%;
+        transform: translateY(-50%);
+        max-width: 720px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .slider_writing {
+        position: absolute;
+        top: 50%;
+        right: 3%;
+        transform: translateY(-50%);
+        max-width: 720px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .p3-h {
+        font-size: 52px;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #0194b8;
+      }
+      .p3-p {
+        font-size: 24px;
+        line-height: 1.5;
+        word-spacing: 5px;
+        text-align: center;
+      }
+      .p3-r31{
+        font-size:28px;
+        text-align:center;
+      }
+      .p3-p1 {
+        font-size: 24px;
+        line-height: 1.5;
+        word-spacing: 15px;
+        text-align: center;
+      }
+
+      .p3-p-bottom {
+        position: absolute;
+        bottom: 2%;
+        right: 1%;
+        font-size: 11px;
+      }
+      .p3-p-bottom1 {
+        position: absolute;
+        bottom: 2%;
+        right: 1%;
+        font-size: 11px;
+      }
+      .p3-p-bottom1 img{
+         display: block; 
+        width: 80px; 
+        height: auto; 
+        margin-left: auto; 
+        margin-bottom: 10px;
+      }
+      .slider_writing h1 {
+        font-size: 39px;
+        margin-bottom: 10px;
+      }
+      .slider_writing p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .highlight {
+        font-size: 22px; /* Adjust the size as needed */
+        font-weight: bold; /* Optional, for extra emphasis */
+        color: #000;
+        font-family: "Utopia-Semibold" !important;
+      }
+      .button-container-slider {
+        z-index: 999;
+        margin-bottom: 1px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Base styles for arrows (will be overridden by media queries) */
+      .prev,
+      .next {
+        width: 19px;
+        height: 19px;
+        background: rgba(0, 0, 0, 0);
+        border: none;
+        color: #232323c3;
+        font-size: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        transition: background 0.3s ease;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background: rgba(0, 0, 0, 0.224);
+      }
+
+      .dots-container {
+        display: flex;
+        gap: 5px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border: 2px solid #232323c3;
+        border-radius: 50%;
+        background: #ffffff45;
+        cursor: pointer;
+        transition: all 0.3s, border 0.3s;
+      }
+      .dot.active {
+        background: #232323c3;
+      }
+
+      /* Desktop specific styles for arrows and dots */
+      @media (min-width: 769px) {
+        /* Desktop arrows */
+        .prev-arrow-desktop {
+          position: absolute;
+          top: 50%;
+          left: 20px; /* Adjust as needed */
+          transform: translateY(-50%);
+          z-index: 10; /* Ensure arrows are above slides */
+          display: flex; /* Make them visible on desktop */
+        }
+
+        .next-arrow-desktop {
+          position: absolute;
+          top: 50%;
+          right: 20px; /* Adjust as needed */
+          transform: translateY(-50%);
+          z-index: 10; /* Ensure arrows are above slides */
+          display: flex; /* Make them visible on desktop */
+        }
+
+        /* Hide mobile arrows on desktop */
+        .prev-mobile,
+        .next-mobile {
+          display: none;
+        }
+
+        /* Position the controls-wrapper (which now only contains dots) */
+        .controls-wrapper {
+          position: absolute;
+          bottom: 2px; /* Keep dots at the bottom */
+          left: 50%;
+          transform: translateX(-50%);
+          width: auto; /* Let dots define width */
+          display: flex; /* Ensure it remains a flex container */
+          align-items: center;
+          justify-content: center;
+          gap: 0; /* No gap needed around dots if controls-inner handles it */
+        }
+
+        .controls-inner {
+          /* This now primarily styles the dots on desktop */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px; /* Gap between dots */
+        }
+
+        /* Image display */
+        .img-desktop {
+          display: block;
+        }
+        .img-mobile {
+          display: none;
+        }
+      }
+
+      /* Mobile style view */
+      @media (max-width: 768px) {
+        /* Hide desktop arrows on mobile */
+        .prev-arrow-desktop,
+        .next-arrow-desktop {
+          display: none;
+        }
+
+        /* Show mobile arrows on mobile */
+        .prev-mobile,
+        .next-mobile {
+          display: flex; /* Or block, depending on your base arrow display */
+        }
+
+        /* Mobile controls-wrapper (original behavior) */
+        .controls-wrapper {
+          position: relative; /* Keep relative for mobile */
+          margin: 20px 0;
+          width: 95vw;
+          left: auto; /* Reset left property for mobile */
+          transform: none; /* Reset transform for mobile */
+          bottom: auto; /* Reset bottom for mobile */
+        }
+
+        .controls-inner {
+          display: flex; /* Keep the arrows and dots together */
+          align-items: center;
+          justify-content: center;
+          gap: 20px; /* Original gap for mobile arrows and dots */
+        }
+
+        /* Rest of your existing mobile styles */
+        .slider-section {
+          height: auto;
+          width: calc(100vw - 2px);
+        }
+        .p3-h {
+          font-size: 38px;
+          text-align: center;
+          margin-bottom: -4px;
+        }
+        .p3-r31{
+          font-size:22px;
+          
+        }
+        .p3-p {
+          font-size: 18px;
+          text-align: center;
+        }
+
+        .p3-p1 {
+          font-size: 20px;
+          text-align: center;
+          word-spacing: 3px;
+        }
+
+        .p3-p-bottom {
+          position: relative;
+          text-align: center;
+          padding: 0px 10px;
+          margin-top: 10px;
+          font-size: 11px;
+        }
+        .p3-p-bottom1 {
+          position: relative;
+          text-align: center;
+          padding: 0px 10px;
+          margin-top: 10px;
+          font-size: 11px;
+        }
+        .p3-p-bottom1 img{
+          display: block; 
+          margin: 10px auto; 
+          width: 80px; 
+          height: auto;
+        }
+        .slider_writing1 {
+          position: static;
+          transform: none;
+          background: transparent;
+          padding: 20px;
+          text-align: center;
+        }
+        .slider_writing {
+          position: static;
+          transform: none;
+          background: transparent;
+          padding: 20px;
+          text-align: center;
+        }
+
+        .slider_writing h1 {
+          font-size: 26px;
+          line-height: 1.1;
+        }
+        .slider_writing p {
+          font-size: 16px;
+          line-height: 1.3;
+          text-align: left;
+        }
+
+        .highlight {
+          font-size: 16px; /* Adjust the size as needed */
+          font-weight: bold; /* Optional, for extra emphasis */
+          color: #000;
+          font-family: "Utopia-Semibold" !important;
+        }
+
+        .slide {
+          height: auto;
+        }
+      }
+    </style>
+
+  
+    <section class="slider-section">
+      <div class="slider-container">
+        <div class="slider" id="slider">
+          <div class="slide">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/P-3_Web_Banner_New.jpg"
+              alt="Slide 1 Desktop"
+              class="img-desktop"
+              width="auto"
+              height="auto"
+              loading="lazy"
+            />
+            <img
+              src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/P-3-Web-Banner-01.png"
+              alt="Slide 1 Mobile"
+              class="img-mobile"
+               width="auto"
+              height="auto"
+              loading="lazy"
+            />
+            
+            <div class="slider_writing1" style="margin-right: 6%">
+              <p class="p3-p">Introducing</p>
+              <p class="p3-p">P-3 Ultimate Hydration Serum</p>
+              <h1 class="p3-h">THE POWER OF 3</h1>
+              <p class="p3-p1">Peptides | Stem Cells | Exosomes</p>
+              <p class="p3-p" Style="font-family:'Utopia-Semibold' !important">
+                Three advanced technologies. One intelligent formula
+              </p>
+              <p class="p3-p">
+                <b style="font-size: 28px">+248.5%</b> increase in hydration in
+                just <b>15 minutes** </b>
+              </p>
+              <p class="p3-p">Results you can measure. Hydration you can feel.</p>
+              <div class="button-container-slider">
+                <div class="mt-[1.125rem] large:mt-6">
+                  <a
+                    class="button button--primary button--icon min-w-[8.875rem] justify-center"
+                    role="link"
+                    aria-disabled="true"
+                    href="https://tursian.co.uk/products/ultimate-hydration-serum-concentrate-1"
+                  >
+                    <div class="button__label">
+                      <span>SHOP NOW</span>
+                      <span class="absolute top-10 left-0"> SHOP NOW </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <p class="p3-p-bottom1">
+               <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Clinicaly_Proven_Small_size_logo.png"
+               />
+              **Based on third-party clinical studies including 20 participants,
+              clinical evaluations and consumer trials.
+            </p>
+          </div>
+          <div class="slide">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/R-31_Slider_c04c429d-93e2-4ca9-902a-94db3271e295.jpg"
+              alt="Slide 2 Desktop"
+              loading="lazy"
+              class="img-desktop"
+               width="auto"
+              height="auto"
+             
+            />
+            <img
+              src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/R-31-Mobile-Version_32b520be-0dd9-4e7c-84cd-248eadd37b78.png"
+              alt="Slide 2 Mobile"
+              loading="lazy"
+              class="img-mobile"
+               width="auto"
+              height="auto"
+             
+            />
+            <div class="slider_writing1" style="margin-right: 5%">
+              <p class="p3-p">Introducing</p>
+              <p class="p3-p">R-31 Eye Contour Brightening Gel</p>
+              <h1 class="p3-h" style="color:#d45c08; margin-bottom:5px;">THE POWER OF 3</h1>
+              <p class="p3-p1">Peptides | Stem Cells | Exosomes</p>
+              <p class="p3-r31" Style="font-family:'Utopia-Semibold' !important; ">
+                Dark Circles. Puffiness. Fatigue.
+              </p>
+              <p class="p3-p">Formulated with advanced science — clinically powered with a</p>
+              <p class="p3-p">potent blend of next-generation ingredients to visibly reduce</p>
+              <p class="p3-p">under-eye shadows, puffiness, and fine lines.</p>
+              <p class="p3-p">This is more than skincare. This is skin evolution.</p>
+              <div class="button-container-slider">
+                <div class="mt-[1.125rem] large:mt-6">
+                  <a
+                    class="button button--primary button--icon min-w-[8.875rem] justify-center"
+                    role="link"
+                    aria-disabled="true"
+                    href="https://tursian.co.uk/collections/radiance/products/eye-contour-brightening-gel"
+                  >
+                    <div class="button__label">
+                      <span>SHOP NOW</span>
+                      <span class="absolute top-10 left-0"> SHOP NOW </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <p class="p3-p-bottom">
+               <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Clinicaly_Proven_Small_size_logo.png"
+               style="display: block; margin: 10px auto; width: 80px; height: auto;"
+                  width="auto"
+              height="auto"
+              loading="lazy"
+                />
+              
+            </p>
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Y-4_Slider_New.jpg"
+              alt="Slide 3 Desktop"
+              width="auto"
+              height="auto"
+              loading="lazy"
+              class="img-desktop"
+            />
+            <img
+              src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Y-4_Slider_New_Mobile_Version.jpg"
+              alt="Slide 3 Mobile"
+               width="auto"
+              height="auto"
+              loading="lazy"
+              class="img-mobile"
+            />
+            <div class="slider_writing1">
+              <p class="p3-p">Introducing</p>
+              <p class="p3-p">Y-4 Advanced Youth Complex Moisturizer</p>
+              <h1 class="p3-h" style="color:#888B8D; margin-bottom:5px;">THE POWER OF 3</h1>
+              <p class="p3-p1">Peptides | Stem Cells | Exosomes</p>
+              <p class="p3-r31" Style="font-family:'Utopia-Semibold' !important; ">
+                Next-level regeneration. One luxurious formula.
+              </p>
+              <p class="p3-p">Boosts collagen, reinforces the barrier, supports the 
+                microbiome and improves elasticity for firmer, resilient skin.</p>
+              <p class="p3-p">Science that speaks your skin's language.</p>
+              <div class="button-container-slider">
+                <div class="mt-[1.125rem] large:mt-6">
+                  <a
+                    style="margin-top: -15px"
+                    class="button button--primary button--icon min-w-[8.875rem] justify-center"
+                    role="link"
+                    aria-disabled="true"
+                    href="https://tursian.co.uk/collections/youthfulness/products/advanced-youth-complex-moisturizer-1"
+                  >
+                    <div class="button__label">
+                      <span>SHOP NOW</span>
+                      <span class="absolute top-10 left-0"> SHOP NOW </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <p class="p3-p-bottom">
+               <img src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Clinicaly_Proven_Small_size_logo.png"
+               style="display: block; margin: 10px auto; width: 80px; height: auto;"
+                  width="auto"
+              height="auto"
+              loading="lazy"
+                />
+             
+            </p>
+          </div>
+        </div>
+
+        <button class="prev prev-arrow-desktop">&#10094;</button>
+        <button class="next next-arrow-desktop">&#10095;</button>
+
+        <div class="controls-wrapper">
+          <div class="controls-inner">
+            <button class="prev prev-mobile">&#10094;</button>
+            <div class="dots-container" id="dots"></div>
+            <button class="next next-mobile">&#10095;</button>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <script>
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".slide");
+      // Select ALL prev/next buttons
+      const prevBtns = document.querySelectorAll(".prev");
+      const nextBtns = document.querySelectorAll(".next");
+      const dotsContainer = document.getElementById("dots");
+
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+
+      // Create dots
+      slides.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      const updateDots = () => {
+        document.querySelectorAll(".dot").forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+      };
+
+      const goToSlide = (index) => {
+        currentIndex = index;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+      };
+
+      const nextSlide = () => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        goToSlide(currentIndex);
+      };
+
+      const prevSlide = () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        goToSlide(currentIndex);
+      };
+
+      // Attach event listeners to ALL prev/next buttons
+      prevBtns.forEach(btn => btn.addEventListener("click", prevSlide));
+      nextBtns.forEach(btn => btn.addEventListener("click", nextSlide));
+
+      // Swipe gestures
+      let startX = 0;
+      let endX = 0;
+      slider.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+      slider.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) {
+          nextSlide();
+        } else if (endX - startX > 50) {
+          prevSlide();
+        }
+      });
+    </script>
+
+
+{% schema %}
+{
+  "name": "slider-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "first_slide_video",
+      "label": "First Slide Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_slide_image",
+      "label": "Second Slide Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "third_slide_image",
+      "label": "Third Slide Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider-section"
+    }
+  ]
+}
+{% endschema %}

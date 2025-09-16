@@ -1,0 +1,237 @@
+{% assign excluded_ingredients = product.metafields.custom.excluded_ingredients.value %}
+{% assign ingredient_data = null %}
+
+{%- if excluded_ingredients.count > 0 -%}
+    {% assign ingredient_data = excluded_ingredients %}
+{% elsif section.blocks.size > 0 %}
+    {% assign ingredient_data = section.blocks %}
+{%- endif -%}
+
+<div class="bg-{{ section.settings.background_color }} {% unless section.settings.background_color == 'transparent' %}mt-12 py-12 large:mt-20 large:py-20{% else %}mt-12 large:mt-20{% endunless %}">
+    <div class="container">
+        <div class="wrap">
+            {%- if section.settings.title != blank or section.settings.text != blank -%}
+                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="69" height="69" viewBox="0 0 69 69" fill="none">
+                    <circle cx="34.5" cy="34.5" r="34" stroke="black"/>
+                    <line x1="10.3028" y1="10.2754" x2="59.0931" y2="59.0657" stroke="currentColor"/>
+                    <line x1="59.0938" y1="10.459" x2="10.828" y2="58.7248" stroke="currentColor"/>
+                </svg>
+                {%- if section.settings.title != blank -%}
+                    <h2 class="heading-xxs font-[350] mt-[1.9rem]{% if section.settings.text != blank %} mb-3{% endif %} text-{{ section.settings.text_color }} text-center">
+                        {{- section.settings.title -}}
+                    </h2>
+                {%- endif -%}
+                {%- if section.settings.text != blank -%}
+                    <div class="wysiwyg body-l mx-auto max-w-[47.5rem] text-{{ section.settings.text_color }} text-center">
+                        {{- section.settings.text -}}
+                    </div>
+                {%- endif -%}
+            {%- endif -%}
+            
+            <div class="flex justify-center mt-[1.125rem] large:mt-[1.375rem] gap-[0.3125rem] flex-wrap is-limited [&.is-limited>div:nth-child(n+12):not(:last-child)]:largeMax:hidden large:gap-2 large:px-20 js-excluded-ingredients">
+                {% for ingredient in ingredient_data %}
+                    <div class="group relative" data-modal-parent>
+                        <button class="flex px-4 py-[0.75rem] bg-uiMidGrey group overflow-hidden relative transition hover:bg-uiBlack hover:text-text2 group-[.is-active]:bg-uiBlack group-[.is-active]:text-text2" aria-label="{{ 'sections.excluded_ingredients.open_modal' | t: ingredient: ingredient.name }}" aria-haspopup="dialog" aria-controls="ing-modal-{{ ingredient.name | handleize | default: ingredient.settings.name | handleize }}" data-modal-trigger>
+                            <svg class="absolute top-0 left-0 w-full h-full stroke-white scale-y-[1.1] scale-x-[1.07] pointer-events-none transition group-hover:opacity-50 group-[.is-active]:opacity-50" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 149 38" fill="none" preserveAspectRatio="none">
+                                <line y1="-0.5" x2="151.056" y2="-0.5" transform="matrix(0.973147 -0.230183 0.57758 0.816334 1 36.749)"/>
+                                <line y1="-0.5" x2="150.482" y2="-0.5" transform="matrix(0.970962 0.239232 -0.59328 0.804996 1.44336 1.36328)"/>
+                            </svg>
+                            <span class="relative font-Gotham text-[0.6875rem] uppercase font-normal z-1">
+                                {{ ingredient.name | default: ingredient.settings.name }}
+                            </span>
+                        </button>
+                        <div id="ing-modal-{{ ingredient.name | handleize | default: ingredient.settings.name | handleize }}" class="pt-7 pb-8  px-[1.625rem] large:py-4 large:px-[0.9rem] w-[17.1875rem] opacity-0 transition fixed top-1/2 left-0 z-40 bg-uiBlack text-text2 filter drop-shadow-[0,0,0,0.09] pointer-events-none group-[.is-active]:opacity-100 group-[.is-active]:pointer-events-auto largeMax:right-0 largeMax:mx-auto largeMax:-translate-y-1/2 large:left-1/2 large:-translate-x-1/2 large:absolute large:top-[calc(100%+0.75rem)]" role="dialog" tabindex="-1" aria-hidden="true" data-modal>
+                            <svg class="hidden absolute left-0 right-0 mx-auto -top-[0.375rem] fill-uiBlack large:block" width="26" height="6" viewBox="0 0 26 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 6L13 0L26 6H0Z" />
+                            </svg>    
+                            <div class="large:hidden">
+                                <button class="absolute top-[1.125rem] right-[1.125rem] w-[1.125rem] h-[1.125rem]" aria-label="{{ 'sections.excluded_ingredients.close_modal' | t: ingredient: ingredient.name }}" data-modal-close>
+                                    {% render 'icon-close' %}
+                                </button>
+                                <div class="flex px-4 w-max mx-auto justify-center py-[0.75rem] bg-transparent border border-uiWhite/50 group overflow-hidden relative">
+                                    <svg class="absolute top-0 w-full h-full stroke-white/50 scale-y-[1.1] scale-x-[1.07] pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 149 38" fill="none" preserveAspectRatio="none">
+                                        <line y1="-0.5" x2="151.056" y2="-0.5" transform="matrix(0.973147 -0.230183 0.57758 0.816334 1 36.749)"/>
+                                        <line y1="-0.5" x2="150.482" y2="-0.5" transform="matrix(0.970962 0.239232 -0.59328 0.804996 1.44336 1.36328)"/>
+                                    </svg>
+                                    <span class="relative font-Gotham text-[0.6875rem] uppercase font-normal z-1 text-text2">
+                                        {{ ingredient.name | default: ingredient.settings.name }}
+                                    </span>
+                                </div>
+                            </div>
+                            {% if ingredient.information or ingredient.settings.information %}
+                                <div class="wysiwyg body-s text-center largeMax:mt-7">
+                                    {{ ingredient.information | default: ingredient.settings.information }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if ingredient_data.count > 12 %}
+                    <div class="text-center large:hidden">
+                        <button class="button px-4 py-[0.75rem] button--small mx-auto js-show-more-excluded" aria-label="{{ 'sections.excluded_ingredients.more_aria' | t }}">
+                            <div class="button__label">
+                                <span>
+                                    {{- 'sections.excluded_ingredients.more' | t -}}
+                                </span>
+                                <span class="absolute top-10 left-0">
+                                    {{- 'sections.excluded_ingredients.more' | t -}}
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.excluded-ingredients.name",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+        "templates": [
+            "product"
+        ]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.excluded-ingredients.settings.title.label",
+            "default": "Formulated without "
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "t:sections.excluded-ingredients.settings.text.label",
+            "default": "<p>The key ingredients and their benefits for this product</p>"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "transparent",
+            "label": "t:sections.featured-icons.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-icons.settings.text_color.label"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "t:sections.excluded-ingredients.blocks.ingredient.name",
+            "type": "ingredient",
+            "settings": [
+                {
+                    "id": "name",
+                    "type": "text",
+                    "label": "t:sections.excluded-ingredients.blocks.name.label",
+                    "info": "t:sections.excluded-ingredients.blocks.name.info"
+                },
+                {
+                    "type": "richtext",
+                    "id": "information",
+                    "label": "t:sections.excluded-ingredients.blocks.information.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.excluded-ingredients.presets.name"
+        }
+    ]
+}
+{% endschema %}

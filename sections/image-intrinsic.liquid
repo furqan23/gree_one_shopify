@@ -1,0 +1,54 @@
+
+
+<div class="{% unless section.settings.remove_margin %}mt-12 large:mt-20{% endunless %}">
+    <div class="container">
+        <div class="{% if section.settings.wrap %}wrap{% endif %}">
+            {% assign imageWidth = section.settings.image.width | divided_by: 2 %}
+            {% assign imageHeight = section.settings.image.height | divided_by: 2 %}
+            {% assign retinaImageWidth = section.settings.image.width %}
+            <img
+                src="{{ section.settings.image | image_url: width: imageWidth }}"
+                srcset="{{ section.settings.image | image_url: width: imageWidth }} 1x, {{ section.settings.image | image_url: width: retinaImageWidth }} 2x"
+                class="max-w-full mx-auto"
+                width="{{ imageWidth }}"
+                height="{{ imageHeight }}"
+                alt="{{ section.settings.image.alt }}"
+                loading="lazy"
+            >
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.image-intrinsic.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.image-intrinsic.settings.image.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "wrap",
+            "label": "t:sections.image-intrinsic.settings.wrap.label",
+            "info": "t:sections.image-intrinsic.settings.wrap.info",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "remove_margin",
+            "label": "t:sections.image-intrinsic.settings.remove_margin.label",
+            "info": "t:sections.image-intrinsic.settings.remove_margin.info",
+            "default": true
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.image-intrinsic.presets.name"
+        }
+    ]
+}
+{% endschema %}

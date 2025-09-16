@@ -1,0 +1,311 @@
+<div class="bg-{{ section.settings.background_color }} overflow-hidden{% if section.settings.background_color == 'transparent' %} pt-12 large:pt-20{% else %} mt-12 large:mt-20 py-12 large:py-20{% endif %}">
+    <div class="container">
+        <div class="wrap">
+            {%- if section.settings.show_title and section.settings.title != blank -%}
+                <h2 class="heading-r text-{{ section.settings.text_color }} mb-7">{{ section.settings.title | escape }}</h2>
+            {%- endif -%}
+            {%- if section.settings.show_description and section.settings.description != blank -%}
+                <div class="text-{{ section.settings.text_color }} mb-10 medium:text-body-l">
+                    {{ section.settings.description }}
+                </div>
+            {%- endif -%}
+
+            <div class="swiper swiper--auto !overflow-visible js-square-media-content-grid">
+                <div class="swiper-wrapper">
+                    {% assign blocksLength = section.blocks | size %}
+                    {%- for block in section.blocks -%}
+                        <div class="swiper-slide{%  if blocksLength > 3 %} large:px-14{% endif %} box-border">
+                            <div class="text-center">
+                                {% if block.settings.image != empty %}
+                                    <div {% unless blocksLength > 3 %}class="large:px-24"{% endunless %}>
+                                        <img
+                                            srcset="{{ block.settings.image | image_url: width: 250 }} 1x, {{ block.settings.image | image_url: width: 400 }} 2x"
+                                            src="{{ block.settings.image | image_url: width: 250 }}"
+                                            alt="{{ block.settings.image.title | escape }}"
+                                            height="{{ block.settings.image.height }}"
+                                            width="{{ block.settings.image.width }}"
+                                            loading="lazy"
+                                            class="w-full h-full aspect-square object-cover"
+                                        >
+                                    </div>
+                                {% endif %}
+                                {% if block.settings.title %}
+                                    <h2 class="font-bold mt-3">
+                                        {{ block.settings.title }}
+                                    </h2>
+                                {% endif %}
+                                {% if block.settings.content %}
+                                    <div class="wysiwyg mt-2 text-sm">
+                                        {{ block.settings.content }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {%- endfor -%}
+                </div>
+                {% if section.blocks and section.blocks.size > 2 %}
+                    <div class="relative flex justify-between items-center">
+                        <div class="swiper-scrollbar relative w-full rounded-[2rem] medium:mr-6 mt-12 large:mt-[4.5rem]">
+                            <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                            <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                        </div>
+                        <button class="swiper-button-prev mt-12 swiper-button-desktop [&.swiper-button-lock]:hidden border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }} large:mt-[4.5rem]">
+                            {% render 'icon-slider-arrow' %}
+                        </button>
+                        <button class="swiper-button-next mt-12 swiper-button-desktop [&.swiper-button-lock]:hidden ml-4 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80 large:mt-[4.5rem]">
+                            {% render 'icon-slider-arrow' %}
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.square-media-content-grid.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Who we work with",
+            "label": "t:sections.square-media-content-grid.settings.title.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_title",
+            "label": "t:sections.square-media-content-grid.settings.show_title.label",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "controls_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "accentA",
+            "label": "t:sections.media-carousel.settings.controls_colour.label"
+        },
+        {
+            "type": "select",
+            "id": "icons_hover_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "accentA",
+            "label": "t:sections.all.colors.icons_hover_colour_label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.square-media-content-grid.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.square-media-content-grid.settings.text_color.label"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet.</p>",
+            "label": "t:sections.square-media-content-grid.settings.description.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_description",
+            "label": "t:sections.square-media-content-grid.settings.show_description.label",
+            "default": false
+        }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "name": "t:sections.square-media-content-grid.blocks.column.name",
+            "type": "column",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.square-media-content-grid.blocks.column.settings.image.label"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "t:sections.square-media-content-grid.blocks.column.settings.title.label"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "t:sections.square-media-content-grid.blocks.column.settings.content.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.square-media-content-grid.presets.name",
+            "blocks": [
+                {
+                    "type": "column"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

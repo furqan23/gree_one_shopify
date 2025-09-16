@@ -1,0 +1,120 @@
+  <section class="custom-ingredients-section">
+    <div class="container-ingred">
+      <div class="ingredients-grid">
+        {% for block in section.blocks %}
+          
+        <div class="ingredient-item">
+          <img src="{{ block.settings.image  | image_url  }}" alt="{{ block.settings.title }}" loading="lazy" class="ingredient-image" width="auto" height="auto">
+          <h3 class="ingredient-title">{{ block.settings.title }}</h3>
+          <p class="ingredient-description">{{ block.settings.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+<style>
+.custom-ingredients-section {
+  padding: 50px 20px;
+  background-color: #Fff;
+}
+
+.container-ingred {
+  max-width: 1200px;
+  margin: 0 auto;
+  width:100%;
+  height:auto;
+  box-sizing: border-box;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+   
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+
+.ingredient-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Makes all images square */
+  object-fit: cover;
+  display: block;
+}
+
+
+
+.ingredient-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+   text-align: left;
+}
+
+.ingredient-description {
+  font-size: 14px;
+  color: #555;
+   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+     gap: 10px;
+     
+  }
+}
+
+@media (max-width: 480px) {
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+     gap: 10px;
+     
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "ingredient_grid",
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ingredient_grid",
+     
+    }
+  ]
+}
+{% endschema %}

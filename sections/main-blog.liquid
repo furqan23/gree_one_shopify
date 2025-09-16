@@ -1,0 +1,187 @@
+{{ 'blog-listing.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'blog-listing.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign featured_article = section.settings.featured_article
+%}
+
+{%- paginate blog.articles by 12 -%}
+    <div class="container overflow-hidden">
+        <div class="wrap">
+            <div class="pt-8 pb-10 large:pt-10">
+                <h1 class="heading-m">
+                    {{- blog.title | escape -}}
+                </h1>
+                <div class="body-l mt-[0.625rem] large:w-2/3">
+                    {{- section.settings.description -}}
+                </div>
+            </div>
+        </div>
+        {% if featured_article != blank %}
+            <div class="large:grid large:grid-cols-12 large:wrap">
+                <div class="large:col-span-8">
+                    <div class="largeMax:wrap mb-16">
+                        {%- render 'card-article',
+                            article: featured_article,
+                            show_image: section.settings.show_image,
+                            show_tags: section.settings.show_tags,
+                            show_excerpt: true,
+                            featured_article: true
+                        -%}
+                    </div>
+                </div>
+                <div class="largeMax:bg-uiMidGrey large:col-span-4 large:pl-12">
+                    <div class="largeMax:wrap largeMax:pt-9 largeMax:pb-10">
+                        <h3 class="font-semibold uppercase pb-4 large:py-5">Popular Articles</h3>
+                        <div class="swiper [&.swiper]:overflow-visible js-popular-articles-carousel">
+                            <div class="swiper-wrapper js-swiper-wrapper large:flex large:flex-col">
+                                {% for block in section.blocks %}
+                                    {% assign popular_article = block.settings.popular_articles %}
+                                    <div class="swiper-slide js-slides mb-8 large:mb-5 large:pt-5 large:border-t large:border-uiMidGrey first-of-type:pt-0 first-of-type:border-0">
+                                        <a class="peer card__media large:!flex large:gap-x-5" href="{{ popular_article.url }}">
+                                            {%- if popular_article.image != blank -%}
+                                                <div class="media media--hover-effect aspect-4/3 large:min-w-[5.625rem]">
+                                                    <img
+                                                        srcset="{{ popular_article.image.src | image_url: width: 378 }} 378w,
+                                                            {{ popular_article.image.src | image_url: width: 444 }} 444w,
+                                                            {{ popular_article.image.src | image_url: width: 731 }} 731w,
+                                                            {{ popular_article.image.src | image_url: width: 756 }} 756w,
+                                                            {{ popular_article.image.src | image_url: width: 860 }} 860w"
+                                                        src="{{ popular_article.image.src | image_url: width: 860 }}"
+                                                        sizes="(min-width: 48rem) 33vw, 100vw"
+                                                        alt="{{ popular_article.image.src.alt | escape }}"
+                                                        width="{{ popular_article.image.width }}"
+                                                        height="{{ popular_article.image.height }}"
+                                                        loading="lazy"
+                                                    >
+                                                </div>
+                                            {%- endif -%}
+                                            <div>
+                                                {% if popular_article.title != blank %}
+                                                    <h3 class="body-r font-semibold uppercase largeMax:mt-2.5">{{ popular_article.title }}</h3>
+                                                {% endif %}
+                                                <div class="body-s font-Gotham font-medium leading-4 uppercase underline underline-offset-8 tracking-wide mt-5 large:mt-2.5" href="{{ article.url }}">
+                                                    {{ 'templates.blog-listing.read_article' | t }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="relative flex justify-between items-center mt-5 large:mt-[2.1875rem] large:hidden">
+                                <div class="swiper-scrollbar relative w-full large:mr-6">
+                                    <div class="swiper-scrollbar-drag bg-black h-1.5 rounded-[2rem] cursor-pointer z-20"></div>
+                                    <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                                </div>
+                                <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-black text-black cursor-pointer transition transform rotate-180 hover:bg-black hover:text-white">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                                <button class="swiper-button-next swiper-button-small-mobile ml-3.5 bg-black text-white border border-solid border-black transition cursor-pointer hover:opacity-80">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="wrap">
+            {%- if blogs[blog.handle].all_tags and blogs[blog.handle].all_tags.size > 0 or blog.articles.size > 0 -%}
+                {% render 'blog-filters'
+                    resultsCount: blog.articles_count
+                %}
+            {%- endif -%}
+
+            {%- if blog.articles.size > 0 -%}
+                <div class="mt-[2.375rem] mb-[5.3125rem] large:mt-9 large:mb-20">
+                    <div class="js-article-wrap relative medium:grid medium:grid-cols-3 medium:gap-x-5 medium:gap-y-10 large:gap-y-16">
+                        {%- for article in blog.articles -%}
+                            {% assign lazy_load = false %}
+                            {%- if forloop.index > 3 -%}
+                                {%- assign lazy_load = true -%}
+                            {%- endif -%}
+                            <div class="mediumMax:mb-12">
+                                {%- render 'card-article',
+                                    article: article,
+                                    show_image: section.settings.show_image,
+                                    show_date: section.settings.show_date,
+                                    show_tags: section.settings.show_tags,
+                                    show_excerpt: section.settings.show_excerpt,
+                                    lazy_load: lazy_load
+                                -%}
+                            </div>
+                        {%- endfor -%}
+                    </div>
+
+                    {%- if paginate.pages > 1 -%}
+                        {%- render 'pagination', paginate: paginate -%}
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+    "name": "t:sections.main-blog.name",
+    "tag": "div",
+    "class": "section",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste vel quam ea voluptates sequi perferendis culpa dolores omnis enim suscipit, eos doloribus explicabo provident laboriosam ab placeat itaque inventore adipisci.</p>",
+            "label": "t:sections.main-blog.settings.description.label"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.main-blog.settings.header.content"
+        },
+        {
+            "type": "article",
+            "id": "featured_article",
+            "label": "t:sections.main-blog.settings.featured_article.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_image",
+            "default": true,
+            "label": "t:sections.main-blog.settings.show_image.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_date",
+            "default": true,
+            "label": "t:sections.main-blog.settings.show_date.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_tags",
+            "default": false,
+            "label": "t:sections.main-blog.settings.show_tags.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_excerpt",
+            "default": false,
+            "label": "t:sections.main-blog.settings.show_excerpt.label"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "article",
+            "name": "Articles",
+            "limit": 4,
+            "settings": [
+                {
+                    "type": "article",
+                    "id": "popular_articles",
+                    "label": "t:sections.main-blog.blocks.popular_articles.label"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

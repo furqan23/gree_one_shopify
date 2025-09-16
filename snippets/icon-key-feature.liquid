@@ -1,0 +1,9 @@
+{%- if icon != 'none' -%}
+    <svg class="icon icon-key-feature fill-none" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+    {%- case icon -%}
+        {%- when 'tick_in_circle' -%}
+            <circle cx="12.5" cy="12.5" r="12"/>
+            <path d="M9 12.9545L11.0737 15L16.1429 10"/>
+        {%- endcase -%}
+    </svg>
+{%- endif -%}

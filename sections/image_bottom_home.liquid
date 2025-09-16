@@ -1,0 +1,175 @@
+     {% style %}  
+    
+      /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      } */
+      /* body,
+html { height: 100%; } */
+      .banner-section {
+        width: calc(100vw - 50px);
+        min-width: 100%;
+        overflow: hidden;
+        height: 93vh;
+      }
+      .banner-bottom {
+         position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+      
+      }
+
+      .banner-bottom .banner-writing {
+        position: absolute;
+        top: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .banner-bottom h1 {
+        font-size: 1.5rem;
+        margin-bottom: 29px;
+        position: relative;
+        color: #000000;
+      }
+      .banner-bottom p {
+        font-size: 1rem;
+        max-width: 600px; /* position:abs; */ /* margin-bottom: 470px; */
+        position: relative;
+        z-index: 11;
+        color: #000000;
+      }
+      .button-container-bottom {
+        position: absolute;
+        bottom: 10%;
+        width: 100%;
+        left: 50%;
+         
+        display:flex;
+        justify-content:center;
+        transform: translateX(-50%);
+      }
+
+      .banner-bottom img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -9;
+      }
+      .img-desktop {
+        display: block;
+      }
+      .img-mobile {
+        display: none;
+      }
+       
+      @media (max-width: 768px) {
+        /* .banner {
+           background:
+url("https://cdn.shopify.com/s/files/1/0844/4670/7990/files/R-3_Mobile_version_jpg.jpg?v=1745826848")
+no-repeat center center/cover; 
+        } */
+
+        .banner-bottom {
+           position: relative;
+          width: 100%;
+          height: 100%;
+          max-width: calc(100vw-2px);
+          min-width: calc(100vw-2px);
+          overflow: hidden;
+          object-fit: cover;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          text-align: center;
+        }
+        .banner-bottom .banner-writing {
+         position:absolute;
+          width: 87%;
+          max-width: 87%;
+          top: 2%;
+        left: 50%;
+          
+        transform: translateX(-50%);
+         
+        }
+
+        .banner-bottom h1 {
+          font-size: 1rem;
+          margin-bottom: 10px;
+        }
+        .banner-bottom p {
+          font-size: 0.9rem;
+        }
+
+        .banner-bottom img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -9;
+        }
+
+        .img-desktop {
+          display: none;
+        }
+        .img-mobile {
+          display: block;
+        }
+      }
+   
+     {% endstyle %} 
+  
+ 
+    <section class="banner-section">
+      <div class="banner-bottom">
+        <!-- <img src=""/> -->
+        <img
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/R-3_Home_page_cdf73030-77dd-41e0-9daf-789a756df1c9.jpg?v=1745426244"
+          alt="Slide 1 Desktop"
+           loading="lazy"
+          class="img-desktop"
+        />
+        <img
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/R-3_Mobile_version_jpg.jpg?v=1745857073"
+          alt="Slide 1 Mobile"
+           loading="lazy"
+          class="img-mobile"
+        />
+        <div class="banner-writing">
+          <h1>R-3 Advanced Polypeptides Radiance Serum Concentrate</h1>
+          <p>
+            Infused with 15 powerful brightening actives, hexapeptide-1,
+            tetrapeptide-2, oligopeptide-4 and a highly effective concentration
+            of nonapeptide-1.
+          </p>
+        </div>
+        <div class="button-container-bottom">
+          <div class="mt-[1.125rem] large:mt-6">
+            <!-- use the hreaf to send redirect the button -->
+            <a
+              class="button button--primary button--icon min-w-[8.875rem] justify-center"
+              role="link"
+              aria-disabled="true"
+              href="https://tursian.co.uk/collections/radiance/products/advanced-polypeptides-radiance-serum-concentrate"
+            >
+              <div class="button__label">
+                <span>SHOP NOW</span>
+                <span class="absolute top-10 left-0"> SHOP NOW </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+{% schema %}
+{ "name": "bottom_image", "settings": [ ], "presets": [ { "name":
+"bottom_image", "blocks": [ ] } ] }
+{% endschema %}

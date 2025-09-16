@@ -1,0 +1,72 @@
+{% comment %}
+    Renders cart notification
+
+    Usage:
+    {% render 'cart-notification' %}
+{% endcomment %}
+
+{%- liquid
+    assign item_count = 0
+
+    for item in cart.items
+        assign quantity = item.quantity
+        assign item_count = item_count | plus: quantity
+    endfor
+-%}
+
+<cart-notification class="cart-notification-wrapper">
+    <div id="cart-notification" class="cart-notification" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
+        <div class="cart-notification__header">
+            <h2 id="cart-notification-count" class="cart-notification__heading heading-xs flex items-baseline gap-x-1">
+                <span>
+                    {{ 'sections.cart_notification.title' | t }}
+                </span>
+                {% if item_count < 1 %}
+                    <span class="body-s font-normal font-Myriad relative -top-3">
+                        (0)
+                    </span>
+                {% else %}
+                    <span class="body-s font-normal font-Myriad relative -top-3">
+                        ({{ item_count }})
+                    </span>
+                {% endif %}
+            </h2>
+            <button type="button" class="cart-notification__close flex justify-center items-center js-close-mini-cart" aria-label="{{ 'accessibility.close' | t }}">
+                <span class="w-[1.438rem] h-[1.438rem] rotate-45 text-primary [&>svg]:w-full [&>svg]:h-full">
+                    {% render 'icon-plus' %}
+                </span>
+            </button>
+        </div>
+        <div id="cart-notification-delivery">
+            {% render 'cart-notification-delivery'%}
+        </div>
+        <div id="cart-notification-product" class="cart-notification__product js-cart-notification-product-wrap{% unless settings.mini_cart_upsell_product %} pb-12{% endunless %}">
+            {% render 'cart-notification-product' %}
+        </div>
+        <div
+            class="hidden py-3 gap-x-2 transform rounded-md js-mini-cart-error"
+            role="alert"
+        >
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error w-5 h-5" viewBox="0 0 13 13">
+                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+            </svg>
+            <span class="text-validationError text-[0.6785rem] leading-normal pr-2 js-mini-cart-error-text">
+            </span>
+            <div
+                class="relative w-3 h-3 top-1 cursor-pointer js-mini-cart-error-close"
+            >
+                <div class="absolute w-full h-px top-1/2 bg-uiBlack transform leading-normal -translate-y-1/2 rotate-45 rounded-sm">&nbsp;</div>
+                <div class="absolute w-full h-px top-1/2 bg-uiBlack -rotate-45 leading-normal -translate-y-1/2 rounded-sm">&nbsp;</div>
+            </div>
+        </div>
+        <div id="cart-notification-upsell">
+            {% render 'cart-notification-upsell' %}
+        </div>
+        <div id="cart-notification-total" class="cart-notification__total">
+            {% render 'cart-notification-total'%}
+        </div>
+    </div>
+</cart-notification>

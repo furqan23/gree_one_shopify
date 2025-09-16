@@ -1,0 +1,48 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+{% assign numberOfItems = 0 %}
+
+{% for item in cart.items %}
+    {% assign numberOfItems = numberOfItems | plus: item.quantity %}
+{% endfor %}
+
+<div class="wrap">
+    <div class="container">
+        <div id="main-cart-header" data-id="{{ section.id }}">
+            <div class="js-contents">
+                <div class="flex justify-between items-end pt-3.5 pb-6 large:pt-7 large:pb-5">
+                    <div class="flex items-end gap-x-4">
+                        <h1 class="heading-m">
+                            {{ 'sections.cart.title' | t }}
+                        </h1>
+                        {%  if cart.items != empty %}
+                            <span class="relative bottom-1">
+                                {{ 'general.cart.items_count' | t: count: numberOfItems }}{% if numberOfItems > 1 %}s{% endif %}
+                            </span>
+                        {% endif %}
+                    </div>
+                    <a href="{{ routes.all_products_collection_url }}" class="link body-r underline">
+                        {{ 'general.continue_shopping' | t }}
+                    </a>
+                </div>
+                <div id="cart-delivery-banner" data-id="{{ section.id }}">
+                    {%  render 'cart-delivery' %}
+                </div>
+                <div class="cart__warnings">
+                    <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
+                        <a href="{{ routes.all_products_collection_url }}" class="button">
+                            {{ 'general.continue_shopping' | t }}
+                        </a>
+                    {%- if shop.customer_accounts_enabled and customer == nil -%}
+                        <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
+                        <p class="cart__login-paragraph">
+                            {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+                        </p>
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

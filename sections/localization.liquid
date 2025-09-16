@@ -1,0 +1,309 @@
+{% comment %}
+Language Selector
+{% endcomment %}
+{%- if settings.language_selector_enabled and localization.available_languages.size > 1 -%}
+    <modal-dialog id="LanguageSelector" class="fixed z-1 top-0 -left-full w-full h-full opacity-0 invisible open:z-[101] open:left-0 open:opacity-100 open:visible">
+        <div class="modal-overlay js-modal-overlay"></div>
+        <div
+            class="
+                absolute bottom-0 right-0 w-full h-auto pb-14 box-border bg-uiWhite overflow-scroll translate-y-full transition-transform duration-300
+                mediumMax:max-h-[calc(100%_-_1.25rem)] mediumMax:rounded-t-[2rem]
+                [.is-active_&]:mediumMax:translate-y-0
+                medium:translate-y-0 medium:translate-x-full medium:max-w-[27rem] medium:h-full medium:rounded-l-[2rem]
+                [.is-active_&]:medium:translate-x-0"
+            role="dialog"
+            aria-labelledby="LanguageSelector-Title"
+            aria-modal="true"
+            tabindex="-1"
+        >
+            <div class="sticky top-0 left-0 p-8 flex items-center justify-between gap-5 bg-uiWhite">
+                <h2
+                    id="LanguageSelector-Title"
+                    class="heading-xxs"
+                >
+                    {{ 'sections.localization.language_selector.select_language' | t }}
+                </h2>
+                <button id="ModalClose-LanguageSelector" class="text-primary border border-primary rounded-full p-[1.125rem] transition-colors duration-300 hover:text-uiWhite hover:bg-primary" type="button" aria-label="{{ 'accessibility.close' | t }}">
+                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line stroke="currentColor" x1="10.9629" y1="1.1973" x2="0.356327" y2="11.8039" />
+                        <line stroke="currentColor" x1="10.9589" y1="11.8047" x2="0.352346" y2="1.19812" />
+                    </svg>
+                </button>
+            </div>
+            <div class="px-8">
+                <language-selector>
+                    {% form 'localization', class: 'js-language-selector-form' %}
+                        <ul>
+                            {% for language in localization.available_languages %}
+                                <li class="border-b border-uiMidGrey mb-4 last-of-type:border-none last-of-type:mb-0">
+                                    {%- liquid
+                                        assign path = request.path
+                                        if language.iso_code != localization.language.iso_code
+                                            assign langToFind = '/' | append: localization.language.iso_code
+                                            assign langFound = request.path | replace_first: langToFind, ''
+                                            assign lang = language.iso_code | prepend: '/'
+    
+                                            if language.iso_code == 'en'
+                                                assign lang = ''
+                                            endif
+    
+                                            assign path = lang | append: langFound
+                                        endif
+                                    %}
+                                    <a
+                                        href="{% if langFound == '/' %}{{ path | replace: '/', '' }}{% elsif path != blank %}{{ path }}{% else %}/{% endif %}"
+                                        class="group inline-flex items-center gap-[0.625rem] py-4 js-language-selector-lang-hyperlink"
+                                        hreflang="{{ language.iso_code }}"
+                                        lang="{{ language.iso_code }}"
+                                        data-value="{{ language.iso_code }}"
+                                        {% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}
+                                    >
+                                        {% for block in section.blocks %}
+                                            {% if block.type == 'flag_image' %}
+                                                {% if block.settings.iso_code == language.iso_code and block.settings.image %}
+                                                    <span class="block w-8 h-8 rounded-full">
+                                                        <img
+                                                            class="w-full h-full object-cover"
+                                                            srcset="{{ block.settings.image | image_url: width: 32, height: 32 }} 1x,
+                                                                    {{ block.settings.image | image_url: width: 64, height: 64 }} 2x"
+                                                            src="{{ block.settings.image | image_url: width: 32, height: 32 }}"
+                                                            width="32"
+                                                            height="32"
+                                                            alt=""
+                                                            loading="lazy"
+                                                        >
+                                                    </span>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        <span class="body-m group-hover:underline">
+                                            {{ language.endonym_name | capitalize }}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <input class="js-language-selector-form-input" type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
+                    {% endform %}
+                </language-selector>
+            </div>
+        </div>
+    </modal-dialog>    
+{%- endif -%}
+
+{% comment %}
+Region: Checker
+{% endcomment %}
+{%- if settings.region_selector_enabled -%}
+    <div class="hidden fixed z-70 top-0 left-0 w-full pt-3 pb-5 text-text2 bg-uiBlack medium:py-[0.875rem] js-region-checker-bar" aria-hidden="true">
+        <div class="wrap">
+            <div class="flex flex-wrap items-center gap-y-[0.625rem] gap-x-5 medium:gap-4 mediumMax:justify-between">
+                <div class="medium:order-1">
+                    <p class="font-bold body-s" aria-live="polite" role="status">
+                        <span>
+                            {{ 'sections.localization.region_checker.message' | t }}
+                        </span>
+                        <span class="sr-only">
+                            {{ localization.country.name }}
+                        </span>
+                    </p>
+                </div>
+                <button type="button" class="medium:order-4 js-toggle-region-check" aria-label="Close the region check message banner">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line stroke="currentColor" x1="13.1837" y1="1.17195" x2="1.16285" y2="13.1928" stroke-width="2" />
+                        <line stroke="currentColor" x1="12.8632" y1="13.1915" x2="0.842391" y2="1.17067" stroke-width="2" />
+                    </svg>
+                </button>
+                <hr class="invisible w-full medium:hidden" aria-hidden="true">
+                <div class="flex items-center gap-[0.3125rem] medium:order-2" aria-hidden="true">
+                    {% if section.blocks != empty %}
+                        {% for block in section.blocks %}
+                            {% if block.type == 'flag_image' %}
+                                {% if block.settings.iso_code == localization.country.iso_code and block.settings.image %}
+                                    <span class="block w-6 h-6 border border-uiWhite rounded-full">
+                                        <img
+                                            id="RegionCurrent"
+                                            class="w-full h-full object-cover"
+                                            srcset="{{ block.settings.image | image_url: width: 24, height: 24 }} 1x,
+                                                    {{ block.settings.image | image_url: width: 48, height: 48 }} 2x"
+                                            src="{{ block.settings.image | image_url: width: 24, height: 24 }}"
+                                            width="24"
+                                            height="24"
+                                            alt=""
+                                            loading="lazy"
+                                        >
+                                    </span>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <span class="body-s">
+                            {{ localization.country.name }}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="medium:order-3 medium:ml-auto flex flex-col gap-y-2 gap-x-4 medium:flex-row">
+                    <modal-opener class="base:text-right" data-modal="#RegionSelector">
+                        <button
+                            type="button"
+                            class="button button--outline-white button--small"
+                            aria-haspopup="dialog"
+                        >
+                            {{ 'sections.localization.region_checker.cta_label' | t }}
+                        </button>
+                    </modal-opener>
+                    {% if localization.available_languages.size > 1 %}
+                        <modal-opener class="text-right" data-modal="#LanguageSelector" id="LanguageSelectorRegChecker">
+                            <button
+                                type="button"
+                                class="button button--outline-white button--small"
+                                aria-haspopup="dialog"
+                            >
+                                <span class="button__label">{{ 'sections.localization.language_selector.cta_label' | t }}</span>
+                            </button>
+                        </modal-opener>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endif -%}
+
+{% comment %}
+Region: Selector
+{% endcomment %}
+<modal-dialog id="RegionSelector" class="fixed z-1 top-0 -left-full w-full h-full opacity-0 invisible open:z-[101] open:left-0 open:opacity-100 open:visible">
+    <div class="modal-overlay js-modal-overlay"></div>
+    <div
+        class="
+            absolute bottom-0 right-0 w-full h-auto pb-14 box-border bg-uiWhite overflow-scroll translate-y-full transition-transform duration-300
+            mediumMax:max-h-[calc(100%_-_1.25rem)] mediumMax:rounded-t-[2rem]
+            [.is-active_&]:mediumMax:translate-y-0
+            medium:translate-y-0 medium:translate-x-full medium:max-w-[27rem] medium:h-full medium:rounded-l-[2rem]
+            [.is-active_&]:medium:translate-x-0
+        "
+        role="dialog"
+        aria-labelledby="RegionSelector-Title"
+        aria-modal="true"
+        tabindex="-1"
+    >
+        <div class="sticky top-0 left-0 p-8 flex items-center justify-between gap-5 bg-uiWhite">
+            <h2
+                id="RegionSelector-Title"
+                class="heading-xxs"
+            >
+                {{ 'sections.localization.region_selector.heading' | t }}
+            </h2>
+            <button id="ModalClose-RegionSelector" class="text-primary border border-primary rounded-full p-[1.125rem] transition-colors duration-300 hover:text-uiWhite hover:bg-primary" type="button" aria-label="{{ 'accessibility.close' | t }}">
+                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line stroke="currentColor" x1="10.9629" y1="1.1973" x2="0.356327" y2="11.8039" />
+                    <line stroke="currentColor" x1="10.9589" y1="11.8047" x2="0.352346" y2="1.19812" />
+                </svg>
+            </button>
+        </div>
+        <div class="px-8">
+            <ul>
+                {% if section.blocks != empty %}
+                    {%-liquid
+                        assign countriesISOCodes = ''
+                        assign countriesTexts = ''
+                        assign countriesURLs = ''
+
+                        for block in section.blocks
+                            if block.type == 'country'
+                                assign countriesISOCodes = countriesISOCodes | append: block.settings.iso_code
+                                assign countriesTexts = countriesTexts | append: block.settings.text
+                                assign countriesURLs = countriesURLs | append: block.settings.url
+                                unless forloop.last
+                                    assign countriesISOCodes = countriesISOCodes | append: ','
+                                    assign countriesTexts = countriesTexts | append: ','
+                                    assign countriesURLs = countriesURLs | append: ','
+                                endunless
+                            endif
+                        endfor
+                    %}
+
+                    {% assign countriesISOCodes = countriesISOCodes | split: ',' %}
+                    {% for countryISOCode in countriesISOCodes %}
+                        {% assign countryURL = countriesURLs | split: ',' %}
+                        {% assign countryText = countriesTexts | split: ',' %}
+                        <li class="border-b border-uiMidGrey mb-4 last-of-type:border-none last-of-type:mb-0" data-js-country-selector-store-data='{"iso_code":"{{ countryISOCode }}","link":"{{ countryURL[forloop.index0] }}"}'>
+                            <a href="{{ countryURL[forloop.index0] }}" class="group inline-flex items-center gap-[0.625rem] py-4">
+                                {% for block in section.blocks %}
+                                    {% if block.type == 'flag_image' %}
+                                        {% if countryISOCode == block.settings.iso_code %}
+                                            <span class="block w-8 h-8">
+                                                <img
+                                                    class="w-full h-full object-cover"
+                                                    srcset="{{ block.settings.image | image_url: width: 32, height: 32 }} 1x,
+                                                            {{ block.settings.image | image_url: width: 64, height: 64 }} 2x"
+                                                    src="{{ block.settings.image | image_url: width: 32, height: 32 }}"
+                                                    width="32"
+                                                    height="32"
+                                                    alt=""
+                                                    loading="lazy"
+                                                >
+                                            </span>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <span class="body-m group-hover:underline">
+                                    {{ countryText[forloop.index0] }}
+                                </span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</modal-dialog>
+
+{% schema %}
+{
+    "name": "t:sections.localization.name",
+    "blocks": [
+        {
+            "type": "flag_image",
+            "name": "t:sections.localization.blocks.flag_image.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "iso_code",
+                    "label": "t:sections.localization.blocks.flag_image.settings.iso_code.label",
+                    "info": "t:sections.localization.blocks.flag_image.settings.iso_code.info"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.localization.blocks.flag_image.settings.image.label",
+                    "info": "t:sections.localization.blocks.flag_image.settings.image.info"
+                }
+            ]
+        },
+        {
+            "type": "country",
+            "name": "t:sections.localization.blocks.country.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "iso_code",
+                    "label": "t:sections.localization.blocks.country.settings.iso_code.label",
+                    "info": "t:sections.localization.blocks.country.settings.iso_code.info"
+                },
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "t:sections.localization.blocks.country.settings.text.label",
+                    "info": "t:sections.localization.blocks.country.settings.text.info"
+                },
+                {
+                    "type": "text",
+                    "id": "url",
+                    "label": "t:sections.localization.blocks.country.settings.url.label",
+                    "info": "t:sections.localization.blocks.country.settings.url.info"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,393 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "collapsible_tab_Fc7di4": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Example Schema Accordion",
+            "content": "<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.</p>",
+            "icon": "none"
+          }
+        },
+        "action_tATJy9": {
+          "type": "action",
+          "disabled": true,
+          "settings": {
+            "content": "Example action",
+            "alignment": "right"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_Fc7di4",
+        "action_tATJy9"
+      ],
+      "settings": {}
+    },
+    "product_related": {
+      "type": "product-related",
+      "settings": {
+        "heading": "You may also like",
+        "controls_color": "accentA",
+        "icons_hover_color": "accentA"
+      }
+    },
+    "1736760943b0f42811": {
+      "type": "apps",
+      "settings": {}
+    },
+    "featured_icons_MR9jVq": {
+      "type": "featured-icons",
+      "blocks": {
+        "image_BgFk7j": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2024-04-10_at_17.17_1.png",
+            "title": "Free shipping",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": "shopify://blogs/news"
+          }
+        },
+        "image_CCnLBW": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2024-04-10_at_17.19_1.png",
+            "title": "Free shipping",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": ""
+          }
+        },
+        "image_XBCUEp": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2024-04-10_at_17.29_1_2fd8d973-3619-406e-a90a-5e7796f13607.png",
+            "title": "Free shipping",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_BgFk7j",
+        "image_CCnLBW",
+        "image_XBCUEp"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Reasons to love us",
+        "title_font": false,
+        "text": "<p>We have been developing science-backed formulas using premium ingredients sourced from across the globe for over 50 years.</p>",
+        "background_color": "secondary",
+        "text_color": "text1"
+      }
+    },
+    "excluded_ingredients_x47W6E": {
+      "type": "excluded-ingredients",
+      "blocks": {
+        "ingredient_Aj48cg": {
+          "type": "ingredient",
+          "settings": {
+            "name": "SILICONE",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit .</p>"
+          }
+        },
+        "ingredient_DHkKgU": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Alcohol",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_76VQir": {
+          "type": "ingredient",
+          "settings": {
+            "name": "PHENOXYETHANOL",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_b3V3et": {
+          "type": "ingredient",
+          "settings": {
+            "name": "PARABENS",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_Q9QqAg": {
+          "type": "ingredient",
+          "settings": {
+            "name": "PEG",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_6XLymC": {
+          "type": "ingredient",
+          "settings": {
+            "name": "EDTA",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_HUzaJa": {
+          "type": "ingredient",
+          "settings": {
+            "name": "FORMALDEHYDE",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_pcXrrJ": {
+          "type": "ingredient",
+          "settings": {
+            "name": "SYNTHETIC FRAGRANCE",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_yjF8kd": {
+          "type": "ingredient",
+          "settings": {
+            "name": "PIGMENTS",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_UtHaM7": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ANIMAL SOURCE",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_hbxhdF": {
+          "type": "ingredient",
+          "settings": {
+            "name": "PARAFFIN",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_VfT4bL": {
+          "type": "ingredient",
+          "settings": {
+            "name": "mineral oils",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_3aBqwX": {
+          "type": "ingredient",
+          "settings": {
+            "name": "SULPHATE COMPONENTS",
+            "information": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>"
+          }
+        },
+        "ingredient_FtLKii": {
+          "type": "ingredient",
+          "settings": {
+            "name": "GMO COMPONENTS",
+            "information": "<p>GMO COMPONENTS</p>"
+          }
+        },
+        "ingredient_ajx989": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ETHOXYLATED INGREDIENTS",
+            "information": ""
+          }
+        },
+        "ingredient_teezFY": {
+          "type": "ingredient",
+          "settings": {
+            "name": "HYDROQUINONE",
+            "information": ""
+          }
+        },
+        "ingredient_nR9jHh": {
+          "type": "ingredient",
+          "settings": {
+            "name": "TALC",
+            "information": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_Aj48cg",
+        "ingredient_DHkKgU",
+        "ingredient_76VQir",
+        "ingredient_b3V3et",
+        "ingredient_Q9QqAg",
+        "ingredient_6XLymC",
+        "ingredient_HUzaJa",
+        "ingredient_pcXrrJ",
+        "ingredient_yjF8kd",
+        "ingredient_UtHaM7",
+        "ingredient_hbxhdF",
+        "ingredient_VfT4bL",
+        "ingredient_3aBqwX",
+        "ingredient_FtLKii",
+        "ingredient_ajx989",
+        "ingredient_teezFY",
+        "ingredient_nR9jHh"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Formulated without",
+        "text": "<p>The key ingredients and their benefits for this product</p>",
+        "background_color": "transparent",
+        "text_color": "text1"
+      }
+    },
+    "ingredients_carousel_gjAyUR": {
+      "type": "ingredients-carousel",
+      "disabled": true,
+      "settings": {
+        "title": "BLEMISH FREE SKIN IS A JOURNEY. Travel with us.",
+        "content": "<p>The best ingredients sourced from over 63 countries around the world. <a href=\"/blogs/news/how-are-highly-active-ingredients-help-you\" title=\"How our active ingredients help you\">Explore our ingredients</a></p>",
+        "ingredients_list": []
+      }
+    },
+    "content_cta_and_media_grid_PrMdV3": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_a8dGW3": {
+          "type": "heading",
+          "settings": {
+            "heading": "WITH OVER 2,000 CLINICALLY PROVEN RESULTS."
+          }
+        },
+        "image_heading_HXzdni": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_wBpFki": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit .</p>"
+          }
+        },
+        "button_q7xdeJ": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "secondary_button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_a8dGW3",
+        "image_heading_HXzdni",
+        "text_wBpFki",
+        "button_q7xdeJ"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/Group_20464.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "series_product_carousel_n7PDFq": {
+      "type": "series-product-carousel",
+      "blocks": {
+        "accordion_8ihF7a": {
+          "type": "accordion",
+          "settings": {
+            "title": "NO HARSH INGREDIENTS",
+            "content": "<p>NO HARSH INGREDIENTS content</p>"
+          }
+        },
+        "accordion_dTgGkM": {
+          "type": "accordion",
+          "settings": {
+            "title": "HOW IT WORKS",
+            "content": "<p>A short sentence goes here lorem ipsum dolor sit amet.</p>"
+          }
+        },
+        "slide_BFhPEV": {
+          "type": "slide",
+          "settings": {
+            "product": "blemish-control-mattifying-foam-cleanser"
+          }
+        },
+        "slide_QxaHpH": {
+          "type": "slide",
+          "settings": {
+            "product": "advanced-sebum-control-team"
+          }
+        },
+        "slide_3dK9cP": {
+          "type": "slide",
+          "settings": {
+            "product": "anti-blemish-pores-refiner-matte-concentrate"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_8ihF7a",
+        "accordion_dTgGkM",
+        "slide_BFhPEV",
+        "slide_QxaHpH",
+        "slide_3dK9cP"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "A SERIES",
+        "collection": "anti-blemish",
+        "controls_color": "background2",
+        "icons_hover_color": "background1"
+      }
+    },
+    "product_carousel_JqMq9x": {
+      "type": "product-carousel",
+      "blocks": {
+        "block_4Q7htD": {
+          "type": "block",
+          "settings": {
+            "product": "blemish-control-mattifying-foam-cleanser"
+          }
+        },
+        "block_ndU78B": {
+          "type": "block",
+          "settings": {
+            "product": "blemish-control-mattifying-foam-cleanser"
+          }
+        }
+      },
+      "block_order": [
+        "block_4Q7htD",
+        "block_ndU78B"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "YOU MAY ALSO LIKE",
+        "controls_color": "primary",
+        "icons_hover_color": "secondary",
+        "background_color": "background1",
+        "center_align_text": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_related",
+    "1736760943b0f42811",
+    "featured_icons_MR9jVq",
+    "excluded_ingredients_x47W6E",
+    "ingredients_carousel_gjAyUR",
+    "content_cta_and_media_grid_PrMdV3",
+    "series_product_carousel_n7PDFq",
+    "product_carousel_JqMq9x"
+  ]
+}

@@ -1,0 +1,100 @@
+<div>
+    <details id="Details-{{ id }}-{{ section.id }}" class="group">
+        <summary class="flex justify-between items-center py-4 w-full cursor-pointer">
+            <div class="flex items-center w-full">
+                {% if icon != 'none' and icon != blank %}
+                    <div class="text-primary max-w-[1.6875rem] mr-4 [&_svg]:w-full [&_svg]:h-auto">
+                        {% render 'icon-accordion', icon: icon %}
+                    </div>
+                {% endif %}
+                {% if iconCustom != blank %}
+                    <div class="max-w-[1.6875rem] mr-4">
+                        <img
+                            class="w-full"
+                            srcset="{{ iconCustom | image_url: width: 24 }} 1x,
+                                    {{ iconCustom | image_url: width: 48 }} 2x"
+                            src="{{ iconCustom | image_url: width: 24 }}"
+                            width="24"
+                            height="20"
+                            alt=""
+                            loading="lazy"
+                        >
+                    </div>
+                {% endif %}
+                <h2 class="text-body-m uppercase">
+                    {{ heading }}
+                </h2>
+            </div>
+            <div class="shrink-0">
+                <span class="relative right-[0.5625rem]" aria-hidden>
+                    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black"></span>
+                    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black rotate-90 transition duration-300 group-open:rotate-0"></span>
+                </span>
+            </div>
+        </summary>
+        <div id="ProductAccordion-{{ id }}-{{ section.id }}" class="mb-5">
+            {% if image != blank %}
+                <div class="mb-5">
+            {% endif %}
+                <div class="wysiwyg wysiwyg--pdp-accordion text-body-r">
+                    {{ content }}
+                </div>
+            {% if image != blank %}
+                </div>
+            {% endif %}
+
+            {% if image != blank %}
+                {%-liquid
+                    assign file_path = image | split: '/'
+                    assign file_name = ''
+                    for fragment in file_path
+                        if forloop.last
+                            assign file_name = fragment
+                        endif
+                    endfor
+                    assign file_name = file_name | split: '?'
+                    assign file_name = file_name[0]
+                -%}
+                <img
+                    src="{{ images[file_name] | image_url: width: 800 }} 800w"
+                    srcset="{{ images[file_name] | image_url: width: 431 }} 431w,
+                            {{ images[file_name] | image_url: width: 862 }} 862w,
+    
+                            {{ images[file_name] | image_url: width: 719 }} 719w,
+                            {{ images[file_name] | image_url: width: 1438 }} 1438w,
+                                
+                            {{ images[file_name] | image_url: width: 472 }} 472w,
+                            {{ images[file_name] | image_url: width: 944 }} 944w,
+                                
+                            {{ images[file_name] | image_url: width: 567 }} 567w,
+                            {{ images[file_name] | image_url: width: 1135 }} 1135w,
+                                
+                            {{ images[file_name] | image_url: width: 541 }} 541w,
+                            {{ images[file_name] | image_url: width: 1082 }} 1082w,
+                                
+                            {{ images[file_name] | image_url: width: 601 }} 601w,
+                            {{ images[file_name] | image_url: width: 1203 }} 1203w,
+                                
+                            {{ images[file_name] | image_url: width: 722 }} 722w,
+                            {{ images[file_name] | image_url: width: 1444 }} 1444w,
+                                
+                            {{ images[file_name] | image_url: width: 800 }} 800w,
+                            {{ images[file_name] | image_url: width: 1600 }} 1600w"
+                    sizes="(max-width: 479px) 431px,
+                            (max-width: 767px) 719px,
+                            (max-width: 1023px) 472px,
+                            (max-width: 1279px) 567px,
+                            (max-width: 1439px) 541px,
+                            (max-width: 1599px) 601px,
+                            (max-width: 1919px) 722px,
+                            800px"
+                    style="aspect-ratio: {{ images[file_name].width }} / {{ images[file_name].height }};"
+                    width="{{ images[file_name].width }}"
+                    height="{{ images[file_name].height }}"
+                    alt="{{ images[file_name].alt }}"
+                    loading="lazy"
+                />
+            {% endif %}
+        </div>
+    </details>
+</div>

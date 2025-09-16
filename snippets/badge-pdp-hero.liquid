@@ -1,0 +1,22 @@
+{%- liquid
+    if product.available == false
+        assign badgeText = 'products.product.badge.sold_out' | t
+    endif
+-%}
+{%- if badgeText != blank -%}
+    <div class="mediumMax:wrap absolute z-10 flex flex-wrap gap-2 top-5 left-5 box-border w-full">
+        <span class="badge">
+            {{- badgeText -}}
+        </span>
+    </div>
+{%- elsif product.tags and product.tags.size > 0 -%}
+    <div class="mediumMax:wrap absolute z-10 flex flex-wrap gap-2 top-5 left-5 box-border w-full">
+        {%- for tag in product.tags -%}
+            {%- if tag contains 'badge:' -%}
+                <span class="badge">
+                    {{- tag | remove: 'badge:' -}}
+                </span>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+{%- endif -%}

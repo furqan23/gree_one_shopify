@@ -1,0 +1,800 @@
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[2]!./node_modules/swiper/swiper.min.css ***!
+  \**********************************************************************************************************************************************************************************************************/
+/**
+ * Swiper 8.4.7
+ * Most modern mobile touch slider and framework with hardware accelerated transitions
+ * https://swiperjs.com
+ *
+ * Copyright 2014-2023 Vladimir Kharlampidi
+ *
+ * Released under the MIT License
+ *
+ * Released on: January 30, 2023
+ */
+
+@font-face{font-family:swiper-icons;src:url('data:application/font-woff;charset=utf-8;base64, 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');font-weight:400;font-style:normal}
+
+:root{--swiper-theme-color:#007aff}
+
+.swiper{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;list-style:none;padding:0;z-index:1}
+
+.swiper-vertical>.swiper-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
+
+.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-transition-property:-webkit-transform;transition-property:-webkit-transform;transition-property:transform;transition-property:transform, -webkit-transform;-webkit-box-sizing:content-box;box-sizing:content-box}
+
+.swiper-android .swiper-slide,.swiper-wrapper{-webkit-transform:translate3d(0px,0,0);transform:translate3d(0px,0,0)}
+
+.swiper-pointer-events{-ms-touch-action:pan-y;touch-action:pan-y}
+
+.swiper-pointer-events.swiper-vertical{-ms-touch-action:pan-x;touch-action:pan-x}
+
+.swiper-slide{-ms-flex-negative:0;flex-shrink:0;width:100%;height:100%;position:relative;-webkit-transition-property:-webkit-transform;transition-property:-webkit-transform;transition-property:transform;transition-property:transform, -webkit-transform}
+
+.swiper-slide-invisible-blank{visibility:hidden}
+
+.swiper-autoheight,.swiper-autoheight .swiper-slide{height:auto}
+
+.swiper-autoheight .swiper-wrapper{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-transition-property:height,-webkit-transform;transition-property:height,-webkit-transform;transition-property:transform,height;transition-property:transform,height,-webkit-transform}
+
+.swiper-backface-hidden .swiper-slide{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+
+.swiper-3d,.swiper-3d.swiper-css-mode .swiper-wrapper{-webkit-perspective:1200px;perspective:1200px}
+
+.swiper-3d .swiper-cube-shadow,.swiper-3d .swiper-slide,.swiper-3d .swiper-slide-shadow,.swiper-3d .swiper-slide-shadow-bottom,.swiper-3d .swiper-slide-shadow-left,.swiper-3d .swiper-slide-shadow-right,.swiper-3d .swiper-slide-shadow-top,.swiper-3d .swiper-wrapper{-webkit-transform-style:preserve-3d;transform-style:preserve-3d}
+
+.swiper-3d .swiper-slide-shadow,.swiper-3d .swiper-slide-shadow-bottom,.swiper-3d .swiper-slide-shadow-left,.swiper-3d .swiper-slide-shadow-right,.swiper-3d .swiper-slide-shadow-top{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:10}
+
+.swiper-3d .swiper-slide-shadow{background:rgba(0,0,0,.15)}
+
+.swiper-3d .swiper-slide-shadow-left{background-image:-webkit-gradient(linear,right top, left top,from(rgba(0,0,0,.5)),to(rgba(0,0,0,0)));background-image:linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.swiper-3d .swiper-slide-shadow-right{background-image:-webkit-gradient(linear,left top, right top,from(rgba(0,0,0,.5)),to(rgba(0,0,0,0)));background-image:linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.swiper-3d .swiper-slide-shadow-top{background-image:-webkit-gradient(linear,left bottom, left top,from(rgba(0,0,0,.5)),to(rgba(0,0,0,0)));background-image:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.swiper-3d .swiper-slide-shadow-bottom{background-image:-webkit-gradient(linear,left top, left bottom,from(rgba(0,0,0,.5)),to(rgba(0,0,0,0)));background-image:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.swiper-css-mode>.swiper-wrapper{overflow:auto;scrollbar-width:none;-ms-overflow-style:none}
+
+.swiper-css-mode>.swiper-wrapper::-webkit-scrollbar{display:none}
+
+.swiper-css-mode>.swiper-wrapper>.swiper-slide{scroll-snap-align:start start}
+
+.swiper-horizontal.swiper-css-mode>.swiper-wrapper{-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory}
+
+.swiper-vertical.swiper-css-mode>.swiper-wrapper{-ms-scroll-snap-type:y mandatory;scroll-snap-type:y mandatory}
+
+.swiper-centered>.swiper-wrapper::before{content:'';-ms-flex-negative:0;flex-shrink:0;-webkit-box-ordinal-group:10000;-ms-flex-order:9999;order:9999}
+
+[dir="ltr"] .swiper-centered.swiper-horizontal>.swiper-wrapper>.swiper-slide:first-child{margin-left:var(--swiper-centered-offset-before)}
+
+[dir="rtl"] .swiper-centered.swiper-horizontal>.swiper-wrapper>.swiper-slide:first-child{margin-right:var(--swiper-centered-offset-before)}
+
+.swiper-centered.swiper-horizontal>.swiper-wrapper::before{height:100%;min-height:1px;width:var(--swiper-centered-offset-after)}
+
+.swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child{margin-top:var(--swiper-centered-offset-before)}
+
+.swiper-centered.swiper-vertical>.swiper-wrapper::before{width:100%;min-width:1px;height:var(--swiper-centered-offset-after)}
+
+.swiper-centered>.swiper-wrapper>.swiper-slide{scroll-snap-align:center center;scroll-snap-stop:always}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].oneOf[1].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[4]!./src/modules/cart/component-cart.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.cart__empty-text,
+.is-empty .cart__contents,
+.is-empty .cart__footer {
+
+    display: none
+}
+
+.is-empty .cart__empty-text,
+.is-empty .cart__warnings {
+
+    display: block
+}
+
+.cart__warnings {
+
+    display: none;
+
+    text-align: center;
+
+    padding-top: 3rem;
+
+    padding-left: 0px;
+
+    padding-right: 0px;
+
+    padding-bottom: 1rem
+}
+
+.cart__empty-text {
+
+    margin-top: 4.5rem;
+
+    margin-left: 0px;
+
+    margin-right: 0px;
+
+    margin-bottom: 2rem
+}
+
+@media (min-width: 64rem) {
+
+    .cart__empty-text {
+
+        margin-bottom: 3rem
+    }
+}
+
+.cart__contents > * + * {
+
+    margin-top: 2.5rem
+}
+
+@media (min-width: 48rem) {
+
+    .cart__contents > * + * {
+
+        margin-top: 0px
+    }
+}
+
+.cart__login-title {
+
+    margin-top: 5.5rem;
+
+    margin-left: 0px;
+
+    margin-right: 0px;
+
+    margin-bottom: 0.5rem
+}
+
+.cart__login-paragraph {
+
+    margin-top: 0.8rem
+}
+
+cart-items {
+
+    display: block
+}
+
+.cart__items {
+
+    position: relative
+}
+
+.cart__items--disabled {
+
+    pointer-events: none
+}
+
+@media (min-width: 48rem) {
+
+    .cart__items + .cart__footer {
+
+        -webkit-columns: 2;
+
+           -moz-columns: 2;
+
+                columns: 2
+    }
+}
+
+.cart__footer {
+
+    padding-top: 4rem;
+
+    padding-left: 0px;
+
+    padding-right: 0px;
+
+    padding-bottom: 3rem;
+
+    border-top-width: 1px;
+
+    border-color: var(--color-uiDarkGrey)
+}
+
+@media (min-width: 48rem) {
+
+    .cart__footer {
+
+        display: -webkit-box;
+
+        display: -ms-flexbox;
+
+        display: flex;
+
+        -webkit-box-pack: justify;
+
+            -ms-flex-pack: justify;
+
+                justify-content: space-between
+    }
+}
+
+.cart__footer > div:only-child {
+
+    margin-left: auto
+}
+
+@media (min-width: 48rem) {
+
+    .cart__footer > * {
+
+        width: 35rem
+    }
+}
+
+.cart__footer > * + * {
+
+    margin-top: 4rem
+}
+
+@media (min-width: 48rem) {
+
+    .cart__footer > * + * {
+
+        margin-top: 0px;
+
+        margin-left: 4rem
+    }
+}
+
+.cart__footer .discounts {
+
+    margin-top: 1rem
+}
+
+.cart__footer .shopify-cleanslate [data-shopify-buttoncontainer] {
+
+    -webkit-box-pack: end;
+
+        -ms-flex-pack: end;
+
+            justify-content: flex-end
+}
+
+.cart__dynamic-checkout-buttons {
+
+    max-width: 36rem;
+
+    margin-top: 0px;
+
+    margin-bottom: 0px;
+
+    margin-left: auto;
+
+    margin-right: auto
+}
+
+.cart__blocks > * + * {
+
+    margin-top: 1rem
+}
+
+.tax-note {
+
+    display: block;
+
+    margin-top: 1.2rem;
+
+    margin-bottom: 2.1rem;
+
+    margin-right: 0px;
+
+    margin-left: auto;
+
+    font-size: 0.75rem;
+
+    line-height: 1.3
+}
+
+.cart__ctas {
+
+    text-align: center
+}
+
+@media (min-width: 48rem) {
+
+    .cart__ctas {
+
+        display: -webkit-box;
+
+        display: -ms-flexbox;
+
+        display: flex;
+
+        -webkit-box-pack: end;
+
+            -ms-flex-pack: end;
+
+                justify-content: flex-end;
+
+        gap: 1rem
+    }
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].oneOf[1].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[4]!./src/modules/cart/component-cart-items.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@media (min-width: 48rem) {
+
+  .cart-items {
+    width: 100%;
+    display: table;
+    --tw-shadow: 0 0 rgba(0,0,0,0);
+    --tw-shadow-colored: 0 0 rgba(0,0,0,0);
+    -webkit-box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), var(--tw-shadow);
+            box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), var(--tw-shadow);
+    -webkit-box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+    border-collapse: collapse;
+  }
+}
+
+.cart-items th {
+  padding-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: left;
+  font-weight: 400;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-items thead tr {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.cart-items thead tr {
+  margin-bottom: 2rem;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+}
+
+.cart-items th {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+}
+
+.cart-items thead th:first-child {
+  width: 50%;
+}
+
+.cart-items th + th {
+  padding-left: 4rem;
+}
+
+.cart-items td {
+  vertical-align: top;
+  padding-top: 2rem;
+}
+
+@media (min-width: 64rem) {
+
+  .cart-items thead th:first-child {
+    width: 60%;
+  }
+}
+
+.cart-item {
+  /* can't replicate easily in tailwind */
+  grid-template: repeat(2, auto)/repeat(4, 1fr);
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item {
+    display: grid;
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item {
+    display: table-row;
+  }
+}
+
+@media (min-width: 64rem) {
+
+  .cart-item {
+    padding-right: 3rem;
+  }
+}
+
+.cart-item {
+  border-top-width: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding-top: 1.5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-color: var(--color-uiMidGrey);
+}
+
+.cart-item:first-child {
+  border-top-width: 0px;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item:last-child {
+    margin-bottom: 0px;
+  }
+
+  .cart-item__details {
+    grid-column: 2 / 4;
+  }
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item__details {
+    width: 100%;
+    max-width: 20rem;
+  }
+}
+
+.cart-item__media {
+  position: relative;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__media {
+    grid-row: 1 / 3;
+  }
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item__media {
+    width: 10rem;
+  }
+}
+
+.cart-item__price-wrapper > *:only-child:not(.cart-item__discounted-prices) {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item__price-wrapper > *:only-child:not(.cart-item__discounted-prices) {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__quantity {
+    grid-column: 2 / 5;
+    -webkit-box-ordinal-group: 6;
+        -ms-flex-order: 5;
+            order: 5;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.cart-item__quantity-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__quantity-wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.cart-item__totals {
+  position: relative;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__totals {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+.cart-item__image-container {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: var(--color-uiLightGrey);
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__image-container {
+    max-width: 4.5625rem;
+  }
+}
+
+.cart-item__image-container:after {
+  --tw-content: none;
+  content: var(--tw-content);
+}
+
+.cart-item__image {
+  height: auto;
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item__image {
+    max-width: 100%;
+  }
+}
+
+.cart-item__details {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (max-width: 47.938rem) {
+
+  .cart-item__details {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 0%;
+            flex: 1 1 0%;
+  }
+}
+
+@media (min-width: 64rem) {
+
+  .cart-item__details {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+.cart-item__link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: block;
+}
+
+.cart-item__name {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.3;
+  text-decoration-line: none;
+}
+
+.cart-item__name:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 0.1rem;
+}
+
+.cart-item__price-wrapper > * {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.cart-item__discounted-prices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 0.5rem;
+     -moz-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.cart-item__discounted-prices dd {
+  margin: 0px;
+}
+
+.cart-item__old-price {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.cart-item__final-price {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.cart-item .loading-overlay {
+  top: 1.75rem;
+  bottom: 0px;
+  left: auto;
+  right: auto;
+  padding: 0px;
+}
+
+@media (min-width: 48rem) {
+
+  .cart-item .loading-overlay {
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    padding-top: 1rem;
+  }
+}
+
+.cart-item .loading-overlay:not(.hidden) ~ * {
+  visibility: hidden;
+}
+
+.cart-item__error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  -webkit-column-gap: 0.5rem;
+     -moz-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.cart-item__error-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.cart-item__error-text + svg {
+  width: 1.2rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.cart-item__error-text:empty + svg {
+  visibility: hidden;
+}
+
+cart-remove-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 48rem) {
+
+  cart-remove-button {
+    margin-left: 1.5rem;
+  }
+}
+
+cart-remove-button a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+}
+
+cart-remove-button a:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+cart-remove-button .icon-remove {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.product-option + .product-option {
+  margin-top: 0.4rem;
+}
+
+.product-option * {
+  margin: 0px;
+}
+
+#cart-errors {
+  color: var(--color-validationError);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].oneOf[1].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[4]!./src/modules/cart/component-discounts.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.discounts {
+
+    font-size: 1.25rem;
+
+    line-height: 1.75rem
+}
+
+.discounts__discount {
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+
+    -webkit-box-align: center;
+
+        -ms-flex-align: center;
+
+            align-items: center
+}
+
+.discounts__discount--position {
+
+    -webkit-box-pack: center;
+
+        -ms-flex-pack: center;
+
+            justify-content: center;
+
+    -webkit-box-pack: end;
+
+        -ms-flex-pack: end;
+
+            justify-content: flex-end
+}
+
+.discounts__discount > .icon {
+
+    width: 1.2rem;
+
+    height: 1.2rem;
+
+    margin-right: 0.7rem
+}

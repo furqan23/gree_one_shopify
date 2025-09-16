@@ -1,0 +1,176 @@
+{% comment %}
+Technology Section with Dynamic Blocks & Popup
+{% endcomment %}
+
+<section class="technology-section">
+  <!-- Technology Banner -->
+  <div class="technology-banner">
+    <div class="banner-section-item-content">
+      <h1>
+        THE <br />
+        TECHNOLOGY & SCIENCE
+      </h1>
+    </div>
+  </div>
+
+  <!-- Technology Cards -->
+  <div class="technology-cards">
+    {% for block in section.blocks %}
+      <div class="tech-card">
+        {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | img_url: '400x' }}" alt="{{ block.settings.title | escape }}">
+        {% endif %}
+        <h4>{{ block.settings.title }}</h4>
+        <p class="gotham">{{ block.settings.short_description }}</p>
+        <a href="#" class="btn-outline-light read-more-btn" data-popup="popup-{{ block.id }}">Read more</a>
+      </div>
+
+      <!-- Popup -->
+      <div id="popup-{{ block.id }}" class="tech-popup">
+        <div class="tech-popup-content">
+          <span class="tech-popup-close" data-popup="popup-{{ block.id }}">&times;</span>
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.popup_text }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.technology-section {
+  padding: 0px 0;
+}
+
+.technology-banner {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.technology-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tech-card {
+  padding: 20px;
+  flex: 1 1 calc(33.333% - 20px);
+  text-align: left;
+}
+
+.tech-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.btn-outline-light {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  text-decoration: none;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+/* Popup styles */
+.tech-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.tech-popup-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.tech-popup-close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Open popup
+  document.querySelectorAll(".read-more-btn").forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      var popupId = this.getAttribute("data-popup");
+      document.getElementById(popupId).style.display = "block";
+    });
+  });
+
+  // Close popup
+  document.querySelectorAll(".tech-popup-close").forEach(function(closeBtn) {
+    closeBtn.addEventListener("click", function() {
+      var popupId = this.getAttribute("data-popup");
+      document.getElementById(popupId).style.display = "none";
+    });
+  });
+
+  // Close when clicking outside content
+  document.querySelectorAll(".tech-popup").forEach(function(popup) {
+    popup.addEventListener("click", function(e) {
+      if (e.target === popup) {
+        popup.style.display = "none";
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Technology Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tech_card",
+      "name": "Technology Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "short_description",
+          "label": "Short Description"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_text",
+          "label": "Popup Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Section",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

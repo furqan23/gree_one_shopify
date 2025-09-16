@@ -1,0 +1,371 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "collections_title": "Our Collections",
+        "collections": [
+          "anti-blemish",
+          "protection",
+          "radiance",
+          "youthfulness"
+        ],
+        "collections_is_carousel": false,
+        "controls_color": "accentA",
+        "icons_hover_color": "accentA"
+      }
+    },
+    "custom_liquid_fPKJNy": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 0px;}"
+      ],
+      "name": "Custom-colletion-banner-old",
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Collection Banner</title>\n\n    <style>\n      * {\n        margin: 0;\n        padding: 0;\n        box-sizing: border-box;\n      }\n\n      body {\n        font-family: \"Sequel Sans Light Head\", sans-serif;\n        color: #000;\n         background: #eeeeef;\n      }\n\n      .full-width-collection-row {\n        position: relative;\n        width: 100%;\n        overflow: hidden;\n        display: flex;\n        flex-direction: column;\n        align-items: flex-start;\n      }\n\n      .no-img-desktop,\n      .no-img-mob {\n        width: 100%;\n        height: auto;\n        object-fit: cover;\n        object-position: right;\n        display: none;\n      }\n\n      .content-wrapper {\n        width: 100%;\n        max-width: 630px;\n         background: rgba(255, 255, 255, 0.0); \n        padding: 20px;\n        z-index: 2;\n      }\n\n      .content-wrapper h2 {\n        font-size: 45px;\n        margin-bottom: 15px;\n        font-weight: bold;\n      }\n\n      .content-wrapper p {\n        font-size: 16px;\n        line-height: 1.6;\n      }\n\n      #scroll-down-btn {\n        position: absolute;\n        bottom: 40px;\n        left: 50%;\n        transform: translateX(-50%);\n        background: none;\n        border: none;\n        cursor: pointer;\n        z-index: 10;\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        font-size: 14px;\n        color: #84848a;\n      }\n\n.ct-tilee{\nposition:absolute;\nbottom:1%;\nleft:1%;\n}\n\n      /* Desktop View */\n      @media (min-width: 769px) {\n        .full-width-collection-row {\n          height: 90vh;\n          padding-left: 80px;\n          justify-content: center;\n        }\n\n        .no-img-desktop {\n          display: block;\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%;\n        }\n\n        .content-wrapper {\n          position: absolute;\n          top: 50%;\n          left: 120px;\n          transform: translateY(-50%);\n        }\n\n        .no-img-mob {\n          display: none;\n        }\n      }\n\n .collectionTitle{\n        font-size: 32px;\n        font-weight: bold;\n        margin-left: 5%;\n  }\n  .cstudies{\n position:absolute;\nbottom:0%;\nleft:1%;\nfont-size:17px;\n  padding-bottom: 0px;\n  font-family: 'MYRIADPRO-REGULAR' !important\n  }\n\n      /* Mobile View */\n      @media (max-width: 768px) {\n        .full-width-collection-row {\n          padding: 0;\n          overflow: visible;\n        }\n\n        .no-img-mob {\n          display: block;\n        }\n\n        .content-wrapper {\n          position: relative;\n          transform: none;\n          background: #eeeeef;\n\n          padding: 20px;\n          width: 100%;\n        }\n\n.content-wrapper h2{\nfont-size: 25px;\n}\n\n        #scroll-down-btn {\n          display: none;\n        }\n      }\n    </style>\n  </head>\n\n  <body>\n  {% if collection.metafields.custom.col_text != blank %}\n    <div class=\"full-width-collection-row\">\n      <!-- Desktop Image -->\n      <img\n        class=\"no-img-desktop\"\n        src=\"{{ collection.image | image_url: width: 6000, height: auto }}\"\n        alt=\"Desktop Banner\"\n        loading=\"lazy\"\n        width=\"1920\"\n        height=\"1080\"\n      />\n\n      <!-- Mobile Image -->\n      <img\n        class=\"no-img-mob\"\n        src=\"{{ collection.metafields.custom.bg_img| image_url: width: 6000, height: auto }}\"\n        alt=\"Mobile Banner\"\n        loading=\"lazy\"\n        width=\"750\"\n        height=\"1000\"\n      />\n\n      <!-- Text Content -->\n      <div class=\"content-wrapper\">\n        <h2>{{ collection.title }}</h2>\n        <p>{{ collection.metafields.custom.col_text | metafield_tag }}</p>\n     \n \n </div>\n <p class=\"cstudies\">\n      *Based on third-party clinical studies including 20 participants, clinical evaluations and consumer trials.\n    </p>\n      <!-- Scroll Button for Desktop -->\n      <button id=\"scroll-down-btn\">\n        <svg\n          width=\"30\"\n          height=\"30\"\n          fill=\"#84848a\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <path d=\"M20 28L8 16l2.5-2.5L20 23l9.5-9.5L32 16z\" />\n        </svg>\n        <span>Scroll Down</span>\n      </button>\n    </div>\n\n    {%endif%}\n    \n\n    <script>\n      document.addEventListener(\"DOMContentLoaded\", function () {\n        const scrollBtn = document.getElementById(\"scroll-down-btn\");\n        scrollBtn.addEventListener(\"click\", function () {\n          const nextSection = document.querySelector(\"section:nth-of-type(2)\");\n          if (nextSection) {\n            nextSection.scrollIntoView({ behavior: \"smooth\" });\n          }\n        });\n      });\n    </script>\n  </body>\n</html>"
+      }
+    },
+    "custom_liquid_PCk3XC": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".pt-12 {padding-top: 0px;}"
+      ],
+      "name": "Custom-collection-banner new",
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Collection Banner</title>\n\n    <style>\n      * {\n        margin: 0;\n        padding: 0;\n        box-sizing: border-box;\n      }\n\n      body {\n        font-family: \"Sequel Sans Light Head\", sans-serif;\n        color: #000;\n         background: #eeeeef;\n      }\n\n      .full-width-collection-row {\n        position: relative;\n        width: 100%;\n        overflow: hidden;\n        display: flex;\n        flex-direction: column;\n        align-items: flex-start;\n      }\n\n      .no-img-desktop,\n      .no-img-mob {\n        width: 100%;\n        height: auto;\n        object-fit: cover;\n        object-position: right;\n        display: none;\n      }\n\n      .content-wrapper {\n        width: 100%;\n        max-width: 630px;\n         background: rgba(255, 255, 255, 0.0); \n        padding: 20px;\n        z-index: 2;\n      }\n\n      .content-wrapper h2 {\n        font-size: 45px;\n        margin-bottom: 15px;\n        font-weight: bold;\n      }\n\n      .content-wrapper p {\n        font-size: 16px;\n        line-height: 1.6;\n      }\n\n      #scroll-down-btn {\n        position: absolute;\n        bottom: 40px;\n        left: 50%;\n        transform: translateX(-50%);\n        background: none;\n        border: none;\n        cursor: pointer;\n        z-index: 10;\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        font-size: 14px;\n        color: #84848a;\n      }\n\n.ct-tilee{\nposition:absolute;\nbottom:1%;\nleft:1%;\n}\n\n      /* Desktop View */\n      @media (min-width: 769px) {\n        .full-width-collection-row {\n          height: 90vh;\n          padding-left: 80px;\n          justify-content: center;\n        }\n\n        .no-img-desktop {\n          display: block;\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%;\n        }\n\n        .content-wrapper {\n          position: absolute;\n          top: 50%;\n          left: 120px;\n          transform: translateY(-50%);\n        }\n\n        .no-img-mob {\n          display: none;\n        }\n      }\n\n .collectionTitle{\n        font-size: 32px;\n        font-weight: bold;\n        margin-left: 5%;\n  }\n  .cstudies{\n position:absolute;\nbottom:0%;\nleft:1%;\nfont-size:17px;\n  padding-bottom: 0px;\n  font-family: 'MYRIADPRO-REGULAR' !important\n  }\n\n      /* Mobile View */\n      @media (max-width: 768px) {\n        .full-width-collection-row {\n          padding: 0;\n          overflow: visible;\n        }\n        .cstudies {\n  position: relative;\n  bottom: auto;\n  left: auto;\n  padding: 10px 20px 0;\n  font-size: 14px;\n  display: block;\n  background-color: #eeeeef; /* Optional: helps text visibility */\nmargin-left:0px !important;\n}\n\n        .no-img-mob {\n          display: block;\n        }\n\n        .content-wrapper {\n          position: relative;\n          transform: none;\n          background: #eeeeef;\n\n          padding: 20px;\n          width: 100%;\n        }\n\n.content-wrapper h2{\nfont-size: 25px;\n}\n\n        #scroll-down-btn {\n          display: none;\n        }\n      }\n    </style>\n  </head>\n\n  <body>\n \n  </body>\n</html>"
+      }
+    },
+    "custom_liquid_GND9Xe": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 0px !important;}"
+      ],
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  </head>\n  <style>\n    .full-width-collection-row {\n      flex-wrap: wrap;\n      justify-content: center;\n      align-items: flex-start;\n      background-size: cover;\n      background-position: center;\n      padding: 0px 0px 0px 0px;\n      color: #000;\n      background-color: #ccc;\n      min-height: calc(70vh - 140px);\n      height: auto;\n      position: relative;\n      font-family: Sequel Sans Light Head, sans-serif;\n      letter-spacing: 1px;\n    }\n\n    .image-div {\n      position: relative;\n      width: 100%;\n      height: auto;\n      max-width: 100vw;\n      overflow: clip;\n      overflow-clip-margin: content-box;\n    }\n\n    .no-img-desktop {\n      position: relative;\n      object-fit: fill;\n      object-position: center;\n      top: 0;\n      left: 0;\n      width: 100vw;\n      height: auto;\n    }\n\n    .content-wrapper {\n      max-width: 550px;\n      line-height: 1.5;\n      z-index: 3;\n      position: absolute;\n      top: 45%;\n      transform: translate(0, -50%);\n      left: 180px;\n    }\n\n    .no-img-mob {\n      display: none;\n    }\n\n    @media (max-width: 768px) {\n    \n      .full-width-collection-row {\n        display: column;\n        background-color: #eeeeef;\n        color: #000;\n        font-size: 14px;\n        height: auto;\n        min-height: calc(60vh - 140px);\n      }\n\n      .no-img-desktop {\n        display: none;\n        z-index: 0;\n      }\n      .no-img-mob {\n        display: block;\n      }\n\n      .content-wrapper {\n        max-width: 90%;\n        top: 92vh;\n        left: 10px;\n        margin-bottom: 0px !important;\n      }\n      h2 {\n        font-size: 26px !important;\n        margin-bottom: 10px !important;\n      }\n      #scroll-down-btn {\n        display: none !important;\n      }\n      .spacer-after-banner {\n        height: 140px;\n        background-color: #eeeeef !important;\n      }\n    }\n  </style>\n\n  {% if collection.metafields.custom.col_text != blank %}\n  <!-- <img\n    class=\"no-img-mob\"\n    src=\"{{ collection.image | img_url: 'large' }}\"\n    alt=\"{{ collection.title }}\"\n  /> -->\n\n  <div class=\"full-width-collection-row\">\n    <div class=\"image-div\">\n      <img\n        class=\"no-img-desktop\"\n        src=\"{{ collection.image | image_url: width: 6000, height: auto }}\"\n        alt=\"{{ collection.title }}\"\n      />\n      <img\n        class=\"no-img-mob\"\n        src=\"{{ collection.metafields.custom.bg_img| image_url: width: 6000, height: auto }}\"\n        alt=\"{{ collection.title }}\"\n      />\n    </div>\n\n    <div class=\"content-wrapper\">\n      <h2 style=\"font-size: 45px; margin-bottom: 15px; font-weight: bold\">\n        {{ collection.title }}\n      </h2>\n\n      <p id=\"p_1_c\">\n        {{ collection.metafields.custom.col_text | metafield_tag }}\n      </p>\n    </div>\n\n    <!-- ✅ Down Arrow Button Absolutely Positioned at Bottom Center -->\n    <button\n      id=\"scroll-down-btn\"\n      style=\"\n        position: absolute;\n        bottom: 40px;\n        left: 50%;\n        transform: translateX(-50%);\n        background: none;\n        border: none;\n        cursor: pointer;\n        z-index: 10;\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        font-family: inherit;\n        font-size: 14px;\n        color: #84848a;\n      \"\n    >\n      <!-- Down Arrow Icon SVG -->\n      <svg\n        width=\"30\"\n        height=\"30\"\n        fill=\"#84848a\"\n        xmlns=\"http://www.w3.org/2000/svg\"\n      >\n        <path d=\"M20 28L8 16l2.5-2.5L20 23l9.5-9.5L32 16z\" />\n      </svg>\n      <span style=\"margin-top: 4px\">Scroll Down</span>\n    </button>\n  </div>\n  {% endif %}\n  <div class=\"spacer-after-banner\"></div>\n</html>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function () {\n    const scrollBtn = document.getElementById(\"scroll-down-btn\");\n    scrollBtn.addEventListener(\"click\", function () {\n      const nextSection = document.querySelector(\"section:nth-of-type(2)\");\n      if (nextSection) {\n        nextSection.scrollIntoView({ behavior: \"smooth\" });\n      }\n    });\n  });\n</script>"
+      }
+    },
+    "custom_liquid_bkNB9J": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 0px;}"
+      ],
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  </head>\n  <style>\n    .full-width-collection-row {\n      flex-wrap: wrap;\n      justify-content: center;\n      align-items: flex-start;\n      background-size: cover;\n      background-position: center;\n      padding: 0px 0px 0px 0px;\n      color: #000;\n      background-color: #ccc;\n      min-height: calc(70vh - 140px);\n      height: auto;\n      position: relative;\n      font-family: Sequel Sans Light Head, sans-serif;\n      letter-spacing: 1px;\n    }\n\n    .image-div {\n      position: relative;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: auto;\n      max-width: 100vw;\n      overflow: clip;\n      overflow-clip-margin: content-box;\n    }\n\n    .no-img-desktop {\n      position: relative;\n      object-fit: fill;\n      object-position: center;\n      top: 0;\n      left: 0;\n      width: 100vw;\n      height: auto;\n    }\n\n    .content-wrapper {\n      max-width: 550px;\n      line-height: 1.5;\n      z-index: 3;\n      position: absolute;\n      top: 45%;\n      transform: translate(0, -50%);\n      left: 180px;\n    }\n\n    .no-img-mob {\n      display: none;\n    }\n\n    @media (max-width: 768px) {\n      .no-img-mob {\n        display: block;\n      }\n\n\n      .full-width-collection-row {\n        display: column;\n        background-color: #eeeeef;\n        color: #000;\n        font-size: 14px;\n        height: calc(90vh - 140px);\n        min-height: calc(60vh - 140px);\n      }\n\n      .no-img-desktop {\n        display: none;\n        z-index: 0;\n      }\n\n      .content-wrapper {\n        max-width: 90%;\n        top: 190px;\n        left: 10px;\nmargin-bottom: 0px !important;\n      }\nh2{\nfont-size:26px !important;\nmargin-bottom:10px !important;\n}\n#scroll-down-btn{\ndisplay:none !important;\n}\n  .spacer-after-banner {\n    height: 140px;\nbackground-color: #eeeeef !important;\n  }\n    }\n  </style>\n\n  {% if collection.metafields.custom.col_text != blank %}\n <!-- <img\n    class=\"no-img-mob\"\n    src=\"{{ collection.image | img_url: 'large' }}\"\n    alt=\"{{ collection.title }}\"\n  />--!>\n\n  <div class=\"full-width-collection-row\">\n    <div class=\"image-div\">\n      <img\n        class=\"no-img-desktop\"\n        src=\"{{ collection.image | image_url: width: 6000, height: auto }}\"\n        alt=\"{{ collection.title }}\"\n      />\n<img\n        class=\"no-img-mob\"\n        src=\"{{ collection.image | image_url: width: 6000, height: auto }}\"\n        alt=\"{{ collection.title }}\"\n      />\n    </div>\n\n    <div class=\"content-wrapper\">\n      <h2\n        style=\"\n          font-size: 45px;\n          margin-bottom: 15px;\n          font-weight: bold;\n        \"\n      >\n        {{ collection.title }}\n      </h2>\n\n      <p id=\"p_1_c\">{{ collection.metafields.custom.col_text | metafield_tag }}</p>\n    </div>\n\n    <!-- ✅ Down Arrow Button Absolutely Positioned at Bottom Center -->\n    <button\n  id=\"scroll-down-btn\"\n  style=\"\n    position: absolute;\n    bottom: 40px;\n    left: 50%;\n    transform: translateX(-50%);\n    background: none;\n    border: none;\n    cursor: pointer;\n    z-index: 10;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    font-family: inherit;\n    font-size: 14px;\n    color: #84848a;\n  \"\n>\n  <!-- Down Arrow Icon SVG -->\n  <svg width=\"30\" height=\"30\" fill=\"#84848a\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M20 28L8 16l2.5-2.5L20 23l9.5-9.5L32 16z\" />\n  </svg>\n  <span style=\"margin-top: 4px;\">Scroll Down</span>\n</button>\n  </div>\n  {% endif %}\n<div class=\"spacer-after-banner\"></div>\n</html>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function () {\n    const scrollBtn = document.getElementById(\"scroll-down-btn\");\n    scrollBtn.addEventListener(\"click\", function () {\n      const nextSection = document.querySelector(\"section:nth-of-type(2)\");\n      if (nextSection) {\n        nextSection.scrollIntoView({ behavior: \"smooth\" });\n      }\n    });\n  });\n</script>"
+      }
+    },
+    "custom_liquid_h3XjcY": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% assign disallowed_collections = \"Cleansers,R-SERIES,P-SERIES,Y-SERIES\" | split: \",\" %} \n{% unless disallowed_collections contains collection.title %}\n  <h2 class=\"cstudies\">\n    * Based on third-party clinical studies including 20 participants, in-vivo tests, and consumer trials.\n  </h2>\n{% endunless %}"
+      }
+    },
+    "custom_liquid_6nkYWP": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 3rem !important; background-color: #eeeeef !important;}"
+      ],
+      "name": "Custom liquid Recommendation",
+      "settings": {
+        "custom_liquid": "<style>\n.collectionTitle{\n      font-size: 32px;\n      font-weight: bold;\n      margin-left: 5%;\n}\n.cstudies{\nmargin-left: 5%;\npadding-bottom: 10px;\nfont-family: 'MYRIADPRO-REGULAR' !important\n}\n@media (max-width: 768px) {\n.collectionTitle{\nfont-size:26px !important;\n}\n}\n</style>\n{% assign disallowed_collections = \"Cleansers,\" | split: \",\" %} \n{% unless disallowed_collections contains collection.title %}\n  <h2 class=\"cstudies\">\n    *Based on third-party clinical studies including 20 participants, clinical evaluations and consumer trials.\n  </h2>\n{% endunless %}\n\n{% assign allowed_collections = \"Fine line and Signs of aging,Loss of firmness,Hyperpigmentation,Uneven Skin Tone,Dryness & Dehydration,Dull tired looking skin,Redness and irritation,Dark circles and puffiness,Dry skin,Normal skin,Combination skin,Oily skin\" | split: \",\" %}\n{% if allowed_collections contains collection.title %}\n  <h2 class=\"collectionTitle\">\n    Recommended for {{ collection.title }}\n  </h2>\n{% endif %}"
+      }
+    },
+    "custom_liquid_RUQcMJ": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding-top: 3rem !important; background-color: #eeeeef !important;}"
+      ],
+      "name": "Custom liquid Recommendation",
+      "settings": {
+        "custom_liquid": "<style>\n.collectionTitle{\n      font-size: 32px;\n      font-weight: bold;\n      margin-left: 5%;\n}\n.cstudies{\nmargin-left: 5%;\npadding-bottom: 10px;\nfont-family: 'MYRIADPRO-REGULAR' !important\n}\n@media (max-width: 768px) {\n.collectionTitle{\nfont-size:26px !important;\n}\n}\n</style>\n{% assign allowed_collections = \"Fine line and Signs of aging,Loss of firmness,Hyperpigmentation,Uneven Skin Tone,Dryness & Dehydration,Dull tired looking skin,Redness and irritation,Dark circles and puffiness,Dry skin,Normal skin,Combination skin,Oily skin\" | split: \",\" %}\n{% if allowed_collections contains collection.title %}\n  <h2 class=\"collectionTitle\">\n    Recommended for {{ collection.title }}\n  </h2>\n{% endif %}"
+      }
+    },
+    "custom_liquid_apQkY6": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".pt-12 {padding: 0rem !important; background-color: #eeeeef !important;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n@media (max-width: 768px){\n.c-studied{\n\nmargin-left:40px !important;\n}\n\n}\n</style>\n\n\n\n<div class=\"c-studied\" style=\"margin-left: 5px; \nmargin-top:10px;\nmargin-bottom:100px;font-family: 'Utopia-Semibold' !important\">\n    <!--  <h2 style=\"font-family: 'Utopia-Semibold'; font-size:16px;\">Clinically Studied & Clinically Proven Formulas*</h2>-->\n\n      <p>\n          * Based on third-party clinical studies including 20 participants, in-vivo tests, and consumer trials.\n      </p>\n    </div>"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "promotion_WD3DQ4": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "title": "NOT SURE WHERE TO START?",
+            "content": "<p>Start your journey with our skincare quiz</p>",
+            "child_collection": "",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "position": 4,
+            "col_span": 1,
+            "full_height": false,
+            "video_url": "",
+            "mobile_video_url": "",
+            "link": "shopify://pages/find-your-regimin",
+            "link_text": "Find your Regimen",
+            "media_accessibility_text": ""
+          }
+        },
+        "promotion_xUmdNh": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "title": "NOT SURE WHERE TO START?",
+            "content": "<p>A personalized skincare regimen crafted to perfectly suit your individual needs</p>",
+            "child_collection": "",
+            "hide_on_desktop": false,
+            "hide_on_mobile": false,
+            "position": 5,
+            "col_span": 2,
+            "full_height": false,
+            "image": "shopify://shop_images/Picture_for_Regimen.png",
+            "video_url": "",
+            "mobile_video_url": "",
+            "link": "shopify://pages/find-your-regimin",
+            "link_text": "Find Your Regimen",
+            "media_accessibility_text": ""
+          }
+        },
+        "promotion_EhrnGc": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "title": "NOT SURE WHERE TO START?",
+            "content": "<p>Start your journey with our skincare quiz</p>",
+            "child_collection": "",
+            "hide_on_desktop": true,
+            "hide_on_mobile": false,
+            "position": 3,
+            "col_span": 1,
+            "full_height": false,
+            "video_url": "",
+            "mobile_video_url": "",
+            "link": "shopify://pages/about",
+            "link_text": "",
+            "media_accessibility_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "promotion_WD3DQ4",
+        "promotion_xUmdNh",
+        "promotion_EhrnGc"
+      ],
+      "custom_css": [
+        "#collection-layout {margin-top: 0px !important; padding-top: 5rem !important;}",
+        ".font-bold {font-family: \"Utopia-Semibold\" !important;}",
+        ".card__heading {font-family: \"Utopia-Semibold\" !important; text-transform: capitalize !important; font-size: 20px !important;}",
+        "@media (max-width: 768px) {#product-grid {row-gap: 4rem !important; } #collection-layout {margin-top: 0px !important; }}",
+        "@media screen and (min-width: 1600px) {/* Adjust container width */ .card__information {padding-bottom: 2.7rem; }}"
+      ],
+      "settings": {
+        "products_per_page": 16,
+        "enable_filtering": false,
+        "show_secondary_image": true,
+        "filter_type": "vertical",
+        "enable_sorting": false,
+        "show_vendor": false,
+        "enable_reviews": false,
+        "enable_variant_count": true,
+        "enable_quick_add": false
+      }
+    },
+    "content_cta_and_media_grid_XHKFjT": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_dU7ygB": {
+          "type": "heading",
+          "settings": {
+            "heading": "START YOUR JOURNEY WITH OUR SKIN QUIZ"
+          }
+        },
+        "image_heading_yRbieN": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_Eee8c4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_RULyNQ": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start Quiz",
+            "secondary_button_label": "Start Quiz",
+            "button_link": "shopify://pages/modules"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dU7ygB",
+        "image_heading_yRbieN",
+        "text_Eee8c4",
+        "button_RULyNQ"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/get-in-touch-image.webp",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "media_grid_xpWAUH": {
+      "type": "media-grid",
+      "blocks": {
+        "item_tM9eWW": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-03-17_at_15.45_1.jpg",
+            "video_url": "",
+            "embed_url": "",
+            "heading": "HIGHLY ACTIVE INGREDIENTS",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>",
+            "button_label": "The science",
+            "secondary_button_label": "The science",
+            "button_link": "shopify://pages/contact"
+          }
+        },
+        "item_KajRCr": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-03-17_at_15.45_2.jpg",
+            "video_url": "",
+            "embed_url": "",
+            "heading": "CLINICALLY PROVEN RESULTS",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>",
+            "button_label": "The science",
+            "secondary_button_label": "The science",
+            "button_link": "shopify://blogs/news"
+          }
+        }
+      },
+      "block_order": [
+        "item_tM9eWW",
+        "item_KajRCr"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Media grid",
+        "show_title": false,
+        "description": "<p>Lorem ipsum dolor sit amet.</p>",
+        "show_description": false,
+        "text_colour": "text1",
+        "button_style": "primary",
+        "controls_color": "primary",
+        "background_color": "secondary"
+      }
+    },
+    "custom_liquid_eWpx74": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "custom_liquid": "<div style=\"height:60px;\">\n\n</div>"
+      }
+    },
+    "accordion_Vew67U": {
+      "type": "accordion",
+      "blocks": {
+        "collapsible_row_m8VtzP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Question one",
+            "icon": "none",
+            "row_content": "<p>Answer of a quesiotn</p><p></p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_TXXqWF": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_RUMK4K": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_6EA4Xz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "none",
+            "row_content": "",
+            "page": "",
+            "ingredients_list": []
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_m8VtzP",
+        "collapsible_row_TXXqWF",
+        "collapsible_row_RUMK4K",
+        "collapsible_row_6EA4Xz"
+      ],
+      "disabled": true,
+      "name": "t:sections.accordion.presets.name",
+      "settings": {
+        "heading": "FAQ's",
+        "supporting_text": "",
+        "center_align_text": false,
+        "open_first_collapsible_row": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "custom_liquid_fPKJNy",
+    "custom_liquid_PCk3XC",
+    "custom_liquid_GND9Xe",
+    "custom_liquid_bkNB9J",
+    "custom_liquid_h3XjcY",
+    "custom_liquid_6nkYWP",
+    "custom_liquid_RUQcMJ",
+    "custom_liquid_apQkY6",
+    "product-grid",
+    "content_cta_and_media_grid_XHKFjT",
+    "media_grid_xpWAUH",
+    "custom_liquid_eWpx74",
+    "accordion_Vew67U"
+  ]
+}

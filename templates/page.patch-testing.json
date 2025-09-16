@@ -1,0 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "content_cta_and_media_grid_NbtfRt": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_eN9kaG": {
+          "type": "heading",
+          "settings": {
+            "heading": "What isPatch testing:"
+          }
+        },
+        "image_heading_NeYE9E": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_868GCU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A patch test is when you apply a product or ingredient to a small area of skin and observe the skin's reaction. </p><p><strong>How to Perform Patch Testing: </strong></p><p><strong>Select a small area</strong><br/>Choose a discreet area of skin, such as the inner forearm or wrist. </p><p><strong>Apply a small amount</strong><br/>Using a clean fingertip, apply a small amount of the product to the chosen area.</p><p><strong>Wait 24-48 hours</strong><br/>Leave the product on the skin for 24-48 hours without washing or disturbing the area. Avoid clothing or accessories that might rub against the patch.</p><p><strong>Look for any reactions</strong><br/>After the waiting period, check the area for redness, itching or swelling. If you experience any irritation, remove the product and discontinue use.</p><p><strong>No reaction?</strong><br/>If there’s no irritation, the product is likely safe to use on your face<br/>     or body.</p>"
+          }
+        },
+        "button_7FQfzp": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_eN9kaG",
+        "image_heading_NeYE9E",
+        "text_868GCU",
+        "button_7FQfzp"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/36._Succinic_Acid.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_cta_and_media_grid_NbtfRt"
+  ]
+}

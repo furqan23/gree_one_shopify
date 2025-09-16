@@ -1,0 +1,54 @@
+{% assign ingredients = product.metafields.custom.ingredients.value %}
+{% if section.settings.ingredients_list %}
+    {% assign ingredients = section.settings.ingredients_list %}
+{% endif %}
+
+{% if ingredients != blank %}
+    <div class="container overflow-hidden pt-12 large:pt-20">
+        <div class="wrap">
+            <div class="flex flex-col max-w-[66.438rem] mb-[1.625rem] large:mb-[2.813rem]">
+                <h2 class="heading-r{% if section.settings.center_align_text %} text-center{% endif %}">
+                    {{ section.settings.title | escape }}
+                </h2>
+                {%  if section.settings.content != blank %}
+                    <div class="wysiwyg body-m mt-[1.625rem] large:mt-5 large:body-l">
+                        {{ section.settings.content }}
+                    </div>
+                {% endif %}
+            </div>
+            {% render 'ingredients-carousel', ingredients: ingredients %}
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "t:sections.ingredients-carousel.name",
+        "tag": "section",
+        "class": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.ingredients-carousel.settings.title.label"
+            },
+            {
+                "type": "richtext",
+                "id": "content",
+                "label": "t:sections.ingredients-carousel.settings.content.label"
+            },
+            {
+                "type": "metaobject_list",
+                "id": "ingredients_list",
+                "label": "t:sections.ingredients-carousel.settings.ingredients_list.label",
+                "metaobject_type": "ingredient",
+                "limit": 24
+              }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.ingredients-carousel.presets.name"
+            }
+        ]
+    }
+{% endschema %}

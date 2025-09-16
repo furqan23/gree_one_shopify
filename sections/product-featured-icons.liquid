@@ -1,0 +1,254 @@
+<div class="bg-{{ section.settings.background_color }} overflow-hidden {% unless section.settings.background_color == 'transparent' %} mt-12 py-12 large:mt-20 large:py-20{% else %}mt-12 large:mt-20{% endunless %}">
+    <div class="container">
+        <div class="wrap">
+            <div class="large:grid large:grid-cols-12">
+                <div class="large:col-span-10 large:col-start-2">
+                    {% if section.settings.title or section.settings.text %}
+                        <div class="text-center mb-8">
+                            {% if section.settings.title != blank %}
+                                <h2 class="heading-r text-{{ section.settings.text_color }}{% if section.settings.text != blank %} mb-6{% endif %}">
+                                    {{ section.settings.title }}
+                                </h2>
+                            {% endif %}
+                            {% if section.settings.text != blank %}
+                                <div class="wysiwyg max-w-[47.5rem] mx-auto body-l text-{{ section.settings.text_color }}">
+                                    {{ section.settings.text }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="large:grid large:grid-cols-12">
+                <div class="large:col-span-10 large:col-start-2">
+                    <div class="swiper [&.swiper]:overflow-visible js-featured-icons-carousel">
+                        <div class="swiper-wrapper">
+                            {%- for item in product.metafields.custom.featured_icons_carousel.value -%}
+                                {% if item.icon != empty %}
+                                    <div class="swiper-slide">
+                                        <div class="w-full flex flex-col items-center text-{{ section.settings.text_color }} large:mx-[.625rem]">
+                                            <div class="h-[10rem] flex items-center justify-center aspect-square large:h-[13.125rem]">
+                                                {%-liquid
+                                                    if item.icon.value != empty
+                                                        assign file_path = item.icon.value | split: '/'
+                                                        assign file_name = ''
+                                                        for fragment in file_path
+                                                            if forloop.last
+                                                                assign file_name = fragment
+                                                            endif
+                                                        endfor
+                                                        assign file_name = file_name | split: '?'
+                                                        assign file_name = file_name[0]
+                                                    endif
+                                                -%}
+                                                <img
+                                                    src="{{ item.icon | image_url }}"
+                                                    alt="{{ item.title | escape }}"
+                                                    height="{{ images[file_name].height }}"
+                                                    width="{{ images[file_name].width }}"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+                                            <div class="text-center">
+                                                {% if item.title != blank %}
+                                                    <p class="mb-1 body-m uppercase font-semibold text-{{ section.settings.text_color }}">
+                                                        {{- item.title -}}
+                                                    </p>
+                                                {% endif %}
+                                                {% if item.text != blank %}
+                                                    <p class="body-r text-{{ section.settings.text_color }}">
+                                                        {{- item.text -}}
+                                                    </p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {%- endfor -%}
+                        </div>
+                        <div class="relative flex justify-between items-center mt-8">
+                            <div class="swiper-scrollbar relative w-full rounded-[2rem]">
+                                <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                                <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.product-featured-icons.name",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+        "templates": [
+            "product"
+        ]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Reasons to love us",
+            "label": "t:sections.featured-icons.settings.title.label"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>We have been developing science-backed formulas using premium ingredients sourced from across the globe for over 50 years.</p>",
+            "label": "t:sections.featured-icons.settings.text.label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.featured-icons.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-icons.settings.text_color.label"
+        },
+        {
+            "type": "select",
+            "id": "controls_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "accentA",
+            "label": "t:sections.featured-icons.settings.controls_colour.label"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.product-featured-icons.presets.name"
+        }
+    ]
+}
+{% endschema %}

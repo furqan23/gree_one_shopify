@@ -1,0 +1,23 @@
+{%- liquid 
+    assign item_count = 0
+    for item in cart.items
+        if item.properties.is_bundle
+            assign next_i = forloop.index0 | plus: 1
+            if cart.items[next_i].properties._timestamp != item.properties._timestamp
+                assign item_count = item_count | plus: 1
+            endif
+        else
+            assign quantity = item.quantity
+            assign item_count = item_count | plus: quantity
+        endif
+    endfor 
+-%}
+
+{{  'sections.cart_notification.title' | t }}
+{% if item_count < 1 %}
+    <span>
+        (0)
+    </span>
+{% else %}
+ ({{ item_count }})
+{% endif %}

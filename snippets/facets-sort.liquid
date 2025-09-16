@@ -1,0 +1,59 @@
+{% comment %}
+    Renders 'boolean' or 'list' facets for colour/color (filtering)
+
+    Accepts:
+    - idPrefix: {String} DOM `id`
+    - context: {String} Rendering context, `mobile` or `desktop`
+    - filter_type: {String} UI orientation, `vertical` or `horizontal`
+    - sort_options: {Object} Sort data
+    - sort_default: {String} Default sort value
+    - sort_by: {String} Active `sort`.
+{% endcomment %}
+
+<div
+    id="{{ idPrefix }}{{ section.id }}"
+    class="js-filter"
+    data-index="{{ context }}-sort"
+>
+    <button
+        type="button"
+        class="w-full pt-5 pb-4 box-border"
+        data-facet-accordion-toggle
+    >
+        <div class="flex items-center">
+            <span class="mr-2 body-r font-semibold">
+                {{- 'products.facets.sort_by_label' | t -}}
+            </span>
+            <span
+                class="flex justify-center items-center ml-auto transition-transform duration-300 transform bg-uiMidGrey w-[1.3rem] h-[1.3rem] [&.is-active]:-scale-y-100"
+                data-facet-accordion-arrow
+            >
+                {% render 'icon-caret' %}
+            </span>
+        </div>
+    </button>
+    <div
+        id="Facet{{ context | capitalize }}-sort-{{ section.id }}"
+        class="h-0 hidden -mt-1"
+        data-facet-accordion
+    >
+        <fieldset
+            class="inline-flex flex-col flex-wrap gap-6 mb-5 medium:gap-4"
+            aria-describedby="a11y-refresh-page-message"
+        >
+            <legend class="sr-only">{{- 'products.facets.sort_by_label' | t -}}</legend>
+            {%- for option in sort_options -%}
+                <div class="flex">                                                           
+                    <input id="sort-by-{{ option.value | escape }}-{{ context }}" class="peer sr-only{% if option.value == sort_default %} js-filter-sort-default{% endif %}" type="radio" name="sort_by" value="{{ option.value | escape }}"{% if option.value == sort_by %} checked{% endif %}>
+                    <label
+                        class="flex body-r cursor-pointer peer-checked:[&_.radio]:border-[0.1875rem] peer-checked:[&_.radio]:bg-uiBlack peer-focus-keyboard:[&_.radio]:outline"
+                        for="sort-by-{{ option.value | escape }}-{{ context }}"
+                    >
+                        <div class="radio shrink-0 box-border mr-2 bg-uiMidGrey rounded-full w-[1.125rem] h-[1.125rem]"></div>
+                        <span class="mt-0.5">{{- option.name | escape -}}</span>
+                    </label>
+                </div>
+            {%- endfor -%}
+        </fieldset>
+    </div>
+</div>

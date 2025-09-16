@@ -1,0 +1,183 @@
+{%  liquid
+  assign background_color = section.settings.background_color
+  assign title = section.settings.title
+  assign text_color = section.settings.text_color
+%}
+
+<div class="bg-{{ background_color }} overflow-hidden{% unless background_color == 'transparent' %} mt-12 py-4 medium:mt-16{% else %}mt-12 medium:mt-20{% endunless %}">
+    <div class="container">
+        <div class="wrap">
+            <div class="medium:grid medium:grid-cols-12">
+                <div class="medium:col-span-10 medium:col-start-2">
+                    {% if title != blank %}
+                        <div class="flex justify-center text-center mb-6 large:mb-11">
+                            <h2 class="heading-xs text-{{ text_color }} w-3/4 largeMax:text-[1.125rem]">
+                                {{ title }}
+                            </h2>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="large:grid">
+                <div class="flex box-border gap-y-8 largeMax:flex-wrap large:col-span-8 large:col-start-0">
+                    {%- for block in section.blocks -%}
+                        <div class="px-2 largeMax:w-2/4 large:flex-1">
+                            {%  render 'featured-icon',
+                                icon: block.settings.icon,
+                                title: block.settings.title,
+                                text: block.settings.text,
+                                small_icon: true
+                            %}
+                        </div>
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.icons.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.icons.settings.title.label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "secondary",
+            "label": "t:sections.icons.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.icons.settings.text_color.label"
+        }
+    ],
+    "max_blocks": 8,
+    "blocks": [
+        {
+            "name": "t:sections.featured-icons.blocks.name",
+            "type": "icon",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "t:sections.icons.blocks.icon.label"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "t:sections.icons.blocks.title.label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.icons.presets.name",
+            "blocks": [
+                {
+                    "type": "icon"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

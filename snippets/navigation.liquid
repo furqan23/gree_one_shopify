@@ -1,0 +1,241 @@
+<nav>
+    <ul class="xLarge:flex xLarge:gap-x-10 xLarge:flex-wrap xLarge:items-end xLarge:pl-[6.75rem]">
+        {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+                {%- if block.type == 'mega_menu' and block.settings.mega_menu.links != blank or block.type == 'mega_menu' and block.settings.mega_menu_2.links -%}
+                    <li class="xLargeMax:[&.is-active]:bg-uiLightGrey xLargeMax:[&.is-active]:delay-0 xLargeMax:border-uiMidGrey xLargeMax:px-8 xLargeMax:transition-colors xLargeMax:delay-700" data-mega-menu-container>
+                        <div class="xLargeMax:border-b">
+                            <button data-menu-sub-item data-header-toggle-menu data-mega-menu data-header-top-level="true" type="button" class="flex items-center body-m font-semibold cursor-pointer xLargeMax:justify-between xLargeMax:py-[1.25rem] xLargeMax:w-full xLarge:hover:text-primary xLarge:flex xLarge:min-h-[1.875rem] xLarge:items-end xLarge:relative after:block after:w-full after:h-px after:absolute after:bottom-0 after:left-0 after:bg-uiBlack after:opacity-0 after:opacity-1 after:transition-opacity">
+                                <span class="flex items-center justify-between w-full {% if link.child_active %} xLargeMax:decoration-2 xLarge:before:opacity-1{% else %} xLarge:before:opacity-0{% endif %}">
+                                    <span class="xLarge:mr-2">
+                                        {%- if block.settings.mega_menu_title != blank -%}
+                                            {{ block.settings.mega_menu_title }}
+                                        {%- else -%}
+                                            {{ block.settings.mega_menu.title }}
+                                        {%- endif -%}
+                                    </span>
+                                    <span class="relative right-[0.5625rem] xLarge:hidden js-accordion-menu" aria-hidden>
+                                        <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black"></span>
+                                        <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black rotate-90 transition duration-300"></span>
+                                    </span>
+                                    <span class="transition-transform xLargeMax:hidden" data-desktop-menu-caret>
+                                        {% render 'icon-caret' %}
+                                    </span>
+                                </span>
+                            </button>
+                            <div data-sub-menu data-header-sub-menu class="transition-all xLargeMax:w-full xLargeMax:max-h-0 xLargeMax:overflow-hidden xLargeMax:top-0 xLargeMax:left-0 xLargeMax:bottom-0 xLargeMax:z-1 xLargeMax:transform xLargeMax:transition-[max-height] xLargeMax:duration-1000 xLarge:wrap xLarge:absolute xLarge:top-full xLarge:left-0 xLarge:w-full xLarge:bg-uiWhite xLarge:opacity-0 xLarge:border-t xLarge:border-uiMidGrey xLarge:invisible xLarge:h-0" tabindex="-1">
+                                <div class="xLargeMax:pb-8 xLargeMax:h-full xLargeMax:overflow-hidden xLargeMax:overflow-y-auto xLarge:grid xLarge:grid-cols-12 xLarge:gap-x-5">
+                                    {% if block.settings.mega_menu.links  %}
+                                        <div class="xLarge:col-span-2 xLarge:grid xLarge:grid-cols-2 xLarge:gap-5 xLarge:border-r xLarge:border-uiMidGrey xLarge:pt-6 xLarge:pb-12" tabindex="-1">
+                                            <div>
+                                                <h2 class="uppercase body-m font-normal">
+                                                    {{ block.settings.mega_menu.title }}
+                                                </h2>
+                                                <ul class="xLargeMax:flex xLargeMax:flex-wrap xLargeMax:gap-2 xLargeMax:pt-[0.875rem] xLarge:mt-6 xLarge:gap-x-1">
+                                                    {%- for link in block.settings.mega_menu.links -%}
+                                                        <li class="xLargeMax:basis-[calc(50%-0.25rem)]">
+                                                            <a class="flex w-full transition{% if forloop.last %} button justify-center largeMax:py-[0.9rem] large:mt-6 xLarge:min-w-[7.5rem] xLarge:tracking-[0.01375rem] xLarge:py-3{% else %} py-[0.6rem] body-m xLargeMax:hover:bg-uiBlack xLargeMax:hover:text-text2{% endif %} xLargeMax:justify-center xLargeMax:border xLargeMax:border-uiBlack items-start gap-x-1 font-semibold" href="{{ link.url }}">
+                                                                {% if forloop.last %}
+                                                                    <div class="button__label">
+                                                                        <span>
+                                                                            {{ link.title }}
+                                                                        </span>
+                                                                        <span class="absolute top-10 left-0">
+                                                                            {{ link.title }}
+                                                                        </span>
+                                                                    </div>
+                                                                {% else %}
+                                                                    <span class="text-[0.375rem] pt-1">
+                                                                        {% if forloop.index < 10 %}
+                                                                            0{{ forloop.index }}
+                                                                        {% else %}
+                                                                            {{ forloop.index }}
+                                                                        {% endif %}
+                                                                    </span>
+                                                                    <span class="{% unless forloop.last %}xLarge:underline{% endunless %}">
+                                                                        {{ link.title }}
+                                                                    </span>
+                                                                {% endif %}
+                                                            </a>
+                                                        </li>
+                                                    {%- endfor -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if block.settings.mega_menu_2.links  %}
+                                        <div class="xLargeMax:mt-[1.8rem] xLarge:col-span-10 xLarge:grid xLarge:grid-cols-10 xLarge:gap-5 xLarge:pt-6 xLarge:pl-12" tabindex="-1">
+                                            <div class="xLarge:col-span-10">
+                                                <h2 class="uppercase body-m font-normal">
+                                                    {{ block.settings.mega_menu_2.title }}
+                                                </h2>
+                                                <ul class="xLargeMax:pt-[0.875rem] xLarge:mt-6 xLarge:flex xLarge:flex-wrap xLarge:gap-1">
+                                                    {%- for link in block.settings.mega_menu_2.links -%}
+                                                        {% assign collection = collections[link.handle] %}
+                                                        {%  if collection %}
+                                                            {% assign series = collection.metafields.custom.series.value %}
+                                                            <li class="xLarge:basis-[calc(25%-.25rem)] xLarge:bg-uiLightGrey">
+                                                                <a class="flex xLargeMax:border-b-4 xLarge:flex-col" style="border-color: {{ series.colour }};" href="{{ link.url }}">
+                                                                    {% if series.icon %}
+                                                                        <div class="flex items-center h-[5.9375rem] xLargeMax:w-[5.3125rem] xLargeMax:justify-center xLarge:w-full xLarge:pl-7 xLarge:order-2" style="background-color: {{ series.colour }};">   
+                                                                            <img
+                                                                                class="xLargeMax:h-[3.9375rem] xLarge:w-11"
+                                                                                src="{{ series.icon | image_url: width: 63 }}"
+                                                                                width="63"
+                                                                                height="63"
+                                                                                alt="{{ series.icon.alt }}"
+                                                                                loading="lazy"
+                                                                            >
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <div class="flex-1 flex justify-between gap-x-8 items-end pb-[1.125rem] xLarge:px-5 xLarge:pt-4 xLarge:pb-9">
+                                                                        <div class="xLargeMax:pl-4 flex-1">
+                                                                            <span class="body-m font-semibold">
+                                                                                {{ link.title }}
+                                                                            </span>
+                                                                            {% if series.description %}
+                                                                                <p class="body-s mt-[.1rem]">
+                                                                                    {{ series.description }}
+                                                                                </p>
+                                                                            {% endif %}
+                                                                            {% if series.letter %}
+                                                                                <span class="block underline body-r font-semibold mt-4 xLargeMax:hidden">
+                                                                                    {{ 'sections.header.shop_series' | t: letter: series.letter  }}
+                                                                                </span>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <span class="flex justify-center items-center w-[2.125rem] h-[2.125rem] [&_svg]:w-3 text-text2 bg-uiBlack xLarge:hidden">
+                                                                            {%  render 'icon-arrow-right' %}
+                                                                        </span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        {%  endif %}
+                                                    {%- endfor -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {%  endif %}
+                                  
+                                    {%- unless block.settings.mega_menu_promo_image == blank -%}
+                                        <div class="xLargeMax:mt-10 xLarge:col-span-3">
+                                            <div class="aspect-[3/2]">
+                                                {%- unless block.settings.mega_menu_promo_image_link == blank -%}
+                                                    <a href="{{ block.settings.mega_menu_promo_image_link }}">
+                                                {%- endunless -%}
+                                                        <img
+                                                            class="w-full h-full object-cover"
+                                                            srcset="{{ block.settings.mega_menu_promo_image.src | image_url: width: 415 }} 415w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 830 }} 830w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 703 }} 703w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 1406 }} 1406w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 959 }} 959w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 1918 }} 1918w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 1215 }} 1215w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 2430 }} 2430w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 310 }} 310w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 620 }} 620w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 418 }} 418w,
+                                                                    {{ block.settings.mega_menu_promo_image.src | image_url: width: 836 }} 836w"
+                                                            sizes="(max-width: 479px) 415px,
+                                                                (max-width: 767px) 703px,
+                                                                (max-width: 1023px) 959px,
+                                                                (max-width: 1279px) 1215px,
+                                                                (max-width: 1439px) 310px,
+                                                                418px"
+                                                            src="{{ block.settings.mega_menu_promo_image.src | image_url: width: 418 }} 418w"
+                                                            width="311"
+                                                            height="207"
+                                                            alt="{{ block.settings.mega_menu_promo_image.alt }}"
+                                                            loading="lazy"
+                                                        >
+                                                {%- unless block.settings.mega_menu_promo_image_link == blank -%}
+                                                    </a>
+                                                {%- endunless -%}
+                                            </div>
+                                        </div>
+                                    {%- endunless -%}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+        {%- if section.settings.menu != blank -%}
+            {%- for link in section.settings.menu.links -%}
+                <li class="xLargeMax:px-8">
+                    {%- if link.links != blank -%}
+                        <div class="xLarge:relative">
+                            <button data-menu-sub-item data-header-toggle-menu data-header-top-level="true" type="button" class="flex items-center justify-between w-full body-m font-semibold cursor-pointer xLargeMax:justify-between xLargeMax:py-[1.2rem] xLargeMax:border-b xLargeMax:border-uiMidGrey xLargeMax:w-full xLarge:link-highlight {% if link.child_active %} xLargeMax:decoration-2 xLarge:before:opacity-1{% else %} xLarge:before:opacity-0{% endif %} xLarge:hover:text-primary">
+                                <span class="pointer-events-none xLarge:mr-2{%- if link.child_active %} xLarge:decoration-2{% endif %}">
+                                    {{ link.title | escape }}
+                                </span>
+                                <span class="pointer-events-none relative right-[0.5625rem] xLarge:hidden js-accordion-menu" aria-hidden>
+                                    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black"></span>
+                                    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black rotate-90 transition duration-300"></span>
+                                </span>
+                                <span class="pointer-events-none transition-transform xLargeMax:hidden" data-desktop-menu-caret>
+                                    {% render 'icon-caret' %}
+                                </span>
+                            </button>
+                            <div data-sub-menu data-header-sub-menu class="xLargeMax:w-full xLargeMax:top-0 xLargeMax:left-0 xLargeMax:bottom-0 xLargeMax:z-1 xLargeMax:transform xLargeMax:max-h-0 xLargeMax:overflow-hidden xLargeMax:bg-uiLightGrey xLargeMax:-mx-8 xLargeMax:px-8 xLargeMax:box-content xLargeMax:transition xLargeMax:duration-300 xLarge:absolute xLarge:w-80 xLarge:min-w-full xLarge:border xLarge:bg-background1 xLarge:opacity-0 xLarge:invisible xLarge:h-0" tabindex="-1">
+                                <div class="xLargeMax:h-full xLargeMax:overflow-hidden xLargeMax:overflow-y-auto">
+                                    <ul tabindex="-1">
+                                        {%- for childlink in link.links -%}
+                                            <li>
+                                                {%- if childlink.links == blank -%}
+                                                    <a href="{{ childlink.url }}" class="flex w-full py-[1.2rem] body-m font-semibold xLargeMax:justify-between xLargeMax:items-center xLargeMax:border-b xLargeMax:border-uiMidGrey xLarge:py-5 xLarge:px-8 xLarge:box-border xLarge:hover:text-primary{% if childlink.current %} xLarge:underline{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                                        {{ childlink.title | escape }}
+                                                    </a>
+                                                {%- else -%}
+                                                    <div>
+                                                        <button data-menu-sub-item data-header-toggle-menu class="w-full flex items-center justify-between py-[1.625rem] body-l cursor-pointer box-border xLargeMax:border-b xLargeMax:border-uiMidGrey xLarge:py-5 xLargeMax:px-8 xLarge:hover:text-primary" type="button">
+                                                            <span class="pointer-events-none">
+                                                                {{ childlink.title | escape }}
+                                                            </span>
+                                                            <span class="-rotate-90 pointer-events-none xLarge:hidden js-accordion-menu" aria-hidden>
+                                                                <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black"></span>
+                                                                <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1.125rem] h-px bg-black rotate-90 transition duration-300"></span>
+                                                            </span>
+                                                            <span class="pointer-events-none transition-transform xLargeMax:hidden" data-desktop-menu-caret>
+                                                                {% render 'icon-caret' %}
+                                                            </span>
+                                                        </button>
+                                                        <div data-sub-menu data-header-sub-menu class="xLargeMax:top-0 xLargeMax:left-0 xLargeMax:z-1 xLargeMax:w-full xLargeMax:box-border xLargeMax:transform xLargeMax:-translate-x-full xLargeMax:overflow-y-auto xLargeMax:transition-transform xLargeMax:duration-300 xLarge:opacity-0 xLarge:invisible xLarge:h-0">
+                                                            <button data-close-sub-menu class="flex items-center gap-2 body-s mt-24 px-8 xLarge:hidden" aria-expanded="false">
+                                                                <span class="text-text1">
+                                                                    {% render 'icon-back-arrow' %}
+                                                                </span>
+                                                                {{ 'sections.header.menu_back' | t }}
+                                                            </button>
+                                                            <ul class="xLargeMax:pt-[0.875rem] xLargeMax:px-8 xLarge:bg-background2" tabindex="-1">
+                                                                {%- for grandchildlink in childlink.links -%}
+                                                                    <li>
+                                                                        <a href="{{ grandchildlink.url }}" class="flex py-[1.625rem] box-border xLargeMax:justify-between xLargeMax:items-center xLargeMax:border-b xLargeMax:border-uiMidGrey xLargeMax:w-full xLarge:py-5 xLarge:px-8 xLarge:pl-14 xLarge:hover:text-primary{% if grandchildlink.current %} xLarge:underline{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
+                                                                            {{ grandchildlink.title | escape }}
+                                                                        </a>
+                                                                    </li>
+                                                                {%- endfor -%}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                {%- endif -%}
+                                            </li>
+                                        {%- endfor -%}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {%- else -%}
+                        <a href="{{ link.url }}" class="body-m font-semibold xLargeMax:flex xLargeMax:justify-between xLargeMax:items-center xLargeMax:py-[1.2rem] xLargeMax:border-b xLargeMax:border-uiMidGrey{% if link.current %} xLargeMax:decoration-2 xLarge:before:opacity-1{% else %} xLarge:before:opacity-0{% endif %} xLarge:hover:text-primary xLarge:link-highlight"{% if link.current %} aria-current="page"{% endif %}>
+                            <span>
+                                {{ link.title | escape }}
+                            </span>
+                        </a>
+                    {%- endif -%}
+                </li>
+            {%- endfor -%}
+        {%- endif -%}
+    </ul>
+</nav>

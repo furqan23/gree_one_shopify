@@ -1,0 +1,323 @@
+{% assign count = product.metafields.custom.product_ingredient.value.count %}
+
+<div class="bg-{{ section.settings.background_color }} {% unless section.settings.background_color == 'transparent' %}mt-12 py-12 large:mt-20 large:py-20{% else %}mt-12 large:mt-20{% endunless %}{% if count > 1 %} overflow-hidden js-pdp-ingredients-carousel-context{% endif %}">
+    <div class="container">
+        {%- if section.settings.title != blank or section.settings.text != blank -%}
+            <div class="wrap">
+                <div class="large:grid large:grid-cols-12 large:gap-x-5">
+                    <div class="large:col-span-10 large:col-start-2">
+                        {%- if section.settings.title != blank -%}
+                            <h2 class="heading-r{% if section.settings.text != blank %} mb-3{% endif %} text-{{ section.settings.text_color }} text-center">
+                                {{- section.settings.title -}}
+                            </h2>
+                        {%- endif -%}
+                        {%- if section.settings.text != blank -%}
+                            <div class="wysiwyg body-l mx-auto max-w-[47.5rem] text-{{ section.settings.text_color }} text-center">
+                                {{- section.settings.text -}}
+                            </div>
+                        {%- endif -%}
+                    </div>
+                </div>
+            </div>
+        {%- endif -%}
+
+        {%- if product.metafields.custom.product_ingredient -%}
+            <div class="wrap mt-8">
+                {%- if count > 1 -%}
+                <div class="swiper [&.swiper]:overflow-visible js-pdp-ingredients-carousel">
+                {%- endif -%}
+                    <ul class="{% if count > 1 %}swiper-wrapper{% endif %}">
+                        {%- for item in product.metafields.custom.product_ingredient.value -%}
+                            {%- if item.title != blank -%}
+                                <li class="largeMax:max-w-[13.125rem]{% if count > 1 %} swiper-slide [&.swiper-slide]:h-auto{% else %} mx-auto{% endif %}">
+                                    {%- if item.text != blank -%}
+                                    <modal-opener data-modal="#ProductIngredients-{{ forloop.index0 }}">
+                                        <button class="flex flex-col justify-end items-center w-full h-full group" type="button" aria-label="{{ 'products.product.ingredients.read_more' | t }}: {{ item.title }}">
+                                    {%- endif -%}
+                                            {%- if item.image != blank -%}
+                                                <div class="max-w-[13.125rem] mx-auto mb-2">
+                                                    <img
+                                                        class="w-full aspect-square object-cover"
+                                                        srcset="{{ item.image | image_url: width: 210 }} 1x,
+                                                                {{ item.image | image_url: width: 420 }} 2x"
+                                                        src="{{ item.image | image_url: width: 210 }}"
+                                                        width="210"
+                                                        height="210"
+                                                        alt=""
+                                                        loading="lazy"
+                                                    >
+                                                </div>
+                                            {%- endif -%}
+                                            <div class="w-full text-center">
+                                                <h3 class="body-m font-bold text-{{ section.settings.text_color }}{% if item.text != blank%} underline group-hover:underline-offset-2 group-focus:underline-offset-2{% endif %}">
+                                                    {{- item.title -}}
+                                                </h3>
+                                            </div>
+                                    {%- if item.text != blank -%}
+                                        </button>
+                                    </modal-opener>
+                                    {%- endif -%}
+                                </li>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </ul>
+                {%- if count > 1 -%}
+                </div>
+                {%- endif -%}
+                {%- for item in product.metafields.custom.product_ingredient.value -%}
+                    {%- if item.title != blank and item.text != blank -%}
+                        <modal-dialog id="ProductIngredients-{{ forloop.index0 }}" class="fixed z-1 top-0 -left-full w-full h-full opacity-0 invisible open:z-[101] open:left-0 open:opacity-100 open:visible">
+                            <div class="modal-overlay js-modal-overlay"></div>
+                            <div
+                                class="
+                                    absolute bottom-0 right-0 w-full h-auto pb-14 box-border bg-uiWhite overflow-auto translate-y-full transition-transform duration-300
+                                    mediumMax:max-h-[calc(100%_-_1.25rem)] mediumMax:rounded-t-[2rem]
+                                    [.is-active_&]:mediumMax:translate-y-0
+                                    medium:flex medium:flex-col medium:translate-y-0 medium:translate-x-full medium:max-w-[27rem] medium:h-full medium:rounded-l-[2rem]
+                                    [.is-active_&]:medium:translate-x-0"
+                                role="dialog"
+                                aria-labelledby="ProductIngredients-{{ forloop.index0 }}-Title"
+                                aria-modal="true"
+                                tabindex="-1"
+                            >
+                                <div class="sticky top-0 left-0 p-8 flex items-center justify-between gap-5 bg-uiWhite">
+                                    <h2
+                                        id="ProductIngredients-{{ forloop.index0 }}-Title"
+                                        class="heading-s"
+                                    >
+                                        {{- item.title -}}
+                                    </h2>
+                                    <button id="ModalClose-ProductIngredients-{{ forloop.index0 }}" class="text-primary border border-primary rounded-full p-[1.125rem] transition-colors duration-300 hover:text-uiWhite hover:bg-primary" type="button" aria-label="{{ 'accessibility.close' | t }}">
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <line stroke="currentColor" x1="10.9629" y1="1.1973" x2="0.356327" y2="11.8039" />
+                                            <line stroke="currentColor" x1="10.9589" y1="11.8047" x2="0.352346" y2="1.19812" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="px-8 medium:flex medium:flex-col medium:h-full">
+                                    {%- if item.image != blank -%}
+                                        <div class="mb-5 max-w-[13.125rem]">
+                                            <img
+                                                class="w-full aspect-square object-cover"
+                                                srcset="{{ item.image | image_url: width: 210 }} 1x,
+                                                        {{ item.image | image_url: width: 420 }} 2x"
+                                                src="{{ item.image | image_url: width: 210 }}"
+                                                width="210"
+                                                height="210"
+                                                alt="{{ item.image.alt }}"
+                                                loading="lazy"
+                                            >
+                                        </div>
+                                    {%- endif -%}
+                                    {% if item.text != blank %}
+                                        <div class="wysiwyg">
+                                            {{- item.text | metafield_tag -}}
+                                        </div>
+                                    {%- endif -%}
+                                    {%- if section.settings.page_link != empty and section.settings.page_link != empty -%}
+                                        <div class="mt-5 medium:mt-auto medium:pt-5">
+                                            <a class="link font-bold text-primary" href="{{ section.settings.page_link }}">
+                                                {{- section.settings.page_link_text -}}
+                                            </a>
+                                        </div>
+                                    {%- endif -%}
+                                </div>
+                            </div>
+                        </modal-dialog>
+                    {%- endif -%}
+                {%- endfor -%}
+            </div>
+
+            {%- if count > 1 -%}
+                <div class="wrap mt-8">
+                    <div class="swiper-scrollbar relative z-0 w-full rounded-[2rem] medium:mr-6 js-pdp-ingredients-carousel-scrollbar">
+                        <div class="swiper-scrollbar-drag relative z-20 bg-{{ section.settings.controls_color }} h-2 rounded-[2rem] cursor-pointer"></div>
+                        <div class="absolute top-1/2 z-10 w-full h-px bg-[#C4C4C4]"></div>
+                    </div>
+                </div>
+            {%- endif -%}
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.product-ingredients.name",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+        "templates": [
+            "product"
+        ]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.product-ingredients.settings.title.label",
+            "default": "The Ingredients"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "t:sections.product-ingredients.settings.text.label",
+            "default": "<p>The key ingredients and their benefits for this product</p>"
+        },
+        {
+            "type": "page",
+            "id": "page_link",
+            "label": "t:sections.product-ingredients.settings.page_link.label"
+        },
+        {
+            "type": "text",
+            "id": "page_link_text",
+            "label": "t:sections.product-ingredients.settings.page_link_text.label"
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.colors.transparent.label"
+                }
+            ],
+            "default": "primary",
+            "label": "t:sections.featured-icons.settings.background_color.label"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "text1",
+                    "label": "t:sections.all.colors.text_1.label"
+                },
+                {
+                    "value": "text2",
+                    "label": "t:sections.all.colors.text_2.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "text1",
+            "label": "t:sections.featured-icons.settings.text_color.label"
+        },
+        {
+            "type": "select",
+            "id": "controls_color",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "t:sections.all.colors.primary.label"
+                },
+                {
+                    "value": "secondary",
+                    "label": "t:sections.all.colors.secondary.label"
+                },
+                {
+                    "value": "accentA",
+                    "label": "t:sections.all.colors.accent_a.label"
+                },
+                {
+                    "value": "accentP",
+                    "label": "t:sections.all.colors.accent_p.label"
+                },
+                {
+                    "value": "accentR",
+                    "label": "t:sections.all.colors.accent_r.label"
+                },
+		        {
+                    "value": "accentY",
+                    "label": "t:sections.all.colors.accent_y.label"
+                },
+                {
+                    "value": "background1",
+                    "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                    "value": "background2",
+                    "label": "t:sections.all.colors.background_2.label"
+                }
+            ],
+            "default": "accentA",
+            "label": "t:sections.featured-icons.settings.controls_colour.label"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.product-ingredients.presets.name"
+        }
+    ]
+}
+{% endschema %}

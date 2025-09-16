@@ -1,0 +1,148 @@
+{% comment %}
+    Mobile media config
+{% endcomment %}
+{% assign mediaWidthMobile = 470 %}
+{% assign mediaHeightMobile = 470 %}
+{% assign mediaWidthMobile2x = mediaWidthMobile | times: 2 %}
+{% assign mediaHeightMobile2x = mediaWidthMobile | times: 2 %}
+
+{% assign mediaSrcMobile = mobile_image | image_url: mediaWidthMobile, height: mediaHeightMobile %}
+{% assign mediaSrcMobileRetina = mobile_image | image_url: mediaWidthMobile2x, height: mediaHeightMobile2x %}
+
+{% capture mediaSourcesMobile %}
+    {{ mobile_image | image_url: width: mediaWidthMobile, height: mediaHeight }}~{{ mobile_image | image_url: width: mediaWidthMobile2x, height: mediaHeight2x }}~(max-width: 1023px)
+{% endcapture %}
+
+{% comment %}
+    Desktop media config
+{% endcomment %}
+{% assign mediaWidth = 420 | times: col_span %}
+{% assign mediaHeight = 420 %}
+{% assign mediaWidth2x = mediaWidth | times: 2 %}
+{% assign mediaHeight2x = mediaHeight | times: 2 %}
+
+{% assign mediaSrc = image | image_url: width: mediaWidth, height: mediaHeight %}
+{% assign mediaSrcRetina = image | image_url: width: mediaWidth2x, height: mediaHeight2x %}
+
+{% capture mediaSources %}
+    {{ image | image_url: width: mediaWidth, height: mediaHeight }}~{{ image | image_url: width: mediaWidth2x, height: mediaHeight2x }}~(min-width: 1024px)
+{% endcapture %}
+
+{% comment %}
+    Fallback to desktop image if mobile image doesn't exist
+{% endcomment %}
+{% liquid
+    if mediaSrcMobile == blank
+        assign mediaSrcMobile = mediaSrc
+        assign mediaSrcMobileRetina = mediaSrcRetina
+        assign mediaSourcesMobile = null
+    endif
+%}
+
+{%  assign noMedia = false %}
+{% if video_url == blank and mobile_video_url == blank and mobile_image == blank and image == blank  %}
+    {% assign noMedia = true %}
+{% endif %}
+
+{% comment %}
+    Media classes based on selected column span
+{% endcomment %}
+{% liquid
+    if col_span == 2
+        assign aspectRatioClass = 'aspect-square medium:aspect-[3/2]'
+        assign sizingClass = 'w-full h-full large:h-[calc(100%_-_0.625rem)] xxLargePlus:h-[calc(100%_-_2.625rem)]'
+    elsif col_span == 3
+        assign aspectRatioClass = 'aspect-square medium:aspect-[3/1]'
+        assign sizingClass = 'w-full h-full large:h-[calc(100%_-_0.8125rem)] xxLargePlus:h-[calc(100%_-_2.8125rem)]'
+    elsif col_span == 4
+        assign aspectRatioClass = 'aspect-square medium:aspect-[4/1]'
+        assign sizingClass = 'w-full h-full large:h-[calc(100%_-_0.9375rem)] xxLargePlus:h-[calc(100%_-_2.9375rem)]'
+    else
+        assign aspectRatioClass = 'large:aspect-square'
+        assign sizingClass = 'w-full h-full'
+    endif
+%}
+
+{% if link != blank %}
+    <a href="{{ link }}" class="group block">
+{% endif %}
+    <div class="relative z-0 {{ aspectRatioClass }}{% if full_height %} medium:h-full medium:!aspect-auto{% endif %}">
+        {% if title != blank or link_text != blank %}
+            <div class="relative z-0 flex flex-col items-start{% unless noMedia %} justify-between{% endunless %} p-4 box-border {% if noMedia %}large:p-5{% else %}large:p-8{% endif %} large:pb-[1.875rem] {{ sizingClass }}">
+                {% if title != blank or content != blank %}
+                    <div class="max-w-[17rem]">
+                        {% if title != blank %}
+                            <p class="heading-r text-uiBlack">
+                                {{ title }}
+                            </p>
+                        {% endif %}
+                        {% if content != blank %}
+                            <div class="wysiwyg py-4 body-m">
+                                {{ content }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if link_text != blank %}
+                    <a href="{{ link }}" class="button{% unless noMedia %} self-end{% endunless %}">
+                        <div class="button__label">
+                            <span>
+                                {{ link_text }}
+                            </span>
+                            <span class="absolute top-10 left-0">
+                                {{ link_text }}
+                            </span>
+                        </div>
+                    </a>
+                {% endif %}
+                {% if noMedia  %}
+                    <div class="large:hidden absolute -z-1 top-0 right-0 left-0 bottom-0 w-full h-full border-t border-b border-uiBlack"></div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if video_url != blank and mobile_video_url != blank %}
+            <div class="absolute -z-1 top-0 right-0 left-0 bottom-0">
+                <video class="object-cover large:hidden {{ sizingClass }}" muted playsinline title="{{ media_accessibility_text }}" loop="true" autoplay="true" poster="{{ mediaSrcMobile }}">
+                    <source src="{{ mobile_video_url }}" type="video/mp4">
+                </video>
+                <video class="object-cover largeMax:hidden {{ sizingClass }}" muted playsinline title="{{ media_accessibility_text }}" loop="true" autoplay="true" poster="{{ mediaSrc }}">
+                    <source src="{{ video_url }}" type="video/mp4">
+                </video>
+            </div>
+        {% elsif mobile_image != blank or image != blank %}
+            <div class="absolute -z-1 top-0 right-0 left-0 bottom-0">
+                <picture>
+                    {% assign mediaSourcesMobile = mediaSourcesMobile | split: ',' %}
+                    {% for mobileSource in mediaSourcesMobile %}
+                        {% assign mobileSourceData = mobileSource | split: '~' %}
+                        <source
+                            {% if mobileSourceData[2] %}
+                                media="{{- mobileSourceData[2] -}}"
+                            {% endif %}
+                            srcset="{{mobileSourceData[0] }} 1x, {{ mobileSourceData[1] }} 2x">
+                    {% endfor %}
+                    {% assign mediaSources = mediaSources | split: ',' %}
+                    {% for source in mediaSources %}
+                        {% assign sourceData = source | split: '~' %}
+                        <source
+                            {% if sourceData[2] %}
+                                media="{{- sourceData[2] -}}"
+                            {% endif %}
+                            srcset="{{ sourceData[0] }} 1x, {{ sourceData[1] }} 2x">
+                    {% endfor %}
+                    <img
+                        src="{{ mediaSrcMobile | asset_url }}"
+                        srcset="{{ mediaSrcMobileRetina }} 2x"
+                        class="object-cover {{ sizingClass }}"
+                        width="{{ mediaWidthMobile }}"
+                        height="{{ mediaHeightMobile }}"
+                        alt="{{ media_accessibility_text }}"
+                        loading="lazy"
+                    >
+                </picture>
+            </div>
+        {% endif %}
+    </div>
+{% if link != blank %}
+    </a>
+{% endif %}

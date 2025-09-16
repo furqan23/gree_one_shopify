@@ -1,0 +1,111 @@
+{% style %}
+.shop-banner .banner-section-item-shop {
+   
+    background: #F5F5F5 url('{{ collection.image | image_url: width: 2000 }}') no-repeat right;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+  margin-top: -120px;
+  margin-bottom:80px;
+
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content {
+    padding: 40px 60px;
+    max-width: 500px;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content h5 {
+    font-family: var(--skeena);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content h1 {
+    font-family: var(--skeena);
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: var(--skeena);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+
+.btn-outline-light {
+    padding: 10px;
+    border-radius: 0;
+    border: 1px solid #000;
+    background-color: transparent;
+    font-family: var(--gotham);
+    font-weight: 500;
+    font-size: 0.9rem;
+    min-width: 140px;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+}
+
+.btn-outline-light:before {
+    backface-visibility: hidden;
+    background-color: #000;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 100%;
+    z-index: -1;
+}
+
+.btn-outline-light:hover:before {
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.btn-outline-light:hover {
+    color: #fff !important;
+}
+
+
+
+{% endstyle %}
+
+<section>
+<div class="shop-banner">
+                <div class="banner-section-item-shop">
+                    <div class="banner-section-item-content">
+                        <h1>
+  {% if collection.handle == 'all' %}
+    Shop All
+  {% else %}
+    {{ collection.title }}
+  {% endif %}
+</h1>
+                        <p class="mb-0">Hydrate. Repair. Regenerate.</p>
+                        <p>
+                            Recommended for Dryness, dehydration, compromised
+                            skin barrier, dullness, photoaging, uneven texture,
+                            redness and lack of radiance.
+                        </p>
+
+                        {% comment %} <button class="btn-outline-light">Shop Now</button> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+
+</section>
+<h1 style="padding-bottom:20px; font-size:22px; padding-left:20px;">Browse our product offering</h1>

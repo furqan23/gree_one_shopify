@@ -1,0 +1,220 @@
+{% schema %}
+{
+  "name": "series_explorer_indi",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+      {
+      "type": "text",
+      "id": "discription",
+      "label": "Discription"
+    },
+    {
+      "type": "color",
+      "id": "colorr",
+      "label": "Title Color"
+    },
+     {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+     
+     },
+    {
+      "type": "text",
+      "id": "title_sub",
+      "label": "Title Sub"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "benefit_text",
+          "label": "Benefit Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "series_explorer_indi",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Effectively targets uneven pigmentation and sunspots for a brighter, more radiant complexion."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Enhances luminosity, giving it a healthy and radiant glow."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Improves skin texture, leading to a youthful and glowing appearance."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Quickly reduces under-eye puffiness and eliminates dark circles."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="r-series-section" style="background-image: url('{{ section.settings.background_image | image_url }}');">
+  <div class="r-series-container">
+    <div class="r-series-content">
+      <h2 class="r-series-title" style="color: {{ section.settings.colorr }}">{{ section.settings.title }}</h2>
+      <h1 class="r-series-heading"  style="color: {{ section.settings.colorr }}">{{ section.settings.title_sub }}</h1>
+      <p class="r-series-description">
+        {{ section.settings.discription }}
+      </p>
+      <ul class="r-series-benefits">
+        {% for block in section.blocks %}
+          <li>{{ block.settings.benefit_text }}</li>
+        {% endfor %}
+      </ul>
+      <!-- <a href="/collections/r-series" class="shop-now-btn">SHOP NOW</a> -->
+      <div class="mt-[1.125rem] large:mt-6">
+          <a class="button button--primary button--icon min-w-[8.875rem] justify-center" role="link" aria-disabled="true" href="{{ section.settings.button_link }}">
+              <div class="button__label">
+                  <span>DISCOVER MORE</span>
+                  <span class="absolute top-10 left-0">
+                      
+DISCOVER MORE
+                  </span>
+              </div>
+          </a>
+      </div>
+      <!-- <a href="{{ section.settings.button_link }}" class="shop-now-btn">SHOP NOW</a> -->
+    </div>
+  </div>
+</section>
+
+<style>
+.r-series-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 80px 0;
+  color: #000000;
+}
+
+.r-series-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.r-series-content {
+  max-width: 50%;
+}
+
+.r-series-title {
+  font-size: 18px;
+  font-family : Sequel Sans medium Body,  sans-serif;
+  /* font-weight: bold; */
+}
+
+.r-series-heading {
+  font-size: 40px;
+  /* font-weight: bold; */
+  font-family : Sequel Sans medium Body,  sans-serif;
+  margin-bottom: 20px;
+}
+
+.r-series-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.r-series-benefits {
+  list-style: none;
+  padding: 0;
+}
+
+.r-series-benefits li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.r-series-benefits li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #000000;
+  font-size: 20px;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 0px;
+}
+
+.shop-now-btn:hover {
+  background-color: #333;
+}
+
+.r-series-image {
+  max-width: 50%;
+}
+
+.r-series-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .r-series-container {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .r-series-content {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .r-series-section {
+    background-position: right center;
+  }
+
+  .r-series-image {
+    display: none;
+  }
+}
+</style>

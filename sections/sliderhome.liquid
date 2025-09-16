@@ -1,0 +1,380 @@
+{% style %}
+            .slider-container { position: relative; width: 100%; height:100vh;  overflow: hidden; background-color: #FAFAFA;}
+
+            .slider {
+              /* position: relative; width: 100%; height: 100%;  */
+                    display: flex; /* Arrange slides horizontally */
+                    flex-direction: column; /* Adjust height to content dynamically */
+                    align-items: center;
+                    }
+
+            .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; }
+
+      /* .slide {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    } */
+
+    .video-playerr-desktop{
+      display: block;
+       width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: relative;
+      background: no-repeat;
+      background-size: cover;
+    }
+
+
+  .p_here{
+      font-size:25px;
+      font-weight: bold;
+    }
+
+    .video-playerr-mobile{
+      display:none;
+    }
+
+    .slide img {
+      max-width: 100%;
+       height: auto; /* Maintain aspect ratio */ */
+      display: block;
+       object-fit: cover;
+    }
+
+            .active { display: block; }
+            /* .slider-nav {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            /* transform: translate(-50%, 50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+          } */
+
+            .prev, .next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 550px;
+        /* border: 2px solid #000; /* Border style */
+        /* border-radius: 50%;    /* Circle shape  */
+        background-color: transparent; /* Transparent background */
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+       .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.1); /* Slight background on hover */
+      }
+
+      /* Arrow Icon */
+      .prev::after,.prev::after {
+       /* content: '>';  Right arrow symbol */
+        font-size: 1.5rem;
+        color: #cccccc;  /* Arrow color */
+      }
+
+
+
+            /* .slider-nav { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: space-between; } */
+    .slider-nav {
+          position: absolute;
+          bottom: 50%;
+          right: 5vw;
+          transform: translate(120%, 50%);
+          display: flex;
+          justify-content: space-between;
+          width: 100px;
+        }
+
+            /* .prev, .next { background-color: #fff; border: none; padding: 10px; cursor: pointer; } */
+       .slider-container .slide img.desktop {
+        display: block;
+      }
+
+      .slider-container .slide img.mobile {
+        display: none;
+      }
+
+  .static-content {
+    position: absolute;
+    top: 80%;
+    width:70vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+     display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
+
+
+    /* .video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+             } */
+          {% comment %}
+            the following is for mobile view
+          {% endcomment %}
+          /* Mobile view styles */
+     /*   ************************** mobile view  *****************************  */
+        @media only screen and (max-width: 768px) {                    /*mobile view  */
+          .slider-container {
+            height: 400px; /* Adjust height for mobile */
+          }
+          .slide img {
+            object-fit: cover; /* Resize image */
+            width: 100%;
+            height: 100%;
+          }
+
+
+        .slider {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .slider-container .slide img.desktop {
+          display: none;
+        }
+        .slider-container .slide img.mobile {
+          display: block;
+        }
+
+            h1{
+      font-size:13px;
+
+    }
+
+        /* .slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: none;
+        } */
+
+          .video-playerr-mobile{
+      display: block;
+       width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: relative;
+      background: no-repeat;
+      background-size: cover;
+    }
+
+    .video-playerr-desktop{
+      display:none;
+    }
+
+        .active {
+          display: block;
+        }
+
+        .slider-nav {
+          position: absolute;
+          bottom: 50%;
+          /* left: 50%; */
+           right: 20vw;
+          transform: translate(120%, 50%);
+          display: flex;
+          justify-content: space-between;
+          width: 100px;
+        }
+
+        /* .prev, .next {
+          background-color: #fff;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          font-size: 20px;
+        } */
+
+        /* .prev:hover, .next:hover {
+          background-color: #33ffdd;
+        } */
+
+          .prev, .next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 250px;
+        /* border: 2px solid #000;  Border style  */
+        /* border-radius: 50%;     Circle shape  */
+        background-color: transparent; /* Transparent background */
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+       .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.1); /* Slight background on hover */
+      }
+
+      /* Arrow Icon */
+      .prev::after,.next::after {
+        /* content: '>'; Right arrow symbol */
+        font-size: 1.5rem;
+        color: #cccccc;  /* Arrow color */
+      }
+        }
+{% endstyle %}
+
+<section class="slider-section">
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide active">
+        {% comment %}
+          {% if first_slide %}
+            <video autoplay loop muted>
+              <source src="{{  section.settings.first_slide_video | file_url }}" type="video/mp4">
+            </video>
+          {% endif %}
+        {% endcomment %}
+
+        <video autoplay loop muted preload="metadata" class="video-playerr-mobile">
+          <source src="https://cdn.shopify.com/videos/c/o/v/dbca832e432143d693b8743b5a047d28.mp4" type="video/mp4">
+          Your browser doesn't support the video tag.
+        </video>
+        <!-- add video and also poster image if there is no video so by dyfault we have and image -->
+        <video
+          autoplay
+          loop
+          muted
+          preload="metadata"
+          poster="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/product_demo_img.jpg?v=1737546169"
+          class="video-playerr-desktop"
+        >
+          <source src="https://cdn.shopify.com/videos/c/o/v/8305705261e540b9b8af11db0175505c.mp4" type="video/mp4">
+          Your browser doesn't support the video tag.
+        </video>
+        <div class="static-content">
+          <!--
+            <h1>
+              ADVANCED FORMULA &nbsp; HIGH-PERFORMANCE <br>
+              VISIBLE RESULTS
+            </h1>
+          -->
+          <p class="p_here">
+            ADVANCED FORMULA &nbsp; HIGH-PERFORMANCE <br>
+            VISIBLE RESULTS
+          </p>
+          <div class="mt-[1.125rem] large:mt-6">
+            <a
+              class="button button--primary button--icon min-w-[8.875rem] justify-center"
+              role="link"
+              aria-disabled="true"
+              href="https://tursian.com/collections/all"
+            >
+              <div class="button__label">
+                <span>DISCOVER MORE</span>
+                <span class="absolute top-10 left-0"> DISCOVER MORE </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img
+          class="mobile"
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/Y-4_4.jpg?v=1736760215"
+          alt="Slide 2"
+        >
+
+        <img
+          class="desktop"
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/product_demo_img.jpg?v=1737546169"
+          alt="Slide 2"
+        >
+      </div>
+
+      <div class="slide">
+        <img
+          class="mobile"
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/Y3psd.jpg?v=1736759794"
+          alt="Slide 3"
+        >
+
+        <img
+          class="desktop"
+          src="https://cdn.shopify.com/s/files/1/0844/4670/7990/files/topbackground_1e6b0e8e-726b-4c89-8a60-30fee1d18e48.jpg?v=1737546169"
+          alt="Slide 3"
+        >
+      </div>
+    </div>
+
+    <div class="slider-nav">
+      <!-- <button class="prev"><i class="fas fa-chevron-left"></i></button> -->
+      <button class="prev" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path fill="#FFFFFF" d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"  />
+        </svg>
+      </button>
+      <!-- <button class="next" aria-label="Next"></button> -->
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevButton = document.querySelector('.prev');
+  // const nextButton = document.querySelector('.next');
+  let currentSlide = 0;
+
+  // nextButton.addEventListener('click', () => {
+  //   slides[currentSlide].classList.remove('active');
+  //   currentSlide = (currentSlide + 1) % slides.length;
+  //   slides[currentSlide].classList.add('active');
+  // });
+
+  prevButton.addEventListener('click', () => {
+    // slides[currentSlide].classList.remove('active'); this code is for previous . the running code is for next
+    // currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    // slides[currentSlide].classList.add('active');
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "slider-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "first_slide_video",
+      "label": "First Slide Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_slide_image",
+      "label": "Second Slide Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "third_slide_image",
+      "label": "Third Slide Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider-section"
+    }
+  ]
+}
+{% endschema %}

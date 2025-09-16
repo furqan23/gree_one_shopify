@@ -1,0 +1,131 @@
+{%- for block in section.blocks -%}
+    {%- case block.type -%}
+        {%- when 'announcement' -%}
+        {%- if block.settings.richtext != blank -%}
+            <div class="relative z-30 body-s font-bold uppercase tracking-[0.045rem] text-center py-2.5 px-[4.6875rem] large:py-3 text-{{ block.settings.text_color }} bg-{{ block.settings.background_color }}"
+                aria-label="{{ 'sections.header.announcement' | t }}" {{ block.shopify_attributes }}
+                role="region"
+            >
+                <div class="wysiwyg">
+                    {{- block.settings.richtext -}}
+                </div>
+            </div>
+        {%- endif -%}
+    {%- endcase -%}
+{%- endfor -%}
+
+{% schema %}
+{
+    "name": "t:sections.announcement-bar.name",
+    "max_blocks": 1,
+    "blocks": [
+        {
+            "type": "announcement",
+            "name": "t:sections.announcement-bar.blocks.announcement.name",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "richtext",
+                    "default": "<p>This is an urgent message bar. <a href='#'>With a link</a></p>",
+                    "label": "t:sections.announcement-bar.blocks.announcement.settings.richtext.label"
+                },
+                {
+                    "type": "select",
+                    "id": "background_color",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "t:sections.all.colors.primary.label"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "t:sections.all.colors.secondary.label"
+                        },
+                        {
+                            "value": "accentA",
+                            "label": "t:sections.all.colors.accent_a.label"
+                        },
+                        {
+                            "value": "accentP",
+                            "label": "t:sections.all.colors.accent_p.label"
+                        },
+                        {
+                            "value": "accentR",
+                            "label": "t:sections.all.colors.accent_r.label"
+                        },
+                        {
+                            "value": "accentY",
+                            "label": "t:sections.all.colors.accent_y.label"
+                        },
+                        {
+                            "value": "background1",
+                            "label": "t:sections.all.colors.background_1.label"
+                        },
+                        {
+                            "value": "background2",
+                            "label": "t:sections.all.colors.background_2.label"
+                        }
+                    ],
+                    "default": "accentA",
+                    "label": "t:sections.announcement-bar.blocks.announcement.settings.background_colour.label"
+                },
+                {
+                    "type": "select",
+                    "id": "text_color",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "t:sections.all.colors.primary.label"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "t:sections.all.colors.secondary.label"
+                        },
+                        {
+                            "value": "accentA",
+                            "label": "t:sections.all.colors.accent_a.label"
+                        },
+                        {
+                            "value": "accentP",
+                            "label": "t:sections.all.colors.accent_p.label"
+                        },
+                        {
+                            "value": "accentR",
+                            "label": "t:sections.all.colors.accent_r.label"
+                        },
+                        {
+                            "value": "accentY",
+                            "label": "t:sections.all.colors.accent_y.label"
+                        },
+                        {
+                            "value": "text1",
+                            "label": "t:sections.all.colors.text_1.label"
+                        },
+                        {
+                            "value": "text2",
+                            "label": "t:sections.all.colors.text_2.label"
+                        },
+                        {
+                            "value": "background1",
+                            "label": "t:sections.all.colors.background_1.label"
+                        },
+                        {
+                            "value": "background2",
+                            "label": "t:sections.all.colors.background_2.label"
+                        }
+                    ],
+                    "default": "text1",
+                    "label": "t:sections.announcement-bar.blocks.announcement.settings.text_colour.label"
+                }
+            ]
+        }
+    ],
+    "default": {
+        "blocks": [
+            {
+                "type": "announcement"
+            }
+        ]
+    }
+}
+{% endschema %}

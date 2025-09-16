@@ -1,0 +1,301 @@
+{% stylesheet %}
+.clinical-studies-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  margin: 0px 20px 10px 20px;
+}
+
+.clinical-studies-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.clinical-studies-highlights {
+  display:flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 1.6;
+  align-items: center;
+  justify-content: center;
+}
+
+.clinical-studies-image-wrapper {
+  text-align: center;
+  padding: 50px 0px 20px 0px;
+  padding-right: 0px !important;
+  display:flex;
+  flex-direction: column;
+  background-color: #E7E7E7;
+}
+
+.clinical-studies-image-wrapper img {
+  height: auto;
+  display: block;
+}
+
+.clinical-studies-description {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.view-product-button {
+  display: inline-block;
+  margin-top: 25px;
+  background-color: #000;
+  color: #fff;
+  padding: 20px 20px;
+  width: 170px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.view-product-button:hover {
+  background-color: #333;
+}
+
+.grid-featuress {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  justify-content: center;
+  align-items:stretch;
+ 
+}
+
+.grid-features-layout {
+  background-color: #E7E7E7;
+  min-width: 80%;
+  box-sizing: border-box;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  padding: 15px;
+  height: 100%;           /* let it stretch equally */
+}
+
+.grid-features-layout:hover {
+  background-color:#fff;
+   border: 1px solid #000;
+  
+  
+}
+
+/* Modal popup styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.8);
+  display: none;               /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-overlay.is-open {       /* shown when active */
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+.image-popup img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.image-popup img:hover {
+  transform: scale(1.5); /* enlarge */
+  z-index: 1000;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .clinical-studies-wrapper { flex-direction: column; }
+  .clinical-studies-block { flex-direction: column-reverse; text-align: center; }
+  .clinical-studies-highlights,
+  .clinical-studies-image-wrapper { flex: 1 1 100%; margin-left:0%; }
+.clinical-studies-image-wrapper { order:2; }
+  .clinical-studies-highlights{order: 1;}
+  
+  .grid-featuress { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+}
+{% endstylesheet %}
+
+<div class="clinical-studies-wrapper" id="clinical-studies-{{ section.id }}">
+  
+  {% for block in section.blocks %}
+    
+    <div class="clinical-studies-block">
+      <div class="clinical-studies-image-wrapper">
+        {% if block.settings.image %}
+          <a href="#"
+             class="image-popup"
+             role="button"
+             aria-haspopup="dialog"
+             data-src="{{ block.settings.image | image_url: width: 1600 }}">
+            <img src="{{ block.settings.image | image_url: width: 600 }}"
+                 alt="Clinical Study Image"
+                 loading="lazy">
+          </a>
+        {% endif %}
+
+        {% if block.settings.description %}
+          <div class="clinical-studies-description">
+            <p>{{ block.settings.description | newline_to_br }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="clinical-studies-highlights">
+        {% if block.settings.handle %}
+          <h1 style="font-size:24px; margin-bottom:18px;">
+            {{ block.settings.handle.metafields.custom.series.value.letter }}-{{ block.settings.handle.metafields.custom.series_number }} {{ block.settings.handle.title }}
+          </h1>
+        {% endif %}
+
+        {% assign metafield = block.settings.handle.metafields.custom.clinical_json.value %}
+        {% if metafield.features %}
+          <div class="grid-featuress">
+            {% for feature in metafield.features %}
+              <div class="grid-features-layout">
+                <span class="span-non-bold">{{ feature.name }}</span>
+                <div style="display:flex; justify-content:center; align-items:center;">
+                  <span class="span-bold" style="font-size:27px; font-weight:bold; margin-right:3px;">{{ feature.figure_one }}</span>
+                  <span class="span-non-bold-two">{{ feature.description }}</span>
+                </div>
+                <span class="span-bold-two" style="font-size:27px; font-weight:bold;">{{ feature.figure_two }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.handle %}
+          <a href="{{ block.settings.handle.url }}" class="view-product-button">View Product</a>
+        {% endif %}
+      </div>
+    </div>
+    <hr style="border: none; height: 1px; background-color: #565656;">
+  {% endfor %}
+
+  <!-- Modal lives INSIDE this section; unique ID avoids cross-section clashes -->
+  <div class="modal-overlay" id="imageModal-{{ section.id }}" aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <span class="close-modal" role="button" aria-label="Close">&times;</span>
+      <img class="modal-image" src="" alt="Large Image">
+    </div>
+  </div>
+</div>
+
+<script>
+/* Scoped initializer for this specific section instance */
+(function initClinicalStudiesSection(){
+  var sectionEl = document.getElementById('clinical-studies-{{ section.id }}');
+  if (!sectionEl) return;
+
+  var modalOverlay = sectionEl.querySelector('#imageModal-{{ section.id }}');
+  var modalImage   = modalOverlay.querySelector('.modal-image');
+  var closeBtn     = modalOverlay.querySelector('.close-modal');
+
+  // Open via event delegation (works even if blocks are re-rendered)
+  sectionEl.addEventListener('click', function(e){
+    var link = e.target.closest('.image-popup');
+    if (!link) return;
+    e.preventDefault();
+    var largeSrc = link.getAttribute('data-src');
+    if (!largeSrc) return;
+    modalImage.src = largeSrc;
+    modalOverlay.classList.add('is-open');
+    modalOverlay.setAttribute('aria-hidden','false');
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', function(){
+    modalOverlay.classList.remove('is-open');
+    modalOverlay.setAttribute('aria-hidden','true');
+    modalImage.removeAttribute('src');
+  });
+
+  modalOverlay.addEventListener('click', function(e){
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.remove('is-open');
+      modalOverlay.setAttribute('aria-hidden','true');
+      modalImage.removeAttribute('src');
+    }
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modalOverlay.classList.contains('is-open')) {
+      modalOverlay.classList.remove('is-open');
+      modalOverlay.setAttribute('aria-hidden','true');
+      modalImage.removeAttribute('src');
+    }
+  });
+
+  // If Theme Editor reloads this section, ensure clean state
+  document.addEventListener('shopify:section:unload', function(evt){
+    if (evt.detail && evt.detail.sectionId === '{{ section.id }}') {
+      // optional: remove listeners if your theme reuses DOM (usually not necessary)
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "clinical_studies-neww",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Clinical Studies",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "textarea", "id": "highlights", "label": "Highlights" },
+        { "type": "textarea", "id": "description", "label": "Below Image Text" },
+        { "type": "product", "id": "handle", "label": "Product Handle" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "clinical-studies-neww",
+      "category": "Custom",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,269 @@
+{% if section.blocks.size > 0 %}
+    <testimonials-carousel class="block overflow-hidden">
+        <div class="bg-{{ section.settings.background_color }} text-{{ section.settings.text_color }}{% if section.settings.background_color == 'transparent' %} pt-12 large:pt-20{% else %} mt-12 large:mt-20 py-12 large:py-20{% endif %}">
+            <div class="container">
+                <div class="wrap">
+                    <h2 class="heading-xl text-[2.4375rem] largeMax:w-4/5">
+                        {{ section.settings.title | escape }}
+                    </h2>
+                    <div class="mt-10 medium:mt-20">
+                        <div class="swiper [&.swiper]:overflow-visible">
+                            <div class="swiper-wrapper">
+                                {%- for block in section.blocks -%}
+                                    <div class="swiper-slide text-center">
+                                        {% if block.settings.image %}
+                                            <div class="flex justify-center items-center min-h-[9.375rem]">
+                                                <picture>
+                                                    <source media="(max-width: 48rem)"
+                                                            srcset="{{ block.settings.image | image_url: width: 200 }} 1x, {{ block.settings.image | image_url: width: 400 }} 2x">
+                                                    <source media="(min-width: 48rem)"
+                                                            srcset="{{ block.settings.image | image_url: width: 400 }} 1x, {{ block.settings.image | image_url: width: 400 }} 2x">
+                                                    <img srcset="{{ block.settings.image | image_url: width: 400 }} 2x"
+                                                        src="{{ block.settings.image | image_url: width: 200 }}"
+                                                        class="object-cover h-full w-[7.1875rem] mx-auto"
+                                                        width="115"
+                                                        height="115"
+                                                        alt="{{ block.settings.image.alt }}"
+                                                        loading="lazy"
+                                                    >
+                                                </picture>
+                                            </div>
+                                        {% endif %}
+                                        <div class="mt-8">
+                                            {% if block.settings.title != blank %}
+                                                <h2 class="mt-2">
+                                                    {{ block.settings.title }}
+                                                </h2>
+                                            {% endif %}
+                                            {% if block.settings.content != blank %}
+                                                <div class="wysiwyg mt-2 large:text-lg">
+                                                    {{ block.settings.content }}
+                                                </div>
+                                            {% endif %}
+                                            {% if block.settings.name != blank %}
+                                                <p class="mt-4 font-semibold text-sm">
+                                                    {{ block.settings.name }}
+                                                </p>
+                                            {% endif %}
+                                            {% if block.settings.job_title != blank %}
+                                                <p class="mt-1 text-xs">
+                                                    {{ block.settings.job_title }}
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {%- endfor -%}
+                            </div>
+                            <div class="relative flex justify-between items-center mt-9 large:mt-[4.5rem]">
+                                <div class="swiper-scrollbar relative w-full rounded-[2rem] large:mr-6">
+                                    <div class="swiper-scrollbar-drag bg-{{ section.settings.controls_color }} h-1 rounded-[2rem] cursor-pointer z-20"></div>
+                                    <div class="absolute w-full h-px top-1/2 -translate-y-1/2 bg-[#C4C4C4] z-10"></div>
+                                </div>
+                                <button class="swiper-button-prev swiper-button-small-mobile ml-4 border border-solid border-{{ section.settings.controls_color }} text-{{ section.settings.controls_color }} cursor-pointer transition transform rotate-180 hover:bg-{{ section.settings.controls_color }} hover:text-{{ section.settings.icons_hover_color }} swiper-button-small-mobile">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                                <button class="swiper-button-next swiper-button-small-mobile ml-3.5 bg-{{ section.settings.controls_color }} text-{{ section.settings.icons_hover_color }} border border-solid border-{{ section.settings.controls_color }} transition cursor-pointer hover:opacity-80 swiper-button-small-mobile">
+                                    {% render 'icon-slider-arrow' %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </testimonials-carousel>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "t:sections.testimonials.name",
+        "tag": "section",
+        "class": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "t:sections.testimonials.settings.title.label"
+            },
+            {
+                "type": "select",
+                "id": "background_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    },
+                    {
+                        "value": "transparent",
+                        "label": "t:sections.all.colors.transparent.label"
+                    }
+                ],
+                "default": "transparent",
+                "label": "t:sections.all.colors.heading"
+            },
+            {
+                "type": "select",
+                "id": "text_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "text1",
+                        "label": "t:sections.all.colors.text_1.label"
+                    },
+                    {
+                        "value": "text2",
+                        "label": "t:sections.all.colors.text_2.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "text1",
+                "label": "t:sections.all.colors.text_colour_label"
+            },
+            {
+                "type": "select",
+                "id": "controls_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "accentA",
+                "label": "t:sections.all.colors.controls_colour_label"
+            },
+            {
+                "type": "select",
+                "id": "icons_hover_color",
+                "options": [
+                    {
+                        "value": "primary",
+                        "label": "t:sections.all.colors.primary.label"
+                    },
+                    {
+                        "value": "secondary",
+                        "label": "t:sections.all.colors.secondary.label"
+                    },
+                    {
+                        "value": "accentA",
+                        "label": "t:sections.all.colors.accent_a.label"
+                    },
+                    {
+                        "value": "accentP",
+                        "label": "t:sections.all.colors.accent_p.label"
+                    },
+                    {
+                        "value": "background1",
+                        "label": "t:sections.all.colors.background_1.label"
+                    },
+                    {
+                        "value": "background2",
+                        "label": "t:sections.all.colors.background_2.label"
+                    }
+                ],
+                "default": "accentA",
+                "label": "t:sections.all.colors.icons_hover_colour_label"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "t:sections.testimonials.blocks.name",
+                "type": "block",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "t:sections.testimonials.blocks.settings.image.label",
+                        "info": "t:sections.testimonials.blocks.settings.image.info"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "t:sections.testimonials.blocks.settings.title.label"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "content",
+                        "label": "t:sections.testimonials.blocks.settings.content.label"
+                    },
+                    {
+                        "type": "text",
+                        "id": "name",
+                        "label": "t:sections.testimonials.blocks.settings.name.label"
+                    },
+                    {
+                        "type": "text",
+                        "id": "job_title",
+                        "label": "t:sections.testimonials.blocks.settings.job_title.label"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:sections.testimonials.presets.name"
+            }
+        ]
+    }
+{% endschema %}

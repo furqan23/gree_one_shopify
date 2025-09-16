@@ -1,0 +1,54 @@
+{% if image %}
+    {% assign card_image = image %}
+{% else %}
+    {% assign card_image = card_collection.featured_image.src %}
+{% endif %}
+
+{% if block_length == 1 or block_length == 2 %}
+    {% assign mediaWidth = 640 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 480 %}
+    {% assign aspectRatioClass = 'aspect-square' %}
+{% elsif block_length == 3 %}
+    {% assign mediaWidth = 420 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 525 %}
+    {% assign aspectRatioClass = 'aspect-square' %}
+{% elsif block_length == 4 or block_length == 5 %}
+    {% assign mediaWidth = 310 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 310 %}
+    {% assign aspectRatioClass = 'aspect-square' %}
+{% endif %}
+
+{% if card_collection %}
+    <div class="card-wrapper">
+        <div class="card{% if card_collection.featured_image %} card--media{% endif %} w-full">
+            <a href="{{ card_collection.url }}">
+                {%- if card_collection.featured_image -%}
+                    <div class="media media--hover-effect {{ aspectRatioClass }} largeMax:mx-4">
+                        <img
+                            class="motion-reduce:transition-none"
+                            srcset="{{ card_image | image_url: width: mediaWidth }} 1x, {{ card_image | image_url: width: mediaWidthRetina }} 2x"
+                            src="{{ card_image | image_url: width: mediaWidthRetina }}"
+                            width="{{ mediaWidth }}"
+                            height="{{ mediaHeight }}"
+                            alt="{{ card_collection.title | escape }}"
+                            loading="lazy"
+                        >
+                    </div>
+                {%- endif -%}
+                <div>
+                    {%- unless card_collection.title == blank -%}
+                        {% if hide_number == false %}
+                            <span class="block body-s text-center mt-3.5">{% if index < 10 %}0{% endif %}{{ index }}</span>
+                        {% endif %}
+                        <h3 class="body-m uppercase font-Gotham text-center font-[350] large:text-lg{% if hide_number == true %} mt-3.5{% else %} mt-1.5{% endif %}{% if text_colour != blank %} text-{{ text_colour }}{% endif %}">
+                            {{- card_collection.title | escape -}}
+                        </h3>
+                    {%- endunless -%}
+                </div>
+            </a>
+        </div>
+    </div>
+{% endif %}

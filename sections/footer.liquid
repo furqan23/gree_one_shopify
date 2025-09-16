@@ -1,0 +1,713 @@
+<style>
+.footer {
+    background-color: #333333;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: stretch;
+    align-items: top;
+}
+
+.footer .ft-card {
+    flex: 1;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer .ft-card {
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+.footer .ft-card ul {
+    padding-left: 0;
+}
+
+.footer .ft-card ul li {
+    margin-bottom: 5px;
+}
+
+.footer .ft-card ul li a {
+    padding: 5px 0;
+    color: #fff;
+    font-size: 0.8rem;
+    font-family: var(--gotham);
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.2;
+    display: block;
+}
+
+.footer .ft-card h5 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--gotham);
+    padding: 7px 0;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+.footer .ft-card .input-wrapper {
+    max-width: 80%;
+    margin-top: 20px;
+
+}
+
+.footer .ft-card .input-wrapper input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.footer .ft-card .input-wrapper input[type="checkbox"]:checked {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 2.285l-11.606 11.606-4.949-4.95-2.121 2.122 7.071 7.071 13.727-13.728z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+}
+
+
+.footer .ft-card .input-wrapper label {
+    color: #fff !important;
+    font-family: var(--gotham);
+    margin-left: 5px;
+    font-size: 0.9rem;
+
+}
+
+.footer .ft-card .input-group {
+    border: 1px solid #fff;
+    display: flex;
+    margin-bottom: 20px;
+
+}
+
+.footer .ft-card .input-group input {
+    display: inline-block;
+    border: none;
+    outline: none;
+    padding: 15px 10px;
+    margin: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    font-family: var(--gotham);
+}
+
+.footer .ft-card .input-group button {
+    all: unset;
+    display: block;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-size: 0.8rem;
+    font-family: var(--gotham);
+    font-weight: 500;
+    background-color: #fff;
+}
+
+.footer .paySection {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.footer .paySection a {
+    margin: 0 5px;
+}
+
+.footer .pay-option {
+    margin: 3px 3px 3px 0px;
+}
+
+.social li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+.social li img {
+    margin-right: 10px;
+}
+
+.footerMobileIcon {
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 50%;
+    border: 1px solid #f0f0f0;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    float: right;
+    display: none;
+}
+
+.footerMobileIcon::before {
+    content: '+';
+}
+
+.footerMobileIcon.active::before {
+    content: '–';
+}
+
+
+
+/* MediaQuery */
+@media (max-width:767px) {
+    .navbar {
+        position: fixed;
+        background-color: #fff;
+        padding: 20px !important;
+        flex-direction: column !important;
+        justify-content: start;
+        align-items: start;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        overflow-y: scroll;
+        z-index: 100;
+    }
+
+    .navbar.mobile {
+        min-height: 500px;
+        height: 100vh;
+        background-color: #fff;
+        overflow: hidden;
+        overflow-y: scroll !important;
+    }
+
+    .brand {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .btnMobile {
+        display: block;
+        padding: 5px;
+        background-color: transparent;
+        border: 1px solid #000;
+        text-decoration: none;
+    }
+
+    .mobileList {
+        display: flex !important;
+    }
+
+    .nav-left-side {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu_list {
+        flex-direction: column;
+        margin-top: 20px;
+        width: 100%;
+        display: none;
+    }
+
+    .menu_list.active {
+        display: block;
+    }
+
+    .nav-right-side {
+        display: none;
+    }
+
+    .nav-right-side.active {
+        display: flex;
+    }
+
+
+    .menu_list li {
+        margin-top: 10px;
+    }
+
+    .nav-link {
+        padding: 5px 10px;
+        display: block;
+    }
+
+    .footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer .ft-card .input-wrapper {
+        max-width: 100% !important;
+    }
+
+    /* .footerMobileIcon {
+     display: block;
+   } */
+
+    /* .social,
+   .quickLinks {
+     height: 0;
+     overflow: hidden;
+   }
+ 
+   .social.active,
+   .quickLinks.active {
+     height: auto;
+     min-height: 10px;
+   } */
+
+}
+
+/* 768 to 991 */
+@media (min-width:768px) and (max-width:991px) {
+    .navbar {
+        position: fixed;
+        background-color: #fff;
+        padding: 20px !important;
+        flex-direction: column !important;
+        justify-content: start;
+        align-items: start;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        overflow-y: scroll;
+        z-index: 100;
+    }
+
+    .navbar.mobile {
+        min-height: 100vh;
+    }
+
+    .brand {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .btnMobile {
+        display: block;
+        padding: 5px;
+        background-color: transparent;
+        border: none;
+        text-decoration: none;
+        position: relative;
+        width: 25px;
+    }
+
+    .mobileList {
+        display: flex !important;
+    }
+
+    .btnMobile:after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        top: 5px;
+        left: 0;
+        transition: all 0.2s linear;
+    }
+
+    .btnMobile:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        left: 0;
+        bottom: 5px;
+        transition: all 0.2s linear;
+    }
+
+    .btnMobile.active:after {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .btnMobile.active:before {
+        top: 57%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+
+
+    .nav-left-side {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu_list {
+        flex-direction: column;
+        margin-top: 20px;
+        width: 100%;
+        display: none;
+    }
+
+    .menu_list.active {
+        display: block;
+    }
+
+    .nav-right-side {
+        display: none;
+    }
+
+    .nav-right-side.active {
+        display: flex;
+    }
+
+
+    .menu_list li {
+        margin-top: 10px;
+    }
+
+    .nav-link {
+        padding: 5px 10px;
+        display: block;
+    }
+
+
+
+    .footer {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .footer .ft-card {
+        flex: 1 1 50%;
+    }
+
+
+}
+
+
+/* max 992 */
+@media (max-width:992px) {
+
+    .nav-item .dropdown-menu .first-level-list {
+        min-width: 200px;
+    }
+
+    .nav-item .dropdown-menu {
+        position: relative;
+        top: 0;
+        flex-wrap: wrap;
+        box-shadow: none;
+        left: 0 !important;
+    }
+
+    .nav-link::after {
+        content: none;
+    }
+
+    .nav-item .dropdown-menu.big {
+        margin: 0 !important;
+    }
+
+    .btnMobile {
+        display: block;
+        padding: 5px;
+        background-color: transparent;
+        border: none;
+        text-decoration: none;
+        position: relative;
+        width: 25px;
+    }
+
+    .btnMobile:after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        top: 5px;
+        left: 0;
+        transition: all 0.2s linear;
+    }
+
+    .btnMobile:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        left: 0;
+        bottom: 5px;
+        transition: all 0.2s linear;
+    }
+
+    .btnMobile.active:after {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .btnMobile.active:before {
+        top: 57%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+
+}
+
+/* 992 to 1024 */
+@media (min-width:992px) and (max-width:1024px) {
+    .navbar {
+        align-items: center;
+        padding: 20px 5px;
+    }
+
+    .brand {
+        margin-right: 15px !important;
+    }
+
+    .nav-item {
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav-left-side {
+        align-items: center;
+    }
+
+    .nav-link {
+        padding: 5px;
+        font-size: 0.7rem !important;
+        height: 100%;
+        text-align: center;
+    }
+
+}
+
+@media (min-width:1200px) {
+    .navbar {
+        padding: 60px 20px 10px 20px;
+    }
+
+    .nav-left-side .brand {
+        margin-right: 10px;
+    }
+
+    .nav-left-side {
+        align-items: center;
+    }
+
+    .nav-left-side .brand img.logo {
+        width: 100px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        color: #000;
+        font-family: var(--gotham);
+        text-decoration: none;
+        font-weight: 500;
+        transition: .5s ease;
+        padding: 10px 5px;
+        position: relative;
+        margin-right: 3px;
+    }
+
+
+}
+
+@media (min-width:1201px) and (max-width:1920px) {
+    .navbar {
+        align-items: center;
+    }
+
+
+    .nav-item {
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav-link {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .nav-left-side {
+        align-items: center;
+    }
+
+
+
+}
+.icon--social{
+display:inline;
+}
+
+
+
+.footer-inner {
+border-top: 1px solid white;
+padding-top:40px;
+padding-bottom:40px;
+padding-right:50px;
+padding-left:50px;
+color:white;
+background-color:#333333;
+max-width: 100%;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between; /* left + right */
+gap: 16px;
+letter-spacing: 0.2px;
+}
+.footer-left,
+.footer-right { display: flex; align-items: center; gap: 10px; }
+.footer-left { font-size: 12px; color: var(--muted); }
+.dot { opacity: 0.6; }
+.footer-link {
+color: var(--text);
+text-decoration: none;
+font-size: 14px;
+}
+.footer-link:hover { text-decoration: underline; }
+.brand {
+font-size: 14px;
+color: var(--text);
+letter-spacing: 1.4px;
+text-transform: uppercase;
+font-weight: 600;
+opacity: 0.9;
+white-space: nowrap;
+}
+/* Small screens */
+@media (max-width: 520px) {
+.footer-inner { flex-direction: column; gap: 6px; }
+.brand { align-self: flex-end; width: 100%; text-align: right; }
+}
+</style>
+
+        <footer class="footer">
+            <div class="ft-card">
+                <h5>Subscribe</h5>
+{%- form 'customer', id: 'ContactFooter', class: 'newsletter-form' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+
+    {%- if form.posted_successfully? -%}
+        <h3 class="heading-xs" id="ContactFooter-success" tabindex="-1" autofocus>
+            {{ 'newsletter.success' | t }}
+        </h3>
+    {%- else -%}
+        <div class="input-wrapper">
+            <div class="input-group">
+                <input id="NewsletterForm--{{ section.id }}"
+                       type="email"
+                       name="contact[email]"
+                       value="{{ form.email }}"
+                       placeholder="Email address"
+                       class="{% if form.errors %} border-validationError{% endif %}"
+                       aria-required="true"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       autocomplete="email"
+                       {% if form.errors %} autofocus aria-invalid="true" aria-describedby="ContactFooter-error"{% elsif form.posted_successfully? %} aria-describedby="ContactFooter-success"{% endif %}
+                       required
+                >
+                <button type="submit" name="commit" id="Subscribe">
+                    {{ 'newsletter.button_label' | t }}
+                </button>
+            </div>
+
+            <div class="flex align-start mt-2">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">
+                    I agree to be contacted with promotional updates and event invitations through phone, email, SMS or WhatsApp.
+                </label>
+            </div>
+
+            {%- if form.errors -%}
+                <div class="flex items-center gap-x-1 mt-2">
+                    <span class="block w-[0.8125rem] h-[0.8125rem]">
+                        {% render 'icon-error' %}
+                    </span>
+                    <small class="form__message" id="ContactFooter-error">
+                        {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                    </small>
+                </div>
+            {%- endif -%}
+        </div>
+    {%- endif -%}
+{%- endform -%}
+
+            </div>
+            <div class="ft-card">
+                <h5>About Us <button class="footerMobileIcon" id="'quickLinksBtn"></button></h5>
+                <ul class="quickLinks" id="quickLinks">
+                    <li>
+                        <a href="{{shop.url}}/pages/about">Our Story</a>
+                    </li>
+                    <li>
+                        <a href="{{shop.url}}/pages/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="{{shop.url}}/pages/faqs">FAQs</a>
+                    </li>
+                    <li>
+                        <a href="{{shop.url}}/pages/return-refunds">Delivery & Returns</a>
+                    </li>
+                    <li>
+                        <a href="{{shop.url}}/pages/privacy-policy">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="{{shop.url}}/pages/terms-and-conditions">Terms and Conditions</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ft-card">
+                <h5>Follow Us <button class="footerMobileIcon"></button></h5>
+                                    {%- capture socialLinksClasses -%}
+                                        inline-block text-{{- section.settings.social_icon_color -}}
+                                    {%- endcapture -%}
+                                    {% render 'social-links-footer',
+                                        listItemClasses: socialLinksClasses
+                                    %}
+
+                <h5> </h5>
+                <div class="paySection">
+                    <a href=""><img src="https://trusain.netlify.app/assets/imgs/icon/visa.svg" alt=""></a>
+                    <a href=""><img src="https://trusain.netlify.app/assets/imgs/icon/master.svg" alt=""></a>
+                    <a href=""><img src="https://trusain.netlify.app/assets/imgs/icon/apple.svg" alt=""></a>
+                    <a href=""><img src="https://trusain.netlify.app/assets/imgs/icon/google.svg" alt=""></a>
+                </div>
+
+            </div>
+
+
+            
+
+        </footer>
+        <div class="footer-inner">
+<div class="footer-left">
+<span>© <span id="year"></span>, TURSIAN</span>
+<span class="dot">•</span>
+<a class="footer-link" href="{{shop.url}}/pages/return-refunds">Refund policy</a>
+<span class="dot">•</span>
+<a class="footer-link" href="{{shop.url}}/pages/terms-and-conditions">Terms of service</a>
+</div>
+<div class="footer-right">
+<span class="brand">TURSIAN</span>
+</div>
+</div>
+<script>
+// Auto-insert current year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>

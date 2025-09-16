@@ -1,0 +1,937 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<style>
+  .product-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    background-size: cover;
+    background-position: center;
+    padding: 0px;
+    color: #efefef;
+    background-color: #ccc;
+    height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
+    line-height: 1.4;
+    position: relative;
+
+    /* font-family: Sequel Sans Light Head, sans-serif; */
+  }
+
+  /* Product Details (Left Column) */
+  .product-details {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    z-index: 4;
+    text-align: justify;
+    position: absolute;
+    top: 10%;
+    /* transform: translateY(-50%); */
+    left: 10px;
+    color: #000;
+  }
+
+  .product-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    margin-left: -10px;
+    text-align: left;
+    /*text-transform: uppercase;
+
+            font-family: Sequel Sans Medium Body, sans-serif; */
+
+    color: #000;
+  }
+
+  #series_number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    font-family: "Utopia-Semibold" !important;
+  }
+
+  .product-subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #000;
+    /* font-family: Sequel Sans Medium Body, sans-serif;  */
+  }
+
+  .product-price {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .add-to-cart-btn {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 0 20px;
+    padding: 12px 20px;
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: 150ms ease-in;
+    margin-top:10px;
+  }
+
+  .add-to-cart-btn:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  @keyframes steady-scale {
+    from {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .image-section-product-feature {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
+    max-width: 100vw;
+    /* z-index: -1; */
+    overflow: clip;
+    overflow-clip-margin: content-box;
+  }
+
+  .image-section-product-feature .no-img-desktop {
+    /* animation: steady-scale 4s ease both alternate; */
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
+  }
+
+  .no-img {
+    display: none;
+  }
+
+  .product-description p {
+    font-size: 17px;
+    margin: 20px 0;
+    text-align: justify; /* Center-align if required */
+    /* font-family: "Sequel Sans Light Head, sans-serif; */
+    font-family: "MYRIADPRO-REGULAR" !important;
+    color: #000;
+  }
+
+  /* Benefits Section k */
+  .product-benefits {
+    width: auto;
+    height: 80%;
+    max-width: 550px;
+    text-align: justify;
+    display: inline-block;
+    z-index: 4;
+    position: absolute;
+    /* top:67%; */
+    /* bottom:7%; */
+    top: 10%;
+    /* transform: translateY(-50%); */
+    right: 8px;
+    color: #000;
+  }
+  .product-benefits p {
+    font-size: 17px;
+    margin-left: 10px;
+    padding-left: 30px;
+    /* font-family: Sequel Sans Light Head, sans-serif; */
+    /* font-family: Gotham-book; */
+  }
+  .product-benefits h1 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left !important;
+    font-family: "Utopia-Semibold" !important;
+    margin-bottom: 0px;
+  }
+
+  .product-variants {
+    margin: 20px 0;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 15px;
+  }
+
+  .variant-option {
+    display: flex;
+    align-items: left;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .variant-option input[type="radio"] {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    accent-color: #000000;
+  }
+
+  .variant-option input[type="radio"]:checked + label {
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .square_unique {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    padding-left: 30px;
+    align-items: center;
+  }
+  .color-square {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight:bold;
+     color: #fff;
+  }
+
+   .writing_unique p {
+    font-size: 15px;
+    /* font-weight: bold; */
+    
+     margin-left: 0;
+    padding-left: 5px;
+  }
+
+  .benefits-des-based {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #000;
+    padding: 3px;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .collectionTitle {
+    font-size: 12px;
+    font-family: "MYRIADPRO-REGULAR" !important;
+  }
+  .collectionTitle-up {
+    font-size: 12px;
+    font-family: "MYRIADPRO-REGULAR" !important;
+    margin-left: 125px;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+  }
+
+  #three-words-right {
+    text-align: left;
+    text-align-last: left;
+  }
+
+  /* Responsive Design -------------------  768 ------------------------------------------   */
+  @media (max-width: 768px) {
+    .product-page {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      position: relative;
+      background-color: #e7e7e7;
+    }
+/*     mobile responsive BY ME     */
+.collectionTitle-up {
+  position: relative;
+  margin-left: 10px; /* Adjust as needed */
+  bottom: auto;
+  margin-bottom: 10px;
+  text-align: left;
+  margin-top:10px;
+}
+
+.benefits-des-based {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  padding: 3px 20px;
+  text-align: left;
+  margin-top: 5px;
+}
+/*  BY ME close  */
+
+    .image-section-product-feature {
+      position: relative;
+      margin-bottom: 20px;
+      height: 50vh;
+      min-height: 50vh;
+    }
+
+    .product-title,
+    .product-subtitle,
+    .product-price,
+    .product-volume {
+      text-align: left;
+      color: black;
+    }
+    .product-title {
+      font-size: 18px;
+      padding-bottom: 0px;
+    }
+    #series_number {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .product-description {
+      font-size: 14px;
+    }
+    .product-description {
+      color: black;
+    }
+    .add-to-cart-btn {
+      background-color: black;
+      color: white;
+    }
+    .product-benefits {
+      text-align: left;
+      width: 100%;
+      height:auto;
+      position: relative;
+      color: black;
+    }
+    .product-benefits h1 {
+      margin-left: 50px;
+    }
+    .product-benefits p {
+      margin-left: 25px;
+    }
+    .product-details {
+      width: 100%;
+      max-width: 90vw;
+      margin-bottom: 20px;
+      margin-left: 0px;
+      position: relative;
+     
+      color: black;
+    }
+    .no-img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      overflow: hidden;
+      height: 50vh;
+      position: relative;
+    }
+    .no-img-desktop {
+      display: none;
+    }
+
+    .square_unique {
+      gap: 1px;
+      margin-top: 4px;
+       display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    padding-left: 0;
+    align-items: center;
+      justify-content:center;
+     
+    }
+
+    
+   .writing_unique p {
+    font-size: 15px;
+    /* font-weight: bold; */
+    
+     margin-left: 0;
+    padding-left: 18px;
+  }
+  }
+/* Product Review css */
+  .product-rating .star {
+    font-size: 1em;
+    color: #ccc; /* Default star color (empty) */
+    display: inline-block;
+    position: relative;
+  }
+
+  .product-rating .star.filled {
+    color: black;
+  }
+
+  .product-rating .star.half-filled::before {
+    content: '★';
+    color: black;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  .review-count {
+    margin-left: 5px;
+    font-size: 0.9em;
+    color: #777;
+  }
+</style>
+{% assign btnCheck = true %}
+<div class="product-page">
+  <div class="image-section-product-feature">
+    <figure>
+      <picture>
+        <img
+          class="no-img"
+          src="{{ product.metafields.custom.img_1 | image_url : width: 3800, height:3800 }}"
+          alt="{{ product.title }}"
+        />
+        <img
+          class="no-img-desktop"
+          src="{{  product.metafields.custom.feature_img | image_url : width: 3800, height:1300 }}"
+          alt="{{ product.title }}"
+        />
+      </picture>
+    </figure>
+  </div>
+
+  <!-- Left Column: Product Details -->
+  <div class="product-details">
+    <p id="series_number">
+      {{- product.metafields.custom.series.value.letter -}} -{{
+      product.metafields.custom.series_number }}
+    </p>
+        <!-- Product Review Code Start -->
+
+{% assign rating_json = product.metafields.reviews.rating %}
+{% assign parts = rating_json | split: ',' %}
+{% assign value_part = parts[2] %}
+{% assign value_split = value_part | split: ':' %}
+{% assign avg_rating_string = value_split[1] | strip | replace: '"', '' %}
+{% assign avg_rating = avg_rating_string | times: 1 %}
+{% assign review_count = product.metafields.reviews.rating_count %}
+
+{% if avg_rating %}
+  <div class="product-rating">
+    {% assign rounded_down_rating = avg_rating | floor %}
+    {% assign decimal_part = avg_rating | minus: rounded_down_rating %}
+    {% assign next_star = rounded_down_rating | plus: 1 %}
+
+    {% for i in (1..5) %}
+      {% if i <= rounded_down_rating %}
+        <span class="star filled">★</span>
+      {% elsif i == next_star and decimal_part >= 0.5 %}
+        <span class="star half-filled">★</span>
+      {% else %}
+        <span class="star">☆</span>
+      {% endif %}
+    {% endfor %}
+
+    {% if review_count > 0 %}
+      <a href="#" class="review-count-link body-r" data-target-class="jdgm-rev-widg__body">
+      <span class="review-count">({{ review_count }}) View all</span></a>
+    {% endif %}
+  </div>
+{% endif %}
+
+        <!-- Product review code end -->
+
+
+    <h1 class="product-title">{{ product.title }}</h1>
+    <!-- Product Description -->
+
+    <div class="product-description">
+      <p>{{ product.description }}</p>
+    </div>
+
+    <!-- Display product price -->
+    <p class="product-price" id="product-price">
+      {{ product.variants.first.price | money }}
+    </p>
+
+    <!-- Product variants as radio buttons -->
+ 
+
+
+
+
+
+
+
+     <product-form class="block mediumMax:w-full medium:relative">
+        {% comment %} {% assign stickyATCCTAFormID = product_form_id | append: '-sticky-atc-cta' %}   {% endcomment %}
+
+ 
+      {%- form 'product',
+        product,
+        id: stickyATCCTAFormID,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+       
+        
+        {% if product.variants.size > 1 %}
+          <input type="hidden" name="id" id="variant-id" value="{{  product.variants.first.id }}" disabled>
+          <div class="product-variants">
+           
+            {% for variant in product.variants %}
+              <label class="variant-option">
+                <input
+                  type="radio"
+                  name="id"
+                  value="{{ variant.id }}"
+                  data-price="{{ variant.price | money }}"
+                   data-available="{{ variant.available }}"
+                  {% if forloop.first %}
+                    checked
+                  {% endif %}
+                >
+                {{ variant.title }}
+              </label>
+            {% endfor %}
+          </div>
+          {% else %}
+           <div class="product-variants">
+              <label class="variant-option">
+                <input
+                  type="radio"
+                  name="id"
+                  value="{{  product.variants.first.id }}"
+                  data-price="{{ product.variants.price | money }}"
+           data-available="{{ product.variants.first.available }}"
+                    checked
+                >
+                {{ product.variants.first.title }}
+              </label>
+           {% liquid   assign btnCheck = product.variants.first.available %}
+           {% for tag in product.tags %}
+              {% if tag contains 'preorder' %}
+                {% assign preorder = true %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="flex gap-x-2 items-center">
+        {% comment %}
+          
+       
+          <!-- <quantity-input class="quantity quantity--sticky mediumMax:hidden">
+            <button class="quantity__button" name="minus" type="button">
+              <span class="sr-only">
+                {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+              </span>
+              {% render 'icon-minus' %}
+            </button>
+            <input
+              class="quantity__input"
+              type="number"
+              name="quantity"
+              id="Quantity-{{ section.id }}"
+              min="1"
+              value="1"
+              form="{{ stickyATCCTAFormID }}"
+            >
+            <button class="quantity__button" name="plus" type="button">
+              <span class="sr-only">
+                {{ 'products.product.quantity.increase' | t: product: product.title | escape }}
+              </span>
+              {% render 'icon-plus' %}
+            </button>
+          </quantity-input> -->
+         {% endcomment %}
+           {% if btnCheck %}
+          <button
+            type="submit"
+            name="add"
+            id="add-to-cart-bt"
+            class="button w-full justify-center medium:w-[6.875rem] medium:py-[.75rem] medium:button--small js-quick-add-context-submit add-to-cart-btn loading-overlay__spinner"
+          >
+            <div class="labell " >
+              <span>
+                {{ 'products.product.add_to_cart' | t }}
+              </span>
+              <!-- <span class="absolute top-10 left-0">
+                {{ 'products.product.add_to_cart' | t }}
+              </span> -->
+            </div>
+            <!-- <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path"  fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div> -->
+          </button>
+             {% else %}
+              {% if preorder == true %}
+              <button 
+                class="my-button-klaviyo-abc add-to-cart-btn"
+                id="my-button-klaviyo"
+                
+              >
+                <div class="out-of-stock">
+                  <span> Sold Out <br> Pre Order Now</span>
+                </div>
+              </button>
+
+            {% else %}
+              <button
+           
+            class="button w-full add-to-cart-btn"
+          disabled
+                >
+            <div class="out-of-stock-btn" >
+              <span>
+                Out of Stock
+              </span>
+            
+            </div>
+              </button>
+             {% endif %}
+             {% endif %}
+        </div>
+      {%- endform -%}
+      <div
+        class="product-form__error-message-wrapper medium:absolute medium:right-0 medium:top-[calc(100%_-_0.625rem)] medium:w-max large:top-[calc(100%_-_7.6825rem)]"
+        role="alert"
+        hidden
+      >
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+          <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+          <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+          <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+          <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+        </svg>
+        <span class="product-form__error-message"></span>
+      </div>
+    </product-form>
+
+
+
+
+    
+    <!-- Product variants as radio buttons -->
+    {% comment %}
+      
+   
+{% if product.variants.size > 1 %}
+  <div class="product-variants">
+    {% for variant in product.variants %}
+      <label class="variant-option">
+        <input
+          type="radio"
+          name="variant"
+          value="{{ variant.id }}"
+          data-price="{{ variant.price | money }}"
+          data-available="{{ variant.available }}"
+          {% if forloop.first %}checked{% endif %}
+        />
+        {{ variant.title }}
+      </label>
+    {% endfor %}
+  </div>
+{% else %}
+  <input
+    style="
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      accent-color: #000000;
+    "
+    type="radio"
+    name="variant"
+    value="{{ product.variants.first.id }}"
+    data-price="{{ product.variants.first.price | money }}"
+    data-available="{{ product.variants.first.available }}"
+    checked
+  />
+  <label style="font-size: 16px; padding-bottom: 10px">
+    {{ product.variants.first.title }}
+  </label>
+{% endif %}
+
+    <!-- Hidden input for selected variant -->
+
+
+    
+<form method="post" action="/cart/add">
+  <input
+    type="hidden"
+    name="id"
+    id="variant-id"
+    value="{{ product.variants.first.id }}"
+  />
+  <button
+    type="submit"
+    class="add-to-cart-btn"
+    {% unless product.variants.first.available %}
+      disabled
+    {% endunless %}
+  >
+    Shop Now
+  </button>
+</form>
+
+
+---------------
+     {% endcomment %}
+
+
+    
+  </div>
+  <!-- Benefits right Section -->
+  <div class="product-benefits">
+    <div class="square_unique">
+      <div
+        class="color-square"
+        style="--bg-color: {{ product.metafields.custom.series.value.colour }}"
+      >
+        <span class="value" id="metafield-value"
+          >{{ product.metafields.custom.formula_fact_b_2 }}</span
+        >
+      </div>
+      <div class="writing_unique">
+        <p>
+          Unique Ingredients at Highly <br />
+          Effective Concentrations
+        </p>
+      </div>
+    </div>
+    <h1 id="three-words-right">
+      {{ product.metafields.custom.product_caution }} 
+    </h1>
+    <p class="benefits-des">
+      {{ product.metafields.custom.rich_feature | metafield_tag }} 
+      
+    </p>
+
+
+
+{% assign disallowed_tags = "p1,y1,r1" | split: "," %}
+{% assign show_heading = true %}
+
+{% for tag in product.tags %}
+  {% assign normalized_tag = tag | downcase | strip %}
+  {% if disallowed_tags contains normalized_tag %}
+    {% assign show_heading = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if show_heading %}
+    <p class="collectionTitle-up">
+      Clinically Studied & Proven Formulas**<br />
+      Dermatologically tested <br />
+    </p>
+{% endif %}
+
+
+    
+
+  </div>
+  <div class="benefits-des-based">
+
+
+{% assign allowed_tags = "p1,y1,r1" | split: "," %}
+{% assign show_heading = false %}
+
+{% for tag in product.tags %}
+  {% assign normalized_tag = tag | downcase | strip %}
+  {% if allowed_tags contains normalized_tag %}
+    {% assign show_heading = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if show_heading %}
+  <span class="collectionTitlee" style="font-size:12px;">
+    *Use level refers to ingredient solution concentration in the final formula.
+  </span>
+{% endif %}
+
+
+{% assign disallowed_tags = "p1,y1,r1" | split: "," %}
+{% assign show_heading = true %}
+
+{% for tag in product.tags %}
+  {% assign normalized_tag = tag | downcase | strip %}
+  {% if disallowed_tags contains normalized_tag %}
+    {% assign show_heading = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if show_heading %}
+  <span class="collectionTitle">
+    *Use level refers to ingredient solution concentration in the final
+    formula.<br />
+    **Based on third-party clinical studies including 20 participants,
+    clinical evaluations and consumer trials.
+  </span>
+{% endif %}
+
+    
+
+
+
+
+
+
+    
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const variantOptions = document.querySelectorAll('input[name="id"]');
+    const outOfStockSpan = document.querySelectorAll('out-of-stock-btn');
+    const variantIdInput = document.getElementById("variant-id");
+    const productPrice = document.getElementById("product-price");
+     const addToCartBtn = document.getElementById("add-to-cart-bt");
+    
+
+
+
+    function updateButtonState(selectedVariant) {
+      const isAvailable = selectedVariant.getAttribute("data-available") === "true";
+      // addToCartBtn.disabled = !isAvailable;
+      // addToCartBtn.textContent = isAvailable ? "Shop Now" : "Out of Stock";
+      if(!isAvailable){
+        // addToCartBtn.textContent =  "Out of Stock";
+        // addToCartBtn.style.visibility = "hidden";
+         addToCartBtn.disabled = !isAvailable;
+      // addToCartBtn.textContent =  !isAvailable? "Out of Stock":"Add to Bag";
+
+         console.log("here botnn visible  out of stock");
+
+         // const spans = document.querySelectorAll(".button__label span"); the original one buton label is the tailwind
+         const spans = document.querySelectorAll(".labell span");
+
+    spans.forEach(span => {
+      span.textContent = "Out of Stock"; // Set your desired text here
+    });
+  
+      }
+      else{
+        addToCartBtn.disabled = !isAvailable;
+  
+
+        const spans = document.querySelectorAll(".labell span");
+
+    spans.forEach(span => {
+      span.textContent = "Add to Bag"; // Set your desired text here
+    });
+
+          console.log(" addToCartBtn.style.visibility =visible");
+      }
+    }
+
+    if (variantOptions.length > 0) {
+      // Set default price and variant ID on page load
+      const defaultVariant = document.querySelector(
+        'input[name="id"]:checked'         
+      );
+
+    
+      if (defaultVariant) {
+        variantIdInput.value = defaultVariant.value;
+        productPrice.textContent = defaultVariant.getAttribute("data-price");
+          updateButtonState(defaultVariant);
+      }
+
+      // Listen for changes in variant selection
+      variantOptions.forEach((option) => {
+        option.addEventListener("change", function () {
+          const selectedVariant = this;
+          const selectedPrice = selectedVariant.getAttribute("data-price");
+
+          // Update the hidden variant input
+          variantIdInput.value = selectedVariant.value;
+
+          // Update the product price dynamically
+          productPrice.textContent = selectedPrice;
+        updateButtonState(selectedVariant);
+          console.log(
+            `Variant ID: ${selectedVariant.value}, Price: ${selectedPrice}`
+          );
+
+          console.log(`${selectVariant.value}`);
+        });
+      });
+       // console.log("No s sss werwer.");
+    } else {
+      
+        console.log("No variant options found.");
+    }
+  });
+
+
+
+
+
+  // This script runs when the DOM content is fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const reviewCountLink = document.querySelector('.review-count-link');
+
+    // Check if the review count link exists on the page
+    if (reviewCountLink) {
+      // Add a click event listener to the link
+      reviewCountLink.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the default behavior of the link (page jump)
+
+        // Get the target class from the 'data-target-class' attribute
+        const targetClass = this.getAttribute('data-target-class');
+        // Find the first element on the page that has this class
+        const targetElement = document.querySelector('.' + targetClass);
+
+        // If the target element is found, perform the smooth scroll
+        if (targetElement) {
+          // Calculate the absolute position of the target element from the top of the document
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+
+          // Scroll the window smoothly to the target position
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
+  });
+
+  
+</script>
+
+
+{% schema %}
+{ "name": "product_detail_custom", "settings": [], "presets": [ {
+"name": "product_detail_custom", } ] }
+{% endschema %}

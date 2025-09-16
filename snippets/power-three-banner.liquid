@@ -1,0 +1,142 @@
+
+
+
+
+
+{% assign imageUrlDesktop = 'https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Power_of_three_top_area_1.png?v=1756725403' %}
+{% assign imageUrlMobile = 'https://cdn.shopify.com/s/files/1/0676/8872/6667/files/b911c73ff076eb0c70afe39a09aab7a61b9866c5.jpg?v=1756132256' %}
+
+<div class="{% unless section.settings.remove_margin %}mt-12 large:mt-20{% endunless %}" style="margin-top: -120px;">
+    <div class="container">
+        <div class="{% if section.settings.wrap %}wrap{% endif %}">
+            <picture>
+                <source media="(max-width: 768px)" srcset="{{ imageUrlMobile }}">
+                <img src="{{ imageUrlDesktop }}" alt="Image alt text" loading="lazy" class="max-w-full mx-auto"   width="auto"
+                height="auto">
+                
+            </picture>
+        </div>
+    </div>
+</div>
+
+<div class=" h-12">
+  
+</div>
+
+{% comment %} <div style="margin-top: -120px;">
+    <div class="container">
+        <div class="{% if section.settings.wrap %}wrap{% endif %}">
+            <img
+                src="{{ imageUrlDesktop }}"
+                class="max-w-full mx-auto desktop-image"
+                alt="power of three"
+                loading="lazy"
+                  width="auto"
+                height="auto"
+            >
+            <img
+                src="{{ imageUrlMobile }}"
+                class="max-w-full mx-auto mobile-image"
+                alt="power of three"
+                loading="lazy"
+                  width="auto"
+                height="auto"
+            >
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+{% comment %} <div  style="margin-top: -120px ";>
+    <div class="container">
+        <div class="{% if section.settings.wrap %}wrap{% endif %}">
+            <img
+                src="{{ imageUrl }}"
+                class="max-w-full mx-auto"
+                alt="Image alt text"
+                   width="auto"
+                height="auto"
+                loading="lazy"
+            >
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+
+
+
+{% comment %} {% style %}
+.shop-banner .banner-section-item-shop {
+   
+    background: #F5F5F5 url("https://cdn.shopify.com/s/files/1/0676/8872/6667/files/Power_of_three_top_area_1.png?v=1756725403") no-repeat ;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+  margin-top: -120px;
+  margin-bottom:80px;
+
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content {
+    padding: 40px 60px;
+    max-width: 500px;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content h5 {
+    font-family: var(--skeena);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content h1 {
+    font-family: var(--skeena);
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.shop-banner .banner-section-item-shop .banner-section-item-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: var(--skeena);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+{% endstyle %}
+
+<section>
+<div class="shop-banner">
+                <div class="banner-section-item-shop">
+                     <div class="banner-section-item-content">
+                        <h1>
+ 
+   
+  
+</h1>
+                        <p class="mb-0"></p>
+                        <p>
+                        </p>
+
+                        {% comment %} <button class="btn-outline-light">Shop Now</button> {% endcomment %}
+                    </div> 
+                </div>
+            </div>
+
+</section>
+<h1 style="padding-bottom:20px; font-size:22px; padding-left:20px;">Browse our product offering</h1>
+
+<section>
+    <div class="image-container">
+  <img class="mobile-image" src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/masks.png?v=1754490707" alt="Mobile Image" width="auto " height="auto">
+  <img class="desktop-image" src="https://cdn.shopify.com/s/files/1/0676/8872/6667/files/masks.png?v=1754490707" alt="Desktop Image" width="auto " height="auto">
+</div>
+</section> {% endcomment %}

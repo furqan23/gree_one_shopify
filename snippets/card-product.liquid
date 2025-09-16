@@ -1,0 +1,455 @@
+{% comment %}
+    Renders a product card
+
+    Accepts:
+    - card_product: {Object} Product Liquid object (optional)
+    - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+    - show_vendor: {Boolean} Show the product vendor. Default: false
+    - show_quick_add: {Boolean} Show the quick add button. Default: false
+    - right_align_cta: {Boolean} Place add to card cta next to reviews. Default: false
+    - show_secondary_image: {Boolean} Show the secondary image on product card hover
+    - section_id: {String} The ID of the section that contains this card.
+
+    Usage:
+    {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% assign series = card_product.metafields.custom.series.value %}
+
+{%- if card_product and card_product != empty -%}
+    <div class="card-wrapper">
+        <div class="card{% if card_product.featured_media %} card--media{% endif %}">
+            <div {% if series.colour %}style="border-color: {{ series.colour }};"{% endif %} class="card__media-container{% if series.colour %} border-b-0{% endif %}">
+                {%- if card_product.featured_media -%}
+                    <a class="card__media" href="{{ card_product.url | within: collection }}">
+                        <div class="media{% if card_product.media[1] != nil and show_secondary_image %} media--hover-effect{% endif %} aspect-square{% if show_bg %} bg-uiLightGrey{% endif %}">
+                            {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                            <img srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                                {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                                {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                                {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                                {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                                {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w"
+                                src="{{ card_product.featured_media | image_url: width: 533 }}"
+                                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                alt="{{ card_product.featured_media.alt | escape }}"
+                                class="relative z-1 motion-reduce:transition-none"
+                                width="{{ card_product.featured_media.width }}"
+                                height="{{ card_product.featured_media.height }}"
+                                {% unless lazy_load == false %}loading="lazy"{% endunless %}
+                            >
+                            {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+                            {% comment %}
+                             this is for secondary image if you want to show it in the product grid
+                            {%- if card_product.media[1] != nil and show_secondary_image -%}
+                                <div class="hover-effect w-full h-full before:block before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-uiMidGrey">
+                                    <img srcset="{%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                                        {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                                        {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                                        {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                                        {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                                        {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                        {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w"
+                                        src="{{ card_product.media[1] | image_url: width: 533 }}"
+                                        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                        alt="{{ card_product.media[1].alt | escape }}"
+                                        class="w-full h-full object-cover motion-reduce:transition-none"
+                                        width="{{ card_product.media[1].width }}"
+                                        height="{{ card_product.media[1].height }}"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {%- endif -%} {% endcomment %}
+                        </div>
+                        <div class="card__badge top-[0.625rem] left-[0.625rem]">
+                            {%- if card_product.selected_or_first_available_variant.available == false -%}
+                                <span class="badge">
+                                    {{- 'products.product.sold_out' | t -}}
+                                </span>
+                            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+                                <span class="badge">
+                                    {{- 'products.product.on_sale' | t -}}
+                                </span>
+                            {%- elsif card_product.tags and card_product.tags.size > 0 -%}
+                                {%- for tag in card_product.tags -%}
+                                    {%- if tag contains 'badge:' -%}
+                                        <span class="badge">
+                                            {{- tag | remove: 'badge:' -}}
+                                        </span>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            {%- endif -%}
+                        </div>
+                    </a>
+                    {% assign variantsAvailable = false %}
+                    {% for variant in card_product.variants %}
+                        {% if variant.available %}
+                            {% assign variantsAvailable = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {%- if show_quick_add or show_quick_add_mobile -%}
+                        <div class="quick-add hidden{% if show_quick_add_mobile %} absolute -bottom-[5.5rem] right-0 large:hidden{% else %} large:block{% endif %}">
+                            {%- assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id -%}
+                            {% assign variantsLength = card_product.variants | size %}
+                            <div class="quick-add__hover">
+                                <product-form>
+                                    {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                                        <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}" disabled>
+                                        <input type="hidden" name="quantity" value="1" disabled>
+                                        {%- if card_product.has_only_default_variant or variantsAvailable == false -%}
+                                            <button id="{{ product_form_id }}-submit" type="submit" name="add"
+                                                class="quick-add__submit button mx-auto
+                                                {% if show_quick_add_mobile %} button--medium{% endif %}"
+                                                aria-haspopup="dialog"
+                                                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                                aria-live="polite" data-sold-out-message="true" 
+                                                {% if card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                                                <div class="button__label">
+                                                    {%- if card_product.selected_or_first_available_variant.available -%}
+                                                        <span>
+                                                            {{ 'products.product.add_to_cart' | t }}
+                                                        </span>
+                                                        <span class="absolute top-10 left-0">
+                                                            {{ 'products.product.add_to_cart' | t }}
+                                                        </span>
+                                                    {%- else -%}
+                                                        <span>
+                                                            {{ 'products.product.sold_out' | t }}
+                                                        </span>
+                                                        <span class="absolute top-10 left-0">
+                                                            {{ 'products.product.sold_out' | t }}
+                                                        </span>
+                                                    {%- endif -%}
+                                                </div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                                                </svg>
+                                                <span class="sold-out-message hidden">
+                                                    {{ 'products.product.sold_out' | t }}
+                                                </span>
+                                                <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                        viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                    </svg>
+                                                </div>
+                                            </button>
+                                        {% else %}
+                                            <modal-opener data-modal="#QuickAddModal">
+                                                <button id="{{ product_form_id }}-submit"
+                                                    class="quick-add__submit button mx-auto"
+                                                    type="submit"
+                                                    name="add"
+                                                    aria-haspopup="dialog"
+                                                    aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                                    data-product-url="{{ card_product.url }}"
+                                                >
+                                                    <div class="button__label">
+                                                        <span>
+                                                            {{ 'products.product.choose_options' | t }}
+                                                        </span>
+                                                        <span class="absolute top-10 left-0">
+                                                            {{ 'products.product.choose_options' | t }}
+                                                        </span>
+                                                    </div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                                                    </svg>
+                                                    <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                            viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                        </svg>
+                                                    </div>
+                                                </button>
+                                            </modal-opener>
+                                        {% endif %}
+                                    {%- endform -%}
+                                    <div class="product-form__error-message-wrapper" role="alert" hidden>
+                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                            <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                            <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                            <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                        </svg>
+                                        <span class="product-form__error-message"></span>
+                                    </div>
+                                </product-form>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                {%- endif -%}
+            </div>
+            <div class="card__information">
+                <div>
+                    {% if right_align_cta %}
+                        {% if enable_reviews or series.letter and card_product.metafields.custom.series_number %}
+                            <div class="flex gap-x-7 justify-between">
+                                <div class="flex-1">
+                                    {% if series.letter and card_product.metafields.custom.series_number %}
+                                        <span class="heading-xs font-bold leading-none hover:underline">
+                                            {{- series.letter -}}-{{ card_product.metafields.custom.series_number }}
+                                        </span>
+                                    {% endif %}
+                                    <h3 id="title-{{ section_id }}-{{ card_product.id }}" class="card__heading{% if show_quick_add_mobile %} w-7/12 pr-2{% endif %}">
+                                        <a href="{{ card_product.url | within: collection }}">
+                                            {{- card_product.title | escape -}}
+                                        </a>
+                                    </h3>
+                                    {% render 'price-plp', product: card_product, price_class: 'card__information-price' %}
+                                </div>
+                                {% if enable_reviews or show_quick_add %}
+                                    <div>
+                                        {% if enable_reviews %}
+                                            <div class="card__reviews text-[#D9D9D9] justify-end">
+                                                {% render 'reviews-rating' %}
+                                            </div>
+                                        {% endif %}
+                                        {%- if show_quick_add -%}
+                                            <product-form class="block mt-3 large:hidden">
+                                                {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                                                    <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}" disabled>
+                                                    <input type="hidden" name="quantity" value="1" disabled>
+                                                        {%- if card_product.has_only_default_variant or variantsAvailable == false -%}
+                                                            <button id="{{ product_form_id }}-submit" type="submit" name="add"
+                                                                class="quick-add__submit quick-add__submit--small button" aria-haspopup="dialog"
+                                                                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                                                aria-live="polite" data-sold-out-message="true" {% if
+                                                                card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                                                                <div class="button__label">
+                                                                    {%- if card_product.selected_or_first_available_variant.available -%}
+                                                                        <span>
+                                                                            {{ 'products.product.add_to_cart' | t }}
+                                                                        </span>
+                                                                        <span class="absolute top-10 left-0">
+                                                                            {{ 'products.product.add_to_cart' | t }}
+                                                                        </span>
+                                                                    {%- else -%}
+                                                                        <span>
+                                                                            {{ 'products.product.sold_out' | t }}
+                                                                        </span>
+                                                                        <span class="absolute top-10 left-0">
+                                                                            {{ 'products.product.sold_out' | t }}
+                                                                        </span>
+                                                                    {%- endif -%}
+                                                                </div>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="white"/>
+                                                                </svg>
+                                                                <span class="sold-out-message hidden">
+                                                                    {{ 'products.product.sold_out' | t }}
+                                                                </span>
+                                                                <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                                        viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                                    </svg>
+                                                                </div>
+                                                            </button>
+                                                        {% else %}
+                                                            <modal-opener data-modal="#QuickAddModal">
+                                                                <button id="{{ product_form_id }}-submit"
+                                                                    class="quick-add__submit quick-add__submit--small button"
+                                                                    type="submit"
+                                                                    name="add"
+                                                                    aria-haspopup="dialog"
+                                                                    aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                                                    data-product-url="{{ card_product.url }}"
+                                                                >
+                                                                    <div class="button__label">
+                                                                        <span>
+                                                                            {{ 'products.product.choose_options' | t }}
+                                                                        </span>
+                                                                        <span class="absolute top-10 left-0">
+                                                                            {{ 'products.product.choose_options' | t }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                        <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                    <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                                            viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                                        </svg>
+                                                                    </div>
+                                                                </button>
+                                                            </modal-opener>
+                                                        {% endif %}
+                                                {%- endform -%}
+                                                <div class="product-form__error-message-wrapper max-w-[10rem]" role="alert" hidden>
+                                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                                        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                                        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                                    </svg>
+                                                    <span class="product-form__error-message"></span>
+                                                </div>
+                                            </product-form>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {% if enable_reviews or series.letter and card_product.metafields.custom.series_number %}
+                            <div class="flex flex-wrap justify-center items-center">
+                                {% if series.letter and card_product.metafields.custom.series_number %}
+                                    <span class="heading-lg font-bold leading-none card_span_heading">
+                                        {{- series.letter -}}-{{ card_product.metafields.custom.series_number }}
+                                    </span>
+                                {% endif %}
+                                {% if enable_reviews %}
+                                    <div class="card__reviews text-[#D9D9D9]">
+                                        {% render 'reviews-rating' %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                   
+
+
+                        <h3 id="title-{{ section_id }}-{{ card_product.id }}" class="card__heading{% if show_quick_add_mobile %} w-7/12 pr-2{% endif %}  text-center flex flex-col items-center">
+                            <a href="{{ card_product.url | within: collection }}">
+                                {{- card_product.title | capitalize -}}
+                            </a>
+                           
+                        </h3>
+                    {% endif %}
+                
+                    {%- if show_vendor -%}
+                        <div class="card__information-vendor">
+                            <span class="hidden">{{ 'accessibility.vendor' | t }}</span>
+                            <span>
+                                {{- card_product.vendor -}}
+                            </span>
+                        </div>
+                    {%- endif -%}
+ {% comment %} 
+                    <div class="flex flex-wrap{% if show_quick_add_mobile %} w-7/1 pr-2{% endif %}">
+                        {% unless right_align_cta %}
+                            <div class="mt-3">
+                                {% render 'price-plp', product: card_product, price_class: 'card__information-price' %}
+                            </div>
+                        {% endunless %}
+                        {% if enable_variant_count and variantsAvailable and card_product.variants.size > 1 %}
+                            <div class="flex flex-wrap gap-1 items-end">
+                                 <span class="ml-1">
+                                  
+                                </span>
+                                {% for variantOptions in card_product.options_with_values  %}
+                                    <span>
+                                       
+                                     
+                                        varaint all value option
+                                      
+                                      {{ variantOptions.values | size }} {{ variantOptions.name | downcase }} {{ 'products.product.options' | t | downcase }}
+                                 
+                                    </span>
+                                {% endfor %}
+                           
+                          </div>
+  
+                        {% endif %}
+                    </div>
+   {% endcomment %} 
+               
+                    {%- if card_product.featured_media == nil -%}
+                        <div class="card__badge card__badge--static">
+                            {%- if card_product.available == false -%}
+                                <span class="badge badge--static">{{ 'products.product.sold_out' | t }}</span>
+                            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+                                <span class="badge badge--static">{{ 'products.product.on_sale' | t }}</span>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+                {%- if show_quick_add and right_align_cta == false -%}
+                    <product-form class="mt-4 large:hidden">
+                        {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                            <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}" disabled>
+                            <input type="hidden" name="quantity" value="1" disabled>
+                                {%- if card_product.has_only_default_variant or variantsAvailable == false -%}
+                                    <button id="{{ product_form_id }}-submit" type="submit" name="add"
+                                        class="quick-add__submit button" aria-haspopup="dialog"
+                                        aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                        aria-live="polite" data-sold-out-message="true" {% if
+                                        card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                                        <div class="button__label">
+                                            {%- if card_product.selected_or_first_available_variant.available -%}
+                                                <span>
+                                                    {{ 'products.product.add_to_cart' | t }}
+                                                </span>
+                                                <span class="absolute top-10 left-0">
+                                                    {{ 'products.product.add_to_cart' | t }}
+                                                </span>
+                                            {%- else -%}
+                                                <span>
+                                                    {{ 'products.product.sold_out' | t }}
+                                                </span>
+                                                <span class="absolute top-10 left-0">
+                                                    {{ 'products.product.sold_out' | t }}
+                                                </span>
+                                            {%- endif -%}
+                                        </div>
+                                        <svg class="mediumMax:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                                        </svg>
+                                        <span class="sold-out-message hidden">
+                                            {{ 'products.product.sold_out' | t }}
+                                        </span>
+                                        <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                {% else %}
+                                    <modal-opener data-modal="#QuickAdd-{{ card_product.id }}">
+                                        <button id="{{ product_form_id }}-submit"
+                                            class="quick-add__submit button"
+                                            type="submit"
+                                            name="add"
+                                            aria-haspopup="dialog"
+                                            aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                                            data-product-url="{{ card_product.url }}"
+                                        >
+                                            <div class="button__label">
+                                                <span>
+                                                    {{ 'products.product.choose_options' | t }}
+                                                </span>
+                                                <span class="absolute top-10 left-0">
+                                                    {{ 'products.product.choose_options' | t }}
+                                                </span>
+                                            </div>
+                                            <svg class="mediumMax:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M7.29289 0.292893C7.68342 -0.0976311 8.31658 -0.0976311 8.70711 0.292893L15.7071 7.29289C16.0976 7.68342 16.0976 8.31658 15.7071 8.70711L8.70711 15.7071C8.31658 16.0976 7.68342 16.0976 7.29289 15.7071C6.90237 15.3166 6.90237 14.6834 7.29289 14.2929L12.5858 9H1C0.447715 9 0 8.55229 0 8C0 7.44772 0.447715 7 1 7H12.5858L7.29289 1.70711C6.90237 1.31658 6.90237 0.683417 7.29289 0.292893Z" fill="currentColor"/>
+                                            </svg>
+                                            <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                    viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </modal-opener>
+                                {% endif %}
+                        {%- endform -%}
+                        <div class="product-form__error-message-wrapper" role="alert" hidden>
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                            </svg>
+                            <span class="product-form__error-message"></span>
+                        </div>
+                    </product-form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{%- endif -%}

@@ -1,0 +1,88 @@
+{% comment %}
+    Renders a collection card
+
+    Accepts:
+    - card_collection: {Object} Collection Liquid object
+    - image: {Object} Image object,
+    - button_text: {Text} Button text,
+    - text_colour: {Text} Text colour
+    - block_length: {Number} Block length
+
+    Usage:
+    {% render 'card-collection' %}
+{% endcomment %}
+
+{% if image %}
+    {% assign card_image = image %}
+{% else %}
+    {% assign card_image = card_collection.featured_image.src %}
+{% endif %}
+
+{% if block_length == 1 or block_length == 2 %}
+    {% assign mediaWidth = 640 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 480 %}
+    {% assign textPaddingClass = 'pt-5 px-5 pb-[1.875rem] medium:py-7 medium:pr-[16.666%] medium:pl-6' %}
+    {% assign aspectRatioClass = 'aspect-4/3' %}
+{% elsif block_length == 3 %}
+    {% assign mediaWidth = 420 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 525 %}
+    {% assign textPaddingClass = 'pt-5 px-5 pb-[1.875rem] medium:pr-1/4 medium:pl-6 medium:pb-7' %}
+    {% assign aspectRatioClass = 'aspect-4/3 medium:aspect-[4/5]' %}
+{% elsif block_length == 4 %}
+    {% assign mediaWidth = 310 %}
+    {% assign mediaWidthRetina = mediaWidth | times: 2 %}
+    {% assign mediaHeight = 310 %}
+    {% assign textPaddingClass = 'pt-5 px-5 pb-[1.875rem] medium:pr-[2.1875rem] medium:pl-6 medium:pb-7' %}
+    {% assign aspectRatioClass = 'aspect-4/3 medium:aspect-square' %}
+{% endif %}
+
+<div class="card-wrapper">
+    <div class="card{% if card_collection.featured_image %} card--media{% endif %} w-full bg-uiLightGrey">
+        {%- if card_collection.featured_image -%}
+            <a href="{{ card_collection.url }}">
+                <div class="media media--hover-effect {{ aspectRatioClass }}">
+                    <img
+                        class="motion-reduce:transition-none"
+                        srcset="{{ card_image | image_url: width: mediaWidth }} 1x, {{ card_image | image_url: width: mediaWidthRetina }} 2x"
+                        src="{{ card_image | image_url: width: mediaWidthRetina }}"
+                        width="{{ mediaWidth }}"
+                        height="{{ mediaHeight }}"
+                        alt="{{ card_collection.title | escape }}"
+                        loading="lazy"
+                    >
+                </div>
+            </a>
+        {%- endif -%}
+        <div class="{{ textPaddingClass }}">
+            {%- unless card_collection.title == blank -%}
+                <h3 class="heading-xs{% if text_colour != blank %} text-{{ text_colour }}{% endif %}">
+                    {%- unless card_collection.url == blank -%}
+                        <a href="{{ card_collection.url }}">
+                    {%- endunless -%}
+                        {{- card_collection.title | escape -}}
+                    {%- unless card_collection.url == blank -%}
+                        </a>
+                    {%- endunless -%}
+                </h3>
+            {%- endunless -%}
+            {%- unless card_collection.description == blank -%}
+                <p class="body-m mt-[0.375rem]{% if text_colour != blank %} text-{{ text_colour }}{% endif %}">
+                    {{- card_collection.description | strip_html | truncatewords: 8 -}}
+                </p>
+            {%- endunless -%}
+            {%- unless card_collection.url == blank -%}
+                <div class="mt-4">
+                    <a href="{{ card_collection.url }}" class="underline{% if text_colour != blank %} text-{{ text_colour }}{% endif %} hover:no-underline">
+                        {% if button_text != blank %}
+                            {{ button_text }}
+                        {% else %}
+                            {{ 'sections.featured_collections.view_more' | t }}
+                        {% endif %}
+                    </a>
+                </div>
+            {%- endunless -%}
+        </div>
+    </div>
+</div>

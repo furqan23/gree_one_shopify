@@ -1,0 +1,304 @@
+{% liquid
+  assign title = section.settings.title
+  assign description = section.settings.description
+%}
+
+<div class="container">
+    <div class="wrap-at-large mt-12 large:mt-20 pt-12 large:pt-20">
+        <div class="wrap grid grid-cols-1 gap-4 text-center">
+            {% if title != blank %}
+                <h2 class="heading-r text-text1">{{ title }}</h2>
+            {% endif %}
+            {% if description != blank %}
+                <p>{{ description }}</p>
+            {% endif %}
+        </div>
+        <div class="relative {% if title or description %}pt-[2.125rem]{% endif %}">
+            {% for block in section.blocks %}
+                {%  liquid
+                    assign title = block.settings.title
+                    assign heading = block.settings.heading
+                    assign image = block.settings.image
+                    assign description = block.settings.description
+                    assign button_label = block.settings.button_label
+                    assign secondary_button_label = block.settings.secondary_button_label
+                    assign button_link = block.settings.button_link
+                    assign series_image = block.settings.series_image
+                   assign color_textt = block.settings.colour_text
+                    assign series_letter = block.settings.series_letter
+                    assign colour = block.settings.colour
+                    assign top_margin = 0.875 | times: forloop.index | plus: 1
+                %}
+
+ <div style="background-image: url('{{ series_image | image_url: width: 2700, height: 600  }}'); 
+            background-size: cover; 
+            background-position: right; 
+            background-repeat: no-repeat;
+                height: 600px; 
+                margin: 0;
+  {% unless forloop.index == 1 %} top: {{ top_margin }}rem;{% endunless %}" 
+  class="sticky{% if forloop.index == 1 %} top-8{% endif %} medium:grid medium:grid-cols-12 medium:p-3.5">
+    <div class="flex justify-end medium:col-span-6 medium:order-2">
+        <div class="relative w-full overflow-hidden">
+         
+            
+           {% if series_image != blank %}
+                <img
+                    class="w-full h-full object-cover mediumMax:aspect-[6/4] medium:aspect-square medium:max-h-[40rem] scale-in js-scale-in"
+                    srcset="{{ series_image | image_url: width: 670, height: 670 }} 1x,
+                            {{ series_image | image_url: width: 1340, height: 1340 }} 2x"
+                    src="{{ series_image | image_url: width: 670, height: 670 }}"
+                    width="670"
+                    height="670"
+                    alt=""
+                    loading="lazy"
+                >
+            {% endif %}  
+          <div style="height: 260px; width: 200px;"></div>
+            {% if series_letter != blank %}
+                <div class="absolute text-uiWhite right-6 bottom-6 medium:left-10 medium:bottom-6 medium:right-auto">
+                    <img
+                        class="xLargeMax:max-w-24"
+                        src="{{ series_letter | image_url: width: 236 }}"
+                        width="236"
+                        height="225"
+                        alt="{{ series_letter.alt }}"
+                        loading="lazy"
+                    >
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mediumMax:p-6 medium:col-span-6 medium:box-border medium:order-1 medium:flex medium:flex-col medium:justify-between medium:px-[4.375rem] medium:py-[3.813rem]">
+        <div class="pb-7">
+            {% if title != blank %}
+                <h2 class="font-Gotham uppercase font-[350] pb-1 text-{{ color_textt | downcase }} add">{{ title }}}</h2>
+            {% endif %}
+            {% if heading != blank %}
+                <p class="heading-r uppercase">{{ heading }}</p>
+            {% endif %}
+        </div>
+        <div class="flex gap-y-6 gap-x-5 mediumMax:flex-wrap">
+            {% if image != blank %}
+                <div class="w-[calc(50%-0.625rem)]">
+                    <img
+                        class="w-full h-full object-cover aspect-4/3"
+                        srcset="{{ image | image_url: width: 180, height: 224 }} 1x,
+                                {{ image | image_url: width: 360, height: 448 }} 2x"
+                        src="{{ image | image_url: width: 180, height: 224 }}"
+                        width="180"
+                        height="224"
+                        alt=""
+                        loading="lazy"
+                    >
+                </div>
+            {% endif %}
+            {% if description != blank %}
+                <p class="w-[calc(50%-0.625rem)] medium:hidden">{{ description }}</p>
+            {% endif %}
+            <div class="w-full">
+                {% if description != blank %}
+                    <p class="pb-4 mediumMax:hidden large:w-5/6">{{ description }}</p>
+                {% endif %}
+                {% if button_label != blank and button_link != blank %}
+                    <a href="{{ button_link }}" class="button button--full-width-mobile">
+                        <div class="button__label">
+                            <span>
+                                {{- button_label | escape -}}
+                            </span>
+                            <span class="absolute top-10 left-0">
+                                {% if secondary_button_label != blank %}
+                                    {{- secondary_button_label -}}
+                                {% else %}
+                                    {{- button_label -}}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+              
+<!--original one  
+                <div style="background-color: {{ colour }};{% unless forloop.index == 1 %} top: {{ top_margin }}rem;{% endunless %}" class="sticky{% if forloop.index == 1 %} top-8{% endif %} medium:grid medium:grid-cols-12 medium:p-3.5">
+                    <div class="flex justify-end medium:col-span-6 medium:order-2">
+                        <div class="relative w-full overflow-hidden">
+                            {% if series_image != blank %}
+                                <img
+                                    class="w-full h-full object-cover mediumMax:aspect-[6/4] medium:aspect-square medium:max-h-[40rem] scale-in js-scale-in"
+                                    srcset="{{ series_image | image_url: width: 670, height: 670 }} 1x,
+                                            {{ series_image | image_url: width: 1340, height: 1340 }} 2x"
+                                    src="{{ series_image | image_url: width: 670, height: 670 }}"
+                                    width="670"
+                                    height="670"
+                                    alt=""
+                                    loading="lazy"
+                                >
+                            {% endif %}
+                            {% if series_letter != blank %}
+                                <div class="absolute text-uiWhite right-6 bottom-6 medium:left-10 medium:bottom-6 medium:right-auto">
+                                    <img
+                                        class="xLargeMax:max-w-24"
+                                        src="{{ series_letter | image_url: width: 236 }}"
+                                        width="236"
+                                        height="225"
+                                        alt="{{ series_letter.alt }}"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mediumMax:p-6 medium:col-span-6 medium:box-border medium:order-1 medium:flex medium:flex-col medium:justify-between medium:px-[4.375rem] medium:py-[3.813rem]">
+                        <div class="pb-7">
+                            {% if title != blank %}
+                                <h2 class="font-Gotham uppercase font-[350] pb-1">{{ title }}</h2>
+                            {% endif %}
+                            {% if heading != blank %}
+                                <p class="heading-r uppercase">{{ heading }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="flex gap-y-6 gap-x-5 mediumMax:flex-wrap">
+                            {% if image != blank %}
+                                <div class="w-[calc(50%-0.625rem)]">
+                                    <img
+                                        class="w-full h-full object-cover aspect-4/3"
+                                        srcset="{{ image | image_url: width: 180, height: 224 }} 1x,
+                                                {{ image | image_url: width: 360, height: 448 }} 2x"
+                                        src="{{ image | image_url: width: 180, height: 224 }}"
+                                        width="180"
+                                        height="224"
+                                        alt=""
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {% endif %}
+                            {% if description != blank %}
+                                <p class="w-[calc(50%-0.625rem)] medium:hidden">{{ description }}</p>
+                            {% endif %}
+                            <div class="w-full">
+                                {% if description != blank %}
+                                    <p class="pb-4 mediumMax:hidden large:w-5/6">{{ description }}</p>
+                                {% endif %}
+                                {% if button_label != blank and button_link != blank %}
+                                    <a href="{{ button_link }}" class="button button--full-width-mobile">
+                                        <div class="button__label">
+                                            <span>
+                                                {{- button_label | escape -}}
+                                            </span>
+                                            <span class="absolute top-10 left-0">
+                                                {% if secondary_button_label != blank %}
+                                                    {{- secondary_button_label -}}
+                                                {% else %}
+                                                    {{- button_label -}}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>--!>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.series-explore.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Explore each series",
+            "label": "t:sections.series-explore.settings.title.label"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "t:sections.series-explore.settings.description.label",
+        },
+    ],
+    "blocks": [
+        {
+            "type": "series",
+            "name": "t:sections.series-explore.blocks.series.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "t:sections.series-explore.blocks.series.settings.title.label"
+                },
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "t:sections.series-explore.blocks.series.settings.heading.label"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.series-explore.blocks.series.settings.image.label"
+                },
+                {
+                    "type": "text",
+                    "id": "description",
+                    "label": "t:sections.series-explore.blocks.series.settings.description.label"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "t:sections.series-explore.blocks.series.settings.button_label.label"
+                },
+                {
+                    "type": "text",
+                    "id": "secondary_button_label",
+                    "label": "t:sections.series-explore.blocks.series.settings.secondary_button_label.label",
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "t:sections.series-explore.blocks.series.settings.button_link.label"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "series_image",
+                    "label": "t:sections.series-explore.blocks.series.settings.series_image.label"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "series_letter",
+                    "label": "t:sections.series-explore.blocks.series.settings.series_letter.label"
+                },
+                 {
+    "type": "image_picker",
+    "id": "background_image",
+    "label": "BG Image"
+},
+               {
+                    "type": "color",
+                    "id": "colour",
+                    "label": "t:sections.series-explore.blocks.series.settings.colour.label"
+                },
+
+              {
+                    "type": "color",
+                    "id": "colour_text",
+                    "label": "Text Color"
+                }
+            ]
+        },
+    ],
+    "presets": [
+        {
+            "name": "t:sections.series-explore.name",
+        }
+    ]
+}
+{% endschema %}

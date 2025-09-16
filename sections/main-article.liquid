@@ -1,0 +1,360 @@
+{{ 'card.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'card.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'blog-post.js' | asset_url }}" defer="defer"></script>
+
+<article class="container" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="flex flex-col large:pt-10">
+        {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when 'featured_image'-%}
+                {%- if article.image -%}
+                    <div class="text-center mediumMax:order-first medium:pb-[4.75rem]" {{ block.shopify_attributes }}>
+                        <div class="medium:wrap">
+                            <div class="large:px-[16.666%]">
+                                <img
+                                    class="scale-in js-scale-in"
+                                    srcset="{{ article.image.src | image_url: width: 723 }} 723w,
+                                    {{ article.image.src | image_url: width: 1156 }} 1156w,
+                                    {{ article.image.src | image_url: width: 1446 }} 1446w,
+                                    {{ article.image.src | image_url: width: 2312 }} 2312w"
+                                    src="{{ article.image.src | image_url: width: 2312 }}"
+                                    sizes="(min-width: 48rem) 66vw, 100vw"
+                                    alt="{{ article.image.src.alt | escape }}"
+                                    class="aspect-4/3 mx-auto"
+                                    width="{{ article.image.width }}"
+                                    height="{{ article.image.height }}"
+                                    loading="eager"
+                                    itemprop="image"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- when 'title'-%}
+                {%- if article.title -%}
+                    <div class="{% if forloop.index != 1 %} py-4 large:py-5{% else %} pb-4{% endif %} pt-6 medium:text-center{% if article.metafields.custom.author_name %} medium:pb-[1.563rem]{% else %} medium:pb-10{% endif %}" {{ block.shopify_attributes }}>
+                        <header class="wrap">
+                            <div class="large:px-[16.666%]">
+                                {%- if block.settings.blog_show_date -%}
+                                    <span class="body-s" itemprop="dateCreated pubdate datePublished">
+                                        {{- article.published_at | date: "%d.%m.%Y" -}}
+                                    </span>
+                                {%- endif -%}
+                                <h1 class="heading-m text-[2.438rem] mt-2.5 medium:w-8/12 medium:mx-auto" itemprop="headline">
+                                    {{- article.title | escape -}}
+                                </h1>
+                            </div>
+                        </header>
+                    </div>
+                {%- endif -%}
+            {%- when 'content'-%}
+                {%- if article.content -%}
+                    <div class="{% if forloop.index != 1 %}pt-14 pb-4 large:pt-0 large:pb-5{% else %} pb-4{% endif %}" {{ block.shopify_attributes }} itemprop="articleBody">
+                        <div class="wrap">
+                            <div class="wysiwyg wysiwyg--article medium:px-[16.666%]">
+                                {{- article.content -}}
+                            </div>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- when 'author'-%}
+                {%- if article.metafields.custom.author_name -%}
+                    <div class="wrap flex body-s uppercase medium:pb-10 large:justify-center">
+                        <p>{{ 'blogs.article.by' | t }}{{ article.metafields.custom.author_name }}</p>
+                    </div>
+                {% endif %}
+            {%- when 'wysiwyg'-%}
+                {%- if block.settings.wysiwyg -%}
+                    <div class="{% if forloop.index != 1 %}py-4 large:py-5{% else %} pb-4 large:pb-5{% endif %}" {{ block.shopify_attributes }} itemprop="author">
+                        <div class="wrap">
+                            <div class="wysiwyg wysiwyg--article medium:px-[16.666%]">
+                                {{- block.settings.wysiwyg -}}
+                            </div>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- when 'image_with_caption'-%}
+                {%- if block.settings.image -%}
+                    <div class="text-center{% if forloop.index != 1 %}py-4 large:py-5{% else %} pb-4 large:pb-5{% endif %}" {{ block.shopify_attributes }}>
+                        <div class="wrap">
+                            <figure class="medium:px-[16.666%] large:px-[33.333%]">
+                                <img
+                                    srcset="{{ block.settings.image.src | image_url: width: 362 }} 362w,
+                                        {{ block.settings.image.src | image_url: width: 482 }} 482w,
+                                        {{ block.settings.image.src | image_url: width: 578 }} 578w,
+                                        {{ block.settings.image.src | image_url: width: 722 }} 722w,
+                                        {{ block.settings.image.src | image_url: width: 724 }} 724w,
+                                        {{ block.settings.image.src | image_url: width: 964 }} 964w,
+                                        {{ block.settings.image.src | image_url: width: 1156 }} 1156w,
+                                        {{ block.settings.image.src | image_url: width: 1444 }} 1444w"
+                                    src="{{ block.settings.image.src | image_url: width: 1444 }}"
+                                    sizes="(min-width: 48rem) 50vw, (min-width: 64rem) 33vw, 100vw"
+                                    alt="{{ block.settings.image.alt | escape }}"
+                                    class="aspect-square"
+                                    width="{{ block.settings.image.width }}"
+                                    height="{{ block.settings.image.height }}"
+                                    loading="lazy"
+                                >
+                                {%- if block.settings.caption -%}
+                                    <figcaption class="body-s mt-4">
+                                        {{- block.settings.caption -}}
+                                    </figcaption>
+                                {%- endif -%}
+                            </figure>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- when 'share' -%}
+                {%- if block.settings.share_label -%}
+                    <div class="{% if forloop.index != 1 %} py-3{% else %} pb-3{% endif %}" {{ block.shopify_attributes }}>
+                        <div class="wrap">
+                            <div class="medium:px-[16.666%]">
+                                <div class="body-l font-semibold mb-1">
+                                    {{- block.settings.share_label -}}
+                                </div>
+                                <ul class="flex flex-wrap justify-start items-center gap-5" role="list">
+                                    <li>
+                                        <a
+                                            class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+                                            href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: article.url }}"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            title="{{ 'general.social.alt_text.share_on_facebook' | t }}"
+                                        >
+                                            {%- render 'icon-facebook' -%}
+                                            <span class="hidden">{{ 'general.social.links.facebook' | t }}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+                                            href="http://twitter.com/share?url={{ request.origin | append: article.url }}"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            title="{{ 'general.social.alt_text.share_on_twitter' | t }}"
+                                        >
+                                            {%- render 'icon-twitter' -%}
+                                            <span class="hidden">{{ 'general.social.links.twitter' | t }}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+                                            href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.origin | append: article.url }}"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            title="{{ 'general.social.alt_text.share_on_linkedin' | t }}"
+                                        >
+                                            {%- render 'icon-linkedin' -%}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary"
+                                            href="whatsapp://send?text={{ request.origin | append: article.url }}"
+                                            data-action="share/whatsapp/share"
+                                            class="social-icon"
+                                            rel="noreferrer"
+                                            title="{{ 'general.social.alt_text.share_on_whatsapp' | t }}"
+                                        >
+                                            {%- render 'icon-whatsapp' -%}
+                                            <span class="hidden">{{ 'general.social.links.whatsapp' | t }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="relative">
+                                        <button class="flex items-center justify-center w-[2.625rem] h-[2.625rem] rounded-full transition-colors duration-300 hover:text-uiWhite hover:bg-primary js-copy-to-clipboard">
+                                            {%- render 'icon-copy-link' -%}
+                                            <span class="hidden">{{ 'general.share.copy_to_clipboard' | t }}</span>
+                                        </button>
+                                        <div class="hidden absolute w-max top-[calc(100%_+_1.0625rem)] py-2 px-2 bg-secondary rounded-[0.1875rem] largeMax:-right-[0.1875rem] large:top-1/2 large:left-[3.4375rem] large:-translate-y-1/2 large:px-4 js-copy-to-clipboard-tooltip">
+                                            <div class="absolute -top-6 inline-block w-4 overflow-hidden largeMax:right-[0.9375rem] largeMax:rotate-90 large:top-[0.3rem] large:-left-[0.85rem]">
+                                                <div class="h-8 bg-secondary -rotate-45 transform origin-top-right"></div>
+                                            </div>
+                                            <p class="text-white body-s">
+                                                {{ 'general.share.success_message' | t }}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endcase -%}
+        {%- endfor -%}
+    </div>
+    <div class="py-3">
+        <div class="wrap">
+            <div class="medium:px-[16.666%]">
+                <a class="button" href="{{ blog.url }}">
+                    <div class="button__label">
+                        <span>
+                            {{- 'blogs.article.back_to_blog' | t: title: blog.title -}}
+                        </span>
+                        <span class="absolute top-10 left-0">
+                            {{- 'blogs.article.back_to_blog' | t: title: blog.title -}}
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    {%- unless article.metafields.related_articles == blank -%}
+        <div class="pt-9 pb-3 large:pt-[3.125rem] large:pb-7">
+            <div class="wrap">
+                <div class="mb-7 large:flex large:justify-between large:items-end large:mb-9">
+                    <h3 class="heading-r">
+                        {{- 'blogs.article.related_articles' | t -}}
+                    </h3>
+                    <a class="link body-l largeMax:hidden" href="{{  blog.url }}">{{- 'blogs.article.view_all_articles' | t -}}</a>
+                </div>
+                <div class="relative medium:grid medium:grid-cols-3 medium:gap-x-5 medium:gap-y-10 large:gap-y-16">
+                    {% for article in article.metafields.related_articles.article %}
+                        {% assign articlePost = articles[article] %}
+                        <div class="mediumMax:mb-10 last-of-type:mb-0">
+                            {%- render 'card-article',
+                                article: articlePost,
+                                show_image: true,
+                                show_date: true,
+                                show_author: false,
+                                show_excerpt: false,
+                                lazy_load: false
+                            -%}
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="link largeMax:body-l largeMax:flex largeMax:justify-center largeMax:mt-10 large:hidden" href="{{  blog.url }}">{{- 'blogs.article.view_all_articles' | t -}}</a>
+            </div>
+        </div>
+    {% endunless %}
+</article>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ request.origin | append: page.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article.image %}
+      "image": [
+        {{ article | image_url: width: article.image.width | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": {{ settings.share_image | image_url: width: settings.share_image.width | prepend: "https:" | json }},
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+</script>
+
+{% schema %}
+{
+    "name": "t:sections.main-article.name",
+    "tag": "div",
+    "class": "section",
+    "blocks": [
+        {
+            "type": "featured_image",
+            "name": "t:sections.main-article.blocks.featured_image.name",
+            "limit": 1
+        },
+        {
+            "type": "title",
+            "name": "t:sections.main-article.blocks.title.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "blog_show_date",
+                    "default": true,
+                    "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+                }
+            ]
+        },
+        {
+            "type": "author",
+            "name": "t:sections.main-article.blocks.author.name",
+            "limit": 1
+        },
+        {
+            "type": "content",
+            "name": "t:sections.main-article.blocks.content.name",
+            "limit": 1
+        },
+        {
+            "type": "wysiwyg",
+            "name": "t:sections.main-article.blocks.wysiwyg.name",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "wysiwyg",
+                    "default": "<p>Lorem ipsum</p>",
+                    "label": "t:sections.main-article.blocks.wysiwyg.settings.wysiwyg.label"
+                }
+            ]
+        },
+        {
+            "type": "image_with_caption",
+            "name": "t:sections.main-article.blocks.image_with_caption.name",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "t:sections.main-article.blocks.image_with_caption.settings.image.label",
+                    "info": "t:sections.main-article.blocks.image_with_caption.settings.image.info"
+                },
+                {
+                    "type": "text",
+                    "id": "caption",
+                    "default": "This is a caption for this image",
+                    "label": "t:sections.main-article.blocks.image_with_caption.settings.caption.label",
+                    "info": "t:sections.main-article.blocks.image_with_caption.settings.caption.info"
+                }
+            ]
+        },
+        {
+            "type": "share",
+            "name": "t:sections.main-article.blocks.share.name",
+            "limit": 2,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "share_label",
+                    "label": "t:sections.main-article.blocks.share.settings.text.label",
+                    "default": "t:sections.main-article.blocks.share.settings.text.default"
+                },
+                {
+                    "type": "paragraph",
+                    "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+                },
+                {
+                    "type": "paragraph",
+                    "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

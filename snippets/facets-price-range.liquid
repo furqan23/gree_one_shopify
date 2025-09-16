@@ -1,0 +1,233 @@
+{% comment %}
+    Renders 'boolean' or 'list' facets for colour/color (filtering)
+
+    Accepts:
+    - idPrefix: {String} DOM `id`
+    - context: {String} Rendering context, `mobile` or `desktop`
+    - contextForloop: {Object} loop context from the parent
+    - filter_type: {String} UI orientation, `vertical` or `horizontal`
+    - filter: {Object} Facet data
+    - uses_comma_decimals: {Boolean} Uses `,` to delimit currency
+{% endcomment %}
+
+{% assign priceDiff = filter.max_value.value | minus: filter.min_value.value %}
+{% assign isActive = false %}
+{% if priceDiff > 0 %}
+    {% assign isActive = true %}
+{% endif %}
+
+<div
+    id="{{ idPrefix }}{{ contextForloop.index }}-{{ section.id }}"
+    {% comment %} `z-index` is higher for this facet to account for 'to' indicator {% endcomment %}
+    class="{% if context == 'desktop' and filter_type == 'horizontal' %}large:relative large:z-20 {% endif %}js-filter"
+    data-index="{{ context }}-{{ contextForloop.index }}"
+>
+    <button
+        type="button"
+        class="w-full py-4 box-border
+            {%- if context == 'desktop' and filter_type == 'horizontal' %} large:p-[0.625rem] large:border large:border-uiMidGrey large:rounded-sm large:bg-uiMidGrey large:[&.is-active]:border-uiBlack large:hover:border-uiBlack{% endif %}"
+        data-facet-accordion-toggle
+        {% if isActive %}
+            aria-label="{{ filter.label }} ({{ 'products.facets.filters_selected.one' | t: count: 1 }})"
+        {% else %}
+            aria-label="{{ filter.label }} ({{ 'products.facets.filters_selected.one' | t: count: 0 }})"
+        {% endif %}
+    >
+        <div class="flex items-center">
+            <span class="mr-2 body-r font-semibold
+                {%- if context == 'desktop' %} large:text-body-r{% endif %}"
+            >
+                {{- filter.label | escape -}}
+            </span>
+            {% if context == 'desktop' and filter_type == 'horizontal' and isActive %}
+                <div class="flex justify-center items-center mr-2 rounded-full w-5 h-5 text-body-xs text-text2 bg-primary">
+                    1
+                </div>
+            {% endif %}
+            <span
+                class="flex justify-center items-center ml-auto transition-transform duration-300 transform bg-uiMidGrey w-[1.3rem] h-[1.3rem] [&.is-active]:-scale-y-100                    {%- if context == 'desktop' and filter_type == 'vertical' %} is-active{% endif %}
+                    {%- if context == 'desktop' and filter_type == 'horizontal' %} large:w-2 large:[&_svg]:w-full large:[&_svg]:h-auto{% endif %}"
+                data-facet-accordion-arrow
+            >
+                {% render 'icon-caret' %}
+            </span>
+        </div>
+    </button>
+    <div
+        id="Facet{{ context | capitalize }}-{{ contextForloop.index }}-{{ section.id }}"
+        class="{%- if context == 'mobile' %}h-0 hidden{% endif %}
+            {%- if context == 'desktop' and filter_type == 'horizontal' %} hidden h-0 large:absolute large:top-auto large:left-0 large:box-border large:mt-1 large:p-4 large:border large:border-uiBlack large:rounded-sm large:w-max large:min-w-full large:bg-uiWhite{% endif -%}"
+        data-facet-accordion
+    >
+        {%- assign min_price_amount = 0 | money | strip_html | escape -%}
+        {%- assign rangeMaxRoundedUp = filter.range_max | divided_by: 100.00 | ceil | times: 100 -%}
+        {%- assign max_price_amount = rangeMaxRoundedUp | money | strip_html | escape -%}
+
+        {%- if uses_comma_decimals -%}
+            {%- assign min_price_amount = min_price_amount | replace: '.', ',' -%}
+            {%- assign max_price_amount = max_price_amount | replace: '.', ',' -%}
+        {%- else -%}
+        {% endif %}
+        <div class="mb-5">
+            <price-range
+                class="block relative w-full h-10 leading-[0]
+                {%- if context == 'desktop' and filter_type == 'horizontal' %} large:w-[11.875rem]{% endif %}"
+            >
+                {% comment %} These variables are used to assist in calculating the range input 'active' area. {% endcomment %}
+                {% liquid
+                    assign filterMax = filter.range_max | divided_by: 100.00
+                    assign filterMin = 0
+                    assign filterFromValue = filter.min_value.value | divided_by: 100.00
+                    assign filterToValue = filter.max_value.value | divided_by: 100.00
+        
+                    assign rangeDecoration = filterMax | minus: filterMin
+                    assign fromPositionDecoration = filterFromValue | minus: filterMin
+                    assign toPositionDecoration = filterToValue | minus: filterMin
+                %}
+
+                {% comment %} Decorative line that the range thumbs sit on - uses linear-gradient to highlight 'active' area. {% endcomment %}
+                <div class="absolute top-[0.625rem] left-0 -translate-y-full w-full h-px bg-uiDarkGrey js-price-range-active-area"
+                    style="background-image: linear-gradient(
+                        to right,
+                        var(--color-uiDarkGrey) 0%,
+                        var(--color-uiDarkGrey) {{ fromPositionDecoration | divided_by: rangeDecoration | times: 100 }}%,
+                        var(--color-primary) {{ fromPositionDecoration | divided_by: rangeDecoration | times: 100 }}%,
+                        var(--color-primary) {% if filter.max_value.value == blank %}100%{% else %}{{ toPositionDecoration | divided_by: rangeDecoration | times: 100 }}%{% endif %},
+                        var(--color-uiDarkGrey) {{ toPositionDecoration | divided_by: rangeDecoration | times: 100 }}%,
+                        var(--color-uiDarkGrey) 100%);
+                    ">
+                </div>
+
+                {% comment %} {% From %} {% endcomment %}
+                <div class="flex items-center absolute top-0 left-0{% if filterFromValue == filterMax %} z-10{% endif %} w-full -translate-y-1/2 hover:z-10">
+                    <label class="sr-only" for="{{ context | capitalize }}-Filter-{{ filter.label | escape }}-GTE">
+                        {{- 'products.facets.from' | t -}}
+                    </label>
+                    <input
+                        name="{{ filter.min_value.param_name }}"
+                        id="{{ context | capitalize }}-Filter-{{ filter.label | escape }}-GTE"
+                        class="appearance-none w-full h-px bg-transparent
+                            [&::-webkit-slider-runnable-track]:appearance-none [&::-webkit-slider-runnable-track]:h-px
+                            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:border-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-none [&::-webkit-slider-thumb]:cursor-pointer
+                            [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:translate-y-2 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:cursor-pointer
+                            js-price-range-from-fake-input js-facet-filters-delay"
+                        {%- if filter.min_value.value -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- else -%}
+                            value="0"
+                        {% endif %}
+                        type="range"
+                        step="0.1"
+                        min="0"
+                        {%- if uses_comma_decimals -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                        {%- else -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                        {% endif %}
+                    >
+                    <input
+                        class="sr-only js-price-range-from-input"
+                        type="number"
+                        tabindex="-1"
+                        {%- if filter.min_value.value -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- else -%}
+                            value="0"
+                        {%- endif -%}
+                        step="0.1"
+                        min="0"
+                        {%- if uses_comma_decimals -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                        {%- else -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                        {% endif %}
+                    >
+                    <div class="sr-only absolute -top-7 p-0.5 border border-uiMidGrey rounded-md text-xs text-center bg-uiWhite pointer-events-none js-price-range-from-indicator" data-js-price-range-indicator="{{- cart.currency.symbol -}}|{% if uses_comma_decimals %},{% else %}.{% endif %}"></div>
+                </div>
+
+                {% comment %} To {% endcomment %}
+                <div class="flex items-center absolute top-0 left-0{% if filterToValue == filterMin %} z-10{% endif %} w-full -translate-y-1/2">
+                    <label class="sr-only" for="{{ context | capitalize }}-Filter-{{ filter.label | escape }}-LTE">
+                        {{- 'products.facets.to' | t -}}
+                    </label>
+                    <input
+                        class="appearance-none w-full h-px bg-transparent
+                            [&::-webkit-slider-runnable-track]:appearance-none [&::-webkit-slider-runnable-track]:h-px
+                            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:border-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-none [&::-webkit-slider-thumb]:cursor-pointer
+                            [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:translate-y-2 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:cursor-pointer
+                            js-price-range-to-fake-input js-facet-filters-delay"
+                        name="{{ filter.max_value.param_name }}"
+                        id="{{ context | capitalize }}-Filter-{{ filter.label | escape }}-LTE"
+                        {%- if filter.max_value.value -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- else -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- endif -%}
+                        type="range"
+                        step="0.1"
+                        min="0"
+                        {%- if uses_comma_decimals -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                        {%- else -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                        {% endif %}
+                    >
+                    <input
+                        class="sr-only js-price-range-to-input"
+                        type="number"
+                        tabindex="-1"
+                        {%- if filter.max_value.value -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- else -%}
+                            {%- if uses_comma_decimals -%}
+                                value="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                            {%- else -%}
+                                value="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                        {%- endif -%}
+                        step="0.1"
+                        min="0"
+                        {%- if uses_comma_decimals -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '.' }}"
+                        {%- else -%}
+                            max="{{ rangeMaxRoundedUp | money_without_currency | replace: ',', '' }}"
+                        {% endif %}
+                    >
+                    <div class="sr-only absolute -top-7 p-0.5 border border-uiMidGrey rounded-md text-xs text-center bg-uiWhite js-price-range-to-indicator" data-js-price-range-indicator="{{- cart.currency.symbol -}}|{% if uses_comma_decimals %},{% else %}.{% endif %}"></div>
+                </div>
+
+                {% comment %} Minimum price {% endcomment %}
+                <p class="absolute bottom-0 left-0">
+                    <span class="sr-only">{{- "products.facets.min_price" | t: price: min_price_amount -}}</span>
+                    <span class="body-r" aria-hidden="true">{{ min_price_amount }}</span>
+                </p>
+
+                {% comment %} Maximum price {% endcomment %}
+                <p class="absolute bottom-0 right-0">
+                    <span class="sr-only">{{- "products.facets.max_price" | t: price: max_price_amount -}}</span>
+                    <span class="body-r" aria-hidden="true">{{ max_price_amount }}</span>
+                </p>
+            </price-range>
+        </div>
+    </div>
+</div>

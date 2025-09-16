@@ -1,0 +1,35 @@
+{{ 'store-locator.css' | asset_url | stylesheet_tag }}
+
+<div class="pt-8 large:pt-10">
+    <div class="container">
+        <div class="wrap">
+            <div class="large:grid large:grid-cols-12 large:gap-x-5">
+                <div class="large:col-span-10{% if section.settings.centre_align_content %} large:col-start-2 xLarge:col-start-3{% endif %} xLarge:col-span-8">
+                    <h1 class="heading-m{% if section.settings.centre_align_content %} text-center{% endif %}">
+                        {{ page.title | escape }}
+                    </h1>
+                    {%- if page.content != blank -%}
+                        <div class="wysiwyg mt-4{% if section.settings.centre_align_content %} text-center{% endif %} xLarge:mt-7">
+                            {{ page.content }}
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.main-page.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "centre_align_content",
+            "label": "t:sections.main-page.settings.centre_align_content.label"
+        }
+    ]
+}
+{% endschema %}

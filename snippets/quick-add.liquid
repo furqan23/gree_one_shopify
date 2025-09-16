@@ -1,0 +1,21 @@
+{% comment %}
+    Renders quick add modal
+    Usage:
+    {% render 'quick-add' %}
+{% endcomment %}
+<quick-add-modal id="QuickAddModal" class="quick-add-modal">
+    <div class="modal-overlay js-modal-overlay"></div>
+    <div class="quick-add-modal__content global-settings-popup bg-uiWhite transition duration-300 mediumMax:translate-y-full mediumMax:[.is-active_&]:translate-y-0 medium:translate-x-full medium:[.is-active_&]:translate-x-0 [.is-active_&]:delay-200"
+        role="dialog"
+        aria-label="{{ 'products.product.choose_product_options' }}"
+        aria-modal="true"
+        tabindex="-1"
+    >
+        <button id="ModalClose-QuickAdd" type="button" class="group absolute top-4 right-4 w-12 h-12 flex justify-center items-center transition-transform duration-300 hover:rotate-90 js-close-mini-cart" aria-label="{{ 'accessibility.close' | t }}">
+            <span class="max-w-3 text-primary [&>svg]:w-full group-hover:text-uiGrey">
+                {% render 'icon-close' %}
+            </span>
+        </button>
+        <div id="QuickAddModalContent"></div>
+    </div>
+</quick-add-modal>

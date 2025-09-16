@@ -1,0 +1,147 @@
+{% assign upsell_product = all_products[settings.mini_cart_upsell_product] %}
+{% assign series = upsell_product.metafields.custom.series.value %}
+{% if upsell_product != empty and upsell_product.available and cart != empty %}
+    <div class="mt-16 pt-4 border-t border-uiBlack pb-12">
+        {%  if settings.mini_cart_upsell_title %}
+            <h3 class="body-l mb-4">
+                {{ settings.mini_cart_upsell_title }}
+            </h3>
+        {% endif %}
+        {%  if upsell_product %}
+            <div class="cart-notification-product__item-row cart-notification-product__item-row--between">
+                <div class="flex gap-x-4 items-center">
+                    <div class="cart-notification-product__image">
+                        <img
+                            src="{{ upsell_product.featured_image | image_url: width: 150, height: 150 }}"
+                            alt="{{ upsell_product.featured_image.alt | escape }}"
+                            width="150"
+                            height="150"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="cart-notification-product__content">
+                        <h3 class="cart-notification-product__name heading-xs">
+                            <a class="hover:underline" href="{{ upsell_product.url }}">
+                                {% if series.letter and upsell_product.metafields.custom.series_number %}
+                                    {{- series.letter -}}-{{ upsell_product.metafields.custom.series_number }}
+                                {% else %}
+                                    {{ upsell_product.title | escape }}
+                                {% endif %}    
+                            </a>
+                        </h3>
+                        <dl>
+                            {%- unless upsell_product.has_only_default_variant -%}
+                                {%- for option in upsell_product.options_with_values -%}
+                                    <div class="product-option">
+                                        <dd>
+                                            {{ option.value }}
+                                            {% if forloop.last != true %}
+                                                |
+                                            {% endif %}
+                                        </dd>
+                                    </div>
+                                {%- endfor -%}
+                            {%- endunless -%}
+                        </dl>
+                        {% if upsell_product.selling_plan_allocation.selling_plan.name != blank %}
+                            <dl class="pt-1">
+                                <dt>
+                                    {{ upsell_product.selling_plan_allocation.selling_plan.name }}
+                                </dt>
+                            </dl>
+                        {% endif %}
+                        <div>
+                            {%- if upsell_product.compare_at_price -%}
+                                <dl class="cart-notification-product__price">
+                                    <dt class="visually-hidden">
+                                        {{- 'sections.cart_notification.regular_pricing' | t -}}
+                                    </dt>
+                                    <dd>
+                                    <s>
+                                        {{ upsell_product.price | money }}
+                                    </s>
+                                    </dd>
+                                    <dt class="visually-hidden">
+                                        {{- 'sections.cart_notification.sale_pricing' | t -}}
+                                    </dt>
+                                    <dd>
+                                        {{ upsell_product.compare_at_price | money }}
+                                    </dd>
+                                </dl>
+                            {%- else -%}
+                                <span class="body-m">
+                                    {{ upsell_product.price | money }}
+                                </span>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <product-form>
+                        {%- form 'product', upsell_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                            <input type="hidden" name="id" value="{{ upsell_product.selected_or_first_available_variant.id }}" disabled>
+                            <input type="hidden" name="quantity" value="1" disabled>
+                                {%- if upsell_product.has_only_default_variant or variantsAvailable == false -%}
+                                    <button id="{{ product_form_id }}-submit" type="submit" name="add"
+                                        class="button" aria-haspopup="dialog"
+                                        aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ upsell_product.id }}"
+                                        aria-live="polite" data-sold-out-message="true" {% if
+                                        upsell_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                                        <span>
+                                            {%- if upsell_product.selected_or_first_available_variant.available -%}
+                                                {{ 'sections.cart_notification.add' | t }}
+                                            {%- endif -%}
+                                        </span>
+                                        <span class="sold-out-message hidden">
+                                            {{ 'products.product.sold_out' | t }}
+                                        </span>
+                                        <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                {% else %}
+                                    <modal-opener data-modal="#QuickAdd-{{ upsell_product.id }}">
+                                        <button id="{{ product_form_id }}-submit"
+                                            class="button"
+                                            type="submit"
+                                            name="add"
+                                            aria-haspopup="dialog"
+                                            aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ upsell_product.id }}"
+                                            data-product-url="{{ upsell_product.url }}"
+                                        >
+                                            <div class="button__label">
+                                                <span>
+                                                    {{ 'products.product.choose_options' | t }}
+                                                </span>
+                                                <span class="absolute top-10 left-0">
+                                                    {{ 'products.product.choose_options' | t }}
+                                                </span>
+                                            </div>
+                                            <div class="loading-overlay__spinner absolute left-0 right-0 mx-auto hidden">
+                                                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                                                    viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </modal-opener>
+                                {% endif %}
+                        {%- endform -%}
+                        <div class="product-form__error-message-wrapper" role="alert" hidden>
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                            </svg>
+                            <span class="product-form__error-message"></span>
+                        </div>
+                    </product-form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

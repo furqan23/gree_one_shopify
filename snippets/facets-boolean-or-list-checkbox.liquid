@@ -1,0 +1,87 @@
+{% comment %}
+    Renders 'boolean' or 'list' facets (filtering)
+
+    Accepts:
+    - idPrefix: {String} DOM `id`
+    - context: {String} Rendering context, `mobile` or `desktop`
+    - contextForloop: {Object} loop context from the parent
+    - filter: {Object} Facet data
+{% endcomment %}
+
+<div
+    id="{{ idPrefix }}{{ contextForloop.index }}-{{ section.id }}"
+    class="{%if context == 'desktop' %}large:relative large:z-10 {% endif %}js-filter"
+    data-index="{{ context }}-{{ contextForloop.index }}"
+>
+    <button
+        type="button"
+        class="w-full py-4 box-border
+            {%- if context == 'desktop' %} large:p-[0.625rem] large:border large:border-uiMidGrey large:rounded-sm large:bg-uiMidGrey large:[&.is-active]:border-uiBlack large:hover:border-uiBlack{% endif %}"
+        data-facet-accordion-toggle
+        aria-label="{{ filter.label }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
+    >
+        <div class="flex items-center">
+            <span class="mr-2 body-r font-semibold
+                {%- if context == 'desktop' %} large:text-body-r{% endif %}"
+            >
+                {{- filter.label | escape -}}
+            </span>
+            {% if context == 'desktop' and filter.active_values.size > 0 %}
+                <div class="flex justify-center items-center mr-2 rounded-full w-5 h-5 text-body-xs text-text2 bg-primary">
+                    {{ filter.active_values.size }}
+                </div>
+            {% endif %}
+            <span
+                class="flex justify-center items-center ml-auto transition-transform duration-300 transform bg-uiMidGrey w-[1.3rem] h-[1.3rem] [&.is-active]:-scale-y-100
+                    {%- if context == 'desktop' %} large:w-2 large:[&_svg]:w-full large:[&_svg]:h-auto{% endif %}"
+                data-facet-accordion-arrow
+            >
+                {% render 'icon-caret' %}
+            </span>
+        </div>
+    </button>
+    <div
+        id="Facet{{ context | capitalize }}-{{ contextForloop.index }}-{{ section.id }}"
+        class="h-0 -mt-2 hidden
+            {%- if context == 'desktop' %} large:absolute large:top-auto large:left-0 large:box-border large:mt-1 large:py-3 large:pl-3 large:border large:border-uiBlack large:rounded-sm large:w-max large:min-w-full large:bg-uiWhite{% endif -%}"
+        data-facet-accordion
+    >
+        <ul class="inline-flex flex-col flex-wrap gap-6 medium:gap-4
+            {%- if context == 'mobile' %} mb-5{% else %} large:flex large:gap-x-0 large:gap-y-2 large:max-h-[11.875rem]{% endif %}"
+            role="list"
+        >
+            {%- for value in filter.values -%}
+                <li{% if context == 'desktop' %} class="large:mr-4"{% endif %}>
+                    <label
+                        class="relative flex items-center cursor-pointer
+                        {%- if value.count == 0 and value.active == false %} pointer-events-none opacity-30{% endif %}"
+                        for="Filter-{{ filter.label | escape }}-{{ context }}-{{ forloop.index }}">
+                        <input
+                            id="Filter-{{ filter.label | escape }}-{{ context }}-{{ forloop.index }}"
+                            class="peer appearance-none"
+                            type="checkbox"
+                            name="{{ value.param_name }}"
+                            value="{{ value.value }}"
+                            {% if value.active %}checked{% endif %}
+                            {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                        >
+                        <svg
+                            class="icon icon-checkmark invisible absolute top-[0.4rem] left-[.3rem] w-2 h-auto stroke-uiWhite
+                                {%- if context == 'desktop' %} large:top-[0.4375rem] large:left-[0.3125rem] large:w-[0.625rem] {% endif %}
+                                peer-checked:visible"
+                            width="1.1rem" height="0.7rem" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="box-border shrink-0 mr-2 bg-uiMidGrey w-[1.125rem] h-[1.125rem]
+                            {%- if context == 'desktop' %} large:w-5 large:h-5 {% endif %}
+                            peer-checked:bg-primary peer-focus:outline"></div>
+                        <span class="body-r{% if context == 'desktop' %} large:text-body-s{% endif %}">
+                            {{ value.label | escape }} ({{ value.count }})
+                        </span>
+                    </label>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</div>

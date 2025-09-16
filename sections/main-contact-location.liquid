@@ -1,0 +1,98 @@
+{% if section.settings.map_api_key != blank or section.settings.address != blank %}
+    <div class="container">
+        <div class="wrap">
+            <div class="py-[1.875rem] grid grid-cols-4 gap-y-8 large:grid-cols-12 large:gap-y-0 large:gap-x-5 large:py-[2.5rem] large:items-center">
+                {% if section.settings.map_api_key != blank
+                    and section.settings.map_latitude != blank
+                    and section.settings.map_longitude != blank
+                %}
+                    <div class="col-span-4 large:col-span-6">
+                        <div class="relative aspect-4/3">
+                            <google-map
+                                id="contact-map"
+                                class="absolute top-0 left-0 w-full h-full"
+                                data-map-key="{{ section.settings.map_api_key }}"
+                                data-map-lat="{{ section.settings.map_latitude }}"
+                                data-map-long="{{ section.settings.map_longitude }}"
+                            />
+                        </div>
+                    </div>
+                {% endif %}
+                {% if section.settings.address_title != blank
+                    or section.settings.address != blank
+                    or section.settings.directions != blank
+                %}
+                    <div class="col-span-4 large:col-span-5 large:col-start-8">
+                        {% if section.settings.address_title != blank %}
+                            <h2 class="heading-r">
+                                {{- section.settings.address_title -}}
+                            </h2>
+                        {% endif %}
+                        {% if section.settings.address != blank %}
+                            <address class="body-l not-italic mt-4">
+                                {{- section.settings.address -}}
+                            </address>
+                        {% endif %}
+                        {% if section.settings.directions != blank %}
+                            <div class="mt-8">
+                                <a href="{{ section.settings.directions }}" class="button" target="_blank">
+                                    {{- 'templates.contact.get_directions' | t -}}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "t:sections.main-contact-location.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "t:sections.main-contact-location.settings.header__1.content"
+        },
+        {
+            "type": "text",
+            "id": "map_api_key",
+            "default": "#",
+            "label": "t:sections.main-contact-location.settings.map_api_key.label"
+        },
+        {
+            "type": "text",
+            "id": "map_latitude",
+            "default": "-34.397",
+            "label": "t:sections.main-contact-location.settings.map_latitude.label"
+        },
+        {
+            "type": "text",
+            "id": "map_longitude",
+            "default": "150.644",
+            "label": "t:sections.main-contact-location.settings.map_longitude.label"
+        },
+        {
+            "type": "text",
+            "id": "address_title",
+            "default": "Where to find us",
+            "label": "t:sections.main-contact-location.settings.address_title.label"
+        },
+        {
+            "type": "richtext",
+            "id": "address",
+            "default": "<p>Address line 1<br>Address line 2<br>City<br>Postcode</p>",
+            "label": "t:sections.main-contact-location.settings.address.label"
+        },
+        {
+            "type": "text",
+            "id": "directions",
+            "default": "https://www.google.com/maps/@-34.397,150.644,14z?hl=en-GB",
+            "label": "t:sections.main-contact-location.settings.directions.label"
+        }
+    ]
+}
+{% endschema %}

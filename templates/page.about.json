@@ -1,0 +1,385 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "text_over_media_zLHa7Q": {
+      "type": "text-over-media",
+      "blocks": {
+        "heading_L7DwNw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner"
+          }
+        },
+        "text_3mPpKD": {
+          "type": "text",
+          "settings": {
+            "text": "Lorem ipsum dolor  felis sapien, eleifend nec dapibus vel, facilisis dignissim turpis."
+          }
+        }
+      },
+      "block_order": [
+        "heading_L7DwNw",
+        "text_3mPpKD"
+      ],
+      "disabled": true,
+      "settings": {
+        "remove_margin": true,
+        "center_align_text": false,
+        "small_height": false,
+        "image": "shopify://shop_images/16_9_DESKTOP.png",
+        "mobile_image": "shopify://shop_images/1_1_MOBILE_2.png",
+        "video": "",
+        "mobile_video": "",
+        "color_scheme": "background1",
+        "text_color": "text1",
+        "button_style": "primary"
+      }
+    },
+    "heading_and_text_grid_8UXXA3": {
+      "type": "heading-and-text-grid",
+      "blocks": {
+        "heading_JU66P9": {
+          "type": "heading",
+          "settings": {
+            "large_heading": false,
+            "heading": "IN THE PERSUIT OF THE MOST ADVANCED AND MODERN SCIENTIFIC SKINCARE"
+          }
+        }
+      },
+      "block_order": [
+        "heading_JU66P9"
+      ],
+      "disabled": true,
+      "settings": {
+        "center_align_text": false,
+        "two_column": false,
+        "fuller_width": true,
+        "color_scheme": "transparent",
+        "text_colour": "text1",
+        "button_style": "primary"
+      }
+    },
+    "content_cta_and_media_grid_EgCRMT": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "image_heading_EX8hcm": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 440
+          }
+        },
+        "text_eDYRRq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>“Each product has been thoughtfully crafted to address the unique needs of every skin type, with a science-driven approach for healthy skin. Embrace the complexity; trust in results.\"<br/></p><p><em>Riyadh - Founder & CEO </em></p><p>Tursian Skincare was born from a simple belief: <strong>skin is complex, and our products should be too</strong>—but in the best possible way. Instead of overwhelming your routine with unnecessary steps, we created high performance, clinically studied and proven formulation, that work harder, so you don’t have to.</p><p>This journey has been three years in the making—but in truth, it started long before that. With a background in <strong>pharmaceutical science</strong> and a passion for skincare, I’ve spent years traveling the world, discovering the most advanced ingredients and the cultures that have mastered the art of skin health. Tursian is the result of those experiences: a fusion of cutting-edge science, meticulous craftsmanship, and the highest allowable concentrations of active ingredients like <strong>peptides, stem cells, algae, and next-generation bioactive</strong>.</p><p>Power by over 322+ globally sourced active ingredients-more than any other brand on the market. Each ingredient has been meticulously selected for their efficacy in addressing universal beauty concerns, from hydration, Pigmentation, blemishes to better aging. Through our products, your skin can experience the richness of the world's most prized element, without ever leaving home.</p><p>I believe skincare should be both <strong>effective and a pleasure to use</strong>. Every product is crafted with intention—formulated to deliver visible results while feeling indulgent on the skin. From the intelligent layering of actives to our commitment to refillable packaging, every detail is thoughtfully designed. Because great skincare is about more than just results—it’s about the experience, too.<br/><br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "image_heading_EX8hcm",
+        "text_eDYRRq"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/RS_Picture.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_ktjHik": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_xUDMPh": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "More Than 322+ Active Ingredients from Around the World"
+          }
+        },
+        "image_heading_JJ8xkc": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_qjEFEf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_QP7BLY": {
+          "type": "button",
+          "settings": {
+            "button_label": "EXPLORE INGREDIENTS",
+            "secondary_button_label": "EXPLORE INGREDIENTS",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_xUDMPh",
+        "image_heading_JJ8xkc",
+        "text_qjEFEf",
+        "button_QP7BLY"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/1_1_MOBILE_2.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_3X4YRa": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_HVTCtC": {
+          "type": "heading",
+          "settings": {
+            "heading": "CLINICALLY PROVEN"
+          }
+        },
+        "image_heading_7reGWc": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_93FLdj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_hVqxaA": {
+          "type": "button",
+          "settings": {
+            "button_label": "The science",
+            "secondary_button_label": "The science",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_HVTCtC",
+        "image_heading_7reGWc",
+        "text_93FLdj",
+        "button_hVqxaA"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/1_1_MOBILE_2.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_NCyimE": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_CJpedp": {
+          "type": "heading",
+          "settings": {
+            "heading": "More Than 322+ Active Ingredients from Around the World"
+          }
+        },
+        "image_heading_NCqHmb": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_a9WrNg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>"
+          }
+        },
+        "button_t8YUcF": {
+          "type": "button",
+          "settings": {
+            "button_label": "EXPLORE INGREDIENTS",
+            "secondary_button_label": "EXPLORE INGREDIENTS",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_CJpedp",
+        "image_heading_NCqHmb",
+        "text_a9WrNg",
+        "button_t8YUcF"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/1_1_MOBILE_2.png",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "media_grid_xUEUxd": {
+      "type": "media-grid",
+      "blocks": {
+        "item_BaCNJN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Media_sizes_-_Desktop.png",
+            "video_url": "",
+            "embed_url": "",
+            "heading": "INNOVATIVE ENCAPSULATION TECHNOLOGY",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>",
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        },
+        "item_kzRg4K": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Media_sizes_-_Desktop.png",
+            "video_url": "",
+            "embed_url": "",
+            "heading": "OUR COMMITMENT TO CLEAN BEAUTY",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. Pellentesque facilisis magna ut bibendum ultrices. Phasellus dignissim velit dapibus, hendrerit lectus non, pulvinar purus. </p>",
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_BaCNJN",
+        "item_kzRg4K"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Media grid",
+        "show_title": false,
+        "description": "<p>Lorem ipsum dolor sit amet.</p>",
+        "show_description": false,
+        "text_colour": "text1",
+        "button_style": "primary",
+        "controls_color": "primary",
+        "background_color": "secondary"
+      }
+    },
+    "video_ceKcnF": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "heading": "What we belive in",
+        "video_url": "",
+        "embed_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "max_width": false
+      }
+    },
+    "accordion_himENy": {
+      "type": "accordion",
+      "blocks": {
+        "collapsible_row_pwD8xH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "CLEAN",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. </p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_VMTbxr": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "SCIENTIFIC",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. </p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_dkWyYU": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "MODERN",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. </p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_UJfmpU": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "DESIGN FOCUSSED",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. </p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        },
+        "collapsible_row_rcbdwi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "EXCELLENCE",
+            "icon": "none",
+            "row_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis eros ut metus blandit, a vehicula libero convallis. Fusce sed quam sit amet dolor suscipit iaculis non a ipsum. </p>",
+            "page": "",
+            "ingredients_list": []
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_pwD8xH",
+        "collapsible_row_VMTbxr",
+        "collapsible_row_dkWyYU",
+        "collapsible_row_UJfmpU",
+        "collapsible_row_rcbdwi"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "supporting_text": "",
+        "center_align_text": false,
+        "open_first_collapsible_row": false
+      }
+    },
+    "custom_liquid_8UPnUY": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n    .containerdv {\n      display: flex;\n      flex-wrap: wrap;\n      justify-content: space-between;\n      gap: 50px;\n      max-width: 94vw;\n      margin: 0 auto;\n      margin-left:50px;\nmargin-bottom:30px;\n    }\n\n    .text-content {\n      flex: 1 1 50%;\n      min-width: 300px;\n    }\n\n    .image-content {\n      flex: 1 1 20%;\n      min-width:280px;\n      display: flex;\n      flex-direction: column;\n      align-items: flex-start;\n      margin-right:40px;\n    }\n\n    h1 {\n      text-align: left;\n      margin-bottom: 40px;\n      font-size: 2em;\nmargin-left:50px;\n    }\n\n    .bold {\n      font-weight: bold;\n    }\n\n    .highlight {\n      font-weight: bold;\n      color: #000;\n    }\n\n    blockquote {\n      margin-top: 30px;\n      font-style: italic;\n      border-left: 0px solid #ccc;\n      padding-left: 16px;\n    }\n\n    .ceo-name {\n      font-weight: bold;\n      margin-top: 10px;\n    }\n\n\n\n    @media (max-width: 768px) {\n      .container {\n        flex-direction: column;\n        gap: 20px;\nmargin-left: 0px;\n      }\n\n      h1 {\n        font-size: 1.6em;\n      }\n.image-content{\nmargin-right:0px;\n}\n    }\n  </style>\n</head>\n<body>\n  <h1>About Us</h1>\n  <div class=\"containerdv\">\n    <div class=\"text-content\">\n      <p>At <span class=\"bold\">Tursian</span>, we believe that true luxury means clinically effective skincare—rooted in science, driven by results, and elevated through global ingredient discovery. I’m Riyadh Swedaan, Founder and CEO. With a background in pharmaceuticals, I’ve spent years studying how powerful ingredients can transform skin when used at the right concentrations. For me, it was never just about what ingredients are included—but how much of them is used, and whether they can truly deliver change.</p>\n      <br>\n      <p>My passion for formulation was deeply influenced by my mentor and partner, Brandon Truaxe. Together, we traveled across five continents, uncovering both cutting-edge scientific innovations and time-honored natural ingredients. These journeys sparked the vision for <span class=\"bold\">Tursian</span>: to create a brand that fuses global inspiration with rigorous pharmaceutical standards.</p>\n      <br>\n      <p><span class=\"bold\">Tursian</span> products are powered by over <span class=\"highlight\">322 high-performance, high concentration, active ingredients</span>—sourced globally to target specific skin concerns, from hydration to cellular regeneration and better aging. Every formula is developed with purpose and precision—guided by clinical evidence, not marketing trends.</p>\n      <br>\n      <p>Our goal is simple: <span class=\"highlight\">to give you skincare rooted in science - that works.</span> Not in theory, but in real, visible results. At <span class=\"bold\">Tursian</span>, every ingredient tells a story. And every product exists to support your skin’s long-term health, energy, and glow.</p>\n      <br>\n      <p>Welcome to <span class=\"bold\">Tursian</span>—where science meets skin, and every formula is designed to perform.</p>\n    </div>\n\n    <div class=\"image-content\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0844/4670/7990/files/RS_Picture.png\" alt=\"Riyadh Swedaan with Tursian products\" />\n      <blockquote>\n        “I formulate with purpose—and without compromise. I believe high-performance skincare begins with what we leave out just as much as what we put in. That is why I choose to formulate with science not trends. Just what your skin truly needs—at the highest allowable concentrations, clinically backed, globally sourced, and designed to deliver real results”.\n        <div class=\"ceo-name\">Riyadh Swedaan, Founder and CEO</div>\n      </blockquote>\n    </div>\n  </div>\n</body>\n</html>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "text_over_media_zLHa7Q",
+    "heading_and_text_grid_8UXXA3",
+    "content_cta_and_media_grid_EgCRMT",
+    "content_cta_and_media_grid_ktjHik",
+    "content_cta_and_media_grid_3X4YRa",
+    "content_cta_and_media_grid_NCyimE",
+    "media_grid_xUEUxd",
+    "video_ceKcnF",
+    "accordion_himENy",
+    "custom_liquid_8UPnUY"
+  ]
+}

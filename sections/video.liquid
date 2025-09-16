@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="wrap">
+        <div class="pt-12 large:pt-20{% if section.settings.max_width %} max-w-5xl mx-auto{% endif %}">
+            {%- unless section.settings.heading == blank -%}
+                <div class="mb-9 large:mb-11">
+                    <h2 class="heading-r text-[2.125rem] leading-10 w-3/5 large:text-5xl">
+                        {{- section.settings.heading -}}
+                    </h2>
+                </div>
+            {%- endunless -%}
+            {%- if section.settings.video_url != blank or section.settings.embed_url.id != blank -%}
+                {%- if section.settings.video_url != blank -%}
+                    <video class="object-cover w-full h-full js-lazy-video"
+                        width="858"
+                        height="858"
+                        autoplay
+                        playsinline
+                        muted
+                        loop
+                        {% unless section.settings.video_poster == blank %}
+                            poster="{{ section.settings.video_poster | image_url: width: 1715 }}"
+                        {% endunless %}
+                        {% unless section.settings.video_url == blank %}
+                            data-video-url="{{ section.settings.video_url }}"
+                        {% endunless %}
+                    />
+                {%- else -%}
+                    <deferred-media class="deferred-media relative aspect-video" data-media-id="{{ section.settings.embed_url.id }}">
+                        <button
+                            id="Deferred-Poster-Modal-{{ section.settings.embed_url.id }}"
+                            class="deferred-media__poster media"
+                            type="button"
+                        >
+                            {%- if section.settings.cover_image != blank -%}
+                                <img srcset="{{ section.settings.cover_image | image_url: width: 723 }} 723w,
+                                    {{ section.settings.cover_image | image_url: width: 1446 }} 1446w,
+                                    {{ section.settings.cover_image | image_url: width: 1734 }} 1734w
+                                    {{ section.settings.cover_image | image_url: width: 3468 }} 3468w"
+                                    src="{{ section.settings.cover_image | image_url: width: 1734 }}"
+                                    sizes="100vw"
+                                    alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+                                    loading="lazy"
+                                    width="{{ section.settings.cover_image.width }}"
+                                    height="{{ section.settings.cover_image.height }}"
+                                >
+                            {%- else -%}
+                                {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                            {%- endif -%}
+                            <span class="deferred-media__poster-button">
+                                {%- render 'icon-play' -%}
+                            </span>
+                        </button>
+                        <template>
+                            {%- if section.settings.embed_url.type == 'youtube' -%}
+                                <iframe src="https://www.youtube.com/embed/{{ section.settings.embed_url.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+                            {%- else -%}
+                                <iframe src="https://player.vimeo.com/video/{{ section.settings.embed_url.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+                            {%- endif -%}
+                        </template>
+                    </deferred-media>
+                {%- endif -%}
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.video.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "default": "Video",
+            "label": "t:sections.video.settings.heading.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "cover_image",
+            "label": "t:sections.video.settings.cover_image.label"
+        },
+        {
+            "type": "text",
+            "id": "video_url",
+            "label": "t:sections.video.settings.video_url.label",
+            "info": "t:sections.video.settings.video_url.info"
+        },
+        {
+            "type": "video_url",
+            "id": "embed_url",
+            "accept": [
+                "youtube",
+                "vimeo"
+            ],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "label": "t:sections.video.settings.embed_url.label",
+            "info": "t:sections.video.settings.embed_url.info"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "t:sections.video.settings.description.label",
+            "info": "t:sections.video.settings.description.info"
+        },
+        {
+            "type": "checkbox",
+            "id": "max_width",
+            "label": "t:sections.video.settings.max_width.label",
+            "info": "t:sections.video.settings.max_width.info"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.video.presets.name"
+        }
+    ]
+}
+{% endschema %}

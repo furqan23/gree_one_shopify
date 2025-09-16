@@ -1,0 +1,75 @@
+{% if section.blocks.size > 0 %}
+    <text-icon-carousel class="block overflow-hidden">
+        <div class="pt-12 large:pt-20">
+            <div class="container">
+                <div class="wrap">
+                    {% if section.settings.title != blank %}
+                        <h2 class="font-Gotham font-[350] uppercase mb-3.5 medium:mb-10 medium:text-[1.125rem]">{{ section.settings.title }}</h2>
+                    {% endif %}
+                    <ul class="flex flex-col gap-y-0.5 medium:flex-row medium:flex-wrap medium:gap-y-[3.125rem]">
+                        {%- for item in section.blocks -%}
+                            {% if item.type == 'item' %}
+                                <li class="box-border flex items-center h-full gap-1.5 medium:w-1/3 medium:pr-2">
+                                    {% unless item.settings.icon == blank %}
+                                        <img
+                                            class="mr-1.5 mediumMax:w-[3.375rem]"
+                                            srcset="{{ item.settings.icon | image_url: width: 70 }} 1x, {{ item.settings.icon | image_url: width: 140 }} 2x"
+                                            src="{{ item.settings.icon | image_url: width: 70 }}"
+                                            width="70"
+                                            height="70"
+                                            alt=""
+                                            loading="lazy"
+                                        >
+                                    {% endunless %}
+                                    {% unless item.settings.text == blank %}
+                                        <div class="wysiwyg text-[0.813rem] font-semibold">
+                                            {{ item.settings.text }}
+                                        </div>
+                                    {% endunless %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </text-icon-carousel>
+{% endif %}
+
+{% schema %}
+{
+    "tag": "section",
+    "name": "t:sections.text-icon-carousel.name",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.text-icon-carousel.settings.title.label"
+        },
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "t:sections.text-icon-carousel.blocks.item.label",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "t:sections.text-icon-carousel.blocks.item.settings.text.label"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "t:sections.text-icon-carousel.blocks.item.settings.icon.label",
+                    "info": "t:sections.text-icon-carousel.blocks.item.settings.icon.info"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.text-icon-carousel.name"
+        }
+    ]
+}
+{% endschema %}

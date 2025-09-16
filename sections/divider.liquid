@@ -1,0 +1,50 @@
+<div class="{% unless section.settings.disable_margins %}mt-12 large:mt-20{% endunless %}">
+    <div class="container">
+        <div class="wrap">
+            <span aria-hidden="true" role="presentation" class="block h-px w-full bg-text1{% if section.settings.cross_divider %} hidden{% endif %}"></span>
+            {% if section.settings.cross_divider %}
+                <div class="flex justify-between">
+                    <div class="relative">
+                        <span aria-hidden="true" role="presentation" class="block h-px w-2.5 bg-text1 absolute top-2.5 large:w-5 large:top-[1.125rem]"></span>
+                        <span aria-hidden="true" role="presentation" class="block h-5 w-px bg-text1 large:h-9"></span>
+                    </div>
+                    <div class="relative">
+                        <span aria-hidden="true" role="presentation" class="block h-px w-5 bg-text1 absolute top-2.5 -left-2.5 large:w-9 large:top-[1.125rem] large:-left-[1.125rem]"></span>
+                        <span aria-hidden="true" role="presentation" class="block h-5 w-px bg-text1 large:h-9"></span>
+                    </div>
+                    <div class="relative">
+                        <span aria-hidden="true" role="presentation" class="block h-5 w-px bg-text1 large:h-9"></span>
+                        <span aria-hidden="true" role="presentation" class="block h-px w-2.5 bg-text1 absolute top-2.5 right-0 large:w-5 large:top-[1.125rem]"></span>
+                    </div>
+                </div>
+            {% endif  %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.divider.name",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "disable_margins",
+            "default": true,
+            "label": "t:sections.divider.settings.disable_margins.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "cross_divider",
+            "default": true,
+            "label": "t:sections.divider.settings.cross_divider.label"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.divider.presets.name"
+        }
+    ]
+}
+{% endschema %}

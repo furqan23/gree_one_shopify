@@ -1,0 +1,155 @@
+{{ 'account.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+    <div class="wrap">
+        <div class="my-14 flex justify-between">
+            <h1 class="heading-r">
+                {{- 'customer.account.title' | t -}}
+            </h1>
+            <a href="{{ routes.account_logout_url }}" class="flex gap-x-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 10H15.8333M15.8333 10L13.3333 12.5M15.8333 10L13.3333 7.5" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.8307 5V4.16667C15.8307 3.24619 15.0846 2.5 14.1641 2.5H5.83073C4.91025 2.5 4.16406 3.24619 4.16406 4.16667V15.8333C4.16406 16.7538 4.91025 17.5 5.83073 17.5H14.1641C15.0846 17.5 15.8307 16.7538 15.8307 15.8333V15" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {{- 'customer.log_out' | t -}}
+            </a>
+        </div>
+        <div class="pb-24 large:pb-32">
+            <div class="mb-10">
+                <h2 class="heading-xs mb-5">
+                    {{- 'customer.orders.title' | t -}}
+                </h2>
+                {% paginate customer.orders by 20 %}
+                    {%- if customer.orders.size > 0 -%}
+                        <div class="max-w-full overflow-x-auto large:rounded-md large:px-7 large:py-8 large:bg-uiMidGrey">
+                            <div role="table" class="order-history table-auto w-full">
+                                <div role="rowgroup" class="hidden large:block border-b border-solid border-black">
+                                    <div class="large:grid large:grid-cols-6" role="row">
+                                        <div id="ColumnOrder" class="text-text1 py-2 text-left font-bold" scope="col" role="columnheader">
+                                            {{- 'customer.orders.order_number' | t -}}
+                                        </div>
+                                        <div id="ColumnDate" class="text-text1 py-2 text-left font-bold" scope="col" role="columnheader">
+                                            {{- 'customer.orders.date' | t -}}
+                                        </div>
+                                        <div id="ColumnPayment" class="text-text1 py-2 text-left font-bold" scope="col" role="columnheader">
+                                            {{- 'customer.orders.payment_status' | t -}}
+                                        </div>
+                                        <div id="ColumnFulfillment" class="text-text1 py-2 text-left font-bold" scope="col" role="columnheader">
+                                            {{- 'customer.orders.fulfillment_status' | t -}}
+                                        </div>
+                                        <div id="ColumnTotal" class="text-text1 py-2 text-left font-bold" scope="col" role="columnheader">
+                                            {{- 'customer.orders.total' | t -}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="rowgroup">
+                                    {%- for order in customer.orders -%}
+                                        <div class="large:border-b large:border-solid large:border-uiDarkGrey last:border-b-0 large:grid large:grid-cols-6 largeMax:bg-uiMidGrey largeMax:px-4 largeMax:py-4 first:largeMax:mt-0 largeMax:mt-4 largeMax:rounded-md" role="row">
+                                            <div id="RowOrder" class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between largeMax:border-b largeMax:border-uiDarkGrey" role="cell" headers="ColumnOrder" data-label="{{ 'customer.orders.order_number' | t }}">
+                                                <span class="font-bold large:hidden">
+                                                    {{- 'customer.orders.order_number' | t -}}
+                                                </span>
+                                                <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                                    {{- order.name -}}
+                                                </a>
+                                            </div>
+                                            <div class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between largeMax:border-b largeMax:border-uiDarkGrey" headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                                                <span class="font-bold large:hidden">
+                                                    {{- 'customer.orders.date' | t -}}
+                                                </span>
+                                                <span>
+                                                    {{- order.created_at | time_tag: format: 'date' -}}
+                                                </span>
+                                            </div>
+                                            <div class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between largeMax:border-b largeMax:border-uiDarkGrey" headers="RowOrder ColumnPayment" role="cell" data-label="{{ 'customer.orders.payment_status' | t }}">
+                                                <span class="font-bold large:hidden">
+                                                    {{- 'customer.orders.payment_status' | t -}}
+                                                </span>
+                                                <span>
+                                                    {{- order.financial_status_label -}}
+                                                </span>
+                                            </div>
+                                            <div class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between largeMax:border-b largeMax:border-uiDarkGrey" headers="RowOrder ColumnFulfillment" role="cell" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                                                <span class="font-bold large:hidden">
+                                                    {{- 'customer.orders.fulfillment_status' | t -}}
+                                                </span>
+                                                <span>
+                                                    {{- order.fulfillment_status_label -}}
+                                                </span>
+                                            </div>
+                                            <div class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between" headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                                                <span class="font-bold large:hidden">
+                                                    {{- 'customer.orders.total' | t -}}
+                                                </span>
+                                                <span>
+                                                    {{- order.total_price | money_with_currency -}}
+                                                </span>
+                                            </div>
+                                            <div class="whitespace-nowrap items-center text-sm text-text1 py-4 large:py-6 flex largeMax:justify-between" headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                                                <a href="{{ order.customer_url }}" class="button button--small button--full-width-mobile">
+                                                    <span class="button__text">
+                                                        {{ 'customer.orders.view_order_details' | t }}
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {%- endfor -%}
+                                </div>
+                            </div>
+                        </div>
+                    {%- else -%}
+                        <p>
+                            {{- 'customer.orders.none' | t -}}
+                        </p>
+                    {%- endif -%} 
+                    {%- if paginate.pages > 1 -%}
+                        {% render 'pagination', paginate: paginate, anchor: '' %}
+                    {%- endif -%}
+                {% endpaginate %}
+            </div>
+            <div>
+                <h2 class="heading-xs mb-5">
+                    {{- 'customer.account.details' | t -}}
+                </h2>
+                <div class="max-w-full overflow-x-auto rounded-md px-7 py-8 justify-between items-center bg-uiMidGrey large:flex">
+                    <div class="flex gap-x-5 items-center">
+                        <div class="w-[4.25rem] h-[4.25rem] rounded-full bg-white flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 22C19.45 22 19 21.55 19 21V19.88C19 16.09 15.86 13 12 13C8.14 13 5 16.08 5 19.88V21C5 21.55 4.55 22 4 22C3.45 22 3 21.55 3 21V19.88C3 14.98 7.04 11 12 11C16.96 11 21 14.98 21 19.88V21C21 21.55 20.55 22 20 22Z" fill="#252525"/>
+                                <path d="M11.5 13C8.47101 13 6 10.5315 6 7.49431C6 4.45708 8.47101 2 11.5 2C14.529 2 17 4.46846 17 7.49431C17 10.5202 14.529 12.9886 11.5 12.9886V13ZM11.5 4.27508C9.7236 4.27508 8.27743 5.71975 8.27743 7.49431C8.27743 9.26887 9.7236 10.7135 11.5 10.7135C13.2764 10.7135 14.7226 9.26887 14.7226 7.49431C14.7226 5.71975 13.2764 4.27508 11.5 4.27508Z" fill="#252525"/>
+                            </svg>
+                        </div>
+                        <div class="text-sm">
+                            <span class="font-bold">{{ customer.name }}</span>
+                            {%  if customer.default_address %}
+                                <div class="mt-2">
+                                    {% if customer.default_address.address1 %}
+                                        <span class="inline">
+                                            {{ customer.default_address.address1 }}{% if customer.default_address.address2 or customer.default_address.city %},{% endif %}
+                                        </span>
+                                    {%  endif %}
+                                    {% if customer.default_address.address2 %}
+                                        <span class="inline">
+                                            {{ customer.default_address.address2 }}{% if customer.default_address.city %},{% endif %}
+                                        </span>
+                                    {% endif %}
+                                    {% if customer.default_address.city %}
+                                        <span class="inline">
+                                            {{ customer.default_address.city }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="largeMax:mt-6">
+                        <a href="{{ routes.account_addresses_url }}" class="button button--full-width-mobile button--small">
+                            {{- 'customer.account.view_addresses' | t }} ({{- customer.addresses_count -}})
+                        </a>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

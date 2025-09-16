@@ -1,0 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_intrinsic_bgaraN": {
+      "type": "image-intrinsic",
+      "name": "t:sections.image-intrinsic.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Group_2.png",
+        "wrap": false,
+        "remove_margin": true
+      }
+    },
+    "main": {
+      "type": "ingredients-collection",
+      "settings": {
+        "collection_handle": ""
+      }
+    }
+  },
+  "order": [
+    "image_intrinsic_bgaraN",
+    "main"
+  ]
+}

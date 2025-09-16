@@ -1,0 +1,44 @@
+{%- if cart.item_count > 0 -%}
+    <p class="hidden mb-[0.625rem]" data-subtotal="{{ cart.total_price }}">
+        <span class="body-r mr-5">
+            {{ 'sections.cart_notification.subtotal' | t }}
+        </span>
+        <span class="heading-xxs">
+            {{- cart.total_price | money -}}
+        </span>
+    </p>
+    <div class="cart-notification__links large:max-w-[20rem] large:mx-auto">
+        <div class="flex flex-col gap-y-2">
+            <a
+                href="{{ routes.cart_url }}"
+                class="button button--secondary button--full-width"
+            >
+                <div class="button__label">
+                    <span>
+                        {{- 'sections.cart_notification.view_cart_button' | t -}}
+                    </span>
+                    <span class="absolute top-10 left-0">
+                        {{- 'sections.cart_notification.view_cart_button' | t -}}
+                    </span>
+                </div>
+            </a>
+            <form id="cart-notification-form" action="{{ routes.cart_url }}" method="post">
+                <button class="button button--full-width" name="checkout">
+                    <div class="button__label">
+                        <span>
+                            {{  'sections.cart_notification.checkout' | t }}
+                        </span>
+                        <span class="absolute top-10 left-0">
+                            {{  'sections.cart_notification.checkout' | t }}
+                        </span>
+                    </div>
+                </button>
+            </form>
+            <button class="link-highlight w-max mx-auto mt-3 body-m js-close-mini-cart">
+                <span>
+                    {{- 'sections.cart_notification.continue_shopping' | t -}}
+                </span>
+            </button>
+        </div>
+    </div>
+{%- endif -%}

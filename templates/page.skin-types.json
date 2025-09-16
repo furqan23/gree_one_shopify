@@ -1,0 +1,248 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "content_cta_and_media_grid_YWPyWg": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_dQ8pdi": {
+          "type": "heading",
+          "settings": {
+            "heading": "Oily  Skin"
+          }
+        },
+        "image_heading_pBHdTg": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_6gpnga": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Skin seems shiny and even appears greasy, visibly enlarged pores. <br/>Oily skin has an overall shine and tendency to breakout on the oilier areas of the face. In the T-Zone (forehead, nose, and chin) Y-zone (jawline and the neck) and Cheeks.</p>"
+          }
+        },
+        "button_EeY3kH": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_dQ8pdi",
+        "image_heading_pBHdTg",
+        "text_6gpnga",
+        "button_EeY3kH"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/collection-hero.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_n9Qdzm": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_xfcpTG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Dry Skin"
+          }
+        },
+        "image_heading_K9KFtg": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_UXfNQH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dry skin happens when your skin doesn't have enough moisture. </p><p>Dry skin may experience dull in complexion, It can feel rough, itchy, or tight and sometimes it flakes or cracks.</p>"
+          }
+        },
+        "button_YARGaQ": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_xfcpTG",
+        "image_heading_K9KFtg",
+        "text_UXfNQH",
+        "button_YARGaQ"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/collection-hero.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_whxq7c": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_TW8TpK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Combination"
+          }
+        },
+        "image_heading_dp9Qha": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_VpfKpr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A combination skin is Oily in the T-Zone (forehead, nose, and chin) with dryness in other areas of the face like cheeks.</p>"
+          }
+        },
+        "button_XLzcj9": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_TW8TpK",
+        "image_heading_dp9Qha",
+        "text_VpfKpr",
+        "button_XLzcj9"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/collection-hero.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_X9Pc3X": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_dpVp9K": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sensitive"
+          }
+        },
+        "image_heading_6jmFyk": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_8PRNMN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sensitive skin is characterised by its reactions to products.<br/><br/>  Skin becomes irritated to many products. People with sensitive skin show redness, itchiness, rashes and burning to external factors mainly in the<br/>  checks. </p>"
+          }
+        },
+        "button_3P88XT": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_dpVp9K",
+        "image_heading_6jmFyk",
+        "text_8PRNMN",
+        "button_3P88XT"
+      ],
+      "settings": {
+        "flip_layout": true,
+        "image": "shopify://shop_images/collection-hero.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    },
+    "content_cta_and_media_grid_BAaw4Y": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_E4kVP7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Normal"
+          }
+        },
+        "image_heading_FRr4nx": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_Ub6yfj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Normal skin type is neither too dry nor too oily.<br/></p><p>It is generally less reactive to external aggressors. People with normal skin typically have normal pores, smooth skin texture and clear skin with no imperfections</p>"
+          }
+        },
+        "button_R6wAGi": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_E4kVP7",
+        "image_heading_FRr4nx",
+        "text_Ub6yfj",
+        "button_R6wAGi"
+      ],
+      "settings": {
+        "flip_layout": false,
+        "image": "shopify://shop_images/collection-hero.jpg",
+        "video_url": "",
+        "embed_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_cta_and_media_grid_YWPyWg",
+    "content_cta_and_media_grid_n9Qdzm",
+    "content_cta_and_media_grid_whxq7c",
+    "content_cta_and_media_grid_X9Pc3X",
+    "content_cta_and_media_grid_BAaw4Y"
+  ]
+}

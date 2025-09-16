@@ -1,0 +1,96 @@
+{% comment %}
+
+    Renders a breadcrumb dependant on page type
+    PLEASE NOTE: Currently only loaded on PDP but could be implemented on theme.layout across the site if required
+
+    Usage:
+    {% render 'breadcrumb' %}
+
+{% endcomment %}
+
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' %}
+    {% assign t = template | split: '.' | first %}
+    <nav class="py-4 large:pt-6" role="navigation" aria-label="breadcrumbs">
+        <ol class="flex body-r uppercase leading-tight">
+            {% if shop_root %}
+                <li class="flex">
+                    <a href="/" title="Home" class="mr-1">Home</a>
+                    /
+                </li>
+            {% else %}
+            <li class="flex">
+                <a href="/" title="Home" class="mr-1">Home</a>
+                /
+            </li>
+            {% endif %}
+            {% case t %}
+            {% when 'page' %}
+                <li class="ml-1">
+                    <a href="{{ page.url }}" class="font-bold" aria-current="page">{{ page.title }}</a>
+                </li>
+            {% when 'product' %}
+                {% if collection.url %}
+                    <li class="flex shrink-0">
+                        <span class="mx-1">
+                            {{- collection.title | link_to: collection.url -}}
+                        </span>
+                        /
+                    </li>
+                {% endif %}
+                <li class="ml-1">
+                    <a href="{{ product.url }}" class="font-bold" aria-current="page">
+                        {{- product.metafields.custom.series.value.letter -}}-{{ product.metafields.custom.series_number }}
+                    </a>
+                </li>
+            {% when 'collection' and collection.handle %}
+                {% if current_tags %}
+                    <li class="flex shrink-0">
+                        <span class="ml-1">
+                            {{- collection.title | link_to: collection.url -}}
+                        </span>
+                        /
+                    </li>
+                    <li class="ml-1">
+                        {% capture tag_url %}{{ collection.url }}/{{ current_tags | join: "+" }}{% endcapture %}
+                        <a href="{{ tag_url }}" class="font-bold" aria-current="page">{{ current_tags | join: " + " }}</a>
+                    </li>
+                {% else %}
+                    <li class="ml-1">
+                        <a href="{{ collection.url }}" class="font-bold" aria-current="page">{{ collection.title }}</a>
+                    </li>
+                {% endif %}
+            {% when 'blog' %}
+                {% if current_tags %}
+                    <li class="flex">
+                        <span class="ml-1">
+                            {{ blog.title | link_to: blog.url }}
+                        </span>
+                        /
+                    </li>
+                    <li class="ml-1">
+                        {% capture tag_url %}{{ blog.url }}/tagged/{{ current_tags | join: "+" }}{% endcapture %}
+                        <a href="{{ tag_url }}" class="font-bold" aria-current="page">{{ current_tags | join: " + " }}</a>
+                    </li>
+                    {% else %}
+                        <li class="ml-1">
+                            <a href="{{ blog.url }}" class="font-bold" aria-current="page">{{ blog.title }}</a>
+                        </li>
+                {% endif %}
+            {% when 'article' %}
+                <li class="flex">
+                    <span class="ml-1">
+                        {{ blog.title | link_to: blog.url }}
+                    </span>
+                    /
+                </li>
+                <li class="ml-1">
+                    <a href="{{ article.url }}" class="font-bold" aria-current="page">{{ article.title }}</a>
+                </li>
+            {% else %}
+                <li class="ml-1" aria-current="page">
+                    <a href="{{ request.path }}" class="font-bold" aria-current="page">{{ page_title }}</a>
+                </li>
+            {% endcase %}
+        </ol>
+    </nav>
+{% endunless %}

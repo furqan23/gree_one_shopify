@@ -1,0 +1,96 @@
+{% comment %}
+    Renders 'boolean' or 'list' facets for colour/color (filtering)
+
+    Accepts:
+    - idPrefix: {String} DOM `id`
+    - context: {String} Rendering context, `mobile` or `desktop`
+    - contextForloop: {Object} loop context from the parent
+    - filter_type: {String} UI orientation, `vertical` or `horizontal`
+    - filter: {Object} Facet data
+    - facet_colours: {String} Configuration for colour filtering
+{% endcomment %}
+
+<div
+    id="{{ idPrefix }}{{ contextForloop.index }}-{{ section.id }}"
+    class="js-filter"
+    data-index="{{context}}-{{ contextForloop.index }}"
+>
+    <button
+        type="button"
+        class="w-full pt-5 pb-4 box-border"
+        data-facet-accordion-toggle
+        aria-label="{{ filter.label }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
+    >
+        <div class="flex items-center">
+            <span class="mr-2 body-r font-semibold
+                {%- if context == 'desktop' %} large:text-body-r{% endif %}"
+            >
+                {{ filter.label | escape }}
+            </span>
+            <div
+                class="flex justify-center items-center ml-auto transition-transform duration-300 transform bg-uiMidGrey w-[1.3rem] h-[1.3rem] [&.is-active]:-scale-y-100                    {%- if context == 'desktop'%} is-active{% endif %}"
+                data-facet-accordion-arrow
+                >
+                {% render 'icon-caret' %}
+            </div>
+        </div>
+    </button>
+    <div
+        id="Facet-{{ contextForloop.index }}-{{ section.id }}"
+        {% if context == 'mobile' %}class="h-0 hidden"{% endif %}
+        data-facet-accordion
+    >
+        <fieldset
+            class="pb-5
+            {%- if context == 'desktop' %} large:pb-6{% endif %}"
+        >
+            <legend class="sr-only">
+                {{- filter.label | escape -}}
+            </legend>
+            <ul class="grid grid-cols-1 gap-[0.375rem]" role="list"
+            >
+                {%- for value in filter.values -%}
+                    <li class="col-span-1">
+                        <label
+                            class="box-border relative z-0 flex items-center py-2 px-4 cursor-pointer group
+                            {%- if value.count == 0 and value.active == false %} pointer-events-none opacity-30{% endif %}
+                            for="Filter-{{ filter.label | escape | handle }}-{{ forloop.index }}"
+                        >
+                            <input
+                                id="Filter-{{ filter.label | escape | handle }}-{{ forloop.index }}"
+                                class="appearance-none peer"
+                                type="checkbox"
+                                name="{{ value.param_name }}"
+                                value="{{ value.value }}"
+                                {% if value.active %}
+                                    checked
+                                {% endif %}
+                                {% if value.count == 0 and value.active == false %}
+                                    disabled
+                                {% endif %}
+                            >
+                            <span class="absolute top-0 left-0 -z-10 w-full h-full border rounded-sm transition-colors duration-300 border-uiDarkGrey bg-transparent peer-focus-keyboard:outline peer-checked:border-primary peer-checked:bg-uiMidGrey group-hover:border-primary group-hover:bg-uiMidGrey"></span>
+                            {% assign colours = '' %}
+                            {% for item in facet_colours %}
+                                {% assign colours = item | split: ',' %}
+                                {% for colour in colours %}
+                                    {% assign colourData = colour | split: ':'  %}
+                                    {% assign colourName = colourData[0] %}
+                                    {% assign colourValue = colourData[1] %}
+                                    {% if colourName == value.label %}
+                                        <svg class="mr-[0.625rem] border border-uiDarkGrey rounded-full" width="20" height="20" viewBox="0 0 20 20" fill="{{ colourValue }}" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10" cy="10" r="10">
+                                        </svg>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            <span class="text-body-s text-center peer-checked:text-primary group-hover:text-primary">
+                                {{ value.label | escape }} ({{ value.count }})
+                            </span>
+                        </label>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </fieldset>
+    </div>
+</div>

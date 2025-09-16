@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_LD9w9p": {
+      "type": "hero",
+      "disabled": true,
+      "settings": {
+        "text_colour": "text1",
+        "background_colour": "background1",
+        "image": "shopify://shop_images/Screenshot_2024-03-17_at_15.45_2.jpg",
+        "mobile_video_url": "",
+        "video_url": "",
+        "heading": "Example Heading",
+        "text": "<p>Text</p>",
+        "button_text": "",
+        "secondary_button_text": "",
+        "button_link": "",
+        "button_style": "primary",
+        "trustpilot": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "centre_align_content": false
+      }
+    },
+    "content_cta_and_media_grid_drTpTq": {
+      "type": "content-cta-and-media-grid",
+      "blocks": {
+        "heading_m3qAwK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Heading"
+          }
+        },
+        "image_heading_E6Vymw": {
+          "type": "image_heading",
+          "settings": {
+            "image_width": 215
+          }
+        },
+        "text_CgFyPh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_9qMVBj": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "secondary_button_label": "Secondary Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_m3qAwK",
+        "image_heading_E6Vymw",
+        "text_CgFyPh",
+        "button_9qMVBj"
+      ],
+      "disabled": true,
+      "settings": {
+        "flip_layout": false,
+        "video_url": "https://player.vimeo.com/progressive_redirect/playback/541707235/rendition/1080p/file.mp4?loc=external&signature=883afde55f83841b85b1b8a518e5072ed72353a1850b2782aab895bdc2458c6d",
+        "embed_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+      }
+    },
+    "divider_AL9jnk": {
+      "type": "divider",
+      "disabled": true,
+      "settings": {
+        "disable_margins": false,
+        "cross_divider": true
+      }
+    },
+    "featured_icons_VckBij": {
+      "type": "featured-icons",
+      "blocks": {
+        "image_fYDmbp": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/Crueltyfreee.png",
+            "title": "Animal cruelty",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": ""
+          }
+        },
+        "image_g8P6cY": {
+          "type": "image",
+          "settings": {
+            "title": "Free shipping",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": ""
+          }
+        },
+        "image_pQNzzi": {
+          "type": "image",
+          "settings": {
+            "title": "Free shipping",
+            "text": "On all orders over £100",
+            "cta_text": "Learn more",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_fYDmbp",
+        "image_g8P6cY",
+        "image_pQNzzi"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Reasons to love us",
+        "title_font": false,
+        "text": "<p>We have been developing science-backed formulas using premium ingredients sourced from across the globe for over 50 years.</p>",
+        "background_color": "secondary",
+        "text_color": "text1"
+      }
+    },
+    "testimonials_eGNGMd": {
+      "type": "testimonials",
+      "blocks": {
+        "block_kWeKiR": {
+          "type": "block",
+          "settings": {
+            "title": "Example testimonial",
+            "content": "<p>Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>",
+            "name": "Example name",
+            "job_title": "Job Title"
+          }
+        }
+      },
+      "block_order": [
+        "block_kWeKiR"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "testimonials",
+        "background_color": "transparent",
+        "text_color": "text1",
+        "controls_color": "accentA",
+        "icons_hover_color": "accentA"
+      }
+    },
+    "custom_liquid_WcmpL3": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n    body {\n      margin: 0;\n      padding: 20px;\n      color: #333;\n      background-color: #fff;\n    }\n\n    .container {\n      display: flex;\n      flex-wrap: wrap;\n      justify-content: space-between;\n      gap: 50px;\n      max-width: 1200px;\n      margin: 0 auto;\n      margin-left:50px;\nmargin-bottom:30px;\n    }\n\n    .text-content {\n      flex: 1 1 50%;\n      min-width: 300px;\n    }\n\n    .image-content {\n      flex: 1 1 20%;\n      min-width:280px;\n      display: flex;\n      flex-direction: column;\n      align-items: flex-start;\n      margin-right:40px;\n    }\n\n    h1 {\n      text-align: center;\n      margin-bottom: 40px;\n      font-size: 2em;\n    }\n\n    .bold {\n      font-weight: bold;\n    }\n\n    .highlight {\n      font-weight: bold;\n      color: #000;\n    }\n\n    blockquote {\n      margin-top: 30px;\n      font-style: italic;\n      border-left: 4px solid #ccc;\n      padding-left: 16px;\n    }\n\n    .ceo-name {\n      font-weight: bold;\n      margin-top: 10px;\n    }\n\n    img {\n      width: 100%;\n      max-width: 100%;\n      border-radius: 8px;\n    }\n\n    @media (max-width: 768px) {\n      .container {\n        flex-direction: column;\n        gap: 20px;\nmargin-left: 0px;\n      }\n\n      h1 {\n        font-size: 1.6em;\n      }\n.image-content{\nmargin-right:0px;\n}\n    }\n  </style>\n</head>\n<body>\n  <h1>Our Story</h1>\n  <div class=\"container\">\n    <div class=\"text-content\">\n      <p>At <span class=\"bold\">Tursian</span>, we believe that true luxury means clinically effective skincare—rooted in science, driven by results, and elevated through global ingredient discovery. I’m Riyadh Swedaan, Founder and CEO. With a background in pharmaceuticals, I’ve spent years studying how powerful ingredients can transform skin when used at the right concentrations. For me, it was never just about what ingredients are included—but how much of them is used, and whether they can truly deliver change.</p>\n      <br>\n      <p>My passion for formulation was deeply influenced by my mentor and partner, Brandon Truaxe. Together, we traveled across five continents, uncovering both cutting-edge scientific innovations and time-honored natural ingredients. These journeys sparked the vision for <span class=\"bold\">Tursian</span>: to create a brand that fuses global inspiration with rigorous pharmaceutical standards.</p>\n      <br>\n      <p><span class=\"bold\">Tursian</span> products are powered by over <span class=\"highlight\">322 high-performance, high concentration, active ingredients</span>—sourced globally to target specific skin concerns, from hydration to cellular regeneration and better aging. Every formula is developed with purpose and precision—guided by clinical evidence, not marketing trends.</p>\n      <br>\n      <p>Our goal is simple: <span class=\"highlight\">to give you skincare rooted in science - that works.</span> Not in theory, but in real, visible results. At <span class=\"bold\">Tursian</span>, every ingredient tells a story. And every product exists to support your skin’s long-term health, energy, and glow.</p>\n      <br>\n      <p>Welcome to <span class=\"bold\">Tursian</span>—where science meets skin, and every formula is designed to perform.</p>\n    </div>\n\n    <div class=\"image-content\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0844/4670/7990/files/RS_Picture.png\" alt=\"Riyadh Swedaan with Tursian products\" />\n      <blockquote>\n        “I formulate with purpose—and without compromise. I believe high-performance skincare begins with what we leave out just as much as what we put in. That is why I choose to formulate with science not trends. Just what your skin truly needs—at the highest allowable concentrations, clinically backed, globally sourced, and designed to deliver real results”.\n        <div class=\"ceo-name\">Riyadh Swedaan, Founder and CEO</div>\n      </blockquote>\n    </div>\n  </div>\n</body>\n</html>"
+      }
+    }
+  },
+  "order": [
+    "hero_LD9w9p",
+    "main",
+    "content_cta_and_media_grid_drTpTq",
+    "divider_AL9jnk",
+    "featured_icons_VckBij",
+    "testimonials_eGNGMd",
+    "custom_liquid_WcmpL3"
+  ]
+}
