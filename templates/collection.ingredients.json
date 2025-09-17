@@ -13,7 +13,7 @@
       "type": "image-intrinsic",
       "name": "t:sections.image-intrinsic.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Group_2.png",
+        "image": "shopify://shop_images/theme_cover_image.jpg",
         "wrap": false,
         "remove_margin": true
       }
